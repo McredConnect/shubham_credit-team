@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<div id="throbber" style="display:none; min-height:120px;"></div>
+<div id="noty-holder"></div>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav style="ba" class="navbar navbar-custom  navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+<!--                <img class="logo-icon" src="{% static '/images/logo.png' %}" alt="LOGO">-->
+            </a>
+        </div>
+        <!-- Top Menu Items -->
+        <div class=" nav navbar-nav top-item">
+            <ul>
+                <a id="navbar-text" href="#"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/bell.svg' %}"> ADMIN </a>
+            </ul>
+        </div>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="side-nav">
+            <a href="#" class="text-large"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/dashboard.svg' %}"> DASHBOARD </a>
+            <a href="#" class="text-large"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/file.svg' %}"> INVOICES </a>
+            <a href="#" class="text-large"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/money-bag.svg' %}"> BANK ACCOUNT </a>
+            <a href="#" class="text-large"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/history.svg' %}"> TRANSACTION </a>
+            <a href="#" class="text-large"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/refer.svg' %}"> REFER & EARN </a>
+            <a href="#" class="text-large"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/preference.svg' %}"> PREFERENCES </a>
+            <a href="#" class="text-large"><img class="image-resize" style="padding:4px;" src="{% static '/images/navbar/customer-service.svg' %}"> HELP & SUPPORT </a>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+<!--    <div id="page-wrapper">-->
+<!--        <p id="section-name">Mcred_Business > Invoices</p>-->
+<!--        <div class="container-fluid" >-->
+<!--            &lt;!&ndash; Page Heading &ndash;&gt;-->
+<!--            <div class="row"id="main" >-->
+<!--                <div class="col-sm-12 col-md-12 well" id="content">-->
+<!--                    <form method="post">-->
+<!--                        <p id="form-size">-->
+<!--                            <label>Invoice ID : </label>-->
+<!--                            <input type="text" name="invoice_id">-->
+<!--                        </p>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; /.row &ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--    </div>-->
+    <!-- /#page-wrapper -->
+</div><!-- /#wrapper -->
+
+</body>
+</html>

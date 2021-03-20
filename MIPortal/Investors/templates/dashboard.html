@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+
+<div style="margin-top:50px; margin-left:20%;">
+    <h2 class="text-center">Dashboard</h2>
+    <br>
+     <div>
+        {% for message in messages %}
+        <h6 class="text-center font-weight-normal"><mark style="color: orange;">{{ message }}</mark></h6>
+        {% endfor %}
+    </div>
+    <br>
+    <table id="example" >
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Business Name</th>
+            <th>Entity Name</th>
+            <th>Batch No</th>
+            <th>batch_invoice_amount</th>
+            <th>Invoice Amount</th>
+            <th>Due Date</th>
+            <th>Invoice Date</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in invoices %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.business_name}}</td>
+            <td>{{i.entity_name}}</td>
+            <td>{{i.batch_no}}</td>
+            <td>{{i.batch_invoice_amount}}</td>
+            <td>{{i.invoice_amount}}</td>
+            <td>{{i.invoice_due_date}}</td>
+            <td>{{i.invoice_date}}</td>
+            <td><a href="{% url 'viewInvoice' i.id %}" class="btn btn-danger">View</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

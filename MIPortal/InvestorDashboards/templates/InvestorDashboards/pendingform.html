@@ -1,0 +1,41 @@
+<form method="post" action="{% url 'reason' pk %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+<!--                                    <div class="form-group">-->
+<!--                                      <label for="bankname">Bank name:</label>-->
+<!--                                      <div class="col-xs-4">-->
+<!--                                        <select class="form-control" id="bankname" name="bankname">-->
+<!--                                            <option value="Axis">Axis</option>-->
+<!--                                            <option value="SBI">SBI</option>-->
+<!--                                            <option value="SBI">UNION Bank</option>-->
+<!--                                            <option value="BANK OF BARODA">BANK OF BARODA</option>-->
+<!--                                        </select>-->
+<!--                                     </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="acctype">Account Type:</label>-->
+<!--                                        <input type="text" class="form-control" id="acctype" placeholder="acctype" name="acctype">-->
+<!--                                    </div>-->
+<!--                                        <div class="form-group">-->
+<!--                                        <label for="accno">Account number:</label>-->
+<!--                                        <input type="number" class="form-control" id="accno" placeholder="accno" name="accno">-->
+<!--                                    </div>-->
+<!--                                        <div class="form-group">-->
+<!--                                            <label for="date">From date:</label>-->
+<!--                                            <input type="date" class="form-control"  placeholder="fromdate" id="date" name="date">-->
+<!--                                        </div>-->
+                                        <div class="form-group">
+                                            <label for="reason">Reason:</label>
+                                            <textarea type="date" class="form-control"  placeholder="reason" id="reason" name="reason"></textarea>
+                                        </div>
+<!--                                        <div class="form-group">-->
+<!--                                            <label for="todate">To date:</label>-->
+<!--                                            <input type="date" class="form-control" placeholder="todate" name="todate">-->
+<!--                                        </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                      <label for="file1">FILE UPLOAD:</label>-->
+<!--                                      <input type="file" class="form-control" id="file1" placeholder="file" name="file1" accept=".pdf,.jpeg,.png,.jpg">-->
+<!--                                    </div>-->
+
+<!--                                    </div>-->
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>

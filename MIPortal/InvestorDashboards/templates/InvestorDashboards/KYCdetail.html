@@ -1,0 +1,209 @@
+{% extends "InvestorDashboards/index2.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <nav id="sidebar-businessdetail">
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'business_detail' business_id %}">Business Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+        </nav>
+        <div class = "scroll">
+            <div class="managefunds">
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+
+                     <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DOCUMENTS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO.</b></th>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>NAME OF DIRECTOR</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TYPE OF ID</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NUMBER OF ID</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                            </tr>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in objs %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.Name_of_directors}}</td>
+                                            <td>{{i.Type_of_ID}}</td>
+                                            <td>{{i.ID_NO}}</td>
+                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            <td><a href = "{% url 'remove_KYCdetail' i.id %}" class="btn btn-success">Remove</a></td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                        <div class="row">-->
+<!--                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">-->
+<!--                            <div class="card-body">-->
+<!--                                <h6 style="float:left;">COMMENTS DETAIL</h6>-->
+<!--&lt;!&ndash;                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal7">ADD DETAILS</button>&ndash;&gt;-->
+<!--                                <div class="table-responsive">-->
+<!--                                    <table class="table" style="border-collapse:collapse">-->
+<!--                                        <thead class="headt" >-->
+<!--                                            <tr>-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:15px;">SR No.</th>&ndash;&gt;-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>USERNAME</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>COMMENT</b></th>-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DATE</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>&ndash;&gt;-->
+<!--                                            </tr>-->
+<!--                                    </thead>-->
+<!--                                    <tbody>-->
+<!--                                    {% for i in comments_obj %}-->
+<!--                                        <tr>-->
+<!--                                            <td style="text-align:center;">{{forloop.counter}}</td>-->
+<!--                                            <td style="text-align:center;">{{i.username}}</td>-->
+<!--                                            <td style="text-align:center;">{{i.comment}}</td>-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><a class="btn btn-success">Remove</a></td>&ndash;&gt;-->
+<!--                                        </tr>-->
+<!--                                    {% endfor %}-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                                    |slice:":10" &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    {% for i in objlist %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                            <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{forloop.counter}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.bank_name}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.AC_No}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.AC_Type}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.from_date}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.To_date}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    {% endfor %}&ndash;&gt;-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                            {% for i in comments_obj %}
+                                <h6>{{i.comment}}</h6>
+                                <h6><i style="font-size:15px; color:grey;">commented by:  </i>{{i.username}}&nbsp;&nbsp;&nbsp;<i style="font-size:15px; color:grey;">date:  </i>{{i.created_date| date:"F d Y"}}</h6><br><br>
+                             {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="col-xs-4">
+                                        <form method="post" action="{%url 'bankdetail_comment' %}" enctype="multipart/form-data" >
+                                            {% csrf_token %}
+                                            <h6 style="font-size: 15px;">COMMENTS:</h6>
+<!--                                            <input class="form-control" id="ex1" type="text" size=45 style="height:50px"/>-->
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" name="comment" rows="10" style="width:1050px;"></textarea>
+                                            <input type="hidden" value="kycdetail" id="type" name="type"><br>
+                                            <button   type="submit" class="btn btn-primary">SAVE</button>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+            </div>
+              <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">KYC DETAILS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+
+
+                                    <div class="form-group">
+                                        <label for="name">Name of director:</label>
+                                        <input type="text" class="form-control" id="name" placeholder="name" name="name">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="typeofid">Select Type of ID:</label>
+                                      <div class="col-xs-4">
+                                        <select class="form-control" id="typeofid" name="typeofid">
+                                            <option value="ADHAR CARD">ADHAR CARD</option>
+                                            <option value="PAN CARD">PAN CARD</option>
+                                            <option value="VOTER ID">VOTER ID</option>
+                                            <option value="PASSPORT">PASSPORT</option>
+                                            <option value="COMPANY ADDRESS PROOF">DRIVING LICENSE</option>
+                                        </select>
+                                          </div>
+                                      </div>
+
+                                    <div class="form-group">
+                                        <label for="ID_NO">Document ID Number:</label>
+                                        <input type="number" class="form-control" id="ID_NO" placeholder="ID_NO" name="ID_NO">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="file">FILE UPLOAD:</label>
+                                      <input type="file" class="form-control" id="file" placeholder="file" name="file" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+
+                                    <button  href = "{%url 'KYC_detail' %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+
+
+
+                        </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+                    </div>
+                    </div>
+        </div>
+{% endblock content %}

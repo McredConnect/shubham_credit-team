@@ -1,0 +1,186 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "InvestorDashboards/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/bankstatement.css' %}">
+            <script src="{% static '/javascript/bankstatement.js' %}"></script>
+        </head>
+        <div class="card col-sm-12 col-md-8">
+            <div class="row row1" >
+                <h6 class="col-md-6">BANK ACCOUNTS</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-2  col-md-3 " data-bs-toggle="modal" data-bs-target="#exampleModal">ADD A BANK ACCOUNT</button>
+             </div>
+
+            <!-- Modal FOR ADD NEW GST DETAILS-->
+            <div class="modal fade modal1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;GST DETAILS</h6>
+                        <h6 class="cls1">Add a GST Number</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+                    <div></div>
+                    <div class="modal-body" >
+                        <div class="input-group mb-3">
+                              <label for="gst" class="form-label name">GST No.</label>
+                              <input type="text" class="form-control" placeholder="Enter GST Number" aria-label="gstno" aria-describedby="basic-addon1" style="margin-left:80px;width:10px;">
+                        </div>
+                        <div class="input-group mb-3">
+                        <label for="state" class="form-label name">State</label>
+                        <select class="form-select" aria-label="Default select example" style="margin-left:95px;">
+                              <option selected><span>Select State</span></option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                        </select>
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="button" class="btn btn-primary addbtn" style="margin-left:170px">Add Account</button></div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">Bank</th>
+                                <th style="border-bottom:none;">Account No.</th>
+                                <th style="border-bottom:none;">Account Type</th>
+
+
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            <tr>
+                                <td >State Bank of India</td>
+                                <td >SBI12345436</td>
+                                <td >Savings</td>
+
+                            </tr>
+                             <tr >
+                                <td style="border-bottom:none;">Allahabad Bank</td>
+                                <td style="border-bottom:none;">ALLA1237691</td>
+                                <td style="border-bottom:none;">Savings</td>
+
+                            </tr>
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-------------TABLE FOR GSTR-1----------------->
+            <div class="row">
+                <button type="button" class="btn btn-dark col-md-3 btn2" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="margin-top:-30px;">UPLOAD NEW STATEMENT</button>
+                <h6 class="col-md-6" >BANK STATEMENTS</h6>
+                <!-- Button trigger modal -->
+<!--                -->
+             </div>
+
+<!--             Modal FOR GSTR-1-->
+            <div class="modal fade modal2" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <div><h6  class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;GST DETAILS</h6>
+                        <h6 class="cls1">Add GSTR-1 Returns</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+                    <div></div>
+                    <div class="modal-body" >
+                        <div class="input-group mb-3">
+                            <label for="gstnum" class="form-label name">Select GST No.</label>
+                            <select class="form-select selgst" aria-label="Default select example" style="margin-left:55px;">
+                                  <option selected><span>Select GST No.</span></option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="fromdate" class="form-label name">From Date</label>
+                              <input type="date" class="form-control" placeholder="DD/MM/YYYY" aria-label="fromdate" aria-describedby="basic-addon1" style="margin-left:80px;width:10px;">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="todate" class="form-label name">To Date</label>
+                              <input type="date" class="form-control" placeholder="DD/MM/YYYY" aria-label="todate" aria-describedby="basic-addon1" style="margin-left:100px;width:10px;">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label name" >Upload Document</label>
+                            <input class="form-control" type="file" id="formFile" style="margin-left:150px;width:320px;margin-top:-35px;">
+
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="button" class="btn btn-primary addbtn" style="margin-left:170px">Add GSTR-1</button></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10  table  tbl1"  >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">A/C No.</th>
+                                 <th style="border-bottom:none;">FROM</th>
+                                <th style="border-bottom:none;">To</th>
+                                <th style="border-bottom:none;">Statement PDF</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            <tr>
+                                <td >10AABCU9603R1Z2</td>
+                                <td >12-06-2020</td>
+                                <td >11-07-2020</td>
+                                <td ><a href="#">Open</a></td>
+                            </tr>
+
+                            <tr>
+                                <td >10AABCU9603R1Z2</td>
+                                <td >12-06-2020</td>
+                                <td >11-07-2020</td>
+                                <td ><a href="#">Open</a></td>
+                            </tr>
+                             <tr >
+                                <td style="border-bottom:none;">10AABCU9603R1Z2</td>
+                                <td style="border-bottom:none;">12-06-2020</td>
+                                <td style="border-bottom:none;">11-07-2020</td>
+                                <td style="border-bottom:none;"><a href="#">Open</a></td>
+                            </tr>
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--    CODE FOR TERMS AND CONDITIONS-->
+            <div class="row" style="margin-top:30px;margin-left:40px;" >
+                 <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        I confirm that the information I have supplied is correct and best to my knowledge.
+                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>
+                      </label>
+                 </div>
+            </div>
+            <div class="row history" style="margin-top:20px;">
+                <div class="col-md-8" style="margin-left:40px;">
+                    <i class="fas fa-history" style="width:15px;height:15px;"></i>
+                    <span >Last updated at 16:23 on 22/10/2020</span>
+                </div>
+                <div class="col-2"><button type="button" class="btn btn-outline-primary"  >Save Data</button></div>
+            </div>
+        </div>
+
+        {% endblock content %}

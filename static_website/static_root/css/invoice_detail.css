@@ -1,0 +1,166 @@
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #404040
+}
+
+.container {
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 85px;
+    margin-bottom: -20px;
+    position: relative;
+    height: 70vh;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -2%);
+}
+
+.container {
+    background: #fff;
+    width: 800px;
+    padding: 30px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.container hr.line {
+     border-top: 1px solid #F0F0F0;
+     text-align: left;
+     margin-left: -29px;
+     min-width: 856px;
+     margin-top: 25px;
+}
+
+.container .heading{
+    margin-top: 10px;
+    text-align: left;
+    font: normal normal normal 23px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    opacity: 1;
+    margin-left: 10px;
+}
+
+.container .div1 {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.container .div1 .class1{
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .div1 .class2{
+    margin-left: 200px;
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .div1 .class3{
+    margin-left: 200px;
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .ans1 {
+    margin-left:10px;
+    margin-top: 10px;
+}
+
+.container .ans1 .class1 {
+    text-align: left;
+    font: normal normal 600 20px/27px Open Sans;
+    letter-spacing: 0.4px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .ans1 .class2 {
+    margin-left: 148px;
+    text-align: left;
+    font: normal normal 600 20px/27px Open Sans;
+    letter-spacing: 0.4px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .ans1 .class3 {
+    margin-left: 137px;
+    text-align: left;
+    font: normal normal 600 20px/27px Open Sans;
+    letter-spacing: 0.4px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .div2 {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.container .div2 .class1{
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .div2 .class2{
+    margin-left: 233px;
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .div2 .class3{
+    margin-left: 250px;
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .ans2 {
+    margin-left:10px;
+    margin-top: 10px;
+}
+
+.container .ans2 .class1 {
+    text-align: left;
+    font: normal normal 600 20px/27px Open Sans;
+    letter-spacing: 0.4px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .ans2 .class2 {
+    margin-left: 246px;
+    text-align: left;
+    font: normal normal 600 20px/27px Open Sans;
+    letter-spacing: 0.4px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container .ans2 .class3 {
+    margin-left: 137px;
+    text-align: left;
+    font: normal normal 600 20px/27px Open Sans;
+    letter-spacing: 0.4px;
+    color: #353535;
+    opacity: 1;
+}
+

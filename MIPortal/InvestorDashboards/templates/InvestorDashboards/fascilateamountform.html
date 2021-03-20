@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fascilateform</title>
+</head>
+<body>
+<form method="post" action="{% url 'fascilate_amount_save' pk %}" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="amount">Enter the amount :</label>
+        <input type="number" class="form-control"  placeholder="enter amount" id="amount" name="amount">
+    </div>
+    <button type="submit" class="btn btn-primary">save</button>
+</form>
+</body>
+</html>

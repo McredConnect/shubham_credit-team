@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Invoice</title>
+</head>
+<body>
+<div style="margin-left: 20px;">
+    <p>Total Invoice Amount : {{ total_invoice_amount }} Rs.</p>
+    <p>Entity Name : {{ entity }}</p>
+    <p>Due Date : {{ due_date }}</p>
+    <p>Maturity Amount : {{ maturity_amount }}</p>
+    <p>Available Investment Amount : {{ available_investment_amt }}</p>
+    <button><a href="{{pdf_name}}"><h7>Download PDF</h7>
+  </a>
+    </button>
+</div>
+<br><br>
+<div style="margin-left: 20px;">
+    <form method="post">
+        {% csrf_token %}
+        <label>Investor ID:</label>
+        <input type="text" name="id"><br><br>
+        <label>Amount you want to Invest:</label>
+        <input type="text" name="invested_amt">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+
+</body>
+</html>

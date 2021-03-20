@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+       <form method="post">
+           {% csrf_token %}
+           {% for message in messages %}
+            <p>{{message}}</p>
+           {% endfor %}
+           <div class="input-arrange">
+               <input type="radio" name="yes" id="yes" value="yes" >Yes &nbsp;&nbsp;
+               <input type="radio" name="yes" id="no" value="no" >No
+           </div>
+           <button type="submit" >SUBMIT</button>
+       </form>
+    </div>
+</body>
+</html>

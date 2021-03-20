@@ -1,0 +1,3 @@
+{% for i in x %}
+    <label>business_id</label>= <label>{{i.business_id}}</label>&nbsp;&nbsp;<a href="{% url 'test1' i.business_id %}">goto</a><br>
+{% endfor %}

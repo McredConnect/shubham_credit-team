@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+
+    <div class="center">
+        <div class="container">
+            <div class="text" style="text-align:center">Upload New Invoice</div>
+            <form class="form" method="post">
+                {% csrf_token %}
+                <div class="data">
+                    <label>Total Invoice Amount: </label>
+                    <input type="text" name="amount" required>
+                </div>
+                <div class="data">
+                    <label>Entity Name: </label>
+                    <input type="text" name="entity" required>
+                </div>
+<!--                <div class="data">-->
+<!--                    <label>Fundable Invoice Amount: </label>-->
+<!--                    <input type="text" name="fundable_amt" disabled="disabled">-->
+<!--                </div>-->
+                <div class="data">
+                    <label>Invoice Due Date: </label>
+                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="due_date" required>
+                </div>
+                <div class="data">
+                    <label>Product Code: </label>
+                    <input type="text" name="product_code" required>
+                </div>
+                <div class="data">
+                    <label>Product Description: </label>
+                    <input type="text" name="product_desc" required>
+                </div>
+                <div class="data">
+                    <label>Invoice No: </label>
+                    <input type="text" name="invoice_no" required>
+                </div>
+                <div class="data">
+                    <label>Invoice Date: </label>
+                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="invoice_date" required>
+                </div>
+                <div class="data">
+                    <label>Eway Bill No: </label>
+                    <input type="text" name="eway_bill_no" required>
+                </div>
+                <div class="choices">
+                    <label>Goods Delivery Status - (choose One): </label><br>
+                    <div class="input-arrange">
+                        <input type="radio" name="yes" id="transit" value="in_transit" onclick="ShowHide()" checked="checked" >In Transit &nbsp;&nbsp;
+                        <input type="radio" name="yes" id="delivered" value="delivered_and_acknowledged" onclick="ShowHide()" >Delivered & Acknowledge
+                    </div>
+                </div>
+                <div id="del_date" style="display:none;" class="data">
+                    <label>Goods Delivery date: </label>
+                    <input type="text" name="delivery_date" onfocus="(this.type='date')" onblur="(this.type='text')" >
+                </div>
+                <div class="data">
+                    <label>Transporter Name: </label>
+                    <input type="text" name="transporter_name" required>
+                </div>
+                <div class="data">
+                    <label>Transporter Vehicle No: </label>
+                    <input type="text" name="transporter_vehicle" required>
+                </div>
+                <div class="choices">
+                    <label>Invoice Approval Status (Choose One): </label><br>
+                    <div class="input-arrange2">
+                        <input type="radio" name="approved" value="approved" id="approved" onclick="ShowApprovedDate()" />Approved &nbsp;&nbsp;
+                        <input type="radio" name="approved" value="approval_pending" id="pending" onclick="HideApprovedDate()" checked="checked">Approval Pending
+                    </div>
+                </div>
+                <div id="app_date" style="display:none;" class="data">
+                    <label>Invoice Approval Date: </label>
+                    <input id="iad" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="invoice_approval_date" >
+                </div>
+                <div class="choices">
+                    <label>Assignment of Invoice (Choose One): </label><br>
+                    <div class="input-arrange1">
+                        <input type="radio" name="assignment" id="yes" value="yes" onclick="ShowAssignedTo()">Yes &nbsp;&nbsp;
+                        <input type="radio" name="assignment" id="no" value="no" onclick="HideAssignedTo()" checked="checked">No
+                    </div>
+                </div>
+                <div id="assigned_to" style="display:none;"  class="data" >
+                    <label>Invoice Assigned To: </label>
+                    <input id="yes-no" type="text" name="assigned_to" >
+                </div>
+                <div class="data">
+                    <label>Entity PO Number: </label>
+                    <input type="text" name="po_number" required>
+                </div>
+                <div class="data">
+                    <label>Entity PO Date: </label>
+                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="po_date" required>
+                </div>
+                <div class="data">
+                    <label>Goods Origin State: </label>
+                    <input type="text" name="origin_state" required>
+                </div>
+                <div class="data">
+                    <label>Goods Destination State: </label>
+                    <input type="text" name="delivery_state" required>
+                </div>
+                <div class="data">
+                    <label>Upload Invoice PDF: </label>
+                    <input type="text" onfocus="(this.type='file')" onblur="(this.type='text')" name="invoice_pdf" >
+                </div>
+                <div class="data">
+                    <label>Applicable TDS Amount: </label>
+                    <input type="text" name="tds_amount" required>
+                </div>
+                <div class="btn">
+                    <p>
+                        <button id="btn1" type="reset">SAVE</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button id="btn2" type="submit">SUBMIT</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script>
+    function ShowAssignedTo() {
+        var yes = document.getElementById("yes");
+        var assigned_to = document.getElementById("assigned_to");
+
+        assigned_to.style.display = yes.checked ? "block" : "none";
+    }
+
+    function HideAssignedTo() {
+        var no = document.getElementById("no");
+        var assigned_to = document.getElementById("assigned_to");
+
+        assigned_to.style.display = no.checked ? "none" : "block";
+    }
+
+    function ShowApprovedDate() {
+        var approved = document.getElementById("approved");
+        var app_date = document.getElementById("app_date");
+
+        app_date.style.display = approved.checked ? "block" : "none";
+    }
+
+    function HideApprovedDate() {
+        var pending = document.getElementById("pending");
+        var app_date = document.getElementById("app_date");
+
+        app_date.style.display = pending.checked ? "none" : "block";
+    }
+
+    function ShowHide() {
+        if (document.getElementById("transit").checked)
+        {
+            document.getElementById("del_date").style.display = "none";
+        }
+        else if (document.getElementById("delivered").checked)
+        {
+            document.getElementById("del_date").style.display = "block";
+        }
+    }
+
+    $('form').on('submit',function(){
+                alert('submitted');
+    });
+
+</script>
+</html>

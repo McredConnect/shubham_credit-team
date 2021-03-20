@@ -1,0 +1,36 @@
+#sidenav {
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 1771px;
+    background: #182677 0% 0% no-repeat padding-box;
+    box-shadow: 3px 0px 6px #00000029;
+    opacity: 1;
+}
+
+#sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+#dashboard {
+    top: 80px;
+    left: 0px;
+    width: 300px;
+    height: 80px;
+    background: #182677 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+
+#navbar {
+    top: 0px;
+    left: -0.000091552734375px;
+    width: 1920px;
+    height: 80px;
+    background: #182677 0% 0% no-repeat padding-box;
+    opacity: 1;
+}

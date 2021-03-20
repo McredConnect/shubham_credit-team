@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Invoice Upload</title>
+    <link href="{% static '/css/invoice_upload.css' %}" rel="stylesheet">
+    <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<!--    <script>-->
+<!--        -->
+<!--    </script>-->
+
+</head>
+<body>
+
+    <div class="topnav" id="navbar">
+      <img class="top-img" src="{% static '/images/navbar/user.svg' %}"><a class="user" href="#user">User</a>
+      <a href="#"><img class="list" id="list" src="{% static '/images/navbar/list.jpg' %}"></a>
+    </div>
+
+    <!-- The sidebar -->
+    <div class="sidebar">
+        <div class="side-content">
+            <div>
+          <img class="img-size" src="{% static '/images/navbar/dashboard.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Dashboard</a></div>
+          <img class="img-size" src="{% static '/images/navbar/file.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Invoices</a>
+          <img class="img-size" src="{% static '/images/navbar/money-bag.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Bank Accounts</a>
+          <img class="img-size" src="{% static '/images/navbar/history.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Transactions</a>
+          <img class="img-size" src="{% static '/images/navbar/refer.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Refer and Earn</a>
+          <img class="img-size" src="{% static '/images/navbar/preference.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;References</a>
+          <img class="img-size" src="{% static '/images/navbar/customer-service.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Help & Support</a>
+        </div>
+    </div>
+<!--    <img id="img1" class="img-size" src="{% static '/images/navbar/dashboard.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Dashboard</a>-->
+
+    <!-- Page content -->
+    <div class="content" onclick="ShowHide()">
+<!--        <div>-->
+<!--                {% for message in messages %}-->
+<!--                <h6 class="text-center font-weight-normal"><mark style="color: orange;">{{ message }}</mark></h6>-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+        <div class="form" id="upload_form" onclick="ShowHide()">
+            <div class="form-heading"><p>Upload New Invoice</p></div>
+            <div class="form-field">
+                <form class="form1" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="entity">
+                        <p><label >NAME OF THE ENTITY: </label></p>
+                        <select style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" id="entity_menu" name="entity" class="filter-selectbox">
+                            <option value="">Please Select The Applicable Entity</option>
+                            {% for post in ls %}
+                                <option value="{{ post }}">{{ post }}</option>
+                            {% endfor %}
+                        </select>
+<!--                        <input type="text" placeholder="Please Enter Name of The Entity" name="entity_name" required>-->
+                    </div>
+                    <div style="font-family: 'Open Sans';" class="amount">
+                        <p><label>TOTAL INVOICE AMOUNT: </label></p>
+                        <input style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" type="text" placeholder="Please Enter Total Invoice Amount (incl. of taxes)" name="amount" required>
+                    </div>
+                    <div class="invoices">
+                        <p><label>TOTAL NUMBER OF INVOICES: </label></p>
+                        <input autocomplete="off" id="howmany" style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" onclick="ShowHide()" type="text" placeholder="Please Enter Total Number of Invoice " name="invoices_no" required>
+                    </div>
+                    <div class="headings" id="text1" style="display: none;">
+                        <label class="label1">INVOICE AMOUNT: </label>
+                        <label class="label2">INVOICE DATE: </label>
+                        <label class="label3">INVOICE PDF: </label>
+                    </div>
+<!--                    <div class="date">-->
+<!--                        <p><label>INVOICE DUE DATE: </label></p>-->
+<!--                        <input style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" type="text" id="datefield" placeholder="Please Enter Invoice Due Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" name="due_date" required>-->
+<!--                    </div>-->
+<!--                    <div class="pdf">-->
+<!--                        <p><label>UPLOAD PDF OF THE INVOICE: </label></p>-->
+<!--                        <input style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" type="file" name="pdf" required>-->
+<!--                    </div>-->
+                    <div id="boxquantity"></div>
+                    <div class="btn">
+                        <button id="mybtn" data-toggle="modal" data-target="#myModal">SUBMIT FOR APPROVAL</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
+
+    </div>
+
+</body>
+
+<script>
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    }
+
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {myFunction()};
+
+    // Get the navbar
+    var navbar = document.getElementById("navbar");
+
+    // Get the offset position of the navbar
+    var sticky = navbar.offsetTop;
+
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+
+    var boxes = "";
+
+    document.getElementById("howmany").onchange = function() {
+      boxes = "";
+      var howmany = document.getElementById("howmany").value;
+      for(i=0;i<howmany;i++) {
+        boxes += '<input type="text" id="box' + i + '" name="amount' + i + '" /><input type="date" id="box' + i + '" name="date' + i + '" max="{{today}}"/><input type="file" id="box' + i + '" name="pdf' + i + '" accept="application/pdf"/><br/>';
+      }
+      console.log(boxes);
+      document.getElementById("boxquantity").innerHTML = boxes;
+    }
+
+    function ShowHide() {
+        if (document.getElementById("howmany").value > 0)
+        {
+            document.getElementById("text1").style.display = "block";
+        }
+        else if (document.getElementById("howmany").value < 0)
+        {
+            document.getElementById("text1").style.display = "none";
+        }
+    }
+<!--    {% if messages %}-->
+<!--        {% for message in messages %}-->
+<!--        if (confirm("{ message }")) {-->
+<!--          // Save it!-->
+<!--          console.log('Total Invoice Amount Updated');-->
+<!--        } else {-->
+<!--          // Do nothing!-->
+<!--          console.log('Total Invoice Amount Not Updated');-->
+<!--        }-->
+<!--        {% endfor %}-->
+<!--    {% endif %}-->
+
+<!--    document.getElementById('mybtn').addEventListener('click',-->
+<!--        function() {-->
+<!--            document.querySelector('.modal').style.display = 'block';-->
+<!--        });-->
+
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("mybtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+</script>
+</html>

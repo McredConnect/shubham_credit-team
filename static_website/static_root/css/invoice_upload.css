@@ -1,0 +1,480 @@
+/* The side navigation menu */
+@media screen and (max-width: 768px) {
+/*
+  .sidebar .side-content a {
+    text-align: center;
+    float: none;
+  }
+
+  .sidebar .side-content img {
+    margin-left: 150px;
+  }
+
+  #navbar {
+    float: left;
+  }
+
+  #upload_form {
+    float: left;
+  }
+ */
+
+  .sidebar {
+     display:none;
+  }
+
+  #navbar .list {
+    display: block;
+    margin-top: 25px;
+    height: 50px;
+  }
+}
+
+.sidebar {
+    top: 70px;
+    left: 0px;
+    padding: 10;
+    width: 230px;
+    background-color: #182677;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 3px 0px 6px #00000029;
+}
+ .sidebar .side-content {
+    margin-top: -40px;
+    margin-left: -10px;
+    padding: 8px;
+ }
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  padding: 18px;
+  color:white;
+  font-size: 12px;
+  text-decoration: none;
+  font: normal normal 600 15px/18px Open Sans;
+}
+
+
+.sidebar .img-size {
+    margin-top: 25px;
+    margin-left: 30px;
+    height: 20px;
+}
+
+.sidebar .text-size {
+    margin-top: -43px;
+    margin-left: 30px;
+}
+
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 0px 16px;
+  height: 1000px;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    margin-top: 10px;
+    left: 8px;
+    width: 1920px;
+    height: 90px;
+    background: #182677 0% 0% no-repeat padding-box;
+    opacity: 1;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    top: 28px;
+    left: 1678px;
+    width: 61px;
+    height: 24px;
+    background: #182677 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+#list {
+    float:left;
+    margin-left: 30px;
+    display: none;
+}
+
+.top-img {
+    margin-top: 40px;
+    margin-right: 250px;
+    float: right;
+    height: 22px;
+    color: black;
+}
+
+.user {
+    margin-top: 40px;
+    margin-right: -94px;
+    float: right;
+    font: normal normal 600 16px/20px Open Sans;
+    color: white;
+    text-decoration: none;
+    background-color: #182677;
+}
+
+/* Change the color of links on hover
+.topnav a:hover {
+  background-color: #111D5E;
+  color: white;
+}
+*/
+
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.sticky {
+  position: fixed;
+  top: -10px;
+  width: 100%;
+}
+
+.sticky + .sidebar {
+  padding-top: 60px;
+}
+
+/* content */
+
+.content .form {
+    margin-top: 103px;
+    margin-left: 75px;
+    width: 1150px;
+    min-height: 100px;
+    border: 2px solid #CCCCCC;
+    border-radius: 20px;
+    opacity: 1;
+}
+
+.form-heading {
+    border: 2px solid #CCCCCC;
+    border-radius: 16px 16px 0px 0px;
+    padding: 2px;
+    background: #CCCCCC;
+    background-clip: border-box;
+}
+
+.form-heading p {
+    margin-left: 37px;
+    color: #353535;
+    text-transform: capitalize;
+    opacity: 1;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    }
+
+.form-field {
+    margin-left: 9px;
+}
+
+.form-field form .headings {
+    margin-top: 40px;
+    margin-left: 210px;
+}
+
+.form-field form .headings .label1{
+     font: normal normal 600 15px/17px Open Sans;
+     color: #353535;
+    opacity: 1;
+    text-align: left
+    letter-spacing: 0.32px;
+
+}
+
+.form-field form .headings .label2{
+    margin-left: 155px;
+    font: normal normal 600 15px/17px Open Sans;
+    color: #353535;
+    opacity: 1;
+    text-align: left
+}
+
+.form-field form .headings .label3{
+     margin-left: 175px;
+     font: normal normal 600 15px/17px Open Sans;
+    color: #353535;
+    opacity: 1;
+    text-align: left
+    letter-spacing: 0.32px;
+
+}
+
+#boxquantity{
+    margin-left:100px;
+}
+
+#boxquantity input{
+    margin-left: 75px;
+    margin-top: 10px;
+    height:25px;
+    width:200px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+    font: normal normal normal 14px/24px Open Sans;
+    font-color: #AAAAAA;
+}
+
+.form-field form .entity p{
+    margin-top: 30px;
+    margin-left: 28px;
+    font: normal normal 600 15px/17px Open Sans;
+    color: #353535;
+    opacity: 1;
+    letter-spacing: 0.32px;
+}
+
+.form-field form .entity select {
+    outline: none;
+    margin-top: 0px;
+    margin-left: 25px;
+    height:25px;
+    width:300px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+    font: normal normal normal 13px/24px Open Sans;
+    font-color: #AAAAAA;
+}
+
+.form-field form .entity select option{
+    outline: none;
+    margin-top: 0px;
+    margin-left: 25px;
+    height:25px;
+    width:400px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+    font: normal normal normal 14px/24px Open Sans;
+    font-color: #AAAAAA;
+}
+select#entity_menu{
+    font: normal normal 14px/24px Open Sans;
+    font-color: #AAAAAA;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-field form .amount{
+    margin-left: 375px;
+}
+
+
+.form-field form .amount p{
+    margin-top: -63px;
+    margin-left: 28px;
+    font: normal normal 600 15px/17px Open Sans;
+    color: #353535;
+    opacity: 1;
+    text-align: left
+    letter-spacing: 0.32px;
+}
+
+.form-field form .amount input{
+    margin-top: 0px;
+    margin-left: 25px;
+    height:25px;
+    width:300px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+    font: normal normal normal 14px/24px Open Sans;
+    font-color: #AAAAAA;
+}
+
+.form-field form .invoices{
+    margin-left: 750px;
+}
+
+
+.form-field form .invoices p{
+    margin-top: -63px;
+    margin-left: 28px;
+    font: normal normal 600 15px/17px Open Sans;
+    color: #353535;
+    opacity: 1;
+    text-align: left
+    letter-spacing: 0.32px;
+    font-family: 'Open Sans'
+}
+
+.form-field form .invoices input{
+    margin-top: 0px;
+    margin-left: 25px;
+    height:25px;
+    width:300px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+    font: normal normal normal 14px/24px Open Sans;
+    font-color: #AAAAAA;
+}
+
+/*
+.form-field form .date{
+    margin-top: 90px;
+}
+
+
+.form-field form .date p{
+    margin-top: -63px;
+    margin-left: 28px;
+    font: normal normal 600 15px/17px Open Sans;
+    color: #353535;
+    opacity: 1;
+    text-align: left;
+    letter-spacing: 0.32px;
+
+}
+
+.form-field form .date input{
+    margin-top: 0px;
+    margin-left: 25px;
+    height:25px;
+    width:400px;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+    font: normal normal normal 14px/24px Open Sans;
+    font-color: #AAAAAA;
+}
+
+.form-field form .pdf{
+    margin-left: 600px;
+}
+
+
+.form-field form .pdf p{
+    margin-top: -63px;
+    margin-left: 28px;
+    font: normal normal 600 15px/17px Open Sans;
+    color: #353535;
+    opacity: 1;
+    text-align: left;
+    letter-spacing: 0.32px;
+}
+
+.form-field form .pdf input{
+    margin-top: 0px;
+    margin-left: 25px;
+    height:25px;
+    border: none;
+    outline: none;
+    background: none;
+    font: normal normal normal 14px/24px Open Sans;
+    font-color: #AAAAAA;
+    width: 400px;
+    float: left;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+}
+*/
+
+.form-field form .btn{
+    margin-left: 420px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.form-field form .btn button{
+    background: #F79421;
+    width: 250px;
+    height: 48px;
+    border-color: #F79421;
+    border-radius: 5px;
+    opacity: 1;
+    font: normal normal bold 13.5px/17px Open Sans;
+    color: white;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  min-height: 100px;
+  margin-left: 475px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+    margin-left: 10px;
+  }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+
+  .sidebar img {
+    display: none;
+    }
+}
+*/

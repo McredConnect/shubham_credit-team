@@ -1,0 +1,788 @@
+body {
+    margin: 0;
+}
+
+/* Style the navigation bar */
+.topnav {
+  position: fixed;
+  width: 100%;
+  background-color: #182677;
+  height: 80px;
+  top: 0;
+  left: 0;
+}
+
+.topnav .userbtn {
+  float: right;
+  text-align: middle;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+  margin-top: -5px;
+  margin-right: 80px;
+}
+
+/* Navbar links */
+.topnav a {
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font: normal normal normal 17px/17px Open Sans;
+  margin-bottom: 100px;
+  margin-left: 10px;
+  font: normal normal 600 16px/17px Open Sans;
+}
+
+.usertxt {
+    margin-top: -24px;
+    margin-left: 20px;
+    font: normal normal normal 17px/17px Open Sans;
+}
+
+#img1 {
+    margin-top: 10px;
+    height: 20;
+    width: 20;
+    margin-right: 20px;
+}
+
+/* Navbar links on mouse-over */
+.topnav .userbtn:hover {
+  background-color: #111D5E;
+  height: 44px;
+}
+
+/* Current/active navbar link */
+.active {
+  background-color: #4CAF50;
+}
+
+/* Style the sidebar - fixed full height */
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #182677;
+  padding-top: 16px;
+  font: normal normal 600 16px/17px Open Sans;
+}
+
+.sidebar .side-content {
+    margin-top: 40%;
+}
+
+.sidebar .side-content a {
+    color:white;
+    text-decoration: none;
+}
+
+.sidebar .side-content .single {
+    height: 60px;
+}
+
+.sidebar .img-size {
+    margin-top: 20px;
+    margin-left: 29px;
+    height: 20px;
+}
+
+.sidebar .text-size {
+    margin-top: -22px;
+    margin-left: 75px;
+}
+
+.single:hover {
+  background-color: #111D5E;
+  height: 60px;
+}
+
+/* Style the tab */
+.tab {
+  margin-left: 350px;
+  margin-top: 132px;
+  padding: 0px;
+  display:inline-block;
+
+}
+
+#btn3 {
+    margin-left: 350px;
+    width:  200px;
+}
+
+.tab button {
+    height: 40px;
+    width:  240px;
+    cursor: pointer;
+}
+
+#btn2 {
+    margin-left: -4px;
+}
+
+.tab .tablinks {
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #AAAAAA;
+    border-radius: 0px;
+    font: normal normal 600 14px/15px Open Sans;
+    letter-spacing: 1.6px;
+    color: #AAAAAA;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.content {
+    margin-left : 350px;
+    margin-top : 50px;
+}
+
+/* Create an active/current tablink class */
+.tab .tablinks.active {
+    border-bottom: 3px solid #38CC47;
+    border-radius: 0px;
+    color: #38CC47;
+}
+
+.content {
+    margin-left : 350px;
+    margin-top : 50px;
+}
+
+.content .tabcontent {
+    color: black;
+    display: none;
+}
+
+.content .tabcontent h3 {
+    font: normal normal 600 24px/17px Open Sans;
+    letter-spacing: 0.96px;
+    color: #353535;
+    opacity: 1;
+}
+
+.content .tabcontent .invoice{
+    border: 1.5px solid #AAAAAA;
+    border-radius: 10px;
+    opacity: 1;
+    width: 860px;
+    min-height: 150px;
+}
+
+.content .tabcontent .invoice .top {
+    margin-top: -10px;
+}
+
+.content .tabcontent .invoice .img{
+    margin-left: 32px;
+    margin-top: -45px;
+}
+
+.content .tabcontent .invoice .name p{
+    font-size: 15px;
+    margin-left: 0px;
+    margin-top: -55px;
+}
+
+.content .tabcontent .invoice .name {
+    margin-left: 120px;
+    margin-top: -39px;
+    font: normal normal 600 19px/17px Open Sans;
+    letter-spacing: 0.96px;
+    color: #353535;
+    opacity: 1;
+}
+
+.content .tabcontent .invoice button {
+    margin-left: 650px;
+    margin-top: 30px;
+    width: 150px;
+    height: 40px;
+    border: 2px solid #F79421;
+    border-radius: 5px;
+    opacity: 1;
+    background: none;
+    font: normal normal 600 15px/16px Open Sans;
+    letter-spacing: 1.6px;
+    color: #F79421;
+    text-transform: capitalize;
+}
+
+.content .tabcontent .invoice .icon {
+    margin-top: 30px;
+    width: 280px;
+    height: 50px;
+    border: 4px solid #F79421;
+    border-radius: 15px 15px 0px 0px;
+    border-color: #FFA931;
+    letter-spacing: 0.64px;
+    color: #182677;
+    opacity: 1;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+}
+
+.content .tabcontent .invoice .icon1 {
+    margin-top: -58px;
+    margin-left: 285.5px;
+    width: 280px;
+    height: 50px;
+    border: 4px solid #F79421;
+    border-radius: 15px 15px 0px 0px;
+    border-color: #FFA931;
+    letter-spacing: 0.64px;
+    color: #182677;
+    opacity: 1;
+    text-align: center;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+}
+
+.content .tabcontent .invoice .icon2 {
+    margin-top: -58px;
+    margin-left: 570px;
+    width: auto;
+    height: 50px;
+    border: 4px solid #F79421;
+    border-radius: 15px 15px 0px 0px;
+    border-color: #FFA931;
+    letter-spacing: 0.64px;
+    color: #182677;
+    opacity: 1;
+    text-align: center;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+}
+
+.content .tabcontent .invoice .inv_id {
+    background: #FFA931 0% 0% no-repeat padding-box;
+    border-radius: 0px 0px 10px 0px;
+    opacity: 1;
+    width: 200px;
+    height: 18px;
+    text-align: center;
+    font: 0px/0px Open Sans;
+    font-weight: normal;
+    text-size: 2px;
+    color: white;
+    margin-top: -4px;
+    float: left;
+}
+
+.content .tabcontent .invoice .raised {
+    background: #FFA931 0% 0% no-repeat padding-box;
+    border-radius: 0px 0px 10px 0px;
+    opacity: 1;
+    width: 330px;
+    height: 18px;
+    text-align: center;
+    font:1px/0px Open Sans;
+    font-weight: normal;
+    color: white;
+    margin-top: -4px;
+    float: right;
+}
+
+.content .tabcontent .invoice .raised .fas{
+    margin-top: 10px;
+    font:12px/10px Open Sans;
+}
+.content .tabcontent .invoice .inv_id .fas{
+    margin-top: 10px;
+    font: normal normal 12px/10px Open Sans;
+}
+
+/*
+.content .tabcontent .invoice .hint{
+    margin-top: 5px;
+    margin-left: 530px;
+    width: 100px;
+}
+
+.content .tabcontent .invoice .hint .square{
+    height: 10px;
+    width: 10px;
+    margin-top: 30px;
+    margin-left: 0px;
+    background: #FFA931 0% 0% no-repeat padding-box;
+}
+
+.content .tabcontent .invoice .hint .label{
+    font-size: 13px;
+    margin-top: -13.5px;
+    margin-left: 100px;
+    width: 100px;
+}
+*/
+
+.content .tabcontent .invoice .progress-heading {
+    margin-top: 60px;
+    margin-left: 15px;
+    font: normal normal 600 13px/20px Open Sans;
+    color: #353535;
+}
+
+.content .tabcontent .invoice .progress{
+    margin-top: -18.5px;
+    margin-left:115px;
+    background-color: #F0F0F0;
+    width: 82%;
+    border-radius: 15px;
+}
+
+.content .tabcontent .invoice .progress .funded{
+     background-color: rgb(116, 194, 92);
+     color: white;
+     padding: 1%;
+     text-align: center;
+     height: 1px;
+     font: normal normal 600 10px/2px Open Sans;
+     border-radius: 15px;
+}
+
+.content .tabcontent .invoice i{
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-top: 10px;
+    font: normal normal 600 13px/9px Open Sans;
+}
+
+.content .tabcontent .invoice .group {
+    margin-top: 0px;
+    width: 100%;
+    height: 48px;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.content .tabcontent .invoice .group .group1{
+    font: normal normal 600 14px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    width: 100%;
+}
+
+.content .tabcontent .invoice .group .group2{
+    font: normal normal 600 14px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    width: 850px;
+    margin-top: -1px;
+    height: 67px;
+}
+
+.content .tabcontent .invoice .group .group0 .wrapper{
+    width:100%;
+    display: inline-block;
+    height: auto;
+    margin-top: -1px;
+}
+
+.content .tabcontent .invoice .group .group1 .wrapper{
+    width: 100%;
+    display: inline-block;
+    height: 20px;
+    margin-top: -1px;
+}
+
+.content .tabcontent .invoice .group .group2 .wrapper{
+    min-width:1000px;
+    display: inline-block;
+    height: auto;
+    margin-top: -2px;
+}
+
+.content .tabcontent .invoice .group .group1 .group11{
+    width: 29%;
+    font: normal normal 600 13px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2.5px solid #CCCCCC;
+    margin-top: -2px;
+    margin-left: 0px;
+    display: inline-block;
+    height:40px;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .group .group1 .group12{
+    width: 22%;
+    font: normal normal 600 13px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2.5px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: -6px;
+    text-align: center;
+    height:40px;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .group .group1 .group13{
+    width: 25.2%;
+    font: normal normal 600 13px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2.5px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: -6px;
+    height:40px;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .group .group1 .group14{
+    width: 25%;
+    font: normal normal 600 13px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2.5px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: -6px;
+    height:40px;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .group .group1 .group15{
+    width: 22.2%;
+    font: normal normal 600 13px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2.5px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: -6px;
+    height:40px;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .group .group2 .group21{
+    width: auto;
+    font: normal normal 600 14px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: 0px;
+    margin-top: -2px;
+}
+
+.content .tabcontent .invoice .group .group2 .group22{
+    width: auto;
+    font: normal normal 600 14px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: -6px;
+}
+
+.content .tabcontent .invoice .group .group2 .group23{
+    width: auto;
+    font: normal normal 600 13px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: -6px;
+}
+
+.content .tabcontent .invoice .group .group2 .group24{
+    width: auto;
+    font: normal normal 600 13px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    border: 2px solid #CCCCCC;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: -6px;
+}
+
+.content .tabcontent .invoice .group .group1 p{
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.content .tabcontent .invoice .group .group2 p{
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.content .tabcontent .invoice .input{
+    margin-left: 0px;
+    margin-top: 20px;
+    font: normal normal 600 13px/20px Open Sans;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .input label{
+    font-size: 15px;
+    opacity: 1;
+    color: #353535;
+}
+
+.content .tabcontent .invoice .input input {
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 2px solid orange;
+    width: 180px;
+    text-align: center;
+    color: #353535;
+}
+
+
+#check button {
+    width: 100px;
+    height: 25px;
+    font-size: 12px;
+}
+
+
+#btn_check {
+    margin-left: 0px;
+    height: 25px;
+    width: 90px;
+    font-size: 12px;
+}
+
+.content .tabcontent .invoice .return {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+.content .tabcontent .invoice .return .heads{
+    font: normal normal 600 14px/20px Open Sans;
+    width: 16.5%;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    display: inline-block;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    border-color: #CCCCCC;
+    margin-left: 25px;
+}
+
+.content .tabcontent .invoice .return .return1{
+    font: normal normal 600 14px/20px Open Sans;
+    width: 26%;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    display: inline-block;
+    margin-left: -6px;
+    border-color: #CCCCCC;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .return .return2{
+    font: normal normal 600 14px/20px Open Sans;
+    width: 26%;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    display: inline-block;
+    margin-left: -6px;
+    border-color: #CCCCCC;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .return .return3{
+    font: normal normal 600 14px/20px Open Sans;
+    width: 26%;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    display: inline-block;
+    margin-left: -6px;
+    border-color: #CCCCCC;
+    text-align: center;
+}
+
+.content .tabcontent .invoice .return .texts{
+    margin-bottom: 5px;
+    margin-top: -4px;
+}
+
+.content .tabcontent .invoice .return i{
+    margin-left: 10px;
+}
+
+}
+.content .tabcontent .invoice .input  button {
+    width: 140px;
+    margin-left: 56%;
+    margin-top: -20px ;
+    height: 30px;
+    color: #FFA931;
+    background: none;
+    border: 1px solid #FFA931;
+    border-radius: 5px;
+    font: normal normal 600 13px/15px Open Sans;
+    letter-spacing: 0.75px;
+    display: inline-block;
+}
+
+.content .tabcontent .invoice .sub_btn button{
+    width: 170px;
+    margin-left: 40.5%;
+    margin-bottom: 30px;
+    height: 40px;
+    color: white;
+    background: #FFA931 0% 0% no-repeat padding-box;
+    border: 1px solid #FFA931;
+    border-radius: 5px;
+    font: normal normal 600 17px/15px Open Sans;
+    letter-spacing: 0.75px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  border-radius: 15px;
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%; /* Could be more or less, depending on screen size */
+  height: 50%
+}
+
+.modal-content input{
+
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* table css */
+.trantable{
+   width:1200px;
+   height: 100%;
+   margin-top: 30px;
+   display: inline-block;
+}
+
+.trantable table{
+    margin-left: 0px;
+    margin-right: 0px;
+   width: 1100px;
+   border-collapse:collapse;
+   height:150px;
+   y-overflow: scroll;
+}
+
+.row {
+    text-align:center;
+    font: normal normal 600 14px/15px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    opacity: 1;
+    padding-left:40px;
+    height:50px;
+    border:1px;
+}
+
+.row th{
+  padding-left:20px;
+}
+
+table td{
+    border-bottom: thin solid #FFA931;
+    padding-left: 21px;
+    font: normal normal 600 12px/14px Open Sans;
+}
+
+table td .a-btn button{
+    border: none;
+    background: #FFA931;
+    border: 1px solid #FFA931;
+    border-radius: 5px;
+    font: normal normal 600 12px/14px Open Sans;
+    height: 35px;
+    color: white;
+}
+
+th {
+    text-align: center;
+    font: normal normal 900 14px/15px Open Sans;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 1;
+    background: #182677;
+    border: 1px;
+    opacity: 1;
+    height:50px;
+}
+
+.sec{
+   border-bottom:#DDDDDD;
+}
+
+.sticky1 {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky1 + .row {
+  padding-top: 102px;
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 600px) {
+  .topnav a {
+    float: none;
+    display: block;
+  }
+}

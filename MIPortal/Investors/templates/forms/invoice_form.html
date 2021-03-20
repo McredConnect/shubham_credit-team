@@ -1,0 +1,25 @@
+<html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Invoice upload</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Business Name: </p>
+        <input type="text" name="business_name">
+        <p>Invoice Amount: </p>
+        <input type="text" name="inv_amt">
+        <p>Due Date: </p>
+        <input type="date" name="due_date">
+        <p>Entity Name: </p>
+        <input type="text" name="entity_name">
+        <p>Investor Name: </p>
+        <input type="text" name="investor_name">
+        <p>Upload Invoice: </p>
+        <input type="file" name="pdf"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

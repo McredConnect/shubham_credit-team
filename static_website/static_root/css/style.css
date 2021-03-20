@@ -1,0 +1,173 @@
+
+body {
+    height: 100vh;
+    width: 100%;
+    background-color: #404040
+}
+
+.container {
+    border-radius: 19px 19px 19px 19px;
+    margin-top: 60px;
+    margin-bottom: -20px;
+    position: relative;
+    height:80vh;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -2%);
+}
+
+.container {
+    background: #fff;
+    width: 400px;
+    padding: 30px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.container .text{
+    font-size: 22px;
+    font-weight: normal;
+    text-align: left;
+    font-family: 'Open Sans';
+}
+
+.container form label{
+    margin-left:20px;
+}
+
+.container form{
+    margin-top: 30px;
+    overflow: scroll;
+    height: 90%;
+    margin-left:10px;
+}
+
+.container form .data{
+    width: 90%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 7px 0;
+    border-bottom: 1px solid orange;
+}
+
+.container form .data label{
+    border: none;
+    background: none;
+    color: black;
+    font-size: 14px;
+    width: 80%;
+    float: left;
+    margin: 0 0px;
+    font-family: 'Open Sans';
+}
+
+.container form .data input{
+    border: none;
+    outline: none;
+    background: none;
+    color: black;
+    font-size: 14px;
+    width: 80%;
+    float: left;
+    margin: 0 8px;
+    font-family: 'Open Sans';
+    opacity: 0.5;
+    margin-top: 2px;
+}
+
+.container form .choices{
+    width: 90%;
+    overflow: hidden;
+    padding: 10px 0;
+    margin: 7px 0;
+    border-bottom: 1px solid orange;
+    font-size: 14px;
+    font-family: 'Open Sans';
+}
+
+.container form .choices label{
+    font-family: 'Open Sans';
+    font-size: 14px;
+    float: left;
+    margin: 0 1px;
+    margin-top: 3px;
+}
+
+.container form .choices .input-arrange{
+    font-family: 'Open Sans';
+    font-size: 14px;
+    margin-left: 10%;
+    margin-top: 15px;
+}
+
+.container form .choices .input-arrange1{
+    font-family: 'Open Sans';
+    font-size: 14px;
+    margin-left: 30%;
+    margin-top: 15px;
+}
+
+.container form .choices .input-arrange2{
+    font-family: 'Open Sans';
+    font-size: 14px;
+    margin-left: 18%;
+    margin-top: 15px;
+}
+
+.container form .btn{
+    margin-left: 22%;
+    padding:2px;
+    font-family: 'Open Sans';
+}
+
+#btn1{
+    size: 30px;
+    background-color: orange;
+    color: white;
+    border: 2px solid orange;
+    width: 80px;
+    height: 40px;
+    font-color: white;
+    font-family: 'Open Sans';
+}
+#btn1:hover {background-color: #182677;
+    border: 2px solid #182677;
+}
+
+#btn2{
+    size: 12px;
+    background-color: orange;
+    color: white;
+    border: 2px solid orange;
+    width: 80px;
+    height: 40px;
+    font-color: white;
+    font-family: 'Open Sans';
+
+}
+#btn2:hover {background-color: #182677;
+    border: 2px solid #182677;
+}
+
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

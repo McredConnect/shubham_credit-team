@@ -1,0 +1,227 @@
+{% extends "InvestorDashboards/index2.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <nav id="sidebar-businessdetail">
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Company Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Bank Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">GST IN</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Customers</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Suppliers</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Financials</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Shareholding</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">26 AS</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Credit Rating</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Tax Audit Report</a></div></div>
+        </nav>
+        <div class = "scroll">
+            <div class="managefunds">
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+                            <div class="col-sm-12 col-md-12 card" id="card1">
+                                <form method="post" action="{% url 'business_profile'%}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="card-body" >
+                                <ul class="list-group list-group-horizontal li2" >
+                                    <!--<li class="list-group-item" style="width:220px;">Amount Available</li>-->
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 15px;">BRIEF ABOUT THE COMPANY:</label>
+<!--                                            <input class="form-control" id="ex1" type="text" size=45 style="height:50px"/>-->
+                                            <textarea class="form-control rounded-0" name = "brief" id="exampleFormControlTextarea1" rows="15" style="width:1050px;"></textarea>
+                                        </div>
+                                    </li>
+
+
+                                </ul>
+                                <ul class="list-group list-group-horizontal li2">
+
+                                    <li class="list-group-item ">
+                                        <label for="ex1" style="font-size: 13px;" >BUSINESS PROFILE:</label>
+                                        <input class="form-control" id="ex1" name="file" type="file" name="file" size = 150 style="width:1050px;">
+                                    </li>
+
+                                </ul>
+                                        <button type="submit" class="btn btn-primary">save</button>
+
+                            </div>
+                                </form>
+                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="col-12 card card5">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card top3"><h6 class="card-body">Company Overview</h6></div>-->
+<!--                                <ul class="list-group list-group-horizontal list" style="margin-top:20px;">-->
+<!--                                    <li class="list-group-item li1" id="li1" style="margin-left:10px;">Business Sector</li>-->
+<!--                                    <li class="list-group-item li2" id="li2">Retail</li>-->
+<!--                                    <li class="list-group-item li3">Location</li>-->
+<!--                                    <li class="list-group-item li3" id="li4"><i class="fa fa-map-marker" aria-hidden="true" style="margin-right:10px; margin-top:5px;"></i>New Delhi</li>-->
+<!--                                </ul>-->
+<!--                                <div class="card-text mcr">Mcred Opinion<i class="fa fa-star"  aria-hidden="true"></i></div>-->
+<!--                                <div class="des"><p>an agreement entered into by two or more parties for their mutual benefit,      especially in a business or political context.-->
+<!--                                    an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.-->
+<!--                                    an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.-->
+<!--                                    an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DOCUMENTS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" style="font-size:12px; text-align:center;">SR No.</th>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;">NAME OF THE FILE</th>
+<!--                                                <th scope="col" style="font-size:15px;">UPLOADEDBY</th>-->
+<!--                                                <th scope="col" style="font-size:15px;">FILE NAME</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;">FILE LINK</th>
+                                                <th scope="col" style="font-size:12px; text-align:center;">ACTION</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+<!--                                    |slice:":10" -->
+                                    {% for i in objs %}
+
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+<!--                                                <td>{{i.brief}}</td>-->
+<!--                                                <td>Business</td>-->
+                                                <td>{{i.input_file}}</td>
+                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                <td>{% include 'InvestorDashboards/remove.html' with objid=i.id%}</td>
+                                            </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">-->
+<!--                            <div class="card-body">-->
+<!--                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">AUTHORISED PERSON</button>-->
+<!--                                <div class="table-responsive">-->
+<!--                                    <table class="table" style="border-collapse:collapse">-->
+<!--                                        <thead class="headt" >-->
+<!--                                            <tr>-->
+<!--                                                <th scope="col" class="date" style="font-size:20px;">Date</th>-->
+<!--                                                <th scope="col">Transaction ID</th>-->
+<!--                                                <th scope="col">Type</th>-->
+<!--                                                <th scope="col">Amount</th>-->
+<!--                                                <th scope="col">Comment</th>-->
+<!--                                                <th scope="col">Status</th>-->
+<!--                                                <th scope="col">Action</th>-->
+<!--                                            </tr>-->
+<!--                                    </thead>-->
+<!--                                    <tbody>-->
+<!--                                        <tr>-->
+<!--                                        <td>6-11-2020</td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        <td><div style="background: #FADFDC;color:#DE655D; width:120px;text-align:center;padding:3px;">Withdrawal</div> </td>-->
+<!--                                        <td>&#8377;2,40,000</td>-->
+<!--                                        <td><SPAN>Amount withdrawal ro external account</SPAN><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+<!--                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                        <td>6-11-2020</td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        <td><div style="background: #FFE8CC;color:#FFA931;width:120px;text-align:center;padding:3px;">Funds Added</div></td>-->
+<!--                                        <td>&#8377;2,40,000</td>-->
+<!--                                        <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+<!--                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#58B4AE" class="bi bi-clock-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg></td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                        <td>6-11-2020</td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        <td><div style="background: #DDE5FC;color:#548AF0;width:120px;text-align:center;padding:3px;">Refund</div></td>-->
+<!--                                        <td>&#8377;2,40,000</td>-->
+<!--                                        <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+<!--                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#DE655D" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr >-->
+<!--                                        <td>6-11-2020</td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        <td><div style="background:#F0E6EE;color:#AC6FD9;width:120px;text-align:center;padding:3px;">Deal Purchased</div></td>-->
+<!--                                        <td>&#8377;2,40,000</td>-->
+<!--                                        <td><span>Amount withdrawal ro external account</span><br><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+<!--                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr >-->
+<!--                                        <td>6-11-2020</td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        <td class="mx-auto"><div style="background:#E0FFBA;color:#38CC47;width:120px;text-align:center;padding:3px;">Repayment</div></td>-->
+<!--                                        <td>&#8377;2,40,000</td>-->
+<!--                                        <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+<!--                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>-->
+<!--                                        <td>ABCNJ37HJEJFBH</td>-->
+<!--                                        </tr>-->
+
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                    </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+
+            </div>
+            </div>
+              <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Company Details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="filetype">Choose Type of Document:</label>
+                                      <div class="col-xs-4">
+                                        <select class="form-control" id="filetype" name="filetype">
+                                            <option value="MOA/AOA">MOA/AOA</option>
+                                            <option value="PAN CARD">PAN CARD</option>
+                                            <option value="BOARD RESOLUTION">BOARD RESOLUTION</option>
+                                            <option value="COI/LLP Certificate">COI/LLP Certificate</option>
+                                            <option value="COMPANY ADDRESS PROOF">COMPANY ADDRESS PROOF</option>
+                                            <option value="BUSINESS PROFILE">BUSINESS PROFILE</option>
+                                        </select>
+                                     </div>
+
+                                    <div class="form-group">
+                                      <label for="file">FILE UPLOAD:</label>
+                                      <input type="file" class="form-control" id="file" placeholder="file" name="file" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    </div>
+
+                                    <button  href = "{%url 'business_profile' %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+        </div>
+{% endblock content %}

@@ -1,0 +1,109 @@
+
+
+body{
+    background: #FAFAFA 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.navbar {
+     padding: 15px 10px;
+    background: #182677;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top:0px;
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 0px 0;
+}
+
+.user select.form-select{
+    background-color:#111D5E;
+    width:150px;
+    border:none;
+    margin-top:5px;
+    padding:5px;
+    color:#FFFFFF;
+    margin-left:5px;
+}
+
+.user .form-select:focus {
+    border:none
+    outline: 0;
+    box-shadow: none;
+}
+
+.user{
+    background-color:#111D5E;
+    padding:5px;
+
+}
+
+/* CSS FOR CLASS REGISTER (MENU BAR) */
+/*.register{
+    border: 1px solid #EEEEEE;
+    border-radius: 10px;
+    opacity: 1;
+
+}
+
+.row {
+    --bs-gutter-x:0;
+}
+
+.register .list-group-item{
+    padding:15px;
+    border: 1px solid #EEEEEE;
+    text-decoration: none !important;
+
+}*/
+
+.register{
+    margin-left:200px;
+}
+.nav-link{
+    background:#FFFFFF;
+    border: 1px solid #EEEEEE;
+    text-align:left;
+    margin-left:10px;
+    font: normal normal 600 13px/30px Open Sans;
+    letter-spacing: 0px;
+    color: #000000;
+    text-transform: capitalize;
+    opacity: 1;
+
+}
+
+#reg {
+    text-align: left;
+    font: normal normal 700 13px/30px Open Sans;
+    letter-spacing: 1.6px;
+    color: #000000;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.nav-link:hover{
+    color:#1E88E5;
+}
+
+.button:active{
+    color:red;
+    border:none;
+
+}
+
+
+

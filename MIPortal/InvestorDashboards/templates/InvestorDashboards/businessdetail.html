@@ -1,0 +1,325 @@
+{% extends "InvestorDashboards/index2.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <nav id="sidebar-businessdetail">
+            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Business Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+        </nav>
+        <div class = "scroll">
+            <div class="managefunds">
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+                            <div class="col-sm-12 col-md-12 card" id="card1">
+                                <div class="card-header">COMPANY DETAILS</div>
+                                <div class="card-body" >
+                                <ul class="list-group list-group-horizontal li2" >
+                                    <!--<li class="list-group-item" style="width:220px;">Amount Available</li>-->
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 13px;">NAME:</label>
+                                            <input disabled="disabled" class="form-control" id="companyname" type="text" value={{company}} size=45>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <label for="ex1" style="font-size: 13px;">LOCATION:</label>
+                                        <input class="form-control" id="location" type="text" size=20>
+                                    </li>
+
+                                    <li class="list-group-item ">
+                                        <label for="ex1" style="font-size: 13px;">SECTOR:</label>
+                                        <input disabled="disabled" class="form-control" id="sector" type="text" value={{sector}} size=20>
+                                    </li>
+
+                                    <li class="list-group-item ">
+                                        <label for="ex1" style="font-size: 13px;">YEAR OF INCORPORATION:</label>
+                                        <input class="form-control" id="ex1" type="text" size=20>
+                                    </li>
+            
+                                </ul>
+                                <ul class="list-group list-group-horizontal li2">
+                                    <!-- <li class="list-group-item" style="width:220px;" >ICICI Escrow Balance</li>
+                                    <li class="list-group-item ">&#8377; 52,526</li> -->
+                                    <li class="list-group-item ">
+                                        <label for="ex1" style="font-size: 13px;" >ADDRESS:</label>
+                                        <input class="form-control" id="ex1" type="text" size = 150>
+                                    </li>
+            
+                                </ul>
+                                <ul class="list-group list-group-horizontal li3">
+                                    <li class="list-group-item ">
+                                        <label for="ex1" style="font-size: 13px;">PLANT LOCATION:</label>
+                                        <input class="form-control" id="ex1" type="text" size = 150>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="col-12 card card5">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card top3"><h6 class="card-body">Company Overview</h6></div>-->
+<!--                                <ul class="list-group list-group-horizontal list" style="margin-top:20px;">-->
+<!--                                    <li class="list-group-item li1" id="li1" style="margin-left:10px;">Business Sector</li>-->
+<!--                                    <li class="list-group-item li2" id="li2">Retail</li>-->
+<!--                                    <li class="list-group-item li3">Location</li>-->
+<!--                                    <li class="list-group-item li3" id="li4"><i class="fa fa-map-marker" aria-hidden="true" style="margin-right:10px; margin-top:5px;"></i>New Delhi</li>-->
+<!--                                </ul>-->
+<!--                                <div class="card-text mcr">Mcred Opinion<i class="fa fa-star"  aria-hidden="true"></i></div>-->
+<!--                                <div class="des">-->
+<!--                                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="15" style="width:1050px;"></textarea>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DOCUMENTS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>SR No.</b></th>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>DATE OF UPLOAD</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>UPLOADED BY</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE TYPE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+<!--                                    |slice:":10" -->
+                                    {% for i in objs %}
+                                            <tr>
+                                                <td style="text-align:center;">{{forloop.counter}}</td>
+                                                <td style="text-align:center;">{{i.create_date| date:"F d Y"}}</td>
+                                                <td style="text-align:center;">{{i.business_id.user_id.username}}</td>
+                                                <td style="text-align:center;">{{i.file_name}}</td>
+                                                {% if i.input_file %}
+                                                    <td style="text-align:center;"><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                {% else %}
+                                                <td></td>
+                                                {% endif %}
+                                                <td style="text-align:center;"><a  href = "{% url 'remove' i.id %}" class="btn btn-success">Remove</a></td>
+                                            </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal2">AUTHORISED PERSON</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>LOCATION</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DESIGNATION</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>EMAIL</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>PHONE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>MOBILE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in authorisedperson_obj%}
+                                        <tr>
+                                        <td>{{i.name}}</td>
+                                        <td>{{i.location}}</td>
+                                        <td>{{i.designation}}</td>
+                                        <td>{{i.email}}</td>
+                                        <td>{{i.phone}}</td>
+                                        <td>{{i.mobile}}</td>
+                                        <td><a  href = "{% url 'remove_authorisedperson' i.id %}" class="btn btn-success">Remove</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                            {% for i in comments_obj %}
+                                <h6>{{i.comment}}</h6>
+                                <h6><i style="font-size:15px; color:grey;">commented by:  </i>{{i.username}}&nbsp;&nbsp;&nbsp;<i style="font-size:15px; color:grey;">date:  </i>{{i.created_date| date:"F d Y"}}</h6><br><br>
+                             {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="col-xs-4">
+                                    <form method="post" action="{%url 'bankdetail_comment' %}" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                    <h6 style="font-size: 15px;">COMMENTS:</h6>
+<!--                                            <input class="form-control" id="ex1" type="text" size=45 style="height:50px"/>-->
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" name= "comment" style="width:1050px;"></textarea>
+                                            <input type="hidden" value="businessdetail" id="type" name="type"><br>
+                                            <button   type="submit" class="btn btn-primary">SAVE</button>
+                                    </form>
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+
+
+            </div>
+            </div>
+              <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">COMPANY DETAILS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'business_detail' business_id %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="filetype">Choose Type of Document:</label>
+                                      <div class="col-xs-4">
+                                        <select class="form-control" id="filetype" name="filetype">
+                                            <option value="MOA/AOA">MOA/AOA</option>
+                                            <option value="PAN CARD">PAN CARD</option>
+                                            <option value="AADHAAR CARD">AADHAAR CARD</option>
+                                            <option value="BOARD RESOLUTION">BOARD RESOLUTION</option>
+                                            <option value="COI/LLP Certificate">COI/LLP Certificate</option>
+                                            <option value="COMPANY ADDRESS PROOF">COMPANY ADDRESS PROOF</option>
+                                            <option value="BUSINESS PROFILE">BUSINESS PROFILE</option>
+                                        </select>
+                                     </div>
+
+                                    <div class="form-group">
+                                      <label for="file">FILE UPLOAD:</label>
+                                      <input type="file" class="form-control" id="file" placeholder="file" name="file" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="modal fade" id="myModal2">-->
+<!--                        <div class="modal-dialog modal-dialog-centered">-->
+<!--                        <div class="modal-content">-->
+
+<!--                            &lt;!&ndash; Modal Header &ndash;&gt;-->
+<!--                            <div class="modal-header">-->
+<!--                            <h4 class="modal-title">REASON</h4>-->
+<!--                            <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash; Modal body &ndash;&gt;-->
+<!--                            <div class="modal-body">-->
+<!--                                <form method="post" action="{% url 'business_detail' business_id %}" enctype="multipart/form-data" >-->
+<!--                                    {% csrf_token %}-->
+<!--&lt;!&ndash;                                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                                      <label for="filetype">Choose Type of Document:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                      <div class="col-xs-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <select class="form-control" id="filetype" name="filetype">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <option value="MOA/AOA">MOA/AOA</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <option value="PAN CARD">PAN CARD</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <option value="AADHAAR CARD">AADHAAR CARD</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <option value="BOARD RESOLUTION">BOARD RESOLUTION</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <option value="COI/LLP Certificate">COI/LLP Certificate</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <option value="COMPANY ADDRESS PROOF">COMPANY ADDRESS PROOF</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <option value="BUSINESS PROFILE">BUSINESS PROFILE</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                                     </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                                      <label for="file">FILE UPLOAD:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                      <input type="file" class="form-control" id="file" placeholder="file" name="file" accept=".pdf,.jpeg,.png,.jpg">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+
+<!--                                <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    
+<!--                    </div>-->
+                    <div class="modal fade" id="myModal2">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">AUTHORISED PERSON DETAILS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'authorisedperson_detail'%}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="name_authorised_person">Name :</label>
+                                        <input type="text" class="form-control" id="name_authorised_person" placeholder="name" name="name_authorised_person">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="location">Location:</label>
+                                        <input type="text" class="form-control" id="location" placeholder="location" name="location">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="designation">Designation:</label>
+                                        <input type="text" class="form-control" id="designation" placeholder="designation" name="designation">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" id="email" placeholder="email" name="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone:</label>
+                                        <input type="text" class="form-control" id="phone" placeholder="phone" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mobile">Mobile:</label>
+                                        <input type="text" class="form-control" id="mobile" placeholder="mobile" name="mobile">
+                                    </div>
+
+                                <button  type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+        </div>  
+{% endblock content %}

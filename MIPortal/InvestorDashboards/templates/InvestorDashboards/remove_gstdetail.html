@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<form method="POST" action="{% url 'remove_gstdetail'%}">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-success">
+    <input type="hidden" name="obj_id" value="{{objid}}">
+</form>
+
+</body>
+</html>

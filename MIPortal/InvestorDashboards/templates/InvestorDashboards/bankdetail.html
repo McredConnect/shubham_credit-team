@@ -1,0 +1,153 @@
+{% extends "InvestorDashboards/index2.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <nav id="sidebar-businessdetail">
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'business_detail' business_id %}">Business Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Company Details</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Invoices</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Bank Accounts</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Transactions</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Refer and Earn</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Preferences</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Help & Support</a></div></div>-->
+        </nav>
+        <div class = "scroll">
+            <div class="managefunds">
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:-780px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DOCUMENTS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>COMPANY NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACCOUNT NO.</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACCOUNT TYPE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FROM DATE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in objs %}
+                                        <tr>
+                                            <td>{{i.business_id.user_id.username}}</td>
+                                            <td>{{i.bank_name}}</td>
+                                            <td>{{i.AC_No}}</td>
+                                            <td>{{i.AC_Type}}</td>
+                                            <td>{{i.from_date}}</td>
+                                            <td>{{i.To_date}}</td>
+                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            <td><a  href = "{% url 'remove_bankdetail' i.id %}" class="btn btn-success">Remove</a></td>
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            </div>
+              <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">BANK DETAILS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="bankname">Bank name:</label>
+                                      <div class="col-xs-4">
+                                        <select class="form-control" id="bankname" name="bankname">
+                                            <option value="Axis">Axis</option>
+                                            <option value="SBI">SBI</option>
+                                            <option value="SBI">UNION Bank</option>
+                                            <option value="BANK OF BARODA">BANK OF BARODA</option>
+                                        </select>
+                                     </div>
+                                    <div class="form-group">
+                                        <label for="acctype">Account Type:</label>
+                                        <input type="text" class="form-control" id="acctype" placeholder="acctype" name="acctype">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="number" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="fromdate">From date:</label>
+                                        <input type="date" class="form-control"  placeholder="fromdate" name="fromdate">
+                                    </div>
+                                        <div class="form-group">
+                                            <label for="todate">To date:</label>
+                                            <input type="date" class="form-control" placeholder="todate" name="todate">
+                                        </div>
+                                    <div class="form-group">
+                                      <label for="file1">FILE UPLOAD:</label>
+                                      <input type="file" class="form-control" id="file1" placeholder="file" name="file1" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    </div>
+
+                                    <button  href = "{%url 'bank_detail' %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                        </div>
+                    </div>
+
+                    </div>
+        </div>
+{% endblock content %}

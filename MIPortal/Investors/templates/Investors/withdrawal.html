@@ -1,0 +1,51 @@
+{% extends "Investors/index.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor/withdrawal.css' %}">
+        </head>
+
+        <div class="container-fluid">
+        <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </span>&nbsp;&nbsp;MANAGE FUNDS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </span>&nbsp;&nbsp;WITHDRAW</h6>
+
+<!--        <div class="row">-->
+<!--            <div class="card col-sm-12 col-md-8 offset-2" style="border:none;">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="row row1"><div class="col-sm-12 col-md-6 offset-3"><p class="card-text">Balance Available for Withdrawal</p></div> </div>-->
+<!--                    <div class="row amt"><div class="col-sm-12 col-md-4 offset-4">&#8377;&nbsp;72,320</div> </div>-->
+<!--                    <div class="row mode"><div class="col-sm-12 col-md-4 offset-4 "><p class="card-text">Transfer To Account</p></div> </div>-->
+<!--                    <div class="row" >-->
+<!--                        <select class="col-sm-2 col-md-6 offset-3" id="acc" >-->
+<!--                            <option value="a" class="op">Ancbvncx</option>-->
+<!--                            <option value="b" class="op">Bjdmndb</option>-->
+<!--                            <option value="c" class="op">C</option>-->
+<!--                            <option value="d" class="op">D</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="row amt1"><div class="col-sm-12 col-md-8 offset-2 " ><p class="card-text">Enter Amount to withdraw from your MCred Account</p></div></div>-->
+<!--                    <div class="row amt2"><div class="col-sm-12 col-md-6 offset-3"><span style="color: #353535;">&#8377;</span>&nbsp;30,000</div></div>-->
+<!--                    <div class="row w"><div class="col-sm-12 col-md-2 offset-5"><a href="#" class="btn btn-primary last">Withdraw</a></div></div>-->
+<!--                    <div class="row amt3"><div class="col-sm-12 col-md-12 "><p class="card-text" id="s">*Amount will be transferred to your bank account within 2 business days.</p></div></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+            <div class="row">
+            <div class="col-12 row1"><p class="card-text1">Balance Available for Withdrawal</p></div>
+            </div>
+            <div class="row amt"><div class="col-12">&#8377;&nbsp;72,320</div> </div>
+            <div class="row mode"><div class="col-12"><p class="card-text1">Transfer To Account</p></div> </div>
+            <div class="row sel" >
+                        <select class="col-sm-4 col-md-4" id="acc" >
+                            <option value="a" class="op">Ancbvncx</option>
+                            <option value="b" class="op">Bjdmndb</option>
+                            <option value="c" class="op">C</option>
+                            <option value="d" class="op">D</option>
+                        </select>
+            </div>
+            <div class="row amt1"><div class="col-12" ><p class="card-text1">Enter Amount to withdraw from your MCred Account</p></div></div>
+            <div class="row amt2"><div class="col-12"><span style="color: #353535;">&#8377;</span>&nbsp;30,000</div></div>
+            <div class="row w"><div class="col-12"><a href="#" class="btn btn-primary last">Withdraw</a></div></div>
+            <div class="row amt3"><div class="col-sm-12 col-md-12 "><p class="card-text1" id="s">*Amount will be transferred to your bank account within 2 business days.</p></div></div>
+    </div>
+        {% endblock content %}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Current Deals</title>
+    <link href="{% static '/css/investor_deals.css' %}" rel="stylesheet">
+    <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<!--    <script>-->
+<!--        -->
+<!--    </script>-->
+
+</head>
+<body>
+
+    <div class="topnav" id="navbar">
+        <div class="userbtn">
+            <img class="img1" id="img1" style="margin-top:10px;" height= "25" width="25" src="{% static '/images/navbar/user.svg' %}">
+            <div class="usertxt">
+            <a href="#">User</a></div>
+<!--          <a href="#"><img class="list" id="list" src="{% static '/images/navbar/list.jpg' %}"></a>-->
+        </div>
+    </div>
+
+    <!-- The sidebar -->
+    <div class="sidebar">
+        <div class="side-content">
+          <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/dashboard.svg' %}"><div class="text-size"><a href="#">Dashboard</a></div></div>
+          <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/file.svg' %}"><div class="text-size"><a href="#">Invoices</a></div></div>
+          <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/money-bag.svg' %}"><div class="text-size"><a href="#">Bank Accounts</a></div></div>
+          <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/history.svg' %}"><div class="text-size"><a href="#">Transactions</a></div></div>
+          <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/refer.svg' %}"><div class="text-size"><a href="#">Refer and Earn</a></div></div>
+          <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/preference.svg' %}"><div class="text-size"><a href="#">Preferences</a></div></div>
+          <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/customer-service.svg' %}"><div class="text-size"><a href="#">Help & Support</a></div></div>
+        </div>
+    </div>
+<!--    <img id="img1" class="img-size" src="{% static '/images/navbar/dashboard.svg' %}"><a class="text-size" href="#">&nbsp;&nbsp;&nbsp;Dashboard</a>-->
+
+    <!-- Page content -->
+
+    <!-- Tab links -->
+    <div class="tab">
+      <button class="tablinks" id="btn1" onclick="openCity(event, 'current')">Current Deals</button>
+      <button class="tablinks" id="btn2" onclick="openCity(event, 'Paris')">Past Deals</button>
+    </div>
+
+    <!-- Tab content -->
+    <div class="content">
+    <div id="current" class="tabcontent">
+      <h3>Current Deals</h3>
+      <div class="invoice">
+          <button class="detail">Deal Detail</button>
+          <div class="img">
+            <img height="55" width="55" src="{% static '/images/mcred.png' %}">
+          </div>
+<!--          <label>Entity Name Private LTD</label>-->
+      </div>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+      <h3>Past Deals</h3>
+
+    </div>
+    </div>
+
+</body>
+
+<script>
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    }
+
+    function openCity(evt, cityName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+
+</script>
+</html>

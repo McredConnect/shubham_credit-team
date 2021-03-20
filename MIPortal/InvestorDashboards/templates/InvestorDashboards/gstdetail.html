@@ -1,0 +1,657 @@
+{% extends "InvestorDashboards/index2.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <nav id="sidebar-businessdetail">
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'business_detail' business_id %}">Business Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+        </nav>
+        <div class = "scroll">
+            <div class="managefunds">
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+
+                     <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO.</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>GST Type</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>GST NO.</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>STATE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FROM DATE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in objs%}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.gst_type}}</td>
+                                                <td>{{i.gst_No}}</td>
+                                                <td>{{i.state}}</td>
+                                                <td>{{i.fromdate}}</td>
+                                                <td>{{i.Todate}}</td>
+                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                <td><a href = "{% url 'remove_gstdetail' i.id %}" class="btn btn-success">Remove</a></td>
+                                            </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                        <b style="text-align:center;">GST ANALYSIS REPORTS</b>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12 col-md-12 card" id="card1">
+
+                            <form action="{% url 'gst_filter' %}" method="get">
+                            <ul class="list-group list-group-horizontal li2" >
+                                <li class="list-group-item ">
+                                    <div class="col-xs-6">
+                                        <label style="font-size: 13px; padding-top:10px;">SELECT GST NUMBER:</label>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                <div class="form-group">
+<!--                                        <label for="gsttype">GST NO:</label>-->
+                                    <div class="col-xs-4">
+                                        <select class="form-control" id="gst_num" name="gst_num">
+                                            {% for i in gst_num %}
+                                                <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            </ul>
+                                <input type="submit" name="featured" value="Filter" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12 col-md-12 card" id="card1">
+                            <div class="card-header">GSTR1</div>
+                            <div class="card-body" >
+                                <form method="post" action="{% url 'gstr_one' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                <ul class="list-group list-group-horizontal li2" >
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 13px; padding-top:10px;">DOMESTIC SALES:</label>
+                                        </div>
+                                    </li>
+                                    {% if domestic_sale %}
+                                    <li class="list-group-item ">
+                                        <input class="form-control" id="domestic-sale" type="number" value="{{domestic_sale}}" name="domestic-sale" size=20>
+                                    </li>
+                                    {% else %}
+                                    <li class="list-group-item ">
+                                        <input class="form-control" id="domestic-sale" type="number" name="domestic-sale" size=20>
+                                    </li>
+                                    {% endif %}
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 13px; padding-top:10px;">EXPORT SALES:</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <input class="form-control" id="export-sale" type="number" value="{{export_sale}}" name="export-sale" size=20>
+                                    </li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal li2" >
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <button type="submit">save</button>
+                                        </div>
+                                    </li>
+<!--                                    <li class="list-group-item ">-->
+<!--                                        <input class="form-control" id="export-sale" type="number" value="{{export_sale}}" name="export-sale" size=20>-->
+<!--                                    </li>-->
+                                </ul>
+<!--                                    <button type="submit">save</button>-->
+                                </form>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">SALES: CUSTOMER WISE</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal2">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>SALES (Cr.)</b></th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in gst_sale_obj %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.name}}</td>
+                                            <td>{{i.sale}}</td>
+                                        </tr>
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                        <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12 col-md-12 card" id="card1">
+                            <div class="card-header">GSTR3B</div>
+                            <div class="card-body" >
+                                <form method="post" action="{% url 'gstr_three' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                <ul class="list-group list-group-horizontal li2" >
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 13px; padding-top:10px;">SALES AS PER GSTR3B:</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <input class="form-control" id="sale_gast_three" name="sale_gast_three" value="{{sales_as_per_gstr_thee}}" type="number" size=20>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 13px; padding-top:10px;">DEVIATION FROM SALES IN GSTR3B:</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <input class="form-control" id="deviation_sale" name="deviation_sale" value="{{deviation_from_sale}}" type="number" size=20>
+                                    </li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal li2" >
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+<!--                                            <label style="font-size: 13px; padding-top:10px;">DEVIATION FROM SALES IN GSTR3B:</label>-->
+                                            <button type="submit">save</button>
+                                        </div>
+                                    </li>
+<!--                                    <li class="list-group-item ">-->
+<!--                                        <input class="form-control" id="deviation_sale" name="deviation_sale" value="{{deviation_from_sale}}" type="number" size=20>-->
+<!--                                    </li>-->
+                                </ul>
+
+                                </form>
+                            </div>
+                    </div>
+
+            </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">TOP 10 CUSTOMERS</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal3">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>SALES(Cr.)</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in gst_customer_obj %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.name}}</td>
+                                                <td>{{i.sale}}</td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                    </div>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;margin-left:0px;">
+                                    <div class="card-body">
+                                        <h6 style="float:left;">TOP 10 SUPPLIERS</h6>
+                                        <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal4">ADD DETAILS</button>
+                                        <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>PURCHASE IN (Cr.)</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in gst_suppliers_obj %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.name}}</td>
+                                                <td>{{i.purchase}}</td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;margin-left:0px;">
+                                    <div class="card-body">
+                                        <h6 style="float:left;">TOP PRODUCTS</h6>
+                                        <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal5">ADD DETAILS</button>
+                                        <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>CODE OF PRODUCT</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>SALES(Cr.)</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in gst_products_obj %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.code_of_product}}</td>
+                                                <td>{{i.sales}}</td>
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                            {% for i in comments_obj %}
+                                <h6>{{i.comment}}</h6>
+                                <h6><i style="font-size:15px; color:grey;">commented by:  </i>{{i.username}}&nbsp;&nbsp;&nbsp;<i style="font-size:15px; color:grey;">date:  </i>{{i.created_date| date:"F d Y"}}</h6><br><br>
+                             {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="col-xs-4">
+                                        <form method="post" action="{%url 'bankdetail_comment' %}" enctype="multipart/form-data" >
+                                            {% csrf_token %}
+                                            <h6 style="font-size: 15px;">COMMENTS:</h6>
+<!--                                            <input class="form-control" id="ex1" type="text" size=45 style="height:50px"/>-->
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" name="comment" rows="10" style="width:1050px;"></textarea>
+                                            <input type="hidden" value="gstdetail" id="type" name="type"><br>
+                                            <button   type="submit" class="btn btn-primary">SAVE</button>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+            </div>
+              <!-- The Modal -->
+<!--                    <div class="modal fade" id="myModal">-->
+<!--                        <div class="modal-dialog modal-dialog-centered">-->
+<!--                        <div class="modal-content">-->
+
+<!--                            &lt;!&ndash; Modal Header &ndash;&gt;-->
+<!--                            <div class="modal-header">-->
+<!--                            <h4 class="modal-title">COMPANY DETAILS</h4>-->
+<!--                            <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash; Modal body &ndash;&gt;-->
+<!--                            <div class="modal-body">-->
+<!--                                <form method="post" action="" enctype="multipart/form-data" >-->
+<!--                                    {% csrf_token %}-->
+<!--                                    <div class="form-group">-->
+<!--                                      <label for="filetype">Choose Type of Document:</label>-->
+<!--                                      <div class="col-xs-4">-->
+<!--                                        <select class="form-control" id="filetype" name="filetype">-->
+<!--                                            <option value="MOA/AOA">MOA/AOA</option>-->
+<!--                                            <option value="PAN CARD">PAN CARD</option>-->
+<!--                                            <option value="BOARD RESOLUTION">BOARD RESOLUTION</option>-->
+<!--                                            <option value="COI/LLP Certificate">COI/LLP Certificate</option>-->
+<!--                                            <option value="COMPANY ADDRESS PROOF">COMPANY ADDRESS PROOF</option>-->
+<!--                                            <option value="BUSINESS PROFILE">BUSINESS PROFILE</option>-->
+<!--                                        </select>-->
+<!--                                     </div>-->
+
+<!--                                    <div class="form-group">-->
+<!--                                      <label for="file">FILE UPLOAD:</label>-->
+<!--                                      <input type="file" class="form-control" id="file" placeholder="file" name="file" accept=".pdf,.jpeg,.png,.jpg">-->
+<!--                                    </div>-->
+
+<!--                                    </div>-->
+
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                          <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">GST Details:</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="gsttype">Type of GST Returns:</label>
+                                        <div class="col-xs-4">
+                                            <select class="form-control" id="gsttype" name="gsttype">
+                                                <option value="GSTR1">GSTR1</option>
+                                                <option value="GST2A">GST2A</option>
+                                                <option value="GST3B">GST3B</option>
+                                            </select>
+                                        </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="gstno">GST NO:</lable>
+                                                    <input type="number" class="form-control" id="gstno" placeholder="gdtno" name="gstno">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="state">STATE:</lable>
+                                                    <input type="text" class="form-control" id="state" placeholder="state" name="state">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="fromdate">From Date:</lable>
+                                                    <input type="date" class="form-control" id="fromdate" placeholder="fromdate" name="fromdate">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="todate">To Date:</label>
+                                                    <input type="date" class="form-control" id="todate" placeholder="todate" name="todate">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="file">FILE:</label>
+                                                    <input type="file" class="form-control" id="file" placeholder="file" name="file">
+
+                                                </div>
+                                            </div>
+                                        <button  href = "{%url 'bank_detail' %}" type="submit" class="btn btn-primary">Submit</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                            </div>
+
+
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal2">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">SALES: CUSTOMER WISE</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'gst_sale' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="name">NAME:</lable>
+                                                    <input type="text" class="form-control" id="name" placeholder="name" name="name">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="sale">sale:</lable>
+                                                    <input type="number" class="form-control" id="sale" placeholder="sale" name="sale">
+                                                </div>
+                                            </div>
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="todate">To Date:</label>-->
+<!--                                                    <input type="date" class="form-control" id="todate" placeholder="todate" name="todate">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="file">FILE:</label>-->
+<!--                                                    <input type="file" class="form-control" id="file" placeholder="file" name="file">-->
+
+<!--                                                </div>-->
+<!--                                            </div>-->
+                                        <button  type="submit" class="btn btn-primary">Submit</button>
+
+                                </form>
+                            </div>
+                            </div>
+
+
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal3">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">TOP 10 CUSTOMERS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'gst_customer' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="name">NAME:</lable>
+                                                    <input type="text" class="form-control" id="name" placeholder="name" name="name">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="sale">sale:</lable>
+                                                    <input type="number" class="form-control" id="sale" placeholder="sale" name="sale">
+                                                </div>
+                                            </div>
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="todate">To Date:</label>-->
+<!--                                                    <input type="date" class="form-control" id="todate" placeholder="todate" name="todate">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="file">FILE:</label>-->
+<!--                                                    <input type="file" class="form-control" id="file" placeholder="file" name="file">-->
+
+<!--                                                </div>-->
+<!--                                            </div>-->
+                                        <button  type="submit" class="btn btn-primary">Submit</button>
+
+                                </form>
+                            </div>
+                            </div>
+
+
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal4">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">TOP 10 SUPPLIERS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'gst_supplier' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="name">NAME:</lable>
+                                                    <input type="text" class="form-control" id="name" placeholder="name" name="name">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="purchase">purchase:</lable>
+                                                    <input type="number" class="form-control" id="purchase" placeholder="purchase" name="purchase">
+                                                </div>
+                                            </div>
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="todate">To Date:</label>-->
+<!--                                                    <input type="date" class="form-control" id="todate" placeholder="todate" name="todate">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="file">FILE:</label>-->
+<!--                                                    <input type="file" class="form-control" id="file" placeholder="file" name="file">-->
+
+<!--                                                </div>-->
+<!--                                            </div>-->
+                                        <button  type="submit" class="btn btn-primary">Submit</button>
+
+                                </form>
+                            </div>
+                            </div>
+
+
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal5">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">TOP PRODUCTS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'gst_product' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="code_of_product">code of product:</lable>
+                                                    <input type="text" class="form-control" id="code_of_product" placeholder="code_of_product" name="code_of_product">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <lable for="sale">sale:</lable>
+                                                    <input type="number" class="form-control" id="sale" placeholder="sale" name="sale">
+                                                </div>
+                                            </div>
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="todate">To Date:</label>-->
+<!--                                                    <input type="date" class="form-control" id="todate" placeholder="todate" name="todate">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label for="file">FILE:</label>-->
+<!--                                                    <input type="file" class="form-control" id="file" placeholder="file" name="file">-->
+
+<!--                                                </div>-->
+<!--                                            </div>-->
+                                        <button  type="submit" class="btn btn-primary">Submit</button>
+
+                                </form>
+                            </div>
+                            </div>
+
+
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    </div>
+                    </div>
+        </div>
+{% endblock content %}

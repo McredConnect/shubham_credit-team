@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <title>View Transaction</title>
+</head>
+<body>
+<div style="margin-left: 20px;">
+    <p>Investment Done : {{ transaction.amount_invested }} Rs.</p>
+    <p>Amount Due on Maturity : {{ transaction.settlement_amount_with_investor }} Rs.</p>
+    <p>Return : {{ return }} Rs.</p>
+    <p>Amount Payable to Business : {{ transaction.amount_settled_with_business }}</p>
+</div>
+</body>
+</html>

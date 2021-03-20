@@ -1,0 +1,794 @@
+{% extends "InvestorDashboards/index2.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <nav id="sidebar-businessdetail">
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'business_detail' business_id %}">Business Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Company Details</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Invoices</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Bank Accounts</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Transactions</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Refer and Earn</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Preferences</a></div></div>-->
+<!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Help & Support</a></div></div>-->
+        </nav>
+        <div class = "scroll">
+            <div class="managefunds">
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:-780px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>COMPANY NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK NAME</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACCOUNT NO.</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACCOUNT TYPE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FROM DATE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in objs %}
+                                        <tr>
+                                            <td>{{i.business_id.user_id.username}}</td>
+                                            <td>{{i.bank_name}}</td>
+                                            <td>{{i.AC_No}}</td>
+                                            <td>{{i.AC_Type}}</td>
+                                            <td>{{i.from_date}}</td>
+                                            <td>{{i.To_date}}</td>
+                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            <td><a  href = "{% url 'remove_bankdetail' i.id %}" class="btn btn-success">Remove</a></td>
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <b style="text-align:center; margin-top=20px;">BANK STATEMENT ANALYSIS</b>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">INVARD CHEQUE RETURNS</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal2">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK ACCOUNT NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NUMBER OF INSTANCES</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FROM DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in inverd_cheque %}
+                                        <tr>
+                                            <td style="text-align:center;">{{forloop.counter}}</td>
+                                            <td style="text-align:center;">{{i.bank_account_no}}</td>
+                                            <td style="text-align:center;">{{i.number_of_instances}}</td>
+                                            <td style="text-align:center;">{{i.amount}}</td>
+<!--                                            <td></td>-->
+<!--                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                            <td><a   class="btn btn-success">Remove</a></td>-->
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">DEBIT AND CREDIT FROM SAME PARTY</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal3">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK ACCOUNT NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME OF THE PARTY</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TOTAL CREDIT</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TOTAL DEBIT</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in debit_credit_objs %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.bank_account_no}}</td>
+                                            <td>{{i.number_of_party}}</td>
+                                            <td>{{i.total_credit}}</td>
+                                            <td>{{i.total_debit}}</td>
+<!--                                            <td></td>-->
+<!--                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                            <td><a  class="btn btn-success">Remove</a></td>-->
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">LOAN DETAILS IN LAST 12 MONTHS</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal4">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK ACCOUNT NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT OF LOAN</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DATE OF TRANSACTION</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME OF THE LENDER</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in loan_detail_obj %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.bank_account_no}}</td>
+                                            <td>{{i.amount_of_loan}}</td>
+                                            <td>{{i.date_of_transaction}}</td>
+                                            <td>{{i.name_of_the_lender}}</td>
+<!--                                            <td></td>-->
+<!--                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                            <td><a class="btn btn-success">Remove</a></td>-->
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">EMI PAYMENT DETAILS</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal5">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK ACCOUNT NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>EMI AMOUNT</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DATE OF TRANSACTION</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FROM DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in emi_obj %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.bank_account_no}}</td>
+                                            <td>{{i.emi_amount}}</td>
+                                            <td>{{i.date_of_transaction}}</td>
+<!--                                            <td>{{i.from_date}}</td>-->
+<!--                                            <td>{{i.To_date}}</td>-->
+<!--                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                            <td><a  class="btn btn-success">Remove</a></td>-->
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">TOP 10 CREDITS</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal6">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK ACCOUNT NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME OF THE ENTITY</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DATE</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in credit_obj %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.bank_account_no}}</td>
+                                            <td>{{i.entity_name}}</td>
+                                            <td>{{i.emi_amount}}</td>
+                                            <td>{{i.date}}</td>
+<!--                                            <td>{{i.To_date}}</td>-->
+<!--                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                            <td><a class="btn btn-success">Remove</a></td>-->
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <h6 style="float:left;">TOP 10 DEBITS</h6>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal7">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>BANK ACCOUNT NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME OF THE ENTITY</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DATE</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in debits_obj %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.bank_account_no}}</td>
+                                            <td>{{i.entity_name}}</td>
+                                            <td>{{i.emi_amount}}</td>
+                                            <td>{{i.date}}</td>
+<!--                                            <td></td>-->
+<!--                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                            <td><a class="btn btn-success">Remove</a></td>-->
+                                        </tr>
+                                    {% endfor %}
+
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                        <div class="row">-->
+<!--                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">-->
+<!--                            <div class="card-body">-->
+<!--                                <h6 style="float:left;">COMMENTS DETAIL</h6>-->
+<!--&lt;!&ndash;                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal7">ADD DETAILS</button>&ndash;&gt;-->
+<!--                                <div class="table-responsive">-->
+<!--                                    <table class="table" style="border-collapse:collapse">-->
+<!--                                        <thead class="headt" >-->
+<!--                                            <tr>-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:15px;">SR No.</th>&ndash;&gt;-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>USERNAME</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>COMMENT</b></th>-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DATE</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>&ndash;&gt;-->
+<!--                                            </tr>-->
+<!--                                    </thead>-->
+<!--                                    <tbody>-->
+<!--                                    {% for i in comments_obj %}-->
+<!--                                        <tr>-->
+<!--                                            <td style="text-align:center;">{{forloop.counter}}</td>-->
+<!--                                            <td style="text-align:center;">{{i.username}}</td>-->
+<!--                                            <td style="text-align:center;">{{i.comment}}</td>-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><a class="btn btn-success">Remove</a></td>&ndash;&gt;-->
+<!--                                        </tr>-->
+<!--                                    {% endfor %}-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                                    |slice:":10" &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    {% for i in objlist %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                            <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{forloop.counter}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.bank_name}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.AC_No}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.AC_Type}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.from_date}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.To_date}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    {% endfor %}&ndash;&gt;-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                            {% for i in comments_obj %}
+                                <h6>{{i.comment}}</h6>
+                                <h6><i style="font-size:15px; color:grey;">commented by:  </i>{{i.username}}&nbsp;&nbsp;&nbsp;<i style="font-size:15px; color:grey;">date:  </i>{{i.created_date| date:"F d Y"}}</h6><br><br>
+                             {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="col-xs-4">
+                                    <form method="post" action="{%url 'bankdetail_comment' %}" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                    <h6 style="font-size: 15px;">COMMENTS:</h6>
+<!--                                            <input class="form-control" id="ex1" type="text" size=45 style="height:50px"/>-->
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" name= "comment" style="width:1050px;"></textarea>
+                                            <input type="hidden" value="bankdetail" id="type" name="type"><br>
+                                            <button   type="submit" class="btn btn-primary">SAVE</button>
+                                    </form>
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+
+
+            </div>
+            </div>
+              <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">BANK DETAILS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="bankname">Bank name:</label>
+                                      <div class="col-xs-4">
+                                        <select class="form-control" id="bankname" name="bankname">
+                                            <option value="Axis">Axis</option>
+                                            <option value="SBI">SBI</option>
+                                            <option value="SBI">UNION Bank</option>
+                                            <option value="BANK OF BARODA">BANK OF BARODA</option>
+                                        </select>
+                                     </div>
+                                    <div class="form-group">
+                                        <label for="acctype">Account Type:</label>
+                                        <input type="text" class="form-control" id="acctype" placeholder="acctype" name="acctype">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="number" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="fromdate">From date:</label>
+                                        <input type="date" class="form-control"  placeholder="fromdate" name="fromdate">
+                                    </div>
+                                        <div class="form-group">
+                                            <label for="todate">To date:</label>
+                                            <input type="date" class="form-control" placeholder="todate" name="todate">
+                                        </div>
+                                    <div class="form-group">
+                                      <label for="file1">FILE UPLOAD:</label>
+                                      <input type="file" class="form-control" id="file1" placeholder="file" name="file1" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    </div>
+
+                                    <button  href = "{%url 'bank_detail' %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="modal fade" id="myModal2">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Invard cheque returns</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'invard_cheque' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="text" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="number_of_instances">Number of Instances:</label>
+                                        <input type="number" class="form-control" id="number_of_instances" placeholder="instances" name="number_of_instances">
+                                    </div>
+                                        <div class="form-group">
+                                            <label for="amount">Amount:</label>
+                                            <input type="number" class="form-control" placeholder="amount" name="amount">
+                                        </div>
+
+
+
+
+                                    <button   type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="modal fade" id="myModal3">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Debit and credit from same party</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'debit_credit' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="text" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="name_of_party">Name of the party:</label>
+                                        <input type="text" class="form-control" id="name_of_party" placeholder="name_of_party" name="name_of_party">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="total_credit">Total credit:</label>
+                                        <input type="number" class="form-control" placeholder="total_credit" name="total_credit">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="total_debit">Total dedit:</label>
+                                        <input type="number" class="form-control" placeholder="total_debit" name="total_debit">
+                                    </div>
+
+
+
+
+                                    <button   type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <div class="modal fade" id="myModal4">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Loan details in last 12 months</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'loan_detail' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="text" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount of loan:</label>
+                                        <input type="number" class="form-control" id="amount" placeholder="amount" name="amount">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Date of transaction:</label>
+                                        <input type="date" class="form-control" id="date" placeholder="date" name="date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lender_name">Name of the lender:</label>
+                                        <input type="text" class="form-control" placeholder="lender_name" name="lender_name">
+                                    </div>
+                                    <button   type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <div class="modal fade" id="myModal5">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">EMI payement details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'emi_payement' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="text" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="emi_amount">EMI Amount:</label>
+                                        <input type="text" class="form-control" id="emi_amount" placeholder="emi_amount" name="emi_amount">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="transaction_date">Date of transaction:</label>
+                                        <input type="date" class="form-control" placeholder="transaction_date" name="transaction_date">
+                                    </div>
+                                    <button   type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <div class="modal fade" id="myModal6">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Top 10 credits</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'top_credits' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="text" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="name_of_party">Name of the entity:</label>
+                                        <input type="text" class="form-control" id="name_of_party" placeholder="name_of_party" name="name_of_party">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount:</label>
+                                        <input type="number" class="form-control" placeholder="amount" name="amount">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Date:</label>
+                                        <input type="date" class="form-control" placeholder="date" name="date">
+                                    </div>
+
+
+
+
+                                    <button   type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <div class="modal fade" id="myModal7">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Top 10 debits</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'top_debits' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="accno">Account number:</label>
+                                        <input type="text" class="form-control" id="accno" placeholder="accno" name="accno">
+                                    </div>
+                                        <div class="form-group">
+                                        <label for="name_of_party">Name of the entity:</label>
+                                        <input type="text" class="form-control" id="name_of_party" placeholder="name_of_party" name="name_of_party">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount:</label>
+                                        <input type="number" class="form-control" placeholder="amount" name="amount">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Date:</label>
+                                        <input type="date" class="form-control" placeholder="date" name="date">
+                                    </div>
+
+
+
+
+                                    <button   type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+
+                        </div>
+                    </div>
+
+                    </div>
+        </div>
+{% endblock content %}

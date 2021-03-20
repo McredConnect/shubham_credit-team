@@ -1,0 +1,314 @@
+{% extends "Investors/index.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor/order.css' %}">
+            <script src="{% static '/js/order2.js' %}"></script>
+        </head>
+
+        <div class="container-fluid">
+            <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </span> &nbsp;&nbsp;ORDER HISTORY</h6>
+            <div class="row cls1"><h5 class="deal col-sm-12 col-md-7">My Deals</h5><button type="button" class="btn btn-primary col-sm-12 col-md-3">Download Form 16</button><button type="button" class="btn btn-primary col-sm-12 col-md-3">Download Statement</button></div>
+
+            <div class="row div1">
+                    <ul class="col-sm-12 col-md-8 nav nav-tabs" id="myTab" role="tablist">
+                          <li class="nav-item" id="one" role="presentation">
+                            <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Ongoing Deals</a>
+                          </li>
+                          <li class="nav-item" id="two" role="presentation">
+                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Repaid Deals</a>
+                          </li>
+                    </ul>
+                     <select class="col-sm-3 col-md-3" id="acc" >
+                            <option value="a" class="op" selected disabled>Sort By</option>
+                            <option value="b" class="op">option1</option>
+                            <option value="c" class="op">option2</option>
+                            <option value="d" class="op">option3</option>
+                     </select>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active"  id="home" role="tabpanel" aria-labelledby="home-tab">
+                        {% for transaction in transactions %}
+                          <div class="row div2 ">
+                              <div class="col-sm-12 col-md-12 card card1">
+                                  <div class="card-body">
+                                      <div class="logoimg">
+                                          <img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}">
+                                          <span class="text"><span style="color:#58B4AE">&nbsp;&nbsp;INVOICE</span> RAISED FOR AND RECURSE ON</span>
+                                          <br><span class="text1">Oyo Hotels and Homes Private Limited</span>
+                                          <span class="btn1"><a href="#"><button class="btn btn-primary col-sm-12 ">Repayment Details</button></a>
+                                          <a href="#"><button class="btn btn-primary col-sm-12">Deal Details</button></a></span>
+                                      </div>
+                                      <hr style="height:2px;margin-left:-28px;margin-right:-28px;">
+                                  </div>
+                                  <div>
+                                      <ul  class="card row list-group list-group-horizontal" style="border:none;">
+                                          <div class="card card2 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Transaction ID</li>
+                                                            <li class="li2">{{transaction.id}}</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+                                           <div class="card card3 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Amount Invested</li>
+                                                            <li class="li2">&#8377;{{transaction.amount_invested}}</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+                                          <div class="card card4 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Realized XIRR</li>
+                                                            <li class="li2">17.21%</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+                                          <div class="card card5 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Maturity Amount</li>
+                                                            <li class="li2">&#8377;{{transaction.settlement_amount_with_investor}}</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-3 list-group pdfsize">
+                                          <a href="#" class="list-group-item list-group-item-action">Deal Agreement (PDF)</a>
+                                          <a href="#" class="list-group-item list-group-item-action">Transaction Note (PDF)</a>
+                                          <a href="#" class="list-group-item list-group-item-action">Transaction Invoice (PDF)</a>
+                                          <a href="#" class="list-group-item list-group-item-action">Repayment Statement (XLSX)</a>
+                                         </div>
+
+
+                                      </ul>
+                                      <div class="progress">
+                                          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+                                      <div class="">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn1" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn3" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        {% endfor %}
+
+
+<!--                        <div class="row div2 ">-->
+<!--                              <div class="col-sm-12 col-md-12 card card1">-->
+<!--                                  <div class="card-body">-->
+<!--                                      <div class="logoimg">-->
+<!--                                          <img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}">-->
+<!--                                          <span class="text"><span style="color:#86CE2F;">&nbsp;&nbsp;INVOICE</span> RAISED BY</span>-->
+<!--                                          <br><span class="text1">OLX Group</span>-->
+<!--                                          <span class="btn1"><a href="#"><button class="btn btn-primary col-sm-12 col-md-2" id="red">Repayment Details</button></a>-->
+<!--                                          <a href="#"><button class="btn btn-primary col-sm-12 col-md-2" id="de">Deal Details</button></a></span>-->
+<!--                                      </div>-->
+<!--                                      <hr style="height:2px;margin-left:-28px;margin-right:-28px;">-->
+<!--                                  </div>-->
+<!--                                  <div>-->
+<!--                                      <ul  class="card row list-group list-group-horizontal" style="border:none;">-->
+<!--                                          <div class="card card2 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Transaction ID</li>-->
+<!--                                                            <li class="li2">ABC123CVC3</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+<!--                                           <div class="card card3 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Amount Invested</li>-->
+<!--                                                            <li class="li2">&#8377;72,210</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="card card4 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Realized XIRR</li>-->
+<!--                                                            <li class="li2">17.21%</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="card card5 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Maturity Amount</li>-->
+<!--                                                            <li class="li2">&#8377;72,210</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+
+<!--                                          <div class="col-md-3 list-group pdfsize">-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Deal Agreement (PDF)</a>-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Transaction Note (PDF)</a>-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Transaction Invoice (PDF)</a>-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Repayment Statement (XLSX)</a>-->
+<!--                                         </div>-->
+
+
+<!--                                      </ul>-->
+<!--                                      <div class="progress">-->
+<!--                                          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                      </div>-->
+<!--                                      <div class="">-->
+<!--                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn1" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>-->
+<!--                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>-->
+<!--                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn3" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>-->
+<!--                                      </div>-->
+<!--                                  </div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+                    </div>
+
+                    <div class="tab-pane fade" style="display:block;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                          <div class="row div2 ">
+                              <div class="col-sm-12 col-md-12 card card1">
+                                  <div class="card-body">
+                                      <div class="logoimg">
+                                          <img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}">
+                                          <span class="text"><span style="color:#58B4AE">&nbsp;&nbsp;INVOICE</span> RAISED FOR AND RECURSE ON</span>
+                                          <br><span class="text1">Oyo Hotels and Homes Private Limited</span>
+                                          <span class="btn1"><a href="#"><button class="btn btn-primary col-sm-12 ">Repayment Details</button></a>
+                                          <a href="#"><button class="btn btn-primary col-sm-12">Deal Details</button></a></span>
+                                      </div>
+                                      <hr style="height:2px;margin-left:-28px;margin-right:-28px;">
+                                  </div>
+                                  <div>
+                                      <ul  class="card row list-group list-group-horizontal" style="border:none;">
+                                          <div class="card card2 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Transaction ID</li>
+                                                            <li class="li2">ABC123CVC3</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+                                           <div class="card card3 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Amount Invested</li>
+                                                            <li class="li2">&#8377;72,210</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+                                          <div class="card card4 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Realized XIRR</li>
+                                                            <li class="li2">17.21%</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+                                          <div class="card card5 col-sm-2 col-md-2">
+                                              <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="li1">Maturity Amount</li>
+                                                            <li class="li2">&#8377;72,210</li>
+                                                        </ul>
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-3 list-group pdfsize">
+                                          <a href="#" class="list-group-item list-group-item-action">Deal Agreement (PDF)</a>
+                                          <a href="#" class="list-group-item list-group-item-action">Transaction Note (PDF)</a>
+                                          <a href="#" class="list-group-item list-group-item-action">Transaction Invoice (PDF)</a>
+                                          <a href="#" class="list-group-item list-group-item-action">Repayment Statement (XLSX)</a>
+                                         </div>
+
+
+                                      </ul>
+                                      <div class="progress">
+                                          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+                                      <div class="">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn1" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn3" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+<!--                        <div class="row div2 ">-->
+<!--                              <div class="col-sm-12 col-md-12 card card1">-->
+<!--                                  <div class="card-body">-->
+<!--                                      <div class="logoimg">-->
+<!--                                          <img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}">-->
+<!--                                          <span class="text"><span style="color:#86CE2F;">&nbsp;&nbsp;INVOICE</span> RAISED BY</span>-->
+<!--                                          <br><span class="text1">OLX Group</span>-->
+<!--                                          <span class="btn1"><a href="#"><button class="btn btn-primary col-sm-12 col-md-2" id="red">Repayment Details</button></a>-->
+<!--                                          <a href="#"><button class="btn btn-primary col-sm-12 col-md-2" id="de">Deal Details</button></a></span>-->
+<!--                                      </div>-->
+<!--                                      <hr style="height:2px;margin-left:-28px;margin-right:-28px;">-->
+<!--                                  </div>-->
+<!--                                  <div>-->
+<!--                                      <ul  class="card row list-group list-group-horizontal" style="border:none;">-->
+<!--                                          <div class="card card2 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Transaction ID</li>-->
+<!--                                                            <li class="li2">ABC123CVC3</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+<!--                                           <div class="card card3 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Amount Invested</li>-->
+<!--                                                            <li class="li2">&#8377;72,210</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="card card4 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Realized XIRR</li>-->
+<!--                                                            <li class="li2">17.21%</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="card card5 col-sm-2 col-md-2">-->
+<!--                                              <div class="card-body">-->
+<!--                                                        <ul class="list-unstyled">-->
+<!--                                                            <li class="li1">Maturity Amount</li>-->
+<!--                                                            <li class="li2">&#8377;72,210</li>-->
+<!--                                                        </ul>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+
+<!--                                          <div class="col-md-3 list-group pdfsize">-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Deal Agreement (PDF)</a>-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Transaction Note (PDF)</a>-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Transaction Invoice (PDF)</a>-->
+<!--                                          <a href="#" class="list-group-item list-group-item-action">Repayment Statement (XLSX)</a>-->
+<!--                                         </div>-->
+
+
+<!--                                      </ul>-->
+<!--                                      <div class="progress">-->
+<!--                                          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                      </div>-->
+<!--                                      <div class="">-->
+<!--                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn1" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>-->
+<!--                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>-->
+<!--                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC" class="bi bi-check-circle-fill" id="btn3" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>-->
+<!--                                      </div>-->
+<!--                                  </div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+
+        </div>
+            </div>
+        </div>
+
+        {% endblock content %}

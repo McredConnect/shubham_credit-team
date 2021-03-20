@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transactions</title>
+</head>
+<body>
+
+<div style="margin-top:50px; margin-left:20%;">
+    <h2 class="text-center">Dashboard</h2>
+    <br>
+     <div>
+        {% for message in messages %}
+        <h6 class="text-center font-weight-normal"><mark style="color: orange;">{{ message }}</mark></h6>
+        {% endfor %}
+    </div>
+    <br>
+    <table id="example" >
+        <thead>
+        <tr>
+            <th>Invoice Number</th>
+            <th>Investor ID</th>
+            <th>Invested Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in transaction %}
+        <tr>
+            <td>{{i.invoice_id}}</td>
+            <td>{{i.investor_id}}</td>
+            <td>{{i.amount_invested}}</td>
+            <td><a href="{% url 'view_transaction' i.id %}" class="btn btn-danger">View</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
