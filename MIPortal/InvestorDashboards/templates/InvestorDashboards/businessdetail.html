@@ -7,7 +7,7 @@
             <script src="{% static '/javascript/currentdeals2.js' %}"></script>
         </head>
         <nav id="sidebar-businessdetail">
-            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Business Details</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size "><a href="#">Business Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
@@ -17,16 +17,21 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
         </nav>
         <div class = "scroll">
             <div class="managefunds">
                 <div class="container-fluid">
-                    <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+                    <div class="row" style="margin-top:-770px; margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+                        <b>Business Details</b>
                             <div class="col-sm-12 col-md-12 card" id="card1">
                                 <div class="card-header">COMPANY DETAILS</div>
                                 <div class="card-body" >
+                                    <form method="post" action="{%url 'about_company' %}" enctype="multipart/form-data" >
+                                        {% csrf_token %}
                                 <ul class="list-group list-group-horizontal li2" >
                                     <!--<li class="list-group-item" style="width:220px;">Amount Available</li>-->
                                     <li class="list-group-item ">
@@ -37,17 +42,24 @@
                                     </li>
                                     <li class="list-group-item ">
                                         <label for="ex1" style="font-size: 13px;">LOCATION:</label>
-                                        <input class="form-control" id="location" type="text" size=20>
+                                        <input class="form-control" id="location" value = {{location}} type="text" size=20>
                                     </li>
+                                    {% if sector == "" %}
+                                        <li class="list-group-item ">
+                                            <label for="ex1" style="font-size: 13px;">SECTOR:</label>
+                                            <input disabled="disabled" class="form-control" id="sector" type="text"  size=20>
+                                        </li>
+                                    {% else %}
+                                        <li class="list-group-item ">
+                                            <label for="ex1" style="font-size: 13px;">SECTOR:</label>
+                                            <input disabled="disabled" class="form-control" id="sector" type="text" value="{{sector}}" size=20>
+                                        </li>
 
-                                    <li class="list-group-item ">
-                                        <label for="ex1" style="font-size: 13px;">SECTOR:</label>
-                                        <input disabled="disabled" class="form-control" id="sector" type="text" value={{sector}} size=20>
-                                    </li>
+                                    {% endif %}
 
                                     <li class="list-group-item ">
                                         <label for="ex1" style="font-size: 13px;">YEAR OF INCORPORATION:</label>
-                                        <input class="form-control" id="ex1" type="text" size=20>
+                                        <input class="form-control" id="ex1" type="text"  name="yoi" value="{{yi}}" size=20>
                                     </li>
             
                                 </ul>
@@ -55,17 +67,19 @@
                                     <!-- <li class="list-group-item" style="width:220px;" >ICICI Escrow Balance</li>
                                     <li class="list-group-item ">&#8377; 52,526</li> -->
                                     <li class="list-group-item ">
-                                        <label for="ex1" style="font-size: 13px;" >ADDRESS:</label>
-                                        <input class="form-control" id="ex1" type="text" size = 150>
+                                        <label for="ex1" style="font-size: 13px;">ADDRESS:</label>
+                                        <input class="form-control" id="ex1" type="text" value="{{add}}" size=150>
                                     </li>
             
                                 </ul>
                                 <ul class="list-group list-group-horizontal li3">
                                     <li class="list-group-item ">
-                                        <label for="ex1" style="font-size: 13px;">PLANT LOCATION:</label>
-                                        <input class="form-control" id="ex1" type="text" size = 150>
+                                        <label for="plant_location" style="font-size: 13px;">PLANT LOCATION:</label>
+                                        <input class="form-control" id="plant_location" type="text" name="plant_location" value="{{pl}}" size = 150>
                                     </li>
                                 </ul>
+                                        <button   style="margin-left:20px; padding-top:10px;" type="submit" class="btn btn-primary">SAVE</button>
+                                    </form>
                             </div>
                     </div>
 <!--                    <div class="row">-->
@@ -106,7 +120,7 @@
                                             <tr>
                                                 <td style="text-align:center;">{{forloop.counter}}</td>
                                                 <td style="text-align:center;">{{i.create_date| date:"F d Y"}}</td>
-                                                <td style="text-align:center;">{{i.business_id.user_id.username}}</td>
+                                                <td style="text-align:center;">{{i.username}}</td>
                                                 <td style="text-align:center;">{{i.file_name}}</td>
                                                 {% if i.input_file %}
                                                     <td style="text-align:center;"><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
@@ -231,49 +245,7 @@
                             </div>
                         </div>
                     </div>
-<!--                    <div class="modal fade" id="myModal2">-->
-<!--                        <div class="modal-dialog modal-dialog-centered">-->
-<!--                        <div class="modal-content">-->
 
-<!--                            &lt;!&ndash; Modal Header &ndash;&gt;-->
-<!--                            <div class="modal-header">-->
-<!--                            <h4 class="modal-title">REASON</h4>-->
-<!--                            <button type="button" class="close" data-dismiss="modal">&times;</button>-->
-<!--                            </div>-->
-
-<!--                            &lt;!&ndash; Modal body &ndash;&gt;-->
-<!--                            <div class="modal-body">-->
-<!--                                <form method="post" action="{% url 'business_detail' business_id %}" enctype="multipart/form-data" >-->
-<!--                                    {% csrf_token %}-->
-<!--&lt;!&ndash;                                    <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                                      <label for="filetype">Choose Type of Document:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                      <div class="col-xs-4">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <select class="form-control" id="filetype" name="filetype">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option value="MOA/AOA">MOA/AOA</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option value="PAN CARD">PAN CARD</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option value="AADHAAR CARD">AADHAAR CARD</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option value="BOARD RESOLUTION">BOARD RESOLUTION</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option value="COI/LLP Certificate">COI/LLP Certificate</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option value="COMPANY ADDRESS PROOF">COMPANY ADDRESS PROOF</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option value="BUSINESS PROFILE">BUSINESS PROFILE</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </select>&ndash;&gt;-->
-<!--&lt;!&ndash;                                     </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                                    <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                                      <label for="file">FILE UPLOAD:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                      <input type="file" class="form-control" id="file" placeholder="file" name="file" accept=".pdf,.jpeg,.png,.jpg">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-
-<!--                                <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--                                </form>-->
-<!--                            </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    
-<!--                    </div>-->
                     <div class="modal fade" id="myModal2">
                         <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">

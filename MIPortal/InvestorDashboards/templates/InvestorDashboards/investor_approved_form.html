@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>approved form</title>
+</head>
+<body>
+<form method="post" action="{% url 'approve_investor' pk %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                        <div class="form-group">
+                                            <b>ARE YOU SURE YOU WANT TO APPROVED THIS INVESTOR?</b>
+
+                                        </div>
+
+
+                                    <button type="submit" class="btn btn-primary">YES</button>
+
+                                </form>
+                                <button onclick="location.href='{% url 'investor' %}' " class="btn btn-primary">NO</button>
+</body>
+</html>

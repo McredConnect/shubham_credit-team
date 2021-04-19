@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Business Comment</title>
+</head>
+<body>
+<button id="cancel" style="float:right;">cancel</button>
+{% for i in comments_obj %}
+    <h6 style="font-size:20px;">{{i.comment}}</h6>
+    <h6><i style="font-size:15px; color:grey;">commented by:  </i>{{i.username}}&nbsp;&nbsp;&nbsp;<i style="font-size:15px; color:grey;">date:  </i>{{i.created_date| date:"F d Y"}}</h6><br><br>
+{% endfor %}
+
+</body>
+</html>

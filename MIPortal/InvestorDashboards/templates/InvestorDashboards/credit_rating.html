@@ -16,13 +16,17 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
-            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
         </nav>
         <div class = "scroll">
             <div class="managefunds">
                 <div class="container-fluid">
                     <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+                        <b>Credit rating</b>
 
                      <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
@@ -36,7 +40,7 @@
                                                 <th scope="col" style="font-size:12px; text-align:center;"><b>RATING AGENCY</b></th>
                                                 <th scope="col" style="font-size:12px; text-align:center;"><b>RATING</b></th>
                                                 <th scope="col" style="font-size:12px; text-align:center;"><b>DATE OF RATING</b></th>
-                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT OF RATING</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT OF RATING</b></th>-->
                                                 <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
                                                 <th scope="col" style="font-size:12px;text-align:center;"><b>ACTION</b></th>
                                             </tr>
@@ -45,13 +49,18 @@
                                     <tbody>
                                     {% for i in objs %}
                                         <tr>
-                                            <td>{{forloop.counter}}</td>
-                                            <td>{{i.ratingagency}}</td>
-                                            <td>{{i.rating}}</td>
-                                            <td>{{i.date_of_rating}}</td>
-                                            <td>{{i.amount_of_rating}}</td>
-                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
-                                            <td><a href = "{% url 'remove_creditrating' i.id %}" class="btn btn-success">Remove</a></td>
+                                            <td style="text-align:center;">{{forloop.counter}}</td>
+                                            <td style="text-align:center;">{{i.ratingagency}}</td>
+                                            <td style="text-align:center;">{{i.rating}}</td>
+                                            <td style="text-align:center;">{{i.date_of_rating| date:"F M Y"}}</td>
+<!--                                            <td>{{i.amount_of_rating}}</td>-->
+                                            {% if i.input_file %}
+                                                <td style="text-align:center;"><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
+
+                                            <td style="text-align:center;"><a href = "{% url 'remove_creditrating' i.id %}" class="btn btn-success">Remove</a></td>
                                         </tr>
                                     {% endfor %}
 
@@ -172,8 +181,8 @@
 
                                     </div>
                                     <div class="form-group">
-                                        <label for="dateofrating">Date of rating:</label>
-                                        <input type="date" class="form-control" id="dateofrating" placeholder="dateofrating" name="dateofrating">
+                                        <label for="fromdate">Date of rating:</label>
+                                        <input type="date" class="form-control disableFuturedate" id="fromdate" placeholder="dateofrating" name="dateofrating">
                                     </div>
                                     <div class="form-group">
                                         <label for="amountofrating">Amount rating:</label>

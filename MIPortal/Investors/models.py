@@ -117,53 +117,105 @@ class Business(models.Model):
     business_profile_brief_description = models.CharField(max_length=100)
     pending_reason = models.CharField(max_length=50, blank=True, null=True)
     status = models.CharField(max_length=50, blank=True, null=True)
+    turnover = models.CharField(max_length=50, blank=True, null=True)
+    created_date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    year_of_incorporation = models.IntegerField(null=True,blank=True)
+    plant_location = models.CharField(max_length=50,null=True, blank=True)
 
     class Meta:
         managed = False
         db_table = 'investors_business'
 
 
-class Investor(models.Model):
-    investor_name = models.CharField(max_length=50, blank=True, null=True)
-    investor_category = models.CharField(max_length=20, blank=True, null=True)
-    investor_email = models.CharField(max_length=40, blank=True, null=True)
-    contact_no = models.CharField(max_length=15, blank=True, null=True)
-    investor_pan = models.CharField(db_column='investor_PAN', max_length=15, blank=True, null=True)  # Field name made lowercase.
-    investor_adhaar = models.CharField(db_column='investor_Adhaar', max_length=16, blank=True, null=True)  # Field name made lowercase.
-    investor_pan_proof = models.CharField(db_column='investor_PAN_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    investor_adhaar_proof = models.CharField(db_column='investor_Adhaar_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    investor_gst_detail = models.CharField(max_length=25, blank=True, null=True)
-    investor_date_of_incorporation = models.DateField(blank=True, null=True)
-    investor_authorised_user_name = models.CharField(max_length=25, blank=True, null=True)
-    investor_authorised_user_mobile = models.CharField(max_length=15, blank=True, null=True)
-    investor_authorised_user_dob = models.DateField(db_column='investor_authorised_user_DOB', blank=True, null=True)  # Field name made lowercase.
-    investor_authorised_user_email = models.CharField(max_length=30, blank=True, null=True)
-    investor_authorised_user_address = models.CharField(max_length=50, blank=True, null=True)
-    investor_authorised_user_pan = models.CharField(db_column='investor_authorised_user_PAN', max_length=15, blank=True, null=True)  # Field name made lowercase.
-    investor_authorised_user_adhaar = models.CharField(db_column='investor_authorised_user_Adhaar', max_length=16, blank=True, null=True)  # Field name made lowercase.
-    investor_authorised_user_pan_proof = models.CharField(db_column='investor_authorised_user_PAN_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    investor_authorised_user_adhaar_proof = models.CharField(db_column='investor_authorised_user_Adhaar_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    investor_cin_llp_cert_no = models.CharField(db_column='investor_CIN_LLP_cert_no', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    investor_cin_llp_cert_proof = models.CharField(db_column='investor_CIN_LLP_cert_proof', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    investor_deed_moa_and_aoa = models.CharField(db_column='investor_deed_MOA_and_AOA', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    investor_resolution = models.CharField(max_length=50, blank=True, null=True)
-    partner_referal_code = models.CharField(max_length=15, blank=True, null=True)
-    investor_bank_account_no = models.CharField(max_length=20, blank=True, null=True)
-    investor_bank_account_cancelled_cheque = models.CharField(max_length=15, blank=True, null=True)
-    investor_bank_account_ifsc_code = models.CharField(db_column='investor_bank_account_IFSC_code', max_length=15, blank=True, null=True)  # Field name made lowercase.
-    investor_bank_name = models.CharField(max_length=30, blank=True, null=True)
-    investor_mcred_wallet_account_no = models.CharField(max_length=20, blank=True, null=True)
-    investor_mcred_wallet_bank_name = models.CharField(max_length=25, blank=True, null=True)
-    special_status_to_investor = models.CharField(max_length=30, blank=True, null=True)
-    special_applicable_yield = models.FloatField(blank=True, null=True)
-    minimum_investment_limit = models.FloatField(blank=True, null=True)
-    expected_yield = models.FloatField(blank=True, null=True)
-    investor_id = models.CharField(primary_key=True, max_length=50)
-    user_id = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, blank=True, null=True)
+# class Investor(models.Model):
+#     investor_name = models.CharField(max_length=50, blank=True, null=True)
+#     investor_category = models.CharField(max_length=20, blank=True, null=True)
+#     investor_email = models.CharField(max_length=40, blank=True, null=True)
+#     contact_no = models.CharField(max_length=15, blank=True, null=True)
+#     investor_pan = models.CharField(db_column='investor_PAN', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     investor_Aadhaar = models.CharField(db_column='investor_Adhaar', max_length=16, blank=True, null=True)  # Field name made lowercase.
+#     investor_pan_proof = models.CharField(db_column='investor_PAN_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     investor_adhaar_proof = models.CharField(db_column='investor_Adhaar_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     investor_gst_detail = models.CharField(max_length=25, blank=True, null=True)
+#     investor_date_of_incorporation = models.DateField(blank=True, null=True)
+#     investor_authorised_user_name = models.CharField(max_length=25, blank=True, null=True)
+#     investor_authorised_user_mobile = models.CharField(max_length=15, blank=True, null=True)
+#     investor_authorised_user_dob = models.DateField(db_column='investor_authorised_user_DOB', blank=True, null=True)  # Field name made lowercase.
+#     investor_authorised_user_email = models.CharField(max_length=30, blank=True, null=True)
+#     investor_authorised_user_address = models.CharField(max_length=50, blank=True, null=True)
+#     investor_authorised_user_pan = models.CharField(db_column='investor_authorised_user_PAN', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     investor_authorised_user_adhaar = models.CharField(db_column='investor_authorised_user_Adhaar', max_length=16, blank=True, null=True)  # Field name made lowercase.
+#     investor_authorised_user_pan_proof = models.CharField(db_column='investor_authorised_user_PAN_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     investor_authorised_user_adhaar_proof = models.CharField(db_column='investor_authorised_user_Adhaar_proof', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     investor_cin_llp_cert_no = models.CharField(db_column='investor_CIN_LLP_cert_no', max_length=20, blank=True, null=True)  # Field name made lowercase.
+#     investor_cin_llp_cert_proof = models.CharField(db_column='investor_CIN_LLP_cert_proof', max_length=20, blank=True, null=True)  # Field name made lowercase.
+#     investor_deed_moa_and_aoa = models.CharField(db_column='investor_deed_MOA_and_AOA', max_length=50, blank=True, null=True)  # Field name made lowercase.
+#     investor_resolution = models.CharField(max_length=50, blank=True, null=True)
+#     partner_referal_code = models.CharField(max_length=15, blank=True, null=True)
+#     investor_bank_account_no = models.CharField(max_length=20, blank=True, null=True)
+#     investor_bank_account_cancelled_cheque = models.CharField(max_length=15, blank=True, null=True)
+#     investor_bank_account_ifsc_code = models.CharField(db_column='investor_bank_account_IFSC_code', max_length=15, blank=True, null=True)  # Field name made lowercase.
+#     investor_bank_name = models.CharField(max_length=30, blank=True, null=True)
+#     investor_mcred_wallet_account_no = models.CharField(max_length=20, blank=True, null=True)
+#     investor_mcred_wallet_bank_name = models.CharField(max_length=25, blank=True, null=True)
+#     special_status_to_investor = models.CharField(max_length=30, blank=True, null=True)
+#     special_applicable_yield = models.FloatField(blank=True, null=True)
+#     minimum_investment_limit = models.FloatField(blank=True, null=True)
+#     expected_yield = models.FloatField(blank=True, null=True)
+#     investor_id = models.CharField(primary_key=True, max_length=50)
+#     user_id = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, blank=True, null=True)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'investors_investor'
 
-    class Meta:
-        managed = False
-        db_table = 'investors_investor'
+class Investor(models.Model):
+    investor_id = models.CharField(max_length=50, primary_key=True, blank=True)
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+    investor_name = models.CharField(max_length=50, null=True, blank=True)
+    investor_category = models.CharField(max_length=20, null=True, blank=True)
+    investor_email = models.EmailField(max_length=40, null=True, blank=True)
+    contact_no = models.CharField(max_length=15, null=True, blank=True)
+    investor_PAN = models.CharField(max_length=15, null=True, blank=True)
+    investor_Aadhaar = models.CharField(max_length=16, null=True, blank=True)
+    investor_PAN_proof = models.FileField(upload_to='investor_pan_proof', null=True, blank=True)
+    investor_Aadhaar_proof = models.FileField(upload_to='investor_aadhaar_proof', null=True, blank=True)
+    investor_NRI_proof = models.FileField(upload_to='investor_NRI_proof', null=True, blank=True)
+    investor_gst_detail = models.CharField(max_length=25, null=True, blank=True)
+    investor_gs_number = models.CharField(max_length=15, null=True,  blank=True)
+    investor_gst_proof = models.FileField(upload_to='investor_gst_proof', null=True, blank=True)
+    investor_date_of_incorporation = models.DateField(null=True, blank=True)
+    investor_authorised_user_name = models.CharField(max_length=25, null=True, blank=True)
+    investor_authorised_user_mobile = models.CharField(max_length=15, null=True, blank=True)
+    investor_authorised_user_DOB = models.DateField(null=True, blank=True)
+    investor_authorised_user_email = models.EmailField(max_length=30, null=True, blank=True)
+    investor_authorised_user_address = models.CharField(max_length=50, null=True, blank=True)
+    investor_authorised_user_PAN = models.CharField(max_length=15, null=True, blank=True)
+    investor_authorised_user_Aadhaar = models.CharField(max_length=16, null=True, blank=True)
+    investor_authorised_user_PAN_proof = models.FileField(upload_to='investor_authorised_user_PAN_proof', null=True, blank=True)
+    investor_authorised_user_Aadhaar_proof = models.FileField(upload_to='investor_authorised_user_Aadhaar_proof', null=True, blank=True)
+    investor_CIN_LLP_cert_no = models.CharField(max_length=20, null=True, blank=True)
+    investor_CIN_LLP_cert_proof = models.CharField(max_length=20, null=True, blank=True)
+    investor_deed_MOA_and_AOA = models.CharField(max_length=50, null=True, blank=True)
+    investor_resolution = models.FileField(upload_to='investor_resolution', null=True, blank=True)
+    investor_cert_incorporation = models.FileField(upload_to='investor_cert_incorporation', null=True, blank=True)
+    # investor_reg_partnership_deed = models.FileField(upload_to='investor_resolution', null=True, blank=True)
+
+    partner_referal_code = models.CharField(max_length=15, null=True, blank=True)
+    investor_bank_account_no = models.CharField(max_length=20, null=True, blank=True)
+    investor_bank_account_cancelled_cheque = models.CharField(max_length=15, null=True, blank=True)
+    investor_bank_account_IFSC_code = models.CharField(max_length=15, null=True, blank=True)
+    investor_bank_name = models.CharField(max_length=30, null=True, blank=True)
+    investor_mcred_wallet_account_no = models.CharField(max_length=20, null=True, blank=True)
+    investor_mcred_wallet_bank_name = models.CharField(max_length=25, null=True, blank=True)
+    special_status_to_investor = models.CharField(max_length=30, null=True, blank=True)
+    special_applicable_yield = models.FloatField(null=True, blank=True)
+    minimum_investment_limit = models.FloatField(null=True, blank=True)
+    expected_yield = models.FloatField(null=True, blank=True)
+    escrow_balance = models.FloatField(null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    status = models.CharField(max_length=50, null=True, blank=True)
+    pending_reason = models.CharField(max_length=50, null=True, blank=True)
 
 
 class Invoice(models.Model):

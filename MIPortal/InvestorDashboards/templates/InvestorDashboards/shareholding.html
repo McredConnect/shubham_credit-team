@@ -13,17 +13,20 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
-            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
         </nav>
         <div class = "scroll">
             <div class="managefunds">
                 <div class="container-fluid">
                     <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
-
+                        <b>Shareholding details</b>
                      <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
                             <div class="card-body">
@@ -46,7 +49,12 @@
                                             <td style="text-align:center;">{{forloop.counter}}</td>
                                             <td style="text-align:center;">{{i.nameofshareholder}}</td>
                                             <td style="text-align:center;">{{i.percentage_of_shareholding}}</td>
-                                            <td style="text-align:center;"><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% if i.input_file %}
+                                                <td style="text-align:center;"><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
+
                                             <td><a href = "{% url 'remove_shareholding' i.id %}" class="btn btn-success">Remove</a></td>
                                         </tr>
                                     {% endfor %}

@@ -60,8 +60,8 @@ class Customerdetails(models.Model):
     fromdate = models.DateTimeField()
     todate = models.DateTimeField()
     input_file = models.FileField(upload_to="Customerdetails", null=True, blank=True)
-    # average_monthly_sale1 = models.IntegerField(null=True, blank=True)
-    # total_annual_sale1 = models.IntegerField(null=True, blank=True)
+    average_monthly_sale = models.IntegerField(null=True, blank=True)
+    total_annual_sale = models.IntegerField(null=True, blank=True)
 
 class Suppliersdetails(models.Model):
     business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)

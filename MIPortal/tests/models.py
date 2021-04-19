@@ -1,6 +1,15 @@
 from django.db import models
-from Investors.models import Business
+from Investors.models import Business,Investor
 # Create your models here.
+from accounts.models import CustomUser
+
+
+class BusinessDetails_test_new(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    file_name = models.CharField(max_length=100, null=True, blank=True)
+    username = models.CharField(max_length=100, null=True, blank=True)
+    create_date = models.DateTimeField(auto_now_add=True)
+    input_file = models.FileField(upload_to="Business_detail", null=True, blank=True)
 
 class Debit_credit_same_party(models.Model):
     business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
@@ -50,24 +59,34 @@ class GSTDetails_new(models.Model):
     deviation_from_sale = models.IntegerField(null=True, blank=True)
 
 class GST_sale(models.Model):
-    gst_no = models.IntegerField(null=True, blank=True)
+    gst_no = models.CharField(max_length=100,null=True, blank=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     sale = models.IntegerField(null=True, blank=True)
 
 class GST_customers(models.Model):
-    gst_no = models.IntegerField(null=True, blank=True)
+    gst_no = models.CharField(max_length=100,null=True, blank=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     sale = models.IntegerField(null=True, blank=True)
 
 class GST_suppliers(models.Model):
-    gst_no = models.IntegerField(null=True, blank=True)
+    gst_no = models.CharField(max_length=100,null=True, blank=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     purchase = models.IntegerField(null=True, blank=True)
 
 class GST_products(models.Model):
-    gst_no = models.IntegerField(null=True, blank=True)
+    gst_no = models.CharField(max_length=100, null=True, blank=True)
     code_of_product = models.CharField(max_length=100, null=True, blank=True)
     sales = models.IntegerField(null=True, blank=True)
+
+class GSTR_three(models.Model):
+    gst_no = models.CharField(max_length=100,null=True, blank=True)
+    sales_as_per_gstr_three = models.CharField(max_length=100, null=True, blank=True)
+    deviation_from_sale = models.IntegerField(null=True, blank=True)
+
+class GSTR_one(models.Model):
+    gst_no = models.CharField(max_length=100,null=True, blank=True)
+    domestic_sale = models.CharField(max_length=100, null=True, blank=True)
+    export_sale = models.IntegerField(null=True, blank=True)
 
 class Comments(models.Model):
     business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
@@ -76,6 +95,71 @@ class Comments(models.Model):
     created_date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     comment = models.TextField(null=True,blank=True)
 
+class Investor_Reasons(models.Model):
+    investor_id = models.ForeignKey(Investor, on_delete=models.CASCADE, null=True, blank=True)
+    username = models.CharField(max_length=100, null=True, blank=True)
+    type = models.CharField(max_length=100, null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    reason = models.TextField(null=True,blank=True)
+
+
+class Business_Reasons(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    username = models.CharField(max_length=100, null=True, blank=True)
+    type = models.CharField(max_length=100, null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    reason = models.TextField(null=True,blank=True)
+
+class Suppliersdetails_new(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    purchase = models.CharField(max_length=100, null=True, blank=True)
+    last_tweleve_month_sale = models.CharField(max_length=100, null=True, blank=True)
+    fromdate = models.DateTimeField()
+    todate = models.DateTimeField()
+    input_file = models.FileField(upload_to="Suppliersdetails",null=True,blank=True)
+    Total_annual_purchase = models.FloatField(null=True, blank=True)
+    avg_monthly_purchase = models.FloatField(null=True, blank=True)
+
+class KYCdetail_new(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    Name_of_directors = models.CharField(max_length=100, null=True, blank=True)
+    Type_of_ID = models.CharField(max_length=100, null=True, blank=True)
+    ID_NO = models.CharField(max_length=100,null=True, blank=True)
+    input_file = models.FileField(upload_to="KYCdetail", null=True, blank=True)
+    address = models.TextField(null=True,blank=True)
+    DIN_NO = models.IntegerField(null=True, blank=True)
+
+class DebtProfile_new(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    name_of_lender = models.CharField(max_length=100, null=True, blank=True)
+    type_of_loan = models.CharField(max_length=100, null=True, blank=True)
+    amount_of_loan = models.CharField(max_length=100, null=True, blank=True)
+    outstanding_amount = models.CharField(max_length=100, null=True, blank=True)
+    rate_of_interest = models.CharField(max_length=100, null=True,blank=True)
+    type_of_limit = models.CharField(max_length=100, null=True, blank=True)
+    total_limit = models.IntegerField(null=True, blank=True)
+    input_file = models.FileField(upload_to="Debtprofile", null=True, blank=True)
+
+class AuthorisedPerson_details_new(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+    designation = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(max_length=254)
+    phone = models.CharField(max_length=100, null=True, blank=True)
+    mobile = models.CharField(max_length=100, null=True, blank=True)
+    aadhaar = models.FileField(upload_to="user_aadhaar", null=True, blank=True)
+    pan = models.FileField(upload_to="user_pan", null=True, blank=True)
+
+class GSTDetails_test_new(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    gst_type = models.CharField(max_length=100, null=True, blank=True)
+    gst_No = models.CharField(max_length=100,null=True, blank=True)
+    state = models.CharField(max_length=100, null=True, blank=True)
+    fromdate = models.DateField(null=True, blank=True)
+    Todate = models.DateField(null=True, blank=True)
+    input_file = models.FileField(upload_to="Gstdetail", null=True, blank=True)
 
 class Financial_calculations(models.Model):
     business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
@@ -194,3 +278,52 @@ class Financial_calculations(models.Model):
     credit_upon_purchase_cy = models.FloatField(null=True, blank=True)
     credit_upon_purchase_lqy = models.FloatField(null=True, blank=True)
     credit_upon_purchase_sqy = models.FloatField(null=True, blank=True)
+
+class Blog(models.Model):
+    image = models.ImageField(upload_to="blog_images", height_field=None, width_field=None)
+    description = models.TextField(null=True, blank=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    author = models.CharField(max_length=100, null=True, blank=True)
+    category = models.CharField(max_length=100, null=True, blank=True)
+    likes = models.ManyToManyField(CustomUser,related_name="blog",null=True,blank=True)
+
+class Approvedcustomers(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    name_of_customer = models.CharField(max_length=100, null=True, blank=True)
+    last_tweleve_month_sale = models.CharField(max_length=100, null=True, blank=True)
+    sale_as_per_gst = models.CharField(max_length=100, null=True, blank=True)
+
+class Approvedsuppliers(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    name_of_customer = models.CharField(max_length=100, null=True, blank=True)
+    last_tweleve_month_purchase = models.CharField(max_length=100, null=True, blank=True)
+    purchase_as_per_gst = models.CharField(max_length=100, null=True, blank=True)
+
+class BankstatementDetails_new(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    bank_name = models.CharField(max_length=100, null=True, blank=True)
+    AC_No = models.CharField(max_length=100,null=True, blank=True)
+    AC_Type = models.CharField(max_length=100, null=True, blank=True)
+    Type = models.CharField(max_length=100, null=True, blank=True)
+    from_date = models.DateField(null=True, blank=True)
+    To_date = models.DateField(null=True, blank=True)
+    input_file = models.FileField(upload_to="Bankstatementdetail", null=True, blank=True)
+
+class Director_list(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    name_of_the_director = models.CharField(max_length=100, null=True, blank=True)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    DIN_number = models.CharField(max_length=100, null=True, blank=True)
+    Pan_number = models.CharField(max_length=100, null=True, blank=True)
+    Aadhar_number = models.CharField(max_length=100, null=True, blank=True)
+    Aadhar_file = models.FileField(upload_to="Aadharphoto", null=True, blank=True)
+    input_file = models.FileField(upload_to="listofdirector", null=True, blank=True)
+
+class CreditRating_test(models.Model):
+    business_id = models.ForeignKey(Business, on_delete=models.CASCADE, null=True, blank=True)
+    ratingagency = models.CharField(max_length=100, null=True, blank=True)
+    rating = models.CharField(max_length=100,null=True, blank=True)
+    date_of_rating = models.DateTimeField()
+    amount_of_rating = models.IntegerField(null=True, blank=True)
+    input_file = models.FileField(upload_to="Creditrating", null=True, blank=True)

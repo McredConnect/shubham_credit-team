@@ -4,11 +4,11 @@
         <head>
             {% load static %}
             <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
-            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+<!--            <script src="{% static '/javascript/currentdeals2.js' %}"></script>-->
         </head>
         <nav id="sidebar-businessdetail">
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'business_detail' business_id %}">Business Details</a></div></div>
-            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
@@ -17,7 +17,10 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
 
 <!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Company Details</a></div></div>-->
 <!--            <div class="single"><img class="img-size"><div class="text-size"><a href="#">Invoices</a></div></div>-->
@@ -31,7 +34,7 @@
             <div class="managefunds">
                 <div class="container-fluid">
                     <div class="row" style="margin-top:-780px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
-
+                        <b>Bank details</b>
                         <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
                             <div class="card-body">
@@ -54,13 +57,18 @@
                                     <tbody>
                                     {% for i in objs %}
                                         <tr>
-                                            <td>{{i.business_id.user_id.username}}</td>
+                                            <td>{{i.business_id.user_id.organisation}}</td>
                                             <td>{{i.bank_name}}</td>
                                             <td>{{i.AC_No}}</td>
                                             <td>{{i.AC_Type}}</td>
                                             <td>{{i.from_date}}</td>
                                             <td>{{i.To_date}}</td>
-                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% if i.input_file %}
+                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
+
                                             <td><a  href = "{% url 'remove_bankdetail' i.id %}" class="btn btn-success">Remove</a></td>
                                         </tr>
                                     {% endfor %}
@@ -518,16 +526,16 @@
                                         <input type="text" class="form-control" id="acctype" placeholder="acctype" name="acctype">
                                     </div>
                                         <div class="form-group">
-                                        <label for="accno">Account number:</label>
-                                        <input type="number" class="form-control" id="accno" placeholder="accno" name="accno">
+                                        <label for="account_num">Account number:</label>
+                                        <input type="number" class="form-control" id="account_num" placeholder="accno" name="accno">
                                     </div>
                                         <div class="form-group">
                                         <label for="fromdate">From date:</label>
-                                        <input type="date" class="form-control"  placeholder="fromdate" name="fromdate">
+                                        <input type="date" class="form-control disableFuturedate"  id="fromdate" placeholder="fromdate" name="fromdate">
                                     </div>
                                         <div class="form-group">
                                             <label for="todate">To date:</label>
-                                            <input type="date" class="form-control" placeholder="todate" name="todate">
+                                            <input type="date" class="form-control disableFuturedate" id="todate" placeholder="todate" name="todate">
                                         </div>
                                     <div class="form-group">
                                       <label for="file1">FILE UPLOAD:</label>
@@ -791,4 +799,18 @@
 
                     </div>
         </div>
+        <script>
+            $(document).ready(function () {
+                 $("#account_num").change(function () {
+                 var account_num = $(this).val();
+                 console.log(account_num.length)
+                 if(account_num.length < 11 || account_num.length > 17){
+                    $("#account_num").val("");
+                    alert("Invalid Account No.");
+                    }
+                });
+
+            });
+        </script>
+
 {% endblock content %}

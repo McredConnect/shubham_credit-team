@@ -264,3 +264,55 @@
     overflow-x: hidden;
     overflow-y: auto;
   } */
+
+.savebtn{
+    margin-left:440px;
+    border: none;
+    border-radius: 5px;
+    opacity: 1;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:35px;
+    padding-right:35px;
+    text-align: center;
+    font: normal normal 600 16px/17px Open Sans;
+    letter-spacing: 1.6px;
+    text-transform:uppercase;
+    outline:none !important;
+    background-color:#0d6efd;
+    color:#FFFFFF;
+}
+
+.filter{
+    margin-top:30px;
+    margin-left:30px;
+
+}
+
+.filterbtn{
+    border: none;
+    border-radius: 5px;
+    opacity: 1;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:15px;
+    padding-right:15px;
+    text-align: center;
+    font: normal normal 600 12px/17px Open Sans;
+    letter-spacing: 1.6px;
+    text-transform:uppercase;
+    outline:none !important;
+    background-color:#0d6efd;
+    color:#FFFFFF;
+
+
+}
+
+.input{
+    max-width:600px;
+}
+
+.active1{
+    background-color:#F79421 !important;
+    color:#111D5E !important;
+}

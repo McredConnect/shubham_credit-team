@@ -38,7 +38,7 @@
         <div class="single"><img class="img-size" height= "25" width="25" src="{% static '/images/navbar/customer-service.svg' %}"><div class="text-size"><a href="#"></a></div></div> -->
         </nav>
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-#182677;" style="background:#182677;margin-left:-25px;margin-right:-20px;margin-top:-20px">
+            <nav class="navbar navbar-expand-lg navbar-light bg-#182677; sticky-top" style="background:#182677;margin-left:-25px;margin-right:-20px;margin-top:-20px">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn btn-info" style="background:#182677;color:#ffffff;"><i class="fas fa-align-left"></i><span style="color:#ffffff">&nbsp;&nbsp;Menu</span></button>
                     <button class="btn btn d-inline-block d-lg-none ml-auto"style="background:#182677;color:#fff;border:none;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-align-justify"></i></button>
@@ -77,7 +77,72 @@
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
+
+                        var dtToday = new Date();
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if(month < 10 )
+                    month = '0' + month.toString();
+                if(day < 10 )
+                    day = '0' + day.toString();
+
+                var  maxDate = year + '-' + month + '-' + day;
+
+                $('.disableFuturedate').attr('max',maxDate);
+
+
+
         });
+
+
+        $(function(){
+
+        var url = window.location.pathname,
+            urlRegExp = new RegExp(url.replace(/\/$/,'') + "$");
+            $('.menu a').each(function(){
+                // and test its normalized href against the url pathname regexp
+                if(urlRegExp.test(this.href.replace(/\/$/,''))){
+                    $(this).addClass('active');
+                }
+            });
+
+    });
+
+
+        $("#todate").change(function () {
+        var fromDate = document.getElementById("fromdate").value;
+        var toDate = document.getElementById("todate").value;
+
+        if ((Date.parse(toDate) <= Date.parse(fromDate))) {
+            alert("End date should be greater than Start date");
+    <!--        document.getElementById("fromdate").value = "";-->
+            document.getElementById("todate").value = "";
+        }
+    });
+
+        $("#todate2").change(function () {
+            var fromDate = document.getElementById("fromdate2").value;
+            var toDate = document.getElementById("todate2").value;
+
+            if ((Date.parse(toDate) <= Date.parse(fromDate))) {
+                alert("End date should be greater than Start date");
+    <!--            document.getElementById("fromdate2").value = "";-->
+                document.getElementById("todate2").value = "";
+            }
+        });
+
+         $("#todate3").change(function () {
+            var fromDate = document.getElementById("fromdate3").value;
+            var toDate = document.getElementById("todate3").value;
+
+            if ((Date.parse(toDate) <= Date.parse(fromDate))) {
+                alert("To date should be greater than Start date");
+    <!--            document.getElementById("fromdate3").value = "";-->
+                document.getElementById("todate3").value = "";
+            }
+        });
+
     </script>
 </body>
 </html>

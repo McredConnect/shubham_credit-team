@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for i in investor_reason_obj %}
+{{forloop.counter}}<span><b>&#183;</b></span>&nbsp;&nbsp;{{i.reason}}<br><br>
+{% endfor %}
+
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="col-xs-4">
+                                    <form method="post" action="{%url 'investor_reason_two' pk %}" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                    <h6 style="font-size: 15px;">REASON:</h6>
+<!--                                            <input class="form-control" id="ex1" type="text" size=45 style="height:50px"/>-->
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" name= "reason" style="width:1050px;"></textarea>
+                                            <input type="hidden" value="investor" id="type" name="type"><br>
+                                            <button   type="submit" class="btn btn-primary">SAVE</button>
+                                    </form>
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+</body>
+</html>

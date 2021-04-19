@@ -1,0 +1,221 @@
+{% extends "InvestorDashboards/index3.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/managefunds2.css' %}">
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        </head>
+        <div class="managefunds">
+
+                <div class="row">
+                            <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                                <div class="card-body">
+                                    <form method="post" action="{%url 'Individual' pk %}" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                        <button   style="float:right;margin-left:20px; padding-top:10px;" type="submit" class="btn btn-primary">SAVE</button>
+
+    <!--                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" id="button" >AUTHORISED PERSON</button>-->
+                                    <div class="table-responsive">
+                                        <table class="table" style="border-collapse:collapse">
+                                            <thead class="headt" >
+                                                <tr>
+                                                    <th scope="col" class="date" style="font-size:12px; text-align:center;">S.NO</th>
+                                                    <th scope="col" class="date" style="font-size:12px; text-align:center;">FIELD</th>
+                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>FIELD VALUE</b></th>
+                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
+<!--                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">1</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">NAME</th>
+                                                <td><input class="form-control" id="name" name="name" value="{{investor_obj.investor_name}}"  type="text" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input class="form-control" id="sales-4" value="{{financial_calculations_obj.sales_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="sales-5" value="{{financial_calculations_obj.sales_sqy}}" type="text" size=20></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">2</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">TYPE</th>
+                                                <td><input class="form-control" id="type" name="type" value="{{investor_obj.investor_category}}" type="text" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input class="form-control" id="EBITDA-4" value="{{financial_calculations_obj.ebitdta_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="EBITDA-5" value="{{financial_calculations_obj.ebitdta_sqy}}" type="text" size=20></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">3</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">MOBILE NO</th>
+                                                <td><input class="form-control" id="mobile_num" name="mobile_num"  value="{{investor_obj.contact_no}}" type="text" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input class="form-control" id="pbt-four" value="{{financial_calculations_obj.pbt_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="pbt-five" value="{{financial_calculations_obj.pbt_sqy}}" type="text" size=20></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">4</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">EMAIL</th>
+                                                <td><input class="form-control" id="email" name="email" value="{{investor_obj.investor_email}}" type="email" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input class="form-control" id="PAT-4" value="{{financial_calculations_obj.pat_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="PAT-5" value="{{financial_calculations_obj.pat_sqy}}" type="text" size=20></td>-->
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">5</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">DATE OF BIRTH</th>
+                                                <td><input class="form-control" id="dob" name="dob" value="{{investor_obj.investor_date_of_incorporation}}" type="text" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input class="form-control" id="PAT-4" value="{{financial_calculations_obj.pat_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="PAT-5" value="{{financial_calculations_obj.pat_sqy}}" type="text" size=20></td>-->
+
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">6</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAN NO</th>
+                                                <td><input class="form-control" id="pan_num" name="pan_num" value="{{investor_obj.investor_PAN}}" type="text" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="ebidta_four" value="{{financial_calculations_obj.ebidta_per_m_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="ebidta_five" value="{{financial_calculations_obj.ebidta_per_m_sqy}}" type="text" size=20></td>-->
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">7</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAN CARD PHOTO</th>
+                                                {% if investor_obj.investor_PAN_proof %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_PAN_proof}}" type="text" size=20></td>
+                                                {% else %}
+                                                    <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                            {% if investor_obj.investor_PAN_proof %}
+                                                <td style="text-align:center;" ><a href="{{investor_obj.investor_PAN_proof.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+
+                                            {% endif %}
+<!--                                                <td></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" value="{{financial_calculations_obj.pat_per_lqy }}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" value="{{financial_calculations_obj.pat_per_sqy }}" type="text" size=20></td>-->
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">8</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">AADHAAR NUMBER</th>
+                                                <td><input  class="form-control" id="aadhar_num" name="aadhar_num" value="{{investor_obj.investor_Aadhaar }}" type="text" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" value="{{financial_calculations_obj.pat_per_lqy }}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" value="{{financial_calculations_obj.pat_per_sqy }}" type="text" size=20></td>-->
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">9</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">AADHAR CARD PHOTO</th>
+                                                {% if investor_obj.investor_Aadhaar_proof %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_Aadhaar_proof}}" type="text" size=20></td>
+                                                {% else %}
+                                                    <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                                {% if investor_obj.investor_Aadhaar_proof %}
+                                                    <td style="text-align:center;" ><a href="{{investor_obj.investor_Aadhaar_proof}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                {% else %}
+                                                    <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+                                                {% endif %}
+<!--                                                <td></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" value="{{financial_calculations_obj.pat_per_lqy }}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" value="{{financial_calculations_obj.pat_per_sqy }}" type="text" size=20></td>-->
+
+                                        </tr>
+
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">10</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">GST NUMBER</th>
+                                                <td><input  class="form-control" id="gst_num" name="gst_num" value="{{investor_obj.investor_gs_number }}" type="text" size=20></td>
+                                                <td></td>
+<!--                                                <td></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" value="{{financial_calculations_obj.pat_per_lqy }}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" value="{{financial_calculations_obj.pat_per_sqy }}" type="text" size=20></td>-->
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">11</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">GST PROOF</th>
+                                                {% if investor_obj.investor_gst_proof %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_gst_proof}}" type="text" size=20></td>
+                                                {% else %}
+                                                <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                                {% if investor_obj.investor_gst_proof %}
+                                                    <td style="text-align:center;" ><a href="{{investor_obj.investor_gst_proof}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                {% else %}
+                                                    <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+                                                {% endif %}
+
+<!--                                                <td></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" value="{{financial_calculations_obj.pat_per_lqy }}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" value="{{financial_calculations_obj.pat_per_sqy }}" type="text" size=20></td>-->
+
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">EDIT FILES</button>
+                </div>
+        </div>
+
+        <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">EDIT</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'indivisual_file' pk %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <lable for="date">DATE OF BIRTH:</lable>
+                                        <input type="date" class="form-control disableFuturedate" id="date" placeholder="fromdate" name="date">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="pan_photo">PAN CARD PHOTO:</label>
+                                      <input type="file" class="form-control" id="pan_photo" placeholder="file" name="pan_photo" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="aadhar_photo">AADHAR CARD PHOTO:</label>
+                                      <input type="file" class="form-control" id="aadhar_photo" placeholder="file" name="aadhar_photo" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="gst_proof">GST PROOF:</label>
+                                      <input type="file" class="form-control" id="gst_proof" placeholder="file" name="gst_proof" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+                                    <button  href="{%url 'indivisual_file' pk %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+
+{% endblock content %}

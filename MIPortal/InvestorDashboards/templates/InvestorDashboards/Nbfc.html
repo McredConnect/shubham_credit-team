@@ -1,0 +1,262 @@
+{% extends "InvestorDashboards/index3.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/managefunds2.css' %}">
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        </head>
+        <div class="managefunds">
+
+                <div class="row">
+                            <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                                <div class="card-body">
+                                    <form method="post" action="{%url 'Nbfc' pk %}" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                        <button   style="float:right;margin-left:20px; padding-top:10px;" type="submit" class="btn btn-primary">SAVE</button>
+                                        <div class="table-responsive">
+                                        <table class="table" style="border-collapse:collapse">
+                                            <thead class="headt" >
+                                                <tr>
+                                                    <th scope="col" class="date" style="font-size:12px; text-align:center;">S.NO</th>
+                                                    <th scope="col" class="date" style="font-size:12px; text-align:center;">FIELD</th>
+                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>FIELD VALUE</b></th>
+                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;"><b>ENTITY KYC</b></th>
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">1</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">NAME</th>
+                                                <td><input class="form-control" id="entity_name" name="entity_name" value="{{investor_obj.investor_name}}"  type="text" size=20></td>
+                                                <td></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">2</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">TYPE</th>
+                                                <td><input class="form-control" id="entity_type" name="entity_type" value="{{investor_obj.investor_category}}" type="text" size=20></td>
+                                                <td></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">5</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">DATE OF FORMATION</th>
+                                                <td><input class="form-control" id="entity_dob" name="entity_dob" value="{{investor_obj.investor_date_of_incorporation}}" type="text" size=20></td>
+                                                <td></td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">6</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAN NO</th>
+                                                <td><input class="form-control" id="entity_pan_num" name="entity_pan_num" value="{{investor_obj.investor_PAN}}" type="text" size=20></td>
+                                                <td></td>
+
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">7</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAN CARD PHOTO</th>
+                                                {% if investor_obj.investor_PAN_proof %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_PAN_proof}}" type="text" size=20></td>
+                                                {% else %}
+                                                    <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                            {% if investor_obj.investor_PAN_proof %}
+                                                <td style="text-align:center;" ><a href="{{investor_obj.investor_PAN_proof.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+
+                                            {% endif %}
+
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">9</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">CERTIFICATE OF INCORPORATION</th>
+                                                {% if investor_obj.investor_cert_incorporation %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_cert_incorporation}}" type="text" size=20></td>
+                                                {% else %}
+                                                    <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                                {% if investor_obj.investor_cert_incorporation %}
+                                                    <td style="text-align:center;" ><a href="{{investor_obj.investor_cert_incorporation.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                {% else %}
+                                                    <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+                                                {% endif %}
+
+
+                                        </tr>
+
+
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">11</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">RESOLUTION PASSED</th>
+                                                {% if investor_obj.investor_resolution %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_resolution}}" type="text" size=20></td>
+                                                {% else %}
+                                                <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                                {% if investor_obj.investor_resolution %}
+                                                    <td style="text-align:center;" ><a href="{{investor_obj.investor_resolution.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                {% else %}
+                                                    <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+                                                {% endif %}
+
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;"><b>AUTHORISED USER KYC</b></th>
+
+                                        </tr>
+                                                                                    <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">1</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">NAME</th>
+                                                <td><input class="form-control" id="authoriseduser_name" name="authoriseduser_name" value="{{investor_obj.investor_authorised_user_name}}"  type="text" size=20></td>
+                                                <td></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">3</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">MOBILE NO</th>
+                                                <td><input class="form-control" id="authoriseduser_mobile_num" name="authoriseduser_mobile_num"  value="{{investor_obj.investor_authorised_user_mobile}}" type="text" size=20></td>
+                                                <td></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">4</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">EMAIL</th>
+                                                <td><input class="form-control" id="authoriseduser_email" name="authoriseduser_email" value="{{investor_obj.investor_authorised_user_email}}" type="email" size=20></td>
+                                                <td></td>
+
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">5</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">DATE OF BIRTH</th>
+                                                <td><input class="form-control" id="authoriseduser_dob" name="authoriseduser_dob" value="{{investor_obj.investor_authorised_user_DOB}}" type="text" size=20></td>
+                                                <td></td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">6</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAN NO</th>
+                                                <td><input class="form-control" id="authoriseduser_pan_num" name="authoriseduser_pan_num" value="{{investor_obj.investor_authorised_user_PAN}}" type="text" size=20></td>
+                                                <td></td>
+
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">7</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAN CARD PHOTO</th>
+                                                {% if investor_obj.investor_authorised_user_PAN_proof %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_authorised_user_PAN_proof}}" type="text" size=20></td>
+                                                {% else %}
+                                                    <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                            {% if investor_obj.investor_authorised_user_PAN_proof %}
+                                                <td style="text-align:center;" ><a href="{{investor_obj.investor_authorised_user_PAN_proof}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+
+                                            {% endif %}
+
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">8</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">AADHAAR NUMBER</th>
+                                                <td><input  class="form-control" id="authoriseduser_aadhar_num" name="authoriseduser_aadhar_num" value="{{investor_obj.investor_authorised_user_Aadhaar }}" type="text" size=20></td>
+                                                <td></td>
+
+
+                                        </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">9</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">AADHAR CARD PHOTO</th>
+                                                {% if investor_obj.investor_authorised_user_Aadhaar_proof %}
+                                                    <td><input  class="form-control" id="PAT_per_one" value="{{investor_obj.investor_authorised_user_Aadhaar_proof}}" type="text" size=20></td>
+                                                {% else %}
+                                                    <td><input  class="form-control" id="PAT_per_one" type="text" size=20></td>
+                                                {% endif %}
+                                                {% if investor_obj.investor_authorised_user_Aadhaar_proof %}
+                                                    <td style="text-align:center;" ><a href="{{investor_obj.investor_authorised_user_Aadhaar_proof}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                                {% else %}
+                                                    <td style="text-align:center;" ><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></td>
+                                                {% endif %}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">EDIT FILES</button>
+                </div>
+
+
+
+
+        </div>
+
+        <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">EDIT</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'nbfc_file' pk %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <lable for="entity_date"> ENTITY DATE OF FORMATION:</lable>
+                                        <input type="date" class="form-control disableFuturedate" id="entity_date" placeholder="entity_date" name="entity_date">
+                                    </div>
+                                    <div class="form-group">
+                                        <lable for="authorised_date">AUTHORISED USER  DATE OF BIRTH:</lable>
+                                        <input type="date" class="form-control disableFuturedate" id="authorised_date" placeholder="fromdate" name="authorised_date">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="entity_pan_photo">ENTITY PAN CARD PHOTO:</label>
+                                      <input type="file" class="form-control" id="entity_pan_photo" placeholder="file" name="entity_pan_photo" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="entity_coi">ENTITY CERTIFICATE OF INCORPORATION:</label>
+                                      <input type="file" class="form-control" id="entity_coi" placeholder="file" name="entity_coi" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="entity_rp">ENTITY RESOLUTION PASSED:</label>
+                                      <input type="file" class="form-control" id="entity_rp" placeholder="file" name="entity_rp" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="authorised_pan_photo">AUTHORISED USER PAN CARD PHOTO:</label>
+                                      <input type="file" class="form-control" id="authorised_pan_photo" placeholder="file" name="authorised_pan_photo" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="authorised_aadhar_photo">AUTHORISED USER AADHAR CARD PHOTO:</label>
+                                      <input type="file" class="form-control" id="authorised_aadhar_photo" placeholder="file" name="authorised_aadhar_photo" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+                                    <button  href="{%url 'indivisual_file' pk %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pending Form</title>
+</head>
+<body>
+<form method="post" action="{% url 'reason' pk %}" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="reason">Reason:</label>
+        <textarea type="date" class="form-control"  placeholder="reason" id="reason" name="reason"></textarea>
+    </div>
+</form>
+
+</body>
+</html>

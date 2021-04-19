@@ -17,7 +17,9 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
-            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
         </nav>
         <div class = "scroll">
             <div class="managefunds">
@@ -173,14 +175,14 @@
                                             <option value="PAN CARD">PAN CARD</option>
                                             <option value="VOTER ID">VOTER ID</option>
                                             <option value="PASSPORT">PASSPORT</option>
-                                            <option value="COMPANY ADDRESS PROOF">DRIVING LICENSE</option>
+                                            <option value="DRIVING LICENSE">DRIVING LICENSE</option>
                                         </select>
                                           </div>
                                       </div>
 
                                     <div class="form-group">
                                         <label for="ID_NO">Document ID Number:</label>
-                                        <input type="number" class="form-control" id="ID_NO" placeholder="ID_NO" name="ID_NO">
+                                        <input type="text" class="form-control" id="ID_NO" placeholder="ID_NO" name="ID_NO">
                                     </div>
 
                                     <div class="form-group">
@@ -206,4 +208,35 @@
                     </div>
                     </div>
         </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+
+        $('#ID_NO').change(function () {
+            var typeofid = $('#typeofid :selected').text();
+            alert(typeofid);
+            if(typeofid == "ADHAR CARD"){
+                    var idno = $('#ID_NO').val();
+                    alert(idno);
+                      var regex = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+                      if(!regex.test(idno)){
+                      $("#idno").val("");
+                      alert("Invalid Aadhaar No");
+                      return regex.test(idno);
+                      }
+            } else {
+                  var idno = $(this).val();
+                  var regex = /[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+                  if(!regex.test(idno)){
+                  $("#idno").val("");
+                  alert("Invalid PAN No");
+                  return regex.test(idno);
+                  }
+            }
+        });
+
+
+    });
+</script>
 {% endblock content %}

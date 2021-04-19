@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<!--    <link rel="stylesheet"  href="{% static '/css/new_dashboard/reason.css' %}">-->
+    <style>
+        .h6{
+            margin-top:30px;
+            text-align: left;
+            font: normal normal 600 36px/26px Open Sans;
+            letter-spacing: 0.72px;
+            color: #353535;
+            opacity: 1;
+            margin-left:40px;
+
+        }
+        .form-control{
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 3px solid #DFDFDF;
+            border-radius: 10px;
+            opacity: 1;
+            margin-top:20px;
+        }
+        .form-label{
+            text-align: left;
+            font: normal normal 600 25px/20px Open Sans;
+            letter-spacing: 0.5px;
+            color: #363636;
+            opacity: 1;
+            margin-top:20px;
+        }
+        .submit{
+            background: #F79421 0% 0% no-repeat padding-box;
+            border-radius: 5px;
+            opacity: 1;
+            text-align: center;
+            font: normal normal 600 16px/26px Open Sans;
+            letter-spacing: 0.32px;
+            padding-left:30px;
+            padding-right:30px;
+            padding-top:10px;
+            padding-bottom:10px;
+            color: #FFFFFF;
+            opacity: 1;
+            margin-left:300px;
+            margin-top:50px;
+            margin-bottom:30px;
+            border:none;
+        }
+        .div{
+
+            padding:30px;
+        }
+        .cls{
+            background-color:#EEEEEE;
+            width:800px;
+            margin-left:300px;
+            border-radius:10px;
+
+        }
+    </style>
+</head>
+<body>
+  <div class="cls" style="margin-top:50px;">
+<!--    <h6 class="h6">Add Reason</h6>-->
+  <div class="div">
+    <form method="post" class="frm" action="{% url 'investor_reason' pk %}"  enctype="multipart/form-data" >
+        {% csrf_token %}
+          <div class="main" >
+            <label for="reason" class="form-label">REASON</label>
+            <div class="reason">
+              <textarea id="reason" class="form-control"  cols="100" rows="15" name="reason"></textarea>
+            </div>
+            <input type="hidden" value="investor" id="type" name="type"><br>
+          </div>
+          <button type="submit" value="submit" class="submit">SUBMIT</button>
+    </form>
+      </div>
+  </div>
+</body>
+</html>

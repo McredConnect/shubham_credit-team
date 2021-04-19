@@ -1,0 +1,280 @@
+{% extends "InvestorDashboards/index2.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/businessdetail.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <nav id="sidebar-businessdetail">
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'business_detail' business_id %}">Business Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of directors</a></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
+        </nav>
+        <div class = "scroll">
+            <div class="managefunds">
+                <div class="container-fluid">
+                    <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
+                        <b>List of Directors</b>
+                     <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DOCUMENTS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO.</b></th>
+                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>NAME OF DIRECTOR</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ADDRESS</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DIN NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AADHAR NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AADHAR CARD PHOTO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>PAN NUMBER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>PAN CARD PHOTO</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                            </tr>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in objs %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.name_of_the_director}}</td>
+                                            <td>{{i.address}}</td>
+                                            <td>{{i.DIN_number}}</td>
+                                            <td>{{i.Aadhar_number}}</td>
+                                            {% if i.Aadhar_file %}
+                                                <td><a href="{{i.Aadhar_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
+                                            <td>{{i.Pan_number}}</td>
+                                            {% if i.input_file %}
+                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
+                                            <td><a href = "{% url 'remove_KYCdetail' i.id %}" class="btn btn-success">Remove</a></td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                        <div class="row">-->
+<!--                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">-->
+<!--                            <div class="card-body">-->
+<!--                                <h6 style="float:left;">COMMENTS DETAIL</h6>-->
+<!--&lt;!&ndash;                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal7">ADD DETAILS</button>&ndash;&gt;-->
+<!--                                <div class="table-responsive">-->
+<!--                                    <table class="table" style="border-collapse:collapse">-->
+<!--                                        <thead class="headt" >-->
+<!--                                            <tr>-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:15px;">SR No.</th>&ndash;&gt;-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>USERNAME</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>COMMENT</b></th>-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>AMOUNT</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>DATE</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>&ndash;&gt;-->
+<!--                                            </tr>-->
+<!--                                    </thead>-->
+<!--                                    <tbody>-->
+<!--                                    {% for i in comments_obj %}-->
+<!--                                        <tr>-->
+<!--                                            <td style="text-align:center;">{{forloop.counter}}</td>-->
+<!--                                            <td style="text-align:center;">{{i.username}}</td>-->
+<!--                                            <td style="text-align:center;">{{i.comment}}</td>-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><a class="btn btn-success">Remove</a></td>&ndash;&gt;-->
+<!--                                        </tr>-->
+<!--                                    {% endfor %}-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                                    |slice:":10" &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    {% for i in objlist %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                            <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{forloop.counter}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.bank_name}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.AC_No}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.AC_Type}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.from_date}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{{i.To_date}}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    {% endfor %}&ndash;&gt;-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                            {% for i in comments_obj %}
+                                <h6>{{i.comment}}</h6>
+                                <h6><i style="font-size:15px; color:grey;">commented by:  </i>{{i.username}}&nbsp;&nbsp;&nbsp;<i style="font-size:15px; color:grey;">date:  </i>{{i.created_date| date:"F d Y"}}</h6><br><br>
+                             {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="col-xs-4">
+                                        <form method="post" action="{%url 'bankdetail_comment' %}" enctype="multipart/form-data" >
+                                            {% csrf_token %}
+                                            <h6 style="font-size: 15px;">COMMENTS:</h6>
+<!--                                            <input class="form-control" id="ex1" type="text" size=45 style="height:50px"/>-->
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" name="comment" rows="10" style="width:1050px;"></textarea>
+                                            <input type="hidden" value="directorlist" id="type" name="type"><br>
+                                            <button   type="submit" class="btn btn-primary">SAVE</button>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+            </div>
+              <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">DIRECTORS DETAILS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action=" {%url 'director_list' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+
+
+                                    <div class="form-group">
+                                        <label for="name">Name of director:</label>
+                                        <input type="text" class="form-control" id="name" placeholder="name" name="name">
+
+                                    </div>
+
+<!--                                    <div class="form-group">-->
+<!--                                      <label for="typeofid">Select Type of ID:</label>-->
+<!--                                      <div class="col-xs-4">-->
+<!--                                        <select class="form-control" id="typeofid" name="typeofid">-->
+<!--                                            <option value="ADHAR CARD">ADHAR CARD</option>-->
+<!--                                            <option value="PAN CARD">PAN CARD</option>-->
+<!--                                            <option value="VOTER ID">VOTER ID</option>-->
+<!--                                            <option value="PASSPORT">PASSPORT</option>-->
+<!--                                            <option value="COMPANY ADDRESS PROOF">DRIVING LICENSE</option>-->
+<!--                                        </select>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+                                    <div class="form-group">
+                                        <label for="address">Address:</label>
+                                        <input type="text" class="form-control" id="address" placeholder="address" name="address">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="din_num">DIN Number:</label>
+                                        <input type="text" class="form-control" id="din_num" placeholder="din_no" name="din_no">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="aadhar_no">Aadhar Number:</label>
+                                        <input type="text" class="form-control" id="aadhar_no" placeholder="din_no" name="aadhar_no">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="file1">AADHAR CARD PHOTO:</label>
+                                      <input type="file" class="form-control" id="file1" placeholder="file1" name="file1" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pan_num">PAN card Number:</label>
+                                        <input type="text" class="form-control" id="pan_num" placeholder="din_no" name="pan_no">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="file2">PAN CARD PHOTO:</label>
+                                      <input type="file" class="form-control" id="file2" placeholder="file" name="file2" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+
+                                    <button  type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+
+
+
+                        </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+                    </div>
+                    </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $("#pan_num").change(function () {
+                var inputvalues = $(this).val();
+                  var regex = /[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+                  if(!regex.test(inputvalues)){
+                  $("#pan_num").val("");
+                  alert("Invalid PAN No");
+                  return regex.test(inputvalues);
+                  }
+                });
+
+                $("#aadhar_no").change(function () {
+                    var inputvalues = $(this).val();
+                      var regex = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+                      if(!regex.test(inputvalues)){
+                      $("#aadhar_no").val("");
+                      alert("Invalid Aadhaar No");
+                      return regex.test(inputvalues);
+                      }
+                 });
+
+                $("#din_num").change(function () {
+                var inputvalues = $(this).val();
+                  var regex = /[0-9]{8}$/;
+                  if(!regex.test(inputvalues)){
+                  $("#din_num").val("");
+                  alert("Invalid DIN No");
+                  return regex.test(inputvalues);
+                  }
+                });
+            });
+
+        </script>
+
+{% endblock content %}

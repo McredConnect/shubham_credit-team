@@ -11,19 +11,22 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'bank_detail' %}">Bank Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
-            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
         </nav>
         <div class = "scroll">
             <div class="managefunds">
                 <div class="container-fluid">
                     <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
-
+                     <b>SUPPLIERS DETAILS</b>
                      <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
                             <div class="card-body">
@@ -34,7 +37,7 @@
                                             <tr>
                                                 <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO.</b></th>
                                                 <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>NAME</b></th>
-                                                <th scope="col" style="font-size:12px; text-align:center;"><b>LAST 12 MONTHS PURCHASE</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>LAST 12 MONTHS PURCHASE<br>(Rs Cr.)</b></th>
                                                 <th scope="col" style="font-size:12px; text-align:center;"><b>LEDGER FROM DATE</b></th>
                                                 <th scope="col" style="font-size:12px; text-align:center;"><b>LEDGER TO DATE</b></th>
                                                 <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
@@ -168,6 +171,127 @@
 <!--                            </div>-->
 <!--                        </div>-->
 <!--                    </div>-->
+                        <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12 col-md-12 card" id="card1">
+                            <div class="card-body" >
+                                <form method="post" action="{% url 'gstr_one' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                <ul class="list-group list-group-horizontal li2" >
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 13px; padding-top:10px;">EST.TOTAL ANNUAL PURCHASE:</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <input class="form-control" disabled="disabled" id="domestic-sale" type="number" value="{{domestic_sale}}" name="domestic-sale" size=20>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <div class="col-xs-4">
+                                            <label style="font-size: 13px; padding-top:10px;">EST.AVERAGE MONTHLY PURCHASE:</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item ">
+                                        <input class="form-control" id="export-sale" type="number" disabled="disabled" value="{{export_sale}}" name="export-sale" size=20>
+                                    </li>
+                                </ul>
+<!--                                <ul class="list-group list-group-horizontal li2" >-->
+<!--                                    <li class="list-group-item ">-->
+<!--                                        <div class="col-xs-4">-->
+<!--                                            <button type="submit">save</button>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--&lt;!&ndash;                                    <li class="list-group-item ">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <input class="form-control" id="export-sale" type="number" value="{{export_sale}}" name="export-sale" size=20>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </li>&ndash;&gt;-->
+<!--                                </ul>-->
+<!--                                    <button type="submit">save</button>-->
+                                </form>
+                            </div>
+                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;margin-left:0px;">-->
+<!--                            <div class="card-body">-->
+<!--                                <h6 style="float:left;">PURCHASE: CUSTOMER WISE</h6>-->
+<!--                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal2">ADD DETAILS</button>-->
+<!--                                <div class="table-responsive">-->
+<!--                                    <table class="table" style="border-collapse:collapse">-->
+<!--                                        <thead class="headt" >-->
+<!--                                            <tr>-->
+<!--                                                <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S.NO</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>PURCHASE(Cr.)</b></th>-->
+<!--                                            </tr>-->
+<!--                                    </thead>-->
+<!--                                    <tbody>-->
+<!--                                    {% for i in gst_sale_obj %}-->
+<!--                                        <tr>-->
+<!--                                            <td>{{forloop.counter}}</td>-->
+<!--                                            <td>{{i.name}}</td>-->
+<!--                                            <td>{{i.sale}}</td>-->
+<!--                                        </tr>-->
+<!--                                    {% endfor %}-->
+
+
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                    </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal2">ADD DETAILS</button>
+                                <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+<!--                                                <th scope="col" style="font-size:15px;">SR No.</th>-->
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>S.NO.</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>NAME OF THE CUSTOMER</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>LAST 12 MONTHS PURCHASE<br>(Rs Cr.)</b></th>
+                                                <th scope="col" style="font-size:12px; text-align:center;"><b>PURCHASE AS PER GST</b></th>
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FROM DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>TO DATE</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>FILE LINK</b></th>-->
+<!--                                                <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>-->
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in approved_supplier_obj %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{i.name_of_customer}}</td>
+                                            <td>{{i.last_tweleve_month_purchase}}</td>
+                                            <td>{{i.purchase_as_per_gst}}</td>
+<!--                                            <td>{{i.from_date}}</td>-->
+<!--                                            <td>{{i.To_date}}</td>-->
+<!--                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                            <td><a  href = "{% url 'remove_bankdetail' i.id %}" class="btn btn-success">Remove</a></td>-->
+                                        </tr>
+                                    {% endfor %}
+<!--&lt;!&ndash;                                    |slice:":10" &ndash;&gt;-->
+<!--                                    {% for i in objlist %}-->
+
+<!--                                            <tr>-->
+<!--                                                <td>{{forloop.counter}}</td>-->
+<!--                                                <td>{{i.bank_name}}</td>-->
+<!--                                                <td>{{i.AC_No}}</td>-->
+<!--                                                <td>{{i.AC_Type}}</td>-->
+<!--                                                <td>{{i.from_date}}</td>-->
+<!--                                                <td>{{i.To_date}}</td>-->
+<!--                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>-->
+<!--                                                <td>{% include 'InvestorDashboards/remove_bankdetail.html' with objid=i.id%}</td>-->
+<!--                                            </tr>-->
+<!--                                    {% endfor %}-->
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
                             <div class="card-body">
@@ -239,15 +363,71 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="fromdate">From date:</label>
-                                        <input type="date" class="form-control" id="fromdate" placeholder="fromdate" name="fromdate">
+                                        <input type="date" class="form-control disableFuturedate" id="fromdate" placeholder="fromdate" name="fromdate">
                                     </div>
                                     <div class="form-group">
                                         <label for="todate">To date:</label>
-                                        <input type="date" class="form-control" id="todate" placeholder="todate" name="todate">
+                                        <input type="date" class="form-control disableFuturedate" id="todate" placeholder="todate" name="todate">
                                     </div>
                                     <div class="form-group">
                                       <label for="file">FILE UPLOAD:</label>
                                       <input type="file" class="form-control" id="file" placeholder="file" name="file" accept=".pdf,.jpeg,.png,.jpg">
+                                    </div>
+
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal2">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">APPROVED SUPPLIERS DETAILS</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="{%url 'approved_supplier_detail' %}" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+
+
+                                    <div class="form-group">
+                                        <label for="name">Name :</label>
+                                        <input type="text" class="form-control" id="name" placeholder="name" name="name">
+
+                                    </div>
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="typeofreport">Choose Type of Report:</label>-->
+<!--                                        <div class="col-xs-4">-->
+<!--                                            <select class="form-control" id="typeofreport" name="typeofreport">-->
+<!--                                                <option value="bankanalysisreport">Bank Analysis Rport</option>-->
+<!--                                                <option value="financianalysisreport">Financial Analysis Rport</option>-->
+<!--                                                <option value="GSTanalysisreport">GST Analysis Rport</option>-->
+<!--                                            </select>-->
+<!--                                            </div>-->
+<!--                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="purchase">Purchase:</label>
+                                        <input type="text" class="form-control" id="purchase" placeholder="purchase" name="purchase">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="purchase">Purchase as per gst:</label>
+                                        <input type="text" class="form-control" id="purchase_gst" placeholder="purchase as per gst" name="purchase_gst">
                                     </div>
 
 

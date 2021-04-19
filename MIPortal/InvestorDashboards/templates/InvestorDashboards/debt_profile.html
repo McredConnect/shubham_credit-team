@@ -14,20 +14,23 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
-            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
         </nav>
         <div class = "scroll">
             <div class="managefunds">
                 <div class="container-fluid">
                     <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
-
+                        <b>Debt profiile</b>
                      <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
                             <div class="card-body">
-                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DOCUMENTS</button>
+                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" data-toggle="modal" data-target="#myModal">ADD DETAILS</button>
                                 <div class="table-responsive">
                                     <table class="table" style="border-collapse:collapse">
                                         <thead class="headt" >
@@ -51,7 +54,12 @@
                                             <td>{{i.amount_of_loan}}</td>
                                             <td>{{i.outstanding_amount}}</td>
                                             <td>{{i.rate_of_interest}}</td>
-                                            <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% if i.input_file %}
+                                                <td><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
+                                            {% else %}
+                                                <td></td>
+                                            {% endif %}
+
                                             <td><a  href = "{% url 'remove_debt_profile' i.id %}" class="btn btn-success">Remove</a></td>
                                         </tr>
                                     {% endfor %}
@@ -137,6 +145,7 @@
                                             <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" name="comment" style="width:1050px;"></textarea>
                                             <input type="hidden" value="debtprofiledetail" id="type" name="type"><br>
                                             <button   type="submit" class="btn btn-primary">SAVE</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -209,4 +218,17 @@
                     </div>
                     </div>
         </div>
+
+
+        <script type="text/javascript">
+            $("#outstandingamount").change(function () {
+            var tlimit = document.getElementById("amountofloan").value;
+            var olimit = document.getElementById("outstandingamount").value;
+            if (olimit > tlimit ){
+                    alert("Outstanding amount  should be less than loan Amount ");
+                    document.getElementById("outstandingamount").value = "";
+
+                }
+            });
+        </script>
 {% endblock content %}

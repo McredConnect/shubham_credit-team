@@ -1,0 +1,156 @@
+{% extends "InvestorDashboards/index.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/managefunds2.css' %}">
+        </head>
+        <div class="managefunds">
+            <!-- <div class="container-fluid">
+                <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </span> &nbsp;&nbsp;MANAGE FUNDS</h6>
+            <div class="row" style="margin-top:30px;">
+                <div class="col-sm-12 col-md-4 card"  id="card1">
+                      <div class="card-header">Balance</div>
+                      <div class="card-body" >
+                      <ul class="list-group list-group-horizontal li1" >
+                          <li class="list-group-item" style="width:220px;">Amount Available</li>
+                          <li class="list-group-item ">&#8377; 1,16,120</li>
+
+                      </ul>
+                      <ul class="list-group list-group-horizontal li2">
+                          <li class="list-group-item" style="width:220px;" >ICICI Escrow Balance</li>
+                          <li class="list-group-item ">&#8377; 52,526</li>
+
+                      </ul>
+                      <ul class="list-group list-group-horizontal li3">
+                          <li class="list-group-item" style="width:220px;">Withdrawls In Progress</li>
+                          <li class="list-group-item ">&#x20B9; 86,420</li>
+                      </ul>
+                     </div>
+                </div> -->
+                    <!--table manage-->
+
+                <!-- <div class="col-sm-12 col-md-7 offset-1 card"  id="card2" >
+                      <div class="card-header">Manage</div>
+                      <div class="card-body">
+                          <ul class="list-group list-group-horizontal">
+                              <li class="list-group-item" style="width:600px;">Add Funds To Your Mcred Account</li>
+                              <button class="btn btn-primary">ADD FUNDS TO MCRED</button>
+                          </ul>
+                          <br>
+                          <ul class="list-group list-group-horizontal" >
+                             <li class="list-group-item" style="width:600px;" >Withdraw Amount From Mcred To Bank Account</li>
+                              <button class="btn btn-primary" id="btn2">WITHDRAW TO BANK</button>
+
+                          </ul>
+                          <br>
+                          <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item" style="width:600px;">Change your primary transaction account</li>
+                            <button class=" btn btn-primary" id="btn3">CHANGE ACCOUNT</button>
+                          </ul>
+                     </div>
+                </div> -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+                      <div class="card-body">
+                          <td><button  class="button1 " onclick="location.href='{% url 'investor' %}'">NEW INVESTORS</button></td>
+                          <td><button class="button1 " onclick="location.href='{% url 'pending_investor' %}'">PENDING INVESTORS</button></td>
+                          <td><button class="button1 active1">APPROVED INVESTORS</button></td>
+                          <div class="table-responsive">
+                            <table class="table" style="border-collapse:collapse">
+                                <thead class="headt" >
+                                    <tr>
+                                        <th scope="col" class="date" style="font-size:12px; text-align:center;"><b>S NO.</b></th>
+                                        <th scope="col" style="font-size:15px; text-align:center;"><b>DATE</b></th>
+                                        <th scope="col" style="font-size:12px; text-align:center;"><b>NAME</b></th>
+                                        <th scope="col" style="font-size:12px; text-align:center;"><b>TYPE</b></th>
+                                        <th scope="col" style="font-size:12px; text-align:center;"><b>STATUS</b></th>
+                                        <th scope="col" style="font-size:12px; text-align:center;"><b>DETAILS</b></th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in objs %}
+                                    <tr>
+                                      <td style="text-align:center;">{{forloop.counter}}</td>
+                                        <td style="text-align:center;">{{i.created_date| date:"F d Y"}}</td>
+                                        <td style="text-align:center;">{{i.investor_name}}</td>
+                                        <td style="text-align:center;">{{i.investor_category}}</td>
+
+                                        <td style="text-align:center;">APPROVED</td>
+                                        <td style="text-align:center;"><button>Details</button></td>
+
+                                    </tr>
+                              {% endfor %}
+
+
+                              </tbody>
+                          </table>
+                              </div>
+                      </div>
+                </div>
+            </div>
+            </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Reason</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+<!--                                    <div class="form-group">-->
+<!--                                      <label for="bankname">Bank name:</label>-->
+<!--                                      <div class="col-xs-4">-->
+<!--                                        <select class="form-control" id="bankname" name="bankname">-->
+<!--                                            <option value="Axis">Axis</option>-->
+<!--                                            <option value="SBI">SBI</option>-->
+<!--                                            <option value="SBI">UNION Bank</option>-->
+<!--                                            <option value="BANK OF BARODA">BANK OF BARODA</option>-->
+<!--                                        </select>-->
+<!--                                     </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="acctype">Account Type:</label>-->
+<!--                                        <input type="text" class="form-control" id="acctype" placeholder="acctype" name="acctype">-->
+<!--                                    </div>-->
+<!--                                        <div class="form-group">-->
+<!--                                        <label for="accno">Account number:</label>-->
+<!--                                        <input type="number" class="form-control" id="accno" placeholder="accno" name="accno">-->
+<!--                                    </div>-->
+                                        <div class="form-group">
+                                            <label for="date">From date:</label>
+                                            <input type="date" class="form-control"  placeholder="fromdate" id="date" name="date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reason">Reason:</label>
+                                            <textarea type="date" class="form-control"  placeholder="reason" id="reason" name="reason"></textarea>
+                                        </div>
+<!--                                        <div class="form-group">-->
+<!--                                            <label for="todate">To date:</label>-->
+<!--                                            <input type="date" class="form-control" placeholder="todate" name="todate">-->
+<!--                                        </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                      <label for="file1">FILE UPLOAD:</label>-->
+<!--                                      <input type="file" class="form-control" id="file1" placeholder="file" name="file1" accept=".pdf,.jpeg,.png,.jpg">-->
+<!--                                    </div>-->
+
+<!--                                    </div>-->
+
+                                    <button  href = "{%url 'bank_detail' %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+        {% endblock content %}

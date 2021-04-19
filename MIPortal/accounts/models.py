@@ -27,6 +27,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=50, null=True, default=True)
     type = models.CharField(max_length=50, null=True, blank=True)
+    organisation = models.CharField(max_length=50, null=True, blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []

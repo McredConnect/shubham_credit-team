@@ -1,0 +1,158 @@
+{% extends "InvestorDashboards/index3.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/investor_dashboard/managefunds2.css' %}">
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        </head>
+        <div class="managefunds">
+
+                <div class="row">
+                            <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
+                                <div class="card-body">
+                                    <th>Partnership</th>{{pk}}
+    <!--                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" id="button" >AUTHORISED PERSON</button>-->
+                                    <div class="table-responsive">
+                                        <table class="table" style="border-collapse:collapse">
+                                            <thead class="headt" >
+                                                <tr>
+                                                    <th scope="col" class="date" style="font-size:12px; text-align:center;">S.NO</th>
+                                                    <th scope="col" class="date" style="font-size:12px; text-align:center;">FIELD</th>
+                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>FIELD VALUE</b></th>
+                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>FILE</b></th>
+                                                    <th scope="col" style="font-size:12px; text-align:center;"><b>ACTION</b></th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">1</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">NAME</th>
+                                                <td><input class="form-control" id="sales-1" value="{{investor_obj.investor_name}}"  type="text" size=20></td>
+                                                <td></td>
+                                                <td></td>
+    <!--                                            <td><input class="form-control" id="sales-4" value="{{financial_calculations_obj.sales_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="sales-5" value="{{financial_calculations_obj.sales_sqy}}" type="text" size=20></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">2</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">TYPE</th>
+                                                <td><input class="form-control" id="EBITDA-1" value="{{investor_obj.investor_category}}" type="text" size=20></td>
+                                                <td></td>
+                                                <td></td>
+    <!--                                            <td><input class="form-control" id="EBITDA-4" value="{{financial_calculations_obj.ebitdta_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="EBITDA-5" value="{{financial_calculations_obj.ebitdta_sqy}}" type="text" size=20></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">3</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">MOBILE NO</th>
+                                                <td><input class="form-control" id="pbt-one" value="{{financial_calculations_obj.pbt_ly}}" type="text" size=20></td>
+                                                <td></td>
+                                                <td></td>
+    <!--                                            <td><input class="form-control" id="pbt-four" value="{{financial_calculations_obj.pbt_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="pbt-five" value="{{financial_calculations_obj.pbt_sqy}}" type="text" size=20></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">4</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">EMAIL</th>
+                                                <td><input class="form-control" id="PAT-1" value="{{investor_obj.investor_email}}" type="text" size=20></td>
+                                                <td></td>
+                                                <td></td>
+    <!--                                            <td><input class="form-control" id="PAT-4" value="{{financial_calculations_obj.pat_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input class="form-control" id="PAT-5" value="{{financial_calculations_obj.pat_sqy}}" type="text" size=20></td>-->
+
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">5</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAN CARD</th>
+                                                <td><input class="form-control" id="ebidta_one" value="{{financial_calculations_obj.ebidta_per_m_ly}}" type="text" size=20></td>
+                                                <td></td>
+                                                <td></td>
+    <!--                                            <td><input disabled="disabled" class="form-control" id="ebidta_four" value="{{financial_calculations_obj.ebidta_per_m_lqy}}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="ebidta_five" value="{{financial_calculations_obj.ebidta_per_m_sqy}}" type="text" size=20></td>-->
+                                        </tr>
+                                        <tr>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">6</th>
+                                                <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">RESOLUTION</th>
+                                                <td><input  class="form-control" id="PAT_per_one" value="{{financial_calculations_obj.pat_per_ly }}" type="text" size=20></td>
+                                                <td></td>
+                                                <td></td>
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" value="{{financial_calculations_obj.pat_per_lqy }}" type="text" size=20></td>-->
+    <!--                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" value="{{financial_calculations_obj.pat_per_sqy }}" type="text" size=20></td>-->
+
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </div>
+
+
+        </div>
+        <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Reason</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="post" action="" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="date">Enter date:</label>
+                                            <input type="date" class="form-control"  placeholder="fromdate" id="date" name="date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reason">Reason:</label>
+                                            <textarea type="date" class="form-control"  placeholder="reason" id="reason" name="reason"></textarea>
+                                        </div>
+
+
+                                    <button  href = "{%url 'bank_detail' %}" type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script>
+    $('document').ready(function(){
+       $('#comment').click(function(){
+            var $j = jQuery.noConflict();
+            var id = $('#comment').val();
+            console.log(typeof(id));
+            console.log(id);
+            alert(id);
+            $.ajax({
+                type:"GET",
+                url: "{% url 'business_comment_one'%}",
+                data:{
+                    id:id
+
+                },
+                success: function (data) {
+                   if (data.res) {
+                        alert(data.res);
+                   }
+                }
+            });
+       });
+
+    });
+</script>
+
+{% endblock content %}

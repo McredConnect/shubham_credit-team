@@ -13,18 +13,21 @@
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'gst_detail' %}">GST Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'customer_detail' %}">Customers Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'supplier_detail' %}">Suppliers Details</a></div></div>
-            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
+            <div class="single active1"><img class="img-size"><div class="text-size"><a href="{% url 'financial_detail' %}">Financials Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'shareholding_detail' %}">Shareholding Details</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'debt_profile' %}">Debt Profile</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'analysis_report' %}">Analysis Report</a></div></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'credit_rating' %}">Credit Rating Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'director_list' %}">List of Directors</a></div>
             <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'KYC_detail' %}">KYC Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'AS26_detail' %}">AS 26 Details</a></div></div>
+            <div class="single"><img class="img-size"><div class="text-size"><a href="{% url 'snapshot' %}">Snap shots</a></div></div>
         </nav>
         <div class = "scroll">
             <div class="managefunds">
                 <div class="container-fluid">
                     <div class="row" style="margin-top:-770px;margin-left: 220px;overflow-y: scroll; height:620px; width:1160px;">
-
+                        <b>Financial details</b>
                     <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
                             <div class="card-body">
@@ -46,7 +49,7 @@
                                     {% for i in objs %}
                                         <tr>
                                             <td style="text-align:center;">{{forloop.counter}}</td>
-                                            <td style="text-align:center;">{{i.statement_type}}</td>
+                                            <td style="text-align:center;">{{i.status}}</td>
                                             <td style="text-align:center;">{{i.from_date}}</td>
                                             <td style="text-align:center;">{{i.To_date}}</td>
                                             <td style="text-align:center;"><a href="{{i.input_file.url}}" download><i class="fas fa-file-pdf fa-2x " style="color:red;"></i></a></td>
@@ -63,6 +66,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:40px;margin-left:0px;">
                             <div class="card-body">
+                                <b style="float:right;">(ALL UNITS ARE IN Cr.)</b>
 <!--                                <button type="button" class="btn btn-primary btn-lg" style="float:right;font-size:15px;" id="button" >AUTHORISED PERSON</button>-->
                                 <div class="table-responsive">
                                     <table class="table" style="border-collapse:collapse">
@@ -79,100 +83,92 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">SALES</th>
-                                            <td><input class="form-control" id="sales-1" type="number" size=20></td>
-                                            <td><input class="form-control" id="sales-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="sales-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="sales-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="sales-5" type="text" size=20></td>
+                                            <td><input class="form-control" id="sales-1" value="{{financial_calculations_obj.sales_py}}"  type="text" size=20></td>
+                                            <td><input class="form-control" id="sales-2" value="{{financial_calculations_obj.sales_py}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="sales-3" value="{{financial_calculations_obj.sales_cy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="sales-4" value="{{financial_calculations_obj.sales_lqy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="sales-5" value="{{financial_calculations_obj.sales_sqy}}" type="text" size=20></td>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">EBITDA</th>
-                                            <td><input class="form-control" id="EBITDA-1" type="text" size=20></td>
-                                            <td><input class="form-control" id="EBITDA-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="EBITDA-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="EBITDA-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="EBITDA-5" type="text" size=20></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">INTEREST</th>
-                                            <td><input class="form-control" id="INTEREST-1" type="text" size=20></td>
-                                            <td><input class="form-control" id="INTEREST-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="INTEREST-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="INTEREST-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="INTEREST-5" type="text" size=20></td>
+                                            <td><input class="form-control" id="EBITDA-1" value="{{financial_calculations_obj.ebitdta_ly}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="EBITDA-2" value="{{financial_calculations_obj.ebitdta_py}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="EBITDA-3" value="{{financial_calculations_obj.ebitdta_cy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="EBITDA-4" value="{{financial_calculations_obj.ebitdta_lqy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="EBITDA-5" value="{{financial_calculations_obj.ebitdta_sqy}}" type="text" size=20></td>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PBT</th>
-                                            <td><input class="form-control" id="pbt-one" type="text" size=20></td>
-                                            <td><input class="form-control" id="PBT-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="PBT-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="PBT-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="PBT-5" type="text" size=20></td>
+                                            <td><input class="form-control" id="pbt-one" value="{{financial_calculations_obj.pbt_ly}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="pbt-two" value="{{financial_calculations_obj.pbt_py}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="pbt-three" value="{{financial_calculations_obj.pbt_cy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="pbt-four" value="{{financial_calculations_obj.pbt_lqy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="pbt-five" value="{{financial_calculations_obj.pbt_sqy}}" type="text" size=20></td>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAT</th>
-                                            <td><input class="form-control" id="PAT-1" type="text" size=20></td>
-                                            <td><input class="form-control" id="PAT-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="PAT-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="PAT-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="PAT-5" type="text" size=20></td>
+                                            <td><input class="form-control" id="PAT-1" value="{{financial_calculations_obj.pat_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="PAT-2" value="{{financial_calculations_obj.pat_py}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="PAT-3" value="{{financial_calculations_obj.pat_cy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="PAT-4" value="{{financial_calculations_obj.pat_lqy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="PAT-5" value="{{financial_calculations_obj.pat_sqy}}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">EBIDTA % M</th>
-                                            <td><input disabled="disabled" class="form-control" id="ebidta_one" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="ebidta_two" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="ebidta_three" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="ebidta_four" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="ebidta_five" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">EBIDTA MARGIN</th>
+                                            <td><input disabled="disabled" class="form-control" id="ebidta_one" value="{{financial_calculations_obj.ebidta_per_m_ly}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="ebidta_two" value="{{financial_calculations_obj.ebidta_per_m_py}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="ebidta_three" value="{{financial_calculations_obj.ebidta_per_m_cy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="ebidta_four" value="{{financial_calculations_obj.ebidta_per_m_lqy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="ebidta_five" value="{{financial_calculations_obj.ebidta_per_m_sqy}}" type="text" size=20></td>
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAT%</th>
-                                            <td><input disabled="disabled" class="form-control" id="PAT_per_one" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="PAT_per_two" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="PAT_per_three" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAT MARGIN</th>
+                                            <td><input disabled="disabled" class="form-control" id="PAT_per_one" value="{{financial_calculations_obj.pat_per_ly }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="PAT_per_two" value="{{financial_calculations_obj.pat_per_py }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="PAT_per_three"value="{{financial_calculations_obj.pat_per_cy }}"  type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="PAT_per_four" value="{{financial_calculations_obj.pat_per_lqy }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="PAT_per_five" value="{{financial_calculations_obj.pat_per_sqy }}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">INTEREST</th>
-                                            <td><input class="form-control" id="interest-one" type="text" size=20></td>
-                                            <td><input class="form-control" id="INT-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="INT-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="INT-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="INT-5" type="text" size=20></td>
+                                            <td><input class="form-control" id="interest-one" value="{{financial_calculations_obj.interest_ly}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="interest-two" value="{{financial_calculations_obj.interest_py }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="interest-three" value="{{financial_calculations_obj.interest_cy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="interest-four" value="{{financial_calculations_obj.interest_lqy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="interest-five" value="{{financial_calculations_obj.interest_sqy }}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">INT/SALES%</th>
-                                            <td><input disabled="diasabled" class="form-control" id="interst_upon_sales" type="text" size=20></td>
-                                            <td><input disabled="diasabled" class="form-control" id="INT/SALES%-2" type="text" size=20></td>
-                                            <td><input disabled="diasabled" class="form-control" id="INT/SALES%-3" type="text" size=20></td>
-                                            <td><input disabled="diasabled" class="form-control" id="INT/SALES%-4" type="text" size=20></td>
-                                            <td><input disabled="diasabled" class="form-control" id="INT/SALES%-5" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">INTEREST/SALES(%)</th>
+                                            <td><input disabled="diasabled" class="form-control" id="interst_upon_sales_one" value="{{financial_calculations_obj.interest_upon_sales_per_ly }}" type="text" size=20></td>
+                                            <td><input disabled="diasabled" class="form-control" id="interst_upon_sales_two" value="{{financial_calculations_obj.interest_upon_sales_per_py  }}" type="text" size=20></td>
+                                            <td><input disabled="diasabled" class="form-control" id="interst_upon_sales_three" value="{{financial_calculations_obj.interest_upon_sales_per_cy }}" type="text" size=20></td>
+                                            <td><input disabled="diasabled" class="form-control" id="interst_upon_sales_four" value="{{financial_calculations_obj.interest_upon_sales_per_lqy }}" type="text" size=20></td>
+                                            <td><input disabled="diasabled" class="form-control" id="interst_upon_sales_five" value="{{financial_calculations_obj.interest_upon_sales_per_sqy }}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">INT COVERAGE RATION</th>
-                                            <td><input disabled="disabled" class="form-control" id="interest_coverage_ration" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="INT COVERAGE RATION-2" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="INT COVERAGE RATION-3" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="INT COVERAGE RATION-4" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="INT COVERAGE RATION-5" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">INTEREST COVERAGE RATIO</th>
+                                            <td><input disabled="disabled" class="form-control" id="interest_coverage_ration_one" value="{{financial_calculations_obj.int_coverage_ration_ly}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="interest_coverage_ration_two" value="{{financial_calculations_obj.int_coverage_ration_py}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="interest_coverage_ration_three" value="{{financial_calculations_obj.int_coverage_ration_cy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="interest_coverage_ration_four" value="{{financial_calculations_obj.int_coverage_ration_lqy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="interest_coverage_ration_five" value="{{financial_calculations_obj.int_coverage_ration_sqy}}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">NETWORTH</th>
-                                            <td><input class="form-control" id="networth_one" type="text" size=20></td>
-                                            <td><input class="form-control" id="NETWORTH-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="NETWORTH-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="NETWORTH-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="NETWORTH-5" type="text" size=20></td>
+                                            <td><input class="form-control" id="networth_one" value="{{financial_calculations_obj.networth_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="networth_two" value="{{financial_calculations_obj.networth_py}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="networth_three" value="{{financial_calculations_obj.networth_cy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="networth_four" value="{{financial_calculations_obj.networth_lqy}}" type="text" size=20></td>
+                                            <td><input class="form-control" id="networth_five" value="{{financial_calculations_obj.networth_sqy}}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">LONG DEBT TERM</th>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">LONG TERM DEBT</th>
                                             <td><input class="form-control" id="LONG DEBT TERM-1" type="text" size=20></td>
                                             <td><input class="form-control" id="LONG DEBT TERM-2" type="text" size=20></td>
                                             <td><input class="form-control" id="LONG DEBT TERM-3" type="text" size=20></td>
@@ -181,7 +177,7 @@
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">SHORT TERM BORROW</th>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">SHORT TERM DEBT</th>
                                             <td><input class="form-control" id="SHORT TERM BORROW-1" type="text" size=20></td>
                                             <td><input class="form-control" id="SHORT TERM BORROW-2" type="text" size=20></td>
                                             <td><input class="form-control" id="SHORT TERM BORROW-3" type="text" size=20></td>
@@ -190,21 +186,21 @@
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">UNSECURED</th>
-                                            <td><input class="form-control" id="unsecured_one" type="text" size=20></td>
-                                            <td><input class="form-control" id="UNSECURED-2" type="text" size=20></td>
-                                            <td><input class="form-control" id="UNSECURED-3" type="text" size=20></td>
-                                            <td><input class="form-control" id="UNSECURED-4" type="text" size=20></td>
-                                            <td><input class="form-control" id="UNSECURED-5" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">UNSECURED LOANS</th>
+                                            <td><input class="form-control" id="unsecured_one" value="{{financial_calculations_obj.unsecured_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="unsecured_two" value="{{financial_calculations_obj.unsecured_py }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="unsecured_three" value="{{financial_calculations_obj.unsecured_cy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="unsecured_four" value="{{financial_calculations_obj.unsecured_lqy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="unsecured_five" value="{{financial_calculations_obj.unsecured_sqy }}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">SECURED</th>
-                                            <td><input class="form-control" id="secured_one" type="text" size=20></td>
-                                            <td><input class="form-control" id="secured_two" type="text" size=20></td>
-                                            <td><input class="form-control" id="secured_three" type="text" size=20></td>
-                                            <td><input class="form-control" id="secured_four" type="text" size=20></td>
-                                            <td><input class="form-control" id="secured_five" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">SECURED LOANS</th>
+                                            <td><input class="form-control" id="secured_one" value="{{financial_calculations_obj.secured_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="secured_two" value="{{financial_calculations_obj.secured_py }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="secured_three" value="{{financial_calculations_obj.secured_cy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="secured_four" value="{{financial_calculations_obj.secured_lqy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="secured_five" value="{{financial_calculations_obj.secured_sqy }}" type="text" size=20></td>
 
                                     </tr>
                                         <tr>
@@ -236,56 +232,56 @@
                                     </tr>
                                     <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">% OF UNSECURED LOANS/TOTAL LOAN</th>
-                                            <td><input disabled="disabled" class="form-control" id="percentage_of_unsecuredloan_upon_totalloan" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="% OF UNSECURED LOANS/TOTAL LOAN-2" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="% OF UNSECURED LOANS/TOTAL LOAN-3" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="% OF UNSECURED LOANS/TOTAL LOAN-4" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="% OF UNSECURED LOANS/TOTAL LOAN-5" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="percentage_of_unsecuredloan_upon_totalloan_one" value="{{financial_calculations_obj.per_unsecured_upon_secured_ly  }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="percentage_of_unsecuredloan_upon_totalloan_two" value="{{financial_calculations_obj.per_unsecured_upon_secured_py}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="percentage_of_unsecuredloan_upon_totalloan_three" value="{{financial_calculations_obj.per_unsecured_upon_secured_cy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="percentage_of_unsecuredloan_upon_totalloan_four" value="{{financial_calculations_obj.per_unsecured_upon_secured_lqy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="percentage_of_unsecuredloan_upon_totalloan_five" value="{{financial_calculations_obj.per_unsecured_upon_secured_sqy}}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
                                             <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">DEBT/EQUITY</th>
-                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_one" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_two" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_three" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_four" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_five" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_one" value="{{financial_calculations_obj.debt_upon_equity_ly }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_two" value="{{financial_calculations_obj.debt_upon_equity_py }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_three" value="{{financial_calculations_obj.debt_upon_equity_cy }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_four" value="{{financial_calculations_obj.debt_upon_equity_lqy }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="debt_upon_equity_five" value="{{financial_calculations_obj.debt_upon_equity_sqy }}" type="text" size=20></td>
 
                                     </tr>
                                         <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">RECIEVABLE</th>
-                                            <td><input class="form-control" id="recievable_one" type="text" size=20></td>
-                                            <td><input class="form-control" id="recievable_two" type="text" size=20></td>
-                                            <td><input class="form-control" id="recievable_three" type="text" size=20></td>
-                                            <td><input class="form-control" id="recievable_four" type="text" size=20></td>
-                                            <td><input class="form-control" id="recievable_five" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">DEBTORS</th>
+                                            <td><input class="form-control" id="recievable_one" value="{{financial_calculations_obj.recievable_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="recievable_two" value="{{financial_calculations_obj.recievable_py }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="recievable_three" value="{{financial_calculations_obj.recievable_cy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="recievable_four" value="{{financial_calculations_obj.recievable_lqy }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="recievable_five" value="{{financial_calculations_obj.recievable_sqy }}" type="text" size=20></td>
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">DEBTORS/SALES</th>
-                                            <td><input disabled="disabled" class="form-control" id="dr_upon_sales" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="DR/SALES-2" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="DR/SALES-3" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="DR/SALES-4" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="DR/SALES-5" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">DEBTORS DAYS</th>
+                                            <td><input disabled="disabled" class="form-control" id="dr_upon_sales_one" value="{{financial_calculations_obj.debtors_upon_sales_ly  }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="dr_upon_sales_two" value="{{financial_calculations_obj.debtors_upon_sales_py }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="dr_upon_sales_three" value="{{financial_calculations_obj.debtors_upon_sales_cy }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="dr_upon_sales_four" value="{{financial_calculations_obj.debtors_upon_sales_lqy }}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="dr_upon_sales_five" value="{{financial_calculations_obj.debtors_upon_sales_sqy }}"type="text" size=20></td>
 
                                     </tr>
                                         <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">PAYEBLE</th>
-                                            <td><input class="form-control" id="payeble_one" type="text" size=20></td>
-                                            <td><input class="form-control" id="payeble_two" type="text" size=20></td>
-                                            <td><input class="form-control" id="payeble_three" type="text" size=20></td>
-                                            <td><input class="form-control" id="payeble_four" type="text" size=20></td>
-                                            <td><input class="form-control" id="payeble_five" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">CREDITORS</th>
+                                            <td><input class="form-control" id="payeble_one" value="{{financial_calculations_obj.payeable_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="payeble_two" value="{{financial_calculations_obj.payeable_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="payeble_three" value="{{financial_calculations_obj.payeable_ly }}"  type="text" size=20></td>
+                                            <td><input class="form-control" id="payeble_four" value="{{financial_calculations_obj.payeable_ly }}" type="text" size=20></td>
+                                            <td><input class="form-control" id="payeble_five" value="{{financial_calculations_obj.payeable_ly }}"  type="text" size=20></td>
 
                                     </tr>
                                     <tr>
-                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">CREDIT/PURCHASE</th>
-                                            <td><input disabled="disabled" class="form-control" id="credit_upon_purchase" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="CREDIT/PURCHASE-2" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="CREDIT/PURCHASE-3" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="CREDIT/PURCHASE-4" type="text" size=20></td>
-                                            <td><input disabled="disabled" class="form-control" id="CREDIT/PURCHASE-5" type="text" size=20></td>
+                                            <th scope="col" style="font-size:15px; text-align:center; padding-top:25px;">CREDITOR DAYS</th>
+                                            <td><input disabled="disabled" class="form-control" id="credit_upon_purchase_one" value="{{financial_calculations_obj.credit_upon_purchase_ly}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="credit_upon_purchase_two" value="{{financial_calculations_obj.credit_upon_purchase_py}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="credit_upon_purchase_three" value="{{financial_calculations_obj.credit_upon_purchase_cy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="credit_upon_purchase_four" value="{{financial_calculations_obj.credit_upon_purchase_lqy}}" type="text" size=20></td>
+                                            <td><input disabled="disabled" class="form-control" id="credit_upon_purchase_five" value="{{financial_calculations_obj.credit_upon_purchase_sqy}}" type="text" size=20></td>
 
                                     </tr>
 
@@ -345,17 +341,24 @@
 
 
                                     <div class="form-group">
-                                        <label for="statementtype">Type of GST Returns:</label>
-                                        <input type="text" class="form-control" id="statementtype" placeholder="statementtype" name="statementtype">
+                                        <label for="statementtype">Type of statement:</label>
+<!--                                        <input type="text" class="form-control" id="statementtype" placeholder="statementtype" name="statementtype">-->
+                                                                                <div class="col-xs-4">
+                                            <select class="form-control" id="statementtype" name="statementtype">
+                                                <option value="AUDITED">AUDITED</option>
+                                                <option value="UN AUDITED">UN AUDITED</option>
+                                                <option value="PROVISIONAL">PROVISIONAL</option>
+                                            </select>
+                                        </div>
 
                                     </div>
                                     <div class="form-group">
                                         <label for="fromdate">From date:</label>
-                                        <input type="date" class="form-control" id="fromdate" placeholder="fromdate" name="fromdate">
+                                        <input type="date" class="form-control disableFuturedate" id="fromdate" placeholder="fromdate" name="fromdate">
                                     </div>
                                     <div class="form-group">
                                         <label for="todate">To date:</label>
-                                        <input type="date" class="form-control" id="todate" placeholder="todate" name="todate">
+                                        <input type="date" class="form-control disableFuturedate" id="todate" placeholder="todate" name="todate">
                                     </div>
                                     <div class="form-group">
                                       <label for="file">FILE UPLOAD:</label>
@@ -384,7 +387,7 @@
         </div>
 <script>
     $('document').ready(function(){
-        $('#EBITDA-1').keyup(function() {
+        $('#EBITDA-1').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-1').val();
             var ebidta = $('#EBITDA-1').val();
@@ -405,7 +408,7 @@
 
         });
 
-        $('#EBITDA-2').keyup(function() {
+        $('#EBITDA-2').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-2').val();
             var ebidta = $('#EBITDA-2').val();
@@ -425,7 +428,7 @@
 
         });
 
-        $('#EBITDA-3').keyup(function() {
+        $('#EBITDA-3').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-3').val();
             var ebidta = $('#EBITDA-3').val();
@@ -445,7 +448,7 @@
 
         });
 
-        $('#EBITDA-4').keyup(function() {
+        $('#EBITDA-4').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-4').val();
             var ebidta = $('#EBITDA-4').val();
@@ -465,7 +468,7 @@
 
         });
 
-        $('#EBITDA-5').keyup(function() {
+        $('#EBITDA-5').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-5').val();
             var ebidta = $('#EBITDA-5').val();
@@ -487,7 +490,7 @@
 
 
 
-        $('#PAT-1').keyup(function() {
+        $('#PAT-1').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-1').val();
             var pat = $('#PAT-1').val();
@@ -506,7 +509,7 @@
             });
         });
 
-        $('#PAT-2').keyup(function() {
+        $('#PAT-2').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-2').val();
             var pat = $('#PAT-2').val();
@@ -525,7 +528,7 @@
             });
         });
 
-        $('#PAT-3').keyup(function() {
+        $('#PAT-3').change(function() {
             var $j = jQuery.noConflict();
             var sales = $('#sales-3').val();
             var pat = $('#PAT-3').val();
@@ -545,61 +548,469 @@
 
         });
 
-        $('#PAT-4').keyup(function() {
+        $('#PAT-4').change(function() {
+            var $j = jQuery.noConflict();
             var sales = $('#sales-4').val();
             var pat = $('#PAT-4').val();
-            var res = parseInt(pat) /parseInt(sales);
-            var val = res.toFixed(2);
-            $('#PAT_per_four').attr('value',val);
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_nine' %}",
+                data:{
+                    sales:sales,
+                    pat:pat
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#PAT_per_four').attr('value',data.res);
+                   }
+                }
+            });
         });
 
-        $('#PAT-5').keyup(function() {
+        $('#PAT-5').change(function() {
+            var $j = jQuery.noConflict();
             var sales = $('#sales-5').val();
             var pat = $('#PAT-5').val();
-            var res = parseInt(pat) /parseInt(sales);
-            var val = res.toFixed(2);
-            $('#PAT_per_five').attr('value',val);
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_ten' %}",
+                data:{
+                    sales:sales,
+                    pat:pat
+                },
+                success: function (data) {
+                   if (data) {
+                      $('#PAT_per_five').attr('value',data.res);
+                   }
+                }
+            });
+
         });
 
-        $('#interest-one').keyup(function() {
+        $('#interest-one').change(function() {
+            var $j = jQuery.noConflict();
             var pbt = $('#pbt-one').val();
             var sales = $('#sales-1').val();
             var interest = $('#interest-one').val();
-            var res = parseInt(interest) /parseInt(sales);
-            var val1 = res.toFixed(2);
-            var res1 = (parseInt(interest) + parseInt(interest))/parseInt(interest);
-            var val2 = res.toFixed(2);
-            $('#interst_upon_sales').attr('value',val1);
-            $('#interest_coverage_ration').attr('value',val2);
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_eleven' %}",
+                data:{
+                    sales:sales,
+                    pbt:pbt,
+                    interest:interest
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#interst_upon_sales_one').attr('value',data.res);
+                      $('#interest_coverage_ration_one').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+        $('#interest-two').change(function() {
+            var $j = jQuery.noConflict();
+            var pbt = $('#pbt-two').val();
+            var sales = $('#sales-2').val();
+            var interest = $('#interest-two').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_tweleve' %}",
+                data:{
+                    sales:sales,
+                    pbt:pbt,
+                    interest:interest
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#interst_upon_sales_two').attr('value',data.res);
+                      $('#interest_coverage_ration_two').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+        $('#interest-three').change(function() {
+            var $j = jQuery.noConflict();
+            var pbt = $('#pbt-three').val();
+            var sales = $('#sales-3').val();
+            var interest = $('#interest-three').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_thirteen' %}",
+                data:{
+                    sales:sales,
+                    pbt:pbt,
+                    interest:interest
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#interst_upon_sales_three').attr('value',data.res);
+                      $('#interest_coverage_ration_three').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+        $('#interest-four').change(function() {
+            var $j = jQuery.noConflict();
+            var pbt = $('#pbt-four').val();
+            var sales = $('#sales-4').val();
+            var interest = $('#interest-four').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_fourteen' %}",
+                data:{
+                    sales:sales,
+                    pbt:pbt,
+                    interest:interest
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#interst_upon_sales_four').attr('value',data.res);
+                      $('#interest_coverage_ration_four').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+        $('#interest-five').change(function() {
+            var $j = jQuery.noConflict();
+            var pbt = $('#pbt-five').val();
+            var sales = $('#sales-5').val();
+            var interest = $('#interest-five').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_fifteen' %}",
+                data:{
+                    sales:sales,
+                    pbt:pbt,
+                    interest:interest
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#interst_upon_sales_five').attr('value',data.res);
+                      $('#interest_coverage_ration_five').attr('value',data.res1);
+                   }
+                }
+            });
         });
 
 
-        $('#secured_one').keyup(function() {
+        $('#secured_one').change(function() {
+            var $j = jQuery.noConflict();
             var networth = $('#networth_one').val();
             var unsecured = $('#unsecured_one').val();
             var secured = $('#secured_one').val();
-            var res = parseInt(unsecured) /(parseInt(unsecured)+parseInt(secured));
-            var val1 = res.toFixed(2);
-            var res1 = (parseInt(unsecured)+parseInt(secured))/parseInt(networth);
-            var val2 = res1.toFixed(2);
-            $('#percentage_of_unsecuredloan_upon_totalloan').attr('value',val1);
-            $('#debt_upon_equity_one').attr('value',val2);
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_sixteen' %}",
+                data:{
+                    networth:networth,
+                    unsecured:unsecured,
+                    secured:secured
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#percentage_of_unsecuredloan_upon_totalloan_one').attr('value',data.res);
+                      $('#debt_upon_equity_one').attr('value',data.res1);
+                   }
+                }
+            });
+
         });
 
-        $('#recievable_one').keyup(function() {
+        $('#secured_two').change(function() {
+            var $j = jQuery.noConflict();
+            var networth = $('#networth_two').val();
+            var unsecured = $('#unsecured_two').val();
+            var secured = $('#secured_two').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_seventeen' %}",
+                data:{
+                    networth:networth,
+                    unsecured:unsecured,
+                    secured:secured
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#percentage_of_unsecuredloan_upon_totalloan_two').attr('value',data.res);
+                      $('#debt_upon_equity_two').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+        $('#secured_three').change(function() {
+            var $j = jQuery.noConflict();
+            var networth = $('#networth_three').val();
+            var unsecured = $('#unsecured_three').val();
+            var secured = $('#secured_three').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_eighteen' %}",
+                data:{
+                    networth:networth,
+                    unsecured:unsecured,
+                    secured:secured
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#percentage_of_unsecuredloan_upon_totalloan_three').attr('value',data.res);
+                      $('#debt_upon_equity_three').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+
+        $('#secured_four').change(function() {
+            var $j = jQuery.noConflict();
+            var networth = $('#networth_four').val();
+            var unsecured = $('#unsecured_four').val();
+            var secured = $('#secured_four').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_nineteen' %}",
+                data:{
+                    networth:networth,
+                    unsecured:unsecured,
+                    secured:secured
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#percentage_of_unsecuredloan_upon_totalloan_four').attr('value',data.res);
+                      $('#debt_upon_equity_four').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+
+        $('#secured_five').change(function() {
+            var $j = jQuery.noConflict();
+            var networth = $('#networth_five').val();
+            var unsecured = $('#unsecured_five').val();
+            var secured = $('#secured_five').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty' %}",
+                data:{
+                    networth:networth,
+                    unsecured:unsecured,
+                    secured:secured
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#percentage_of_unsecuredloan_upon_totalloan_five').attr('value',data.res);
+                      $('#debt_upon_equity_five').attr('value',data.res1);
+                   }
+                }
+            });
+        });
+
+        $('#recievable_one').change(function() {
+            var $j = jQuery.noConflict();
             var sales = $('#sales-1').val();
+
             var recievable = $('#recievable_one').val();
-            var res = parseInt(recievable) /(parseInt(sales)*365);
-            var val = res.toFixed(2);
-            $('#dr_upon_sales').attr('value',res);
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_one' %}",
+                data:{
+                    sales:sales,
+                    recievable:recievable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#dr_upon_sales_one').attr('value',data.res);
+                   }
+                }
+            });
+
         });
 
-        $('#payeble_one').keyup(function() {
+        $('#recievable_two').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-2').val();
+            var recievable = $('#recievable_two').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_two' %}",
+                data:{
+                    sales:sales,
+                    recievable:recievable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#dr_upon_sales_two').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+        $('#recievable_three').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-3').val();
+            var recievable = $('#recievable_three').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_three' %}",
+                data:{
+                    sales:sales,
+                    recievable:recievable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#dr_upon_sales_three').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+        $('#recievable_four').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-4').val();
+            var recievable = $('#recievable_four').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_four' %}",
+                data:{
+                    sales:sales,
+                    recievable:recievable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#dr_upon_sales_four').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+
+        $('#recievable_five').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-5').val();
+            var recievable = $('#recievable_five').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_five' %}",
+                data:{
+                    sales:sales,
+                    recievable:recievable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#dr_upon_sales_five').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+        $('#payeble_one').change(function() {
+            var $j = jQuery.noConflict();
             var sales = $('#sales-1').val();
             var payeable = $('#payeble_one').val();
-            var res = parseInt(payeable) /(parseInt(sales)*365);
-            var val = res.toFixed(2);
-            $('#credit_upon_purchase').attr('value',val);
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_six' %}",
+                data:{
+                    sales:sales,
+                    payeable:payeable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#credit_upon_purchase_one').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+        $('#payeble_two').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-2').val();
+            var payeable = $('#payeble_two').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_seven' %}",
+                data:{
+                    sales:sales,
+                    payeable:payeable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#credit_upon_purchase_two').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+        $('#payeble_three').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-3').val();
+            var payeable = $('#payeble_three').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_eight' %}",
+                data:{
+                    sales:sales,
+                    payeable:payeable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#credit_upon_purchase_three').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+        $('#payeble_four').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-4').val();
+            var payeable = $('#payeble_four').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_twenty_nine' %}",
+                data:{
+                    sales:sales,
+                    payeable:payeable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#credit_upon_purchase_four').attr('value',data.res);
+                   }
+                }
+            });
+
+        });
+
+        $('#payeble_five').change(function() {
+            var $j = jQuery.noConflict();
+            var sales = $('#sales-5').val();
+            var payeable = $('#payeble_five').val();
+            $.ajax({
+                type:"GET",
+                url: "{% url 'financial_calculations_thirty' %}",
+                data:{
+                    sales:sales,
+                    payeable:payeable,
+                },
+                success: function (data) {
+                   if (data.res) {
+                      $('#credit_upon_purchase_five').attr('value',data.res);
+                   }
+                }
+            });
+
         });
 
     });
