@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Mamba Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="images/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/css/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static '/css/PortalLogin/forgotpassword.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v4.0.2
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body >
+
+     <!-- ======= Hero Section ======= -->
+    <section id="loginbanner" class="banner-section banner-loginset">
+        <div class="overlay"></div>
+        <div class="bussiness-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="Mcredlogin-From ">
+                            <div class="loign-logo">
+                                <a href="/home"><img src="{% static '/images/portalLogin/Login-Page/icon/mcred-logo-transparent.png' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="loginset-contain text-center">
+                            <h2 class="forgetpassword">Enter New Password</h2>
+                            <p class="forgetpassword-p">Don't worry! Just type in
+                                the OTP we have mailed you to your registered
+                                mail ID and type a password you want.</p>
+
+                            <form method="post"  novalidate="novalidate">
+                                {% csrf_token %}
+                                <div class="form-group mred-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="otp" class="form-control inputloginset forgetpassword-input" placeholder="Enter OTP" data-error="#errEmailPassword">
+                                    </div>
+                                </div>
+                                <div class="form-group mred-group">
+                                    <div class="input-group mb-3">
+                                        <input type="password" name="password" class="form-control inputloginset forgetpassword-input" placeholder="Enter Password" data-error="#errEmailPassword">
+                                    </div>
+                                </div>
+                                 <div id="errEmailPassword">
+                                </div>
+
+                                 <div id="errUserType">
+                                </div>
+                                <div class="text-center">
+                                    <span class="validate text-danger validation-summary"></span>
+                                    <button type="submit" class="Mred-submit-btn">SEND LINK</button>
+                                </div>
+                                <div class="setsignuppagelink">
+                                    <p>
+                                        <a href="{% url 'mcred_login' %}">
+                                            <img src="{% static '/images/portalLogin/Login-Page/next-back.svg' %}" style="
+                                            margin-right: 10px;">BACK TO LOGIN
+                                        </a>
+                                    </p>
+                                </div>
+                            <input name="__RequestVerificationToken" type="hidden" value="abcd">
+                            </form>
+                        </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <div class="footer-aboutus">
+                            <img src="{% static '/images/portalLogin/home/MCRED1.png' %}">
+                            <p>
+                                403, Peninsula Heights,
+                                C D Barfiwala Marg,<br>
+                                Juhu Lane,
+                                Andheri (W),
+                                Mumbai, Pin - 400058<br>
+                                Maharashtra
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-1 col-md-1"></div>
+                    <div class="col-sm-12 col-lg-7 col-md-7">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links">
+                                <div class="settextfloat">
+                                    <h4>Contact Us</h4>
+                                    <ul>
+                                        <li><a href="#">connect@mcred.com</a></li>
+                                        <li><a href="#"> Support - 797-7157-822 </a></li>
+                                        <li> <a href="#">Office - 797-7157-822</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-6 footer-links ">
+                              <div class="settextfloat">
+                                <h4>Customer Service</h4>
+                                <ul>
+                                  <li><a href="#">Pricing </a></li>
+                                  <li><a href="#">Contact</a></li>
+                                  <li> <a href="#">Us FAQs</a></li>
+                                </ul>
+                              </div>
+                            </div> -->
+                             <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Need Help?</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_privacy_policy' %}">Privacy Policy </a></li>
+                                        <li> <a href="{% url 'mcred_terms_conditions' %}">Terms &amp; Conditions </a></li>
+                                        <li> <a href="{% url 'mcred_faqs' %}">General FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Links</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_partner' %}">Partners </a></li>
+                                        <li> <a href="{% url 'mcred_business' %}">Businesses</a></li>
+                                        <li> <a href="{% url 'mcred_investor' %}">Investors</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lastsection">
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-links">
+                            <p class="settagfooter">© Copyright Secure. All rights reserved.</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-sociel">
+                            <ul>
+                                <li> <a target="_blank" href="https://www.instagram.com/mcre.d/"><i class="fab fa-instagram"></i></a></li>
+                                <li> <a target="_blank" href="https://www.linkedin.com/company/mcred/"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li> <a target="_blank" href="https://www.facebook.com/MCRED-102965945034452"><i class="fab fa-facebook-f"></i></a></li>
+                                <li> <a target="_blank" href="https://twitter.com/Mcred59369762"><i class="fab fa-twitter"></i></a></li>
+                                <li> <a target="_blank" href="https://www.youtube.com/channel/UC33RpFwzAndn3CCJr83jUbw?guided_help_flow=5"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div></footer>
+
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-angle-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/css/vendor/aos/aos.js' %}"></script>
+  <script src="{% static '/css/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/css/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static '/css/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static '/css/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static '/css/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static '/css/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/js/main.js' %}"></script>
+  <script>
+      function myFunction() {
+          var x = document.getElementById("myInput");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+      }
+  </script>
+
+</body>
+
+</html>

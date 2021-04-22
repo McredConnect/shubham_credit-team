@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Mamba Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="images/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/css/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static '/css/PortalLogin/blogs.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v4.0.2
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="far fa-envelope" style="color:#353535"></i><a href="connect@mcred.com">connect@mcred.com</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+          <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+        </svg><span>797-7172-123</span>
+      </div>
+      <div class="social-links d-none d-md-block">
+        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="twitter"><i class="fab fa-twitter"></i></i></a>
+        <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo me-auto">
+        <a href="/home"  class="logo mr-auto"><img src="{% static '/images/portalLogin/home/MCRED1.png'%}" alt=""></a>
+
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar ">
+        <ul>
+          <li><a class="nav-link " href="{% url 'index1' %}">Home</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_business' %}">Business</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_investor' %}">Investor</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_partner' %}">Partner</a></li>
+          <li><a class="nav-link" href="{% url 'mcred_aboutus' %}">About Us</a></li>
+          <li><a class="nav-link  active " href="{% url 'mcred_blogs' %}">Blogs</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_login' %}">Login</a></li>
+
+        </ul>
+        <button class="btn-get-started"><a href="{% url 'mcred_signup' %}">Sign Up</a></button>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- About us -->
+  <section id="business1" class="banner-section">
+    <div class="overlay"></div>
+    <div class="bussiness-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12  col-md-12">
+                    <div class="banner-details">
+                        <h2 class="title">News, Trends, Expert Views, Opinions, And More</h2>
+                        <form class="example " method="get" action="{% url 'search' %}">
+                          <input type="text " class="search col-4" placeholder="&nbsp;&nbsp;&nbsp;Search.." name="search" id="search">
+                          <button type="submit" class="button_go"><span>Go</span></button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <main id="main">
+        <div class="row">
+            <section class="col-md-3 card card1">
+                <div class="">
+                    <h6 class="h1">Sort By</h6>
+<!--                    <div class="button1">-->
+                        <button type="button" class="btn recent">Recent</button>
+                        <button type="button" class="btn popular" id="popularity">Popularity</button>
+<!--                    </div>-->
+                    <h6 class="categories">CATEGORIES</h6>
+                    <ul class="list-group list-group-flush ">
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Investment" id="Investment" onchange="checkBoxFilter('investments')">Alternate Investments</li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Bill Purchase" id="Bill Purchase">Bill Purchase </li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Discounting" id="Discounting">Bill-Discounting</li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Business" id="Business">Business</li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Cashflow Management" id="Cashflow Management">Cashflow Management</li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Crowd Funding" id="Crowd Funding">Crowd Funding</li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="E-Commerce" id="E-Commerce">E-Commerce</li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Economy" id="Economy">Economy</li>
+                      <li class="list-group-item lst"><input class="form-check-input filter-checkbox"  data-filter="category" type="checkbox" value="Entrepreneurship" id="Entrepreneurship">Entrepreneurship</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="left-image col-md-7" id="div">
+                {% for i in posts %}
+              <div class="container-fluid" id="hide_filter" >
+
+                <div class="row">
+<!--                 <div class="card col-12">-->
+
+                          <div class="col-md-6">
+                              <h4>{{ i.title }}</h4>
+                            <img src="{{i.image.url}}" alt="" height="210">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="right-content">
+                                <p>{{i.description|truncatechars:400}}</p>
+                            </div>
+                          </div>
+
+
+                    <div class="bottom col-12">
+                        <ul class="list-group list-group-horizontal">
+                            <form method="post" action="{% url 'like' i.id %}">
+                            {% csrf_token %}
+                                <li class="list-group-item l1"><button type="submit" name="post_id" value="{{ i.id }}"><img src="{% static '/images/portalLogin/Blog-Page/like.png' %}" height="22" width="22"></button><span class="likes_count">{{ i.likes.all.count }}</span></li>
+                            </form>
+<!--                          <li class="list-group-item l1"><button><img src="{% static '/images/portalLogin/Blog-Page/like.png' %}" height="22" width="22"></button><span class="likes_count">123</span></li>-->
+                            <li class="list-group-item l2"><span class="name">{{ i.author }} </span> </li>
+                            <li class="list-group-item l3"><span class="date">{{ i.created_date }}</span></li>
+                          <li class="list-group-item l4"><span class="categ">{{ i.category }}</span></li>
+                          <li class="list-group-item l5"><a class="fullblog" href="{% url 'mcred_detailed_blog' i.id %}">READ BLOG &nbsp;<i class="fas fa-arrow-right"></i></a></li>
+                        </ul>
+                    </div>
+<!--                     </div>-->
+                </div>
+              </div>
+                {% endfor %}
+            </section>
+            <section class="left-image col-md-7">
+             <div class="container_fluid" id="filter">
+
+                </div>
+            </section>
+        </div>
+  </main>
+  <div class="row">
+        <div class="col-4 page">
+            <div class="row">
+                <div class="pagination">
+                    {% if posts.has_previous %}
+                        <a class="page-link previous pagination-action" href="?search={{search}}&page={{posts.previous_page_number}}" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fas fa-angle-left" style="color:#F79421;"></i></span>
+                         </a>
+                        {% else %}
+                          <a class="page-link previous pagination-action disabled" href="" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fas fa-angle-left" style="color:#F79421;"></i></span>
+                          </a>
+                    {% endif %}
+                    {% for num in posts.paginator.page_range %}
+                        {% if posts.number == num %}
+                    <span class="pagination-number pagination-current page-link previous">{{ num }}</span>
+                        {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                          <a class="pagination-number page-link" href="?search={{search}}&page={{num}}"> {{ num }} </a>
+
+                        {% endif %}
+
+
+                    {% endfor %}
+                    {% if posts.has_next %}
+                          <a class="page-link next pagination-action" href="?search={{search}}&page={{posts.next_page_number}}" aria-label="Next">
+                            <span aria-hidden="true"><i class="fas fa-angle-right" style="color:#F79421;"></i></span>
+                          </a>
+                    {% else %}
+                          <a class="page-link next pagination-action disabled" href="" aria-label="Next">
+                            <span aria-hidden="true"><i class="fas fa-angle-right" style="color:#F79421;"></i></span>
+                          </a>
+
+                    {% endif %}
+                </div>
+                 <div class="mb-3 col-4 div">
+                      <form method="post" action="{%url 'mcred_blogs' %}">
+                             {% csrf_token %}
+                     <div class="row" style="margin-top:;">
+
+                             <label for="" class="col-8 form-label">Go To Page</label>
+                             <input type="text" class="col-1 form-control box" id="" value="" name="num" style="width:45px;height:25px;">
+                             <button class="gobtn" type="submit"><span>Go <i class="fas fa-angle-right" ></i></span></button>
+
+                     </div>
+                           </form>
+
+                 </div>
+            </div>
+        </div>
+  </div>
+
+
+  <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <div class="footer-aboutus">
+                            <img src="{% static '/images/portalLogin/home/MCRED1.png' %}">
+                            <p>
+                                403, Peninsula Heights,
+                                C D Barfiwala Marg,<br>
+                                Juhu Lane,
+                                Andheri (W),
+                                Mumbai, Pin - 400058<br>
+                                Maharashtra
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-1 col-md-1"></div>
+                    <div class="col-sm-12 col-lg-7 col-md-7">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links">
+                                <div class="settextfloat">
+                                    <h4>Contact Us</h4>
+                                    <ul>
+                                        <li><a href="#">connect@mcred.com</a></li>
+                                        <li><a href="#"> Support - 797-7157-822 </a></li>
+                                        <li> <a href="#">Office - 797-7157-822</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-6 footer-links ">
+                              <div class="settextfloat">
+                                <h4>Customer Service</h4>
+                                <ul>
+                                  <li><a href="#">Pricing </a></li>
+                                  <li><a href="#">Contact</a></li>
+                                  <li> <a href="#">Us FAQs</a></li>
+                                </ul>
+                              </div>
+                            </div> -->
+                             <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Need Help?</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_privacy_policy' %}">Privacy Policy </a></li>
+                                        <li> <a href="{% url 'mcred_terms_conditions' %}">Terms &amp; Conditions </a></li>
+                                        <li> <a href="{% url 'mcred_faqs' %}">General FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Links</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_partner' %}">Partners </a></li>
+                                        <li> <a href="{% url 'mcred_business' %}">Businesses</a></li>
+                                        <li> <a href="{% url 'mcred_investor' %}">Investors</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lastsection">
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-links">
+                            <p class="settagfooter">© Copyright Secure. All rights reserved.</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-sociel">
+                            <ul>
+                                <li> <a target="_blank" href="https://www.instagram.com/mcre.d/"><i class="fab fa-instagram"></i></a></li>
+                                <li> <a target="_blank" href="https://www.linkedin.com/company/mcred/"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li> <a target="_blank" href="https://www.facebook.com/MCRED-102965945034452"><i class="fab fa-facebook-f"></i></a></li>
+                                <li> <a target="_blank" href="https://twitter.com/Mcred59369762"><i class="fab fa-twitter"></i></a></li>
+                                <li> <a target="_blank" href="https://www.youtube.com/channel/UC33RpFwzAndn3CCJr83jUbw?guided_help_flow=5"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div></footer>
+
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-angle-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/css/vendor/aos/aos.js' %}"></script>
+  <script src="{% static '/css/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/css/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static '/css/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static '/css/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static '/css/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static '/css/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>-->
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/js/main.js' %}"></script>
+  <script>
+      $(document).ready(function(){
+        $(".filter-checkbox").on('click',function(){
+            $("#div").hide();
+            $("#pagination_hide").hide();
+            var _filterObj = {};
+            $(".filter-checkbox").each(function(index,ele){
+                var _filterval = $(this).val();
+                var _filterkey = $(this).data('filter');
+                _filterObj['_filterkey'] = Array.from(document.querySelectorAll('input[data-filter='+_filterkey+']:checked')).map(function(el){
+                    return el.value;
+                });
+            });
+            console.log(_filterObj);
+            $.ajax({
+                 url:'{% url 'filter_data' %}',
+                 data:_filterObj,
+                 dataType:'json',
+                 success:function(res){
+                      $("#filter").show();
+                      $("#filter").html(res.data);
+                 }
+            });
+        });
+
+
+      $(".popular").on('click',function(){
+        $("#div").hide();
+        $("#pagination_hide").hide();
+        $(".recent").css({'background':'#FFFFFF', 'color':'#363636'});
+        $("#popularity").css({'background':'#F79421', 'color':'#fff'});
+
+         $.ajax({
+                 url:'{% url 'popularity' %}',
+                 success:function(res){
+                      $("#filter").show();
+                      $("#filter").html(res.data);
+                 }
+         });
+      });
+
+
+
+
+        $(".recent").on('click',function(){
+            $("#div").hide();
+            $("#pagination_hide").hide();
+            $(".recent").css({'background':'#F79421', 'color':'#fff'});
+            $("#popularity").css({'background':'#FFFFFF', 'color':'#363636'});
+
+
+
+         $.ajax({
+                 url:'{% url 'recent' %}',
+                 success:function(res){
+                      $("#filter").show();
+                      $("#filter").html(res.data);
+                 }
+            });
+          });
+
+
+      });
+
+  </script>
+
+</body>
+
+</html>

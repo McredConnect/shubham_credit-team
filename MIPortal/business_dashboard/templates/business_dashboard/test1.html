@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+</head>
+<body>
+{% for i in business %}
+<label>business_id=</label><label>{{i.business_id}}</label><button onclick="location.href='{% url 'test2' i.business_id %}'">goto</button><br>
+{% endfor %}
+</body>
+</html>

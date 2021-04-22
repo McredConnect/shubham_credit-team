@@ -1,0 +1,145 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/customers.css' %}">
+<!--            <script src="{% static '/javascript/userdetails.js' %}"></script>-->
+        </head>
+        <div class="card col-sm-12 col-md-7">
+            <div class="main">
+            <div class="row row1" >
+                <h6 class="col-md-6">CUSTOMER INFORMATION</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-3  col-md-4 " data-bs-toggle="modal" data-bs-target="#Modal">ADD CUSTOMER INFORMATION</button>
+             </div>
+
+            <!-- Modal FOR UploadING CREDIT RATING DETAILS-->
+
+            <div class="modal fade modal1" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;CUSTOMER INFORMATION</h6>
+                        <h6 class="cls1">Upload Customer Details</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                        <form method="post" enctype="multipart/form-data" action="{% url 'customers' %}">
+                            {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <label for="name" class="form-label name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter Name" aria-label="name" aria-describedby="basic-addon1" style="max-width:300px;margin-left:120px;" name="name_of_customer">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="yearly_sales" class="form-label name">Est. Yearly Sales </label>
+                              <input type="text" id="yearly_sales" class="form-control" placeholder="Est. Yearly Sales" aria-label="yearly_sales" aria-describedby="basic-addon1" style="max-width:300px;margin-left:50px;" name="yearly_sales">
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="fromdate" class="form-label name ">Ledger From Date</label>
+                              <input type="date" id="fromdate" class="form-control disableFuturedate" placeholder="DD/MM/YYYY" aria-label="from_date" aria-describedby="basic-addon1" style="max-width:300px;margin-left:40px;" name="from_date">
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="todate" class="form-label name ">Ledger To Date</label>
+                              <input type="date" id="todate" class="form-control disableFuturedate" placeholder="DD/MM/YYYY" aria-label="to_date" aria-describedby="basic-addon1" style="max-width:300px;margin-left:60px;" name="to_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile1" class="form-label name" >Upload File </label>
+                            <input class="form-control" type="file" id="formFile1" style="max-width:300px;margin-left:165px;margin-top:-33px;" name="inp_file">
+                        </div>
+
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:130px">UPLOAD DETAILS</button></div>
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+<!--                                <th style="border-bottom:none;">Serial No.</th>-->
+                                <th style="border-bottom:none;">Name</th>
+                                <th style="border-bottom:none;">Last 12 Months Sale (Rs. Cr.)</th>
+                                <th style="border-bottom:none;">From Date</th>
+                                <th style="border-bottom:none;">To Date</th>
+                                <th style="border-bottom:none;">File</th>
+
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in customer_details %}
+                                <tr>
+                                    <td>{{ i.name }}</td>
+                                    <td>{{ i.per_tweleve_month_sale }}</td>
+                                    <td>{{ i.fromdate| date:"F d Y" }}</td>
+                                    <td>{{ i.todate| date:"F d Y" }}</td>
+                                    <td><a href="{{ i.input_file.url }}" download=""><i class="far fa-file-pdf"></i></a></td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+             <div class="row" style="margin-top:80px;">
+                 <form action="{% url 'customers2' %}" enctype="multipart/form-data" method="post">
+                     {% csrf_token %}
+                 <div class="row">
+                   <div class="col-sm-5 cls4">
+                        <label for="totalsales" class="form-label">EST. TOTAL ANNUAL SALES (&#8377; Cr.)</label>
+                        <div class="input-group mb-3">
+                          <input id="totalsales" value="{{ total_annual_sale }}" type="number" class="form-control" placeholder="In crores" aria-label="totalsales" name="total_annual_sales">
+                        </div>
+                   </div>
+                   <div class="col-sm-5 cls4">
+                        <label for="avgsales" class="form-label">EST. AVERAGE MONTHLY SALES (&#8377; Cr.)</label>
+                        <div class="input-group mb-3">
+                          <input id="avgsales"  type="number" value="{{ average_monthly_sale }}" class="form-control" placeholder="In crores" aria-label="totalsales"  name="avg_monthly_sales">
+                        </div>
+                   </div>
+                 </div>
+
+               <!--    CODE FOR TERMS AND CONDITIONS-->
+<!--            <div class="row" style="margin-top:30px;" >-->
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+<!--            </div>-->
+            <div class="row history" style="margin-top:50px;">
+<!--                <div class="col-md-8">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+                <div class="col-2"><button type="submit" class="btn btn-outline-primary">Save Data</button></div>
+            </div>
+
+                 </form>
+             </div>
+            </div>
+        </div>
+ <script type="text/javascript">
+            $("#avgsales").change(function () {
+            var total_annual_sales = document.getElementById("totalsales").value;
+            var avg_monthly_sales = document.getElementById("avgsales").value;
+            if (avg_monthly_sales >= total_annual_sales ){
+                    alert("Average Monthly Sales Should Be Less Than Total Annual  Sales ");
+                    document.getElementById("avgsales").value = "";
+
+                }
+            });
+</script>
+{% endblock content %}

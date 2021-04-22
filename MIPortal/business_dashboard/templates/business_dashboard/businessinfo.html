@@ -1,0 +1,266 @@
+{% extends "business_dashboard/businessdetail.html" %}
+
+        {% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/currentdeals2a.css' %}">
+            <script src="{% static '/javascript/currentdeals2.js' %}"></script>
+        </head>
+        <div class="container-fluid">
+            <div class="div1">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">New Business</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Registered Business</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Business Pending for Approval</a>
+                          </li>
+                    </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active"  id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+                                  <div class="card-body">
+                                        <h5 class="card-title">Transaction History</h5>
+                                      <div class="table-responsive">
+                                        <table class="table" style="border-collapse:collapse">
+                                            <thead class="headt" >
+                                                <tr>
+                                                      <th scope="col" class="date">Date</th>
+                                                      <th scope="col">Transaction ID</th>
+                                                      <th scope="col">Type</th>
+                                                      <th scope="col">Amount</th>
+                                                      <th scope="col">Comment</th>
+                                                      <th scope="col">Status</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background: #FADFDC;color:#DE655D; width:120px;text-align:center;padding:3px;">Withdrawal</div> </td>
+                                              <td>&#8377;2,40,000</td>
+                                              <td><SPAN>Amount withdrawal ro external account</SPAN><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                            </tr>
+                                            <tr>
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background: #FFE8CC;color:#FFA931;width:120px;text-align:center;padding:3px;">Funds Added</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                              <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#58B4AE" class="bi bi-clock-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg></td>
+                                            </tr>
+                                            <tr>
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background: #DDE5FC;color:#548AF0;width:120px;text-align:center;padding:3px;">Refund</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                               <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#DE655D" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></td>
+                                           </tr>
+                                           <tr >
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background:#F0E6EE;color:#AC6FD9;width:120px;text-align:center;padding:3px;">Deal Purchased</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                               <td><span>Amount withdrawal ro external account</span><br><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                           </tr>
+                                           <tr >
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                               <td class="mx-auto"><div style="background:#E0FFBA;color:#38CC47;width:120px;text-align:center;padding:3px;">Repayment</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                               <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                            </tr>
+            
+                                          </tbody>
+                                      </table>
+                                          </div>
+                                  </div>
+                            </div>
+                            </div>
+                          <!-- <div class=" row div2 ">
+                              <div class="col-sm-12 col-md-11  card card1">
+                                  <div class="card-body">
+                                      <div class="top"><h6 class="h6">Invoice Raised for</h6></div>
+                                      <div class="logoimg"><img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}"><span class="card-text" id="sp">Oyo Hotels <br class="break"><br class="break">and Homes <br class="break"><br class="break"><i id="one">Private Limited</i></span><span class="card-text" id="box"><a href="#" class="btn btn-primary"><i class="far fa-file-alt"></i>Invoice Discounting</a></span></div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-12 col-md-5  card card2">
+                                  <div class="card-body">
+                                      <div class="small"><h6 class="exp">Expected Yield</h6></div>
+                                      <ul class="list-group list-group-horizontal" id="lst1">
+                                          <li class="list-group-item" style="width:160px;text-align:center;">16.21%</li>
+                                          <li class="list-group-item" style="width:160px;text-align:center;">12.42%</li>
+                                          <li class="list-group-item" style="width:160px;text-align:center;">583</li>
+                                      </ul>
+                                      <hr style="width:385px;margin-left:28px;">
+                                      <ul class="list-group list-group-horizontal" id="lst2">
+                                          <li class="list-group-item" style="width:160px;text-align:center;">Expected<br>gross yield</li>
+                                          <li class="list-group-item" style="width:160px;text-align:center;">Expected <br>net yield</li>
+                                          <li class="list-group-item" style="width:160px;text-align:center;">Mcred<br> score</li>
+                                      </ul>
+                                  </div>
+                              </div>
+                              <div class="col-sm-12 col-md-5 offset-1 card card3">
+                                      <div class="card-body">
+                                      <div class="small1"><h6 class="exp1">More Details</h6></div>
+                                      <ul class="list-group list-group-horizontal" id="lst3">
+                                          <li class="list-group-item" style="width:140px;text-align:center;">60</li>
+                                          <li class="list-group-item l2" style="width:180px;text-align:center;">06-12-<br class="break" style="display:None"><br class="break" style="display:None">2020</li>
+                                          <li class="list-group-item" style="width:140px;text-align:center;">10</li>
+                                      </ul>
+                                      <hr style="width:375px;margin-left:45px;">
+                                      <ul class="list-group list-group-horizontal" id="lst4">
+                                          <li class="list-group-item" style="width:160px;text-align:center;">Deal Maturity<br>(In Days)</li>
+                                          <li class="list-group-item" style="width:180px;text-align:center;">Repayment <br>on</li>
+                                          <li class="list-group-item" style="width:140px;text-align:center;">Deal Expiry<br>(In Days)</li>
+                                      </ul>
+                                      </div>
+                               </div>
+                          </div> -->
+                    </div>
+                    <div class="tab-pane fade" style="display:block;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+                              <div class="card-body">
+                                    <h5 class="card-title">Transaction History</h5>
+                                  <div class="table-responsive">
+                                    <table class="table" style="border-collapse:collapse">
+                                        <thead class="headt" >
+                                            <tr>
+                                                  <th scope="col" class="date">Date</th>
+                                                  <th scope="col">Transaction ID</th>
+                                                  <th scope="col">Type</th>
+                                                  <th scope="col">Amount</th>
+                                                  <th scope="col">Comment</th>
+                                                  <th scope="col">Status</th>
+                                            </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>6-11-2020</td>
+                                          <td>ABCNJ37HJEJFBH</td>
+                                          <td><div style="background: #FADFDC;color:#DE655D; width:120px;text-align:center;padding:3px;">Withdrawal</div> </td>
+                                          <td>&#8377;2,40,000</td>
+                                          <td><SPAN>Amount withdrawal ro external account</SPAN><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                          <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                        </tr>
+                                        <tr>
+                                          <td>6-11-2020</td>
+                                          <td>ABCNJ37HJEJFBH</td>
+                                          <td><div style="background: #FFE8CC;color:#FFA931;width:120px;text-align:center;padding:3px;">Funds Added</div></td>
+                                          <td>&#8377;2,40,000</td>
+                                          <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                          <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#58B4AE" class="bi bi-clock-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg></td>
+                                        </tr>
+                                        <tr>
+                                          <td>6-11-2020</td>
+                                          <td>ABCNJ37HJEJFBH</td>
+                                          <td><div style="background: #DDE5FC;color:#548AF0;width:120px;text-align:center;padding:3px;">Refund</div></td>
+                                          <td>&#8377;2,40,000</td>
+                                           <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                          <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#DE655D" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></td>
+                                       </tr>
+                                       <tr >
+                                          <td>6-11-2020</td>
+                                          <td>ABCNJ37HJEJFBH</td>
+                                          <td><div style="background:#F0E6EE;color:#AC6FD9;width:120px;text-align:center;padding:3px;">Deal Purchased</div></td>
+                                          <td>&#8377;2,40,000</td>
+                                           <td><span>Amount withdrawal ro external account</span><br><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                          <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                       </tr>
+                                       <tr >
+                                          <td>6-11-2020</td>
+                                          <td>ABCNJ37HJEJFBH</td>
+                                           <td class="mx-auto"><div style="background:#E0FFBA;color:#38CC47;width:120px;text-align:center;padding:3px;">Repayment</div></td>
+                                          <td>&#8377;2,40,000</td>
+                                           <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                          <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                        </tr>
+        
+                                      </tbody>
+                                  </table>
+                                      </div>
+                              </div>
+                        </div>
+                        </div>
+                        
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+                                  <div class="card-body">
+                                        <h5 class="card-title">Transaction History</h5>
+                                      <div class="table-responsive">
+                                        <table class="table" style="border-collapse:collapse">
+                                            <thead class="headt" >
+                                                <tr>
+                                                      <th scope="col" class="date">Date</th>
+                                                      <th scope="col">Transaction ID</th>
+                                                      <th scope="col">Type</th>
+                                                      <th scope="col">Amount</th>
+                                                      <th scope="col">Comment</th>
+                                                      <th scope="col">Status</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background: #FADFDC;color:#DE655D; width:120px;text-align:center;padding:3px;">Withdrawal</div> </td>
+                                              <td>&#8377;2,40,000</td>
+                                              <td><SPAN>Amount withdrawal ro external account</SPAN><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                            </tr>
+                                            <tr>
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background: #FFE8CC;color:#FFA931;width:120px;text-align:center;padding:3px;">Funds Added</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                              <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#58B4AE" class="bi bi-clock-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg></td>
+                                            </tr>
+                                            <tr>
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background: #DDE5FC;color:#548AF0;width:120px;text-align:center;padding:3px;">Refund</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                               <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#DE655D" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></td>
+                                           </tr>
+                                           <tr >
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                              <td><div style="background:#F0E6EE;color:#AC6FD9;width:120px;text-align:center;padding:3px;">Deal Purchased</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                               <td><span>Amount withdrawal ro external account</span><br><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                           </tr>
+                                           <tr >
+                                              <td>6-11-2020</td>
+                                              <td>ABCNJ37HJEJFBH</td>
+                                               <td class="mx-auto"><div style="background:#E0FFBA;color:#38CC47;width:120px;text-align:center;padding:3px;">Repayment</div></td>
+                                              <td>&#8377;2,40,000</td>
+                                               <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
+                                              <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
+                                            </tr>
+            
+                                          </tbody>
+                                      </table>
+                                          </div>
+                                  </div>
+                            </div>
+                        </div>
+
+            </div>
+        </div>
+        {% endblock content %}

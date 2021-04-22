@@ -1,0 +1,140 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/debt.css' %}">
+            <script src="{% static '/javascript/debt.js' %}"></script>
+        </head>
+        <div class="card col-sm-12 col-md-7">
+            <div class="main">
+            <div class="row row1" >
+                <h6 class="col-md-6">BUSINESS DEBT PROFILE DETAILS</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-3  col-md-3 " data-bs-toggle="modal" data-bs-target="#Modal">ADD DEBT PROFILE DETAILS</button>
+             </div>
+
+            <!-- Modal FOR UploadING CREDIT RATING DETAILS-->
+
+            <div class="modal fade modal1" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;BUSINESS DEBT PROFILE</h6>
+                        <h6 class="cls1">Upload Debt Profile Details</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                        <form method="post" action="{% url 'debt' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <label for="name" class="form-label name">Name of The Lender</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter Name" aria-label="name" aria-describedby="basic-addon1" style="max-width:270px;margin-left:60px;" name="lender_name">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="lender" class="form-label name">Type of Loan</label>
+                              <input type="text" id="lender" class="form-control" placeholder="Enter Type of Loan" aria-label="lender" aria-describedby="basic-addon1" style="max-width:270px;margin-left:113px;" name="type">
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="tlimit" class="form-label name">Amount Of Loan (In Cr.)</label>
+                              <input type="number" id="tlimit" class="form-control" placeholder="Enter Amt. Of Loan" aria-label="limit" aria-describedby="basic-addon1" style="max-width:270px;margin-left:40px;" name="loan_amt">
+                         </div>
+                         <div class="input-group mb-3">
+                              <label for="olimit" class="form-label name">Outstanding Amount</label>
+                              <input type="number" id="olimit" class="form-control" placeholder="Enter Outstanding Amt." aria-label="olimit" aria-describedby="basic-addon1" style="max-width:260px;margin-left:60px;" name="outstanding_amt">
+                         </div>
+                         <div class="input-group mb-3">
+                              <label for="limit" class="form-label name">Rate Of Interest</label>
+                              <input type="text" id="limit" class="form-control" placeholder="Rate Of Interest" aria-label="limit" aria-describedby="basic-addon1" style="max-width:260px;margin-left:95px;" name="interest_rate">
+                         </div>
+                         <div class="mb-3">
+                                <label for="formFile" class="form-label name" id="frmlbl" >Upload Sanction Letter</label>
+                                <input class="form-control" type="file" id="formFile" style="max-width:260px;margin-left:205px;margin-top:-30px;" name="file">
+
+                         </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:130px">UPLOAD DETAILS</button></div>
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+<!--                                <th style="border-bottom:none;">Serial No.</th>-->
+                                <th style="border-bottom:none;">Name Of The Lender</th>
+                                <th style="border-bottom:none;">Type Of Loan</th>
+                                <th style="border-bottom:none;">Amount Of Loan (Rs. Cr.)</th>
+                                <th style="border-bottom:none;">Outstanding Amount</th>
+                                <th style="border-bottom:none;">Rate Of Interest</th>
+                                <th style="border-bottom:none;">Sanction Letter</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in debt %}
+                                <tr>
+                                    <td >{{ i.name_of_lender }}</td>
+                                    <td >{{ i.type_of_loan }}</td>
+                                    <td >{{ i.amount_of_loan }}</td>
+                                    <td >{{ i.outstanding_amount }}</td>
+                                    <td >{{ i.rate_of_interest }}</td>
+                                    {% if i.input_file %}
+                                    <td ><a href="{{ i.input_file.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                                    {% else %}
+                                    <td></td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+<!--            <div class="mb-3">-->
+<!--                <form method="post" action="{% url 'userdetails' %}" enctype="multipart/form-data">-->
+<!--                    <label for="formFile" class="form-label" id="frmlbl" >Upload Debt Profile Details</label>-->
+<!--                    <input class="form-control" type="file" id="formFile" style="">-->
+<!--                </form>-->
+<!--            </div>-->
+            </div>
+               <!--    CODE FOR TERMS AND CONDITIONS-->
+<!--            <div class="row" style="margin-top:30px;" >-->
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+<!--            </div>-->
+<!--            <div class="row history" style="margin-top:20px;">-->
+<!--                            <div class="col-md-8">-->
+<!--                                <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                                <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                            </div>-->
+<!--                            <div class="col-2"><button type="submit" class="btn btn-outline-primary">Save Data</button></div>-->
+<!--                        </div>-->
+        </div>
+
+        <script type="text/javascript">
+            $("#olimit").change(function () {
+            var tlimit = document.getElementById("tlimit").value;
+            var olimit = document.getElementById("olimit").value;
+            if (olimit > tlimit ){
+                    alert("Outstanding amount  should be less than loan Amount ");
+                    document.getElementById("olimit").value = "";
+
+                }
+            });
+        </script>
+
+
+{% endblock content %}

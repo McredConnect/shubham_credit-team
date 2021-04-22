@@ -1,0 +1,219 @@
+{% extends "new_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/new_dashboard/individual.css' %}">
+            <script src="{% static '/javascript/individual.js' %}"></script>
+        </head>
+        <div class="card col-md-6 card2 " id="card" >
+            <form method="post" id="target" action="{% url 'individual' %}" enctype="multipart/form-data" style="margin-left:40px;">
+                {% csrf_token %}
+                <input type="hidden" value="Individual" name="category">
+                <input type="hidden" name="login_status" value="re_login">
+            <div class="row cls1" style="margin-top:40px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="name" class="form-label name">Name</label>
+                    <div class="input-group mb-3" ><input value="{{ investor_name }}" name="name" id="name" type="text" class="form-control inp1" placeholder="Enter Your Name" aria-label="Username" aria-describedby="basic-addon1"></div>
+                </div>
+                <div class="col-md-5">
+                   <label for="mobile" class="form-label name">Mobile No.</label>
+                   <div class="input-group mb-3" ><input value="{{ contact_no }}" name="mobile" id="mobile" type="text" class="form-control inp1" placeholder="Enter Your Mobile" aria-label="mobile" aria-describedby="basic-addon1" maxlength="10" ></div>
+                </div>
+            </div>
+            <div class="row cls1" style="margin-top:10px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="email" class="form-label name">Email</label>
+                    <div class="input-group mb-3" ><input value="{{investor_email}}" name="email" id="email" type="email" class="form-control inp1" placeholder="Enter Your Email" aria-label="Username" aria-describedby="basic-addon1"></div>
+                </div>
+                <div class="col-md-5">
+                   <label for="dob" class="form-label name">Date Of Birth</label>
+                   <div class="input-group mb-3" ><input value="{{ dob| date:'Y-m-d'}}" name="dob" id="dob" type="date" class="form-control inp1 disableFuturedate"  aria-label="dob" aria-describedby="basic-addon1"></div>
+                </div>
+            </div>
+             <div class="row cls1" style="margin-top:20px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="pan" class="form-label name">PAN</label>
+                    <div class="input-group mb-3" ><input value="{{pan_num}}" name="pan_num" id="pan" type="text" class="form-control inp1" placeholder="Enter Your PAN" ></div>
+                </div>
+             </div>
+             <div class="row row2" style="margin-top:20px;">
+                <div class=" cls1 col-12 ">
+                    <label for="pan_photo" class="form-label name">PAN CARD PHOTO</label><br>
+                    <label for="pan_photo" class="form-label txt">Upload a scanned copy of your PAN Card with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control " value="" type="file" id="pan_photo" accept=".pdf,.jpeg,.png,.jpg" name="pan_card" style="max-width:360px;">
+                    {% if pan_photo %}
+                    <label class="form-label txt2"><a href="{{ pan_photo.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+                </div>
+                <label for="pan_photo" class="form-label txt1" style="margin-left:20px;">jpeg, png, pdf format supported</label>
+            </div>
+            <div class="row row1" style="margin-top:20px;">
+                <div class="cls1 col-6">
+                    <label for="aadhaar" class="form-label name">AADHAAR NUMBER</label>
+                    <div class="input-group mb-3 " ><input type="text" id="aadhaar" value="{{aadhaar_num}}" class="form-control inp1 " placeholder="Aadhaar number (With spaces)" aria-label="pan" aria-describedby="basic-addon1" name="aadhaar_num"></div>
+                </div>
+            </div>
+            <div class="row row2" style="margin-top:20px;">
+                <div class=" cls1 col-12 ">
+                    <label for="aadhaar_photo" class="form-label name ">AADHAAR CARD PHOTO</label><br>
+                    <label for="aadhaar_photo" class="form-label txt ">Upload a scanned copy of your Aadhaar Card with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control " value="" type="file" id="aadhaar_photo" accept=".pdf,.jpeg,.png,.jpg" name="aadhaar_card" style="max-width:360px;">
+                    {% if aadhaar_photo %}
+                    <label class="form-label txt2"><a href="{{ aadhaar_photo.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+                </div>
+                 <label for="aadhaar_photo" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+            </div>
+            <div class="row row1">
+                <div class="cls1 col-12" style="margin-top:20px;">
+                    <label for="aadhaar" class="form-label name">GST DETAILS</label>
+                </div>
+                <div class="cls1 col-12">
+                    <label>Are you registered with GST?</label>
+                </div>
+            </div>
+           <div class="form-check row" style="margin-left:10px;">
+              <input class="form-check-input " value="Yes" type="radio" name="flexRadioDefault" id="yes" >
+              <label class="form-check-label col-2" for="yes">Yes</label>
+
+              <input class="form-check-input " value="No" type="radio" name="flexRadioDefault" id="no" >
+              <label class="form-check-label col-2" for="no">No</label>
+
+            </div>
+            <div class="row row1" style="margin-top:20px;">
+                <div class="cls1 col-6">
+                    <label for="gst_num" class="form-label name">GST NUMBER</label>
+                    <div class="input-group mb-3 " ><input type="text" id="gst_num" value="{{gst_num}}" class="form-control inp1 " placeholder="Enter your GST number" aria-label="pan" aria-describedby="basic-addon1" name="gst_num"></div>
+                </div>
+            </div>
+            <div class="row row2" style="margin-top:20px;">
+                <div class=" cls1 col-12 ">
+                    <label for="gstn_proof" class="form-label name ">GSTN PROOF</label><br>
+                    <label for="gstn_proof" class="form-label txt ">Upload a scanned / digital copy of your GSTN proof document with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control " value="{{ gstn_proof }}" type="file" id="gstn_proof" accept=".pdf,.jpeg,.png,.jpg" name="gstn_proof" style="max-width:360px;">
+                     {% if gstn_proof %}
+                    <label class="form-label txt2"><a href="{{ gstn_proof.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+
+                </div>
+                 <label for="gstn_proof" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+            </div>
+            <div class="row history" style="margin-top:20px;">
+                <div class="col-12"><button type="submit" class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" style="float:right;margin-right:50px;">Save Data</button></div>
+            </div>
+
+            </form>
+        </div>
+        <div id="alert" class="col-3">
+                <div class="msg">
+                    <h6 class="col-12">Thank you for Sharing the information. MCRED Team will connect with you shortly.</h6>
+                    <button  class="btn btn-outline-primary col-4 home" ONCLICK="location.href='{% url 'index1' %}'" >OK</button>
+                </div>
+        </div>
+
+
+<script>
+    console.log({{flag}})
+    var flag = {{flag}}
+    if(flag)
+        {
+        document.getElementById('card').style.display = "none";
+        document.getElementById('alert').style.display = "block";
+
+        }
+
+
+    function preventBack(){
+    window.history.forward();
+    }
+    setTimeout(preventBack,0);
+
+
+
+    var gst = "{{ gst_details }}"
+    if(gst == "Yes"){
+    document.getElementById('yes').setAttribute('checked','checked')
+    } else{
+    document.getElementById('no').setAttribute('checked','checked')
+
+    }
+
+
+    var status = "{{ status }}"
+    console.log("status",status)
+    if(status == "re_login"){
+        document.getElementById('huf').setAttribute("disabled","disabled")
+        document.getElementById('private_ltd').setAttribute("disabled","disabled")
+        document.getElementById('partnership_llp').setAttribute("disabled","disabled")
+        document.getElementById('nbfc_bank').setAttribute("disabled","disabled")
+        document.getElementById('NRI').setAttribute("disabled","disabled")
+    }
+
+
+    $(document).ready(function(){
+    $("#mobile").change(function () {
+        var inputvalues = $(this).val();
+          var regex = /[0-9]{10}$/;
+          if(!regex.test(inputvalues)){
+          $("#mobile").val("");
+          alert("Invalid Mobile Number");
+          return regex.test(inputvalues);
+          }
+    });
+
+     $("#pan").change(function () {
+        var inputvalues = $(this).val();
+          var regex = /[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+          if(!regex.test(inputvalues)){
+    <!--      $("#pan").val("");-->
+          alert("Invalid PAN No.");
+          return regex.test(inputvalues);
+          }
+        });
+
+    $("#aadhaar").change(function () {
+        var inputvalues = $(this).val();
+          var regex = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+          if(!regex.test(inputvalues)){
+          $("#aadhaar").val("");
+          alert("Invalid Aadhaar No.");
+          return regex.test(inputvalues);
+          }
+        });
+
+    $("#gst_num").change(function () {
+        var inputvalues = $(this).val();
+          console.log(inputvalues);
+          var regex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+          if(!regex.test(inputvalues)){
+          $("#gst_num").val("");
+          alert("Invalid GST No.");
+          return regex.test(inputvalues);
+          }
+     });
+    });
+
+</script>
+{% endblock %}

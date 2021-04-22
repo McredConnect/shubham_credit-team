@@ -1,0 +1,350 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/bankstatement.css' %}">
+            <script src="{% static '/javascript/bankstatement.js' %}"></script>
+        </head>
+        <div class="card col-sm-12 col-md-7">
+            <div class="main">
+            <div class="row row1" >
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-3  col-md-3 " data-bs-toggle="modal" data-bs-target="#exampleModal">ADD A BANK ACCOUNT</button>
+                <h6 class="col-md-6">BANK ACCOUNTS</h6>
+            </div>
+
+            <!-- Modal FOR ADD NEW GST DETAILS-->
+            <div class="modal fade modal1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;BANK STATEMENTS</h6>
+                        <h6 class="cls1">Add a Bank Account</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+                    <div></div>
+                    <div class="modal-body" >
+                        <form method="post" action="{% url 'bank_statement_two' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                         <div class="input-group mb-3">
+                            <label for="bank" class="form-label name">Select Bank</label>
+                            <select class="form-select" id="bank" aria-label="Default select example" style="margin-left:53px;" name="bankname">
+                              <option selected disabled><span>Select Bank</span></option>
+                              <option value=" ABHYUDAYA CO-OP BANK LTD" class="ng-star-inserted"> ABHYUDAYA CO-OP BANK LTD </option>
+                                <option value="ABU DHABI COMMERCIAL BANK" class="ng-star-inserted"> ABU DHABI COMMERCIAL BANK </option>
+                                <option value="AKOLA DISTRICT CENTRAL CO-OPERATIVE BANK" class="ng-star-inserted"> AKOLA DISTRICT CENTRAL CO-OPERATIVE BANK </option>
+                                <option value="AKOLA JANATA COMMERCIAL COOPERATIVE BANK" class="ng-star-inserted"> AKOLA JANATA COMMERCIAL COOPERATIVE BANK </option>
+                                <option value="ALLAHABAD BANK" class="ng-star-inserted"> ALLAHABAD BANK </option>
+                                <option value="ALMORA URBAN CO-OPERATIVE BANK LTD." class="ng-star-inserted"> ALMORA URBAN CO-OPERATIVE BANK LTD. </option>
+                                <option value="ANDHRA PRAGATHI GRAMEENA BANK" class="ng-star-inserted"> ANDHRA PRAGATHI GRAMEENA BANK </option>
+                                <option value="APNA SAHAKARI BANK LTD" class="ng-star-inserted"> APNA SAHAKARI BANK LTD </option>
+                                <option value="AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED." class="ng-star-inserted"> AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED. </option>
+                                <option value="AXIS BANK" class="ng-star-inserted"> AXIS BANK </option>
+                                <option value="BANK INTERNASIONAL INDONESIA" class="ng-star-inserted"> BANK INTERNASIONAL INDONESIA </option>
+                                <option value="BANK OF AMERICA" class="ng-star-inserted"> BANK OF AMERICA </option>
+                                <option value="BANK OF BAHRAIN AND KUWAIT" class="ng-star-inserted"> BANK OF BAHRAIN AND KUWAIT </option>
+                                <option value="BANK OF BARODA" class="ng-star-inserted"> BANK OF BARODA </option>
+                                <option value="BANK OF CEYLON " class="ng-star-inserted"> BANK OF CEYLON </option>
+                                <option value="BANK OF INDIA" class="ng-star-inserted"> BANK OF INDIA </option>
+                                <option value="BANK OF MAHARASHTRA" class="ng-star-inserted"> BANK OF MAHARASHTRA </option>
+                                <option value="BANK OF TOKYO-MITSUBISHI UFJ LTD." class="ng-star-inserted"> BANK OF TOKYO-MITSUBISHI UFJ LTD. </option>
+                                <option value="BARCLAYS BANK PLC" class="ng-star-inserted"> BARCLAYS BANK PLC </option>
+                                <option value="BASSEIN CATHOLIC CO-OP BANK LTD" class="ng-star-inserted"> BASSEIN CATHOLIC CO-OP BANK LTD </option>
+                                <option value="BHARATIYA MAHILA BANK LIMITED" class="ng-star-inserted"> BHARATIYA MAHILA BANK LIMITED </option>
+                                <option value="BNP PARIBAS" class="ng-star-inserted"> BNP PARIBAS </option>
+                                <option value="CALYON BANK" class="ng-star-inserted"> CALYON BANK </option>
+                                <option value="CANARA BANK" class="ng-star-inserted"> CANARA BANK </option>
+                                <option value="CAPITAL LOCAL AREA BANK LTD." class="ng-star-inserted"> CAPITAL LOCAL AREA BANK LTD. </option>
+                                <option value="CATHOLIC SYRIAN BANK LTD." class="ng-star-inserted"> CATHOLIC SYRIAN BANK LTD. </option>
+                                <option value="CENTRAL BANK OF INDIA" class="ng-star-inserted"> CENTRAL BANK OF INDIA </option>
+                                <option value="CHINATRUST COMMERCIAL BANK" class="ng-star-inserted"> CHINATRUST COMMERCIAL BANK </option>
+                                <option value="CITIBANK NA" class="ng-star-inserted"> CITIBANK NA </option>
+                                <option value="CITIZENCREDIT CO-OPERATIVE BANK LTD" class="ng-star-inserted"> CITIZENCREDIT CO-OPERATIVE BANK LTD </option>
+                                <option value="CITY UNION BANK LTD" class="ng-star-inserted"> CITY UNION BANK LTD </option>
+                                <option value="COMMONWEALTH BANK OF AUSTRALIA" class="ng-star-inserted"> COMMONWEALTH BANK OF AUSTRALIA </option>
+                                <option value="CORPORATION BANK" class="ng-star-inserted"> CORPORATION BANK </option>
+                                <option value="CREDIT SUISSE AG" class="ng-star-inserted"> CREDIT SUISSE AG </option>
+                                <option value="DBS BANK LTD" class="ng-star-inserted"> DBS BANK LTD </option>
+                                <option value="DENA BANK" class="ng-star-inserted"> DENA BANK </option>
+                                <option value="DEUTSCHE BANK" class="ng-star-inserted"> DEUTSCHE BANK </option>
+                                <option value="DEUTSCHE SECURITIES INDIA PRIVATE LIMITED" class="ng-star-inserted"> DEUTSCHE SECURITIES INDIA PRIVATE LIMITED </option>
+                                <option value="DEVELOPMENT CREDIT BANK LIMITED " class="ng-star-inserted"> DEVELOPMENT CREDIT BANK LIMITED </option>
+                                <option value="DHANLAXMI BANK LTD" class="ng-star-inserted"> DHANLAXMI BANK LTD </option>
+                                <option value="DICGC" class="ng-star-inserted"> DICGC </option>
+                                <option value="DOMBIVLI NAGARI SAHAKARI BANK LIMITED" class="ng-star-inserted"> DOMBIVLI NAGARI SAHAKARI BANK LIMITED </option>
+                                <option value="FIRSTRAND BANK LIMITED" class="ng-star-inserted"> FIRSTRAND BANK LIMITED </option>
+                                <option value="GOPINATH PATIL PARSIK JANATA SAHAKARI BANK LTD" class="ng-star-inserted"> GOPINATH PATIL PARSIK JANATA SAHAKARI BANK LTD </option>
+                                <option value="GURGAON GRAMIN BANK" class="ng-star-inserted"> GURGAON GRAMIN BANK </option>
+                                <option value="HDFC BANK LTD" class="ng-star-inserted"> HDFC BANK LTD </option>
+                                <option value="HSBC" class="ng-star-inserted"> HSBC </option>
+                                <option value="ICICI BANK LTD" class="ng-star-inserted"> ICICI BANK LTD </option>
+                                <option value="IDBI BANK LTD" class="ng-star-inserted"> IDBI BANK LTD </option>
+                                <option value="IDRBT" class="ng-star-inserted"> IDRBT </option>
+                                <option value="INDIAN BANK" class="ng-star-inserted"> INDIAN BANK </option>
+                                <option value="INDIAN OVERSEAS BANK" class="ng-star-inserted"> INDIAN OVERSEAS BANK </option>
+                                <option value="INDUSIND BANK LTD" class="ng-star-inserted"> INDUSIND BANK LTD </option>
+                                <option value="INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED" class="ng-star-inserted"> INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED </option>
+                                <option value="ING VYSYA BANK LTD" class="ng-star-inserted"> ING VYSYA BANK LTD </option>
+                                <option value="JALGAON JANATA SAHKARI BANK LTD " class="ng-star-inserted"> JALGAON JANATA SAHKARI BANK LTD </option>
+                                <option value="JANAKALYAN SAHAKARI BANK LTD" class="ng-star-inserted"> JANAKALYAN SAHAKARI BANK LTD </option>
+                                <option value="JANASEVA SAHAKARI BANK (BORIVLI) LTD" class="ng-star-inserted"> JANASEVA SAHAKARI BANK (BORIVLI) LTD </option>
+                                <option value="JANASEVA SAHAKARI BANK LTD. PUNE" class="ng-star-inserted"> JANASEVA SAHAKARI BANK LTD. PUNE </option>
+                                <option value="JANATA SAHAKARI BANK LTD (PUNE)" class="ng-star-inserted"> JANATA SAHAKARI BANK LTD (PUNE) </option>
+                                <option value="JPMORGAN CHASE BANK N.A" class="ng-star-inserted"> JPMORGAN CHASE BANK N.A </option>
+                                <option value="KALLAPPANNA AWADE ICH JANATA S BANK" class="ng-star-inserted"> KALLAPPANNA AWADE ICH JANATA S BANK </option>
+                                <option value="KAPOL CO OP BANK" class="ng-star-inserted"> KAPOL CO OP BANK </option>
+                                <option value="KARNATAKA BANK LTD" class="ng-star-inserted"> KARNATAKA BANK LTD </option>
+                                <option value="KARNATAKA VIKAS GRAMEENA BANK" class="ng-star-inserted"> KARNATAKA VIKAS GRAMEENA BANK </option>
+                                <option value="KARUR VYSYA BANK" class="ng-star-inserted"> KARUR VYSYA BANK </option>
+                                <option value="KOTAK MAHINDRA BANK" class="ng-star-inserted"> KOTAK MAHINDRA BANK </option>
+                                <option value="KURMANCHAL NAGAR SAHKARI BANK LTD" class="ng-star-inserted"> KURMANCHAL NAGAR SAHKARI BANK LTD </option>
+                                <option value="MAHANAGAR CO-OP BANK LTD" class="ng-star-inserted"> MAHANAGAR CO-OP BANK LTD </option>
+                                <option value="MAHARASHTRA STATE CO OPERATIVE BANK" class="ng-star-inserted"> MAHARASHTRA STATE CO OPERATIVE BANK </option>
+                                <option value="MASHREQBANK PSC" class="ng-star-inserted"> MASHREQBANK PSC </option>
+                                <option value="MIZUHO CORPORATE BANK LTD" class="ng-star-inserted"> MIZUHO CORPORATE BANK LTD </option>
+                                <option value="MUMBAI DISTRICT CENTRAL CO-OP. BANK LTD." class="ng-star-inserted"> MUMBAI DISTRICT CENTRAL CO-OP. BANK LTD. </option>
+                                <option value="NAGPUR NAGRIK SAHAKARI BANK LTD" class="ng-star-inserted"> NAGPUR NAGRIK SAHAKARI BANK LTD </option>
+                                <option value="NATIONAL AUSTRALIA BANK" class="ng-star-inserted"> NATIONAL AUSTRALIA BANK </option>
+                                <option value="NEW INDIA CO-OPERATIVE BANK LTD." class="ng-star-inserted"> NEW INDIA CO-OPERATIVE BANK LTD. </option>
+                                <option value="NKGSB CO-OP BANK LTD" class="ng-star-inserted"> NKGSB CO-OP BANK LTD </option>
+                                <option value="NORTH MALABAR GRAMIN BANK " class="ng-star-inserted"> NORTH MALABAR GRAMIN BANK </option>
+                                <option value="NUTAN NAGARIK SAHAKARI BANK LTDc" class="ng-star-inserted"> NUTAN NAGARIK SAHAKARI BANK LTD </option>
+                                <option value="OMAN INTERNATIONAL BANK SAOG" class="ng-star-inserted"> OMAN INTERNATIONAL BANK SAOG </option>
+                                <option value="ORIENTAL BANK OF COMMERCE" class="ng-star-inserted"> ORIENTAL BANK OF COMMERCE </option>
+                                <option value="PARSIK JANATA SAHAKARI BANK LTD" class="ng-star-inserted"> PARSIK JANATA SAHAKARI BANK LTD </option>
+                                <option value="PRATHAMA BANK" class="ng-star-inserted"> PRATHAMA BANK </option>
+                                <option value="PRIME CO OPERATIVE BANK LTD" class="ng-star-inserted"> PRIME CO OPERATIVE BANK LTD </option>
+                                <option value="PUNJAB AND MAHARASHTRA CO-OP BANK LTD." class="ng-star-inserted"> PUNJAB AND MAHARASHTRA CO-OP BANK LTD. </option>
+                                <option value="PUNJAB AND SIND BANK" class="ng-star-inserted"> PUNJAB AND SIND BANK </option>
+                                <option value="PUNJAB NATIONAL BANK" class="ng-star-inserted"> PUNJAB NATIONAL BANK </option>
+                                <option value="RABOBANK INTERNATIONAL (CCRB)" class="ng-star-inserted"> RABOBANK INTERNATIONAL (CCRB) </option>
+                                <option value="RAJGURUNAGAR SAHAKARI BANK LTD." class="ng-star-inserted"> RAJGURUNAGAR SAHAKARI BANK LTD. </option>
+                                <option value="RAJKOT NAGARIK SAHAKARI BANK LTD" class="ng-star-inserted"> RAJKOT NAGARIK SAHAKARI BANK LTD </option>
+                                <option value=" RESERVE BANK OF INDIA " class="ng-star-inserted"> RESERVE BANK OF INDIA </option>
+                                <option value="SBERBANK" class="ng-star-inserted"> SBERBANK </option>
+                                <option value=" SHINHAN BANK" class="ng-star-inserted"> SHINHAN BANK </option>
+                                <option value="SHRI CHHATRAPATI RAJARSHI SHAHU URBAN CO-OP BANK LTD" class="ng-star-inserted"> SHRI CHHATRAPATI RAJARSHI SHAHU URBAN CO-OP BANK LTD </option>
+                                <option value="SOCIETE GENERALE" class="ng-star-inserted"> SOCIETE GENERALE </option>
+                                <option value="SOUTH INDIAN BANK" class="ng-star-inserted"> SOUTH INDIAN BANK </option>
+                                <option value="STANDARD CHARTERED BANK" class="ng-star-inserted"> STANDARD CHARTERED BANK </option>
+                                <option value="STATE BANK OF BIKANER AND JAIPUR" class="ng-star-inserted"> STATE BANK OF BIKANER AND JAIPUR </option>
+                                <option value="STATE BANK OF HYDERABAD" class="ng-star-inserted"> STATE BANK OF HYDERABAD </option>
+                                <option value="STATE BANK OF INDIA0" class="ng-star-inserted"> STATE BANK OF INDIA </option>
+                                <option value="STATE BANK OF MAURITIUS LTD" class="ng-star-inserted"> STATE BANK OF MAURITIUS LTD </option>
+                                <option value="STATE BANK OF MYSORE" class="ng-star-inserted"> STATE BANK OF MYSORE </option>
+                                <option value="STATE BANK OF PATIALA" class="ng-star-inserted"> STATE BANK OF PATIALA </option>
+                                <option value="STATE BANK OF TRAVANCORE" class="ng-star-inserted"> STATE BANK OF TRAVANCORE </option>
+                                <option value="SUMITOMO MITSUI BANKING CORPORATION " class="ng-star-inserted"> SUMITOMO MITSUI BANKING CORPORATION </option>
+                                <option value="SUMITOMO MITSUI BANKING CORPORATION" class="ng-star-inserted"> SYNDICATE BANK </option>
+                                <option value="TAMILNAD MERCANTILE BANK LTD" class="ng-star-inserted"> TAMILNAD MERCANTILE BANK LTD </option>
+                                <option value="THANE BHARAT SAHAKARI BANK LTD" class="ng-star-inserted"> THANE BHARAT SAHAKARI BANK LTD </option>
+                                <option value="THE A.P. MAHESH CO-OP URBAN BANK LTD." class="ng-star-inserted"> THE A.P. MAHESH CO-OP URBAN BANK LTD. </option>
+                                <option value="THE AHMEDABAD MERCANTILE CO-OPERATIVE BANK LTD." class="ng-star-inserted"> THE AHMEDABAD MERCANTILE CO-OPERATIVE BANK LTD. </option>
+                                <option value="THE ANDHRA PRADESH STATE COOP BANK LTD" class="ng-star-inserted"> THE ANDHRA PRADESH STATE COOP BANK LTD </option>
+                                <option value="THE BANK OF NOVA SCOTIA" class="ng-star-inserted"> THE BANK OF NOVA SCOTIA </option>
+                                <option value="THE BANK OF RAJASTHAN LTD" class="ng-star-inserted"> THE BANK OF RAJASTHAN LTD </option>
+                                <option value="THE BHARAT CO-OPERATIVE BANK (MUMBAI) LTD" class="ng-star-inserted"> THE BHARAT CO-OPERATIVE BANK (MUMBAI) LTD </option>
+                                <option value="THE COSMOS CO-OPERATIVE BANK LTD." class="ng-star-inserted"> THE COSMOS CO-OPERATIVE BANK LTD. </option>
+                                <option value="THE DELHI STATE COOPERATIVE BANK LTD." class="ng-star-inserted"> THE DELHI STATE COOPERATIVE BANK LTD. </option>
+                                <option value="THE FEDERAL BANK LTD" class="ng-star-inserted"> THE FEDERAL BANK LTD </option>
+                                <option value="THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LTD" class="ng-star-inserted"> THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LTD </option>
+                                <option value="THE GREATER BOMBAY CO-OP. BANK LTD" class="ng-star-inserted"> THE GREATER BOMBAY CO-OP. BANK LTD </option>
+                                <option value="THE GUJARAT STATE CO-OPERATIVE BANK LTD" class="ng-star-inserted"> THE GUJARAT STATE CO-OPERATIVE BANK LTD </option>
+                                <option value="THE GUJARAT STATE CO-OPERATIVE BANK LTD " class="ng-star-inserted"> THE JALGAON PEOPLES CO-OP BANK </option>
+                                <option value="THE JAMMU AND KASHMIR BANK LTD" class="ng-star-inserted"> THE JAMMU AND KASHMIR BANK LTD </option>
+                                <option value="THE KALUPUR COMMERCIAL CO. OP. BANK LTD." class="ng-star-inserted"> THE KALUPUR COMMERCIAL CO. OP. BANK LTD. </option>
+                                <option value="THE KALYAN JANATA SAHAKARI BANK LTD." class="ng-star-inserted"> THE KALYAN JANATA SAHAKARI BANK LTD. </option>
+                                <option value="THE KANGRA CENTRAL CO-OPERATIVE BANK LTD" class="ng-star-inserted"> THE KANGRA CENTRAL CO-OPERATIVE BANK LTD </option>
+                                <option value="THE KANGRA COOPERATIVE BANK LTD" class="ng-star-inserted"> THE KANGRA COOPERATIVE BANK LTD </option>
+                                <option value="THE KARAD URBAN CO-OP BANK LTD" class="ng-star-inserted"> THE KARAD URBAN CO-OP BANK LTD </option>
+                                <option value="THE KARNATAKA STATE APEX COOP. BANK LTD." class="ng-star-inserted"> THE KARNATAKA STATE APEX COOP. BANK LTD. </option>
+                                <option value="THE LAKSHMI VILAS BANK LTD " class="ng-star-inserted"> THE LAKSHMI VILAS BANK LTD </option>
+                                <option value="THE MEHSANA URBAN COOPERATIVE BANK LTD" class="ng-star-inserted"> THE MEHSANA URBAN COOPERATIVE BANK LTD </option>
+                                <option value="THE MUNICIPAL CO OPERATIVE BANK LTD MUMBAI" class="ng-star-inserted"> THE MUNICIPAL CO OPERATIVE BANK LTD MUMBAI </option>
+                                <option value="THE NAINITAL BANK LIMITED " class="ng-star-inserted"> THE NAINITAL BANK LIMITED </option>
+                                <option value="THE NASIK MERCHANTS CO-OP BANK LTD., NASHIK" class="ng-star-inserted"> THE NASIK MERCHANTS CO-OP BANK LTD., NASHIK </option>
+                                <option value="THE RAJASTHAN STATE COOPERATIVE BANK LTD." class="ng-star-inserted"> THE RAJASTHAN STATE COOPERATIVE BANK LTD. </option>
+                                <option value="THE RATNAKAR BANK LTD" class="ng-star-inserted"> THE RATNAKAR BANK LTD </option>
+                                <option value="THE ROYAL BANK OF SCOTLAND N.V" class="ng-star-inserted"> THE ROYAL BANK OF SCOTLAND N.V </option>
+                                <option value="THE SAHEBRAO DESHMUKH CO-OP. BANK LTD." class="ng-star-inserted"> THE SAHEBRAO DESHMUKH CO-OP. BANK LTD. </option>
+                                <option value="THE SARASWAT CO-OPERATIVE BANK LTD " class="ng-star-inserted"> THE SARASWAT CO-OPERATIVE BANK LTD </option>
+                                <option value="THE SEVA VIKAS CO-OPERATIVE BANK LTD (SVB)" class="ng-star-inserted"> THE SEVA VIKAS CO-OPERATIVE BANK LTD (SVB) </option>
+                                <option value="THE SHAMRAO VITHAL CO-OPERATIVE BANK LTD " class="ng-star-inserted"> THE SHAMRAO VITHAL CO-OPERATIVE BANK LTD </option>
+                                <option value="THE SURAT DISTRICT CO OPERATIVE BANK LTD." class="ng-star-inserted"> THE SURAT DISTRICT CO OPERATIVE BANK LTD. </option>
+                                <option value="THE SURAT PEOPLES CO-OP BANK LTD" class="ng-star-inserted"> THE SURAT PEOPLES CO-OP BANK LTD </option>
+                                <option value="THE SUTEX CO.OP. BANK LTD." class="ng-star-inserted"> THE SUTEX CO.OP. BANK LTD. </option>
+                                <option value="THE TAMILNADU STATE APEX COOPERATIVE BANK LIMITED" class="ng-star-inserted"> THE TAMILNADU STATE APEX COOPERATIVE BANK LIMITED </option><option value="51ae42eb-aa64-4fe5-8a75-8a86db092089" class="ng-star-inserted"> THE THANE DISTRICT CENTRAL CO-OP BANK LTD </option><option value="7c83fb18-8494-420d-a50b-0e588b98a386" class="ng-star-inserted"> THE THANE JANATA SAHAKARI BANK LTD </option><option value="19375f08-f6fb-43dd-b40d-1a310d4b23eb" class="ng-star-inserted"> THE VARACHHA CO-OP. BANK LTD. </option><option value="86b8241a-ac42-4e22-82a1-dcaab9d03090" class="ng-star-inserted"> THE VISHWESHWAR SAHAKARI BANK LTD.,PUNE </option><option value="8cb42b80-0d87-400a-b703-cfaf732b83e7" class="ng-star-inserted"> THE WEST BENGAL STATE COOPERATIVE BANK LTD </option><option value="32e64543-8340-4ce4-93a9-ea7d9fa8f0cf" class="ng-star-inserted"> TJSB SAHAKARI BANK LTD. </option><option value="ff0d67ae-2d93-4449-8bde-cfac9d78bc7b" class="ng-star-inserted"> TUMKUR GRAIN MERCHANTS COOPERATIVE BANK LTD., </option><option value="ed96a34d-b6fb-44d0-ba29-d5e0d1b1d3ac" class="ng-star-inserted"> UBS AG </option><option value="215d74e1-6186-48e8-8610-0e3dbfab339b" class="ng-star-inserted"> UCO BANK </option><option value="5963afdf-4bd9-4565-934b-7c466bef3eb6" class="ng-star-inserted"> UNION BANK OF INDIA </option><option value="d735afc4-1862-40ac-8f3f-38315c301a08" class="ng-star-inserted"> UNITED BANK OF INDIA </option><option value="230d7737-f267-4bdc-830b-c6e3e428ca4b" class="ng-star-inserted"> UNITED OVERSEAS BANK </option><option value="b590449f-a640-4efb-b896-5cf8524ebe8e" class="ng-star-inserted"> VASAI VIKAS SAHAKARI BANK LTD. </option><option value="0c5d5791-2cd6-472a-94e3-84a964a6d985" class="ng-star-inserted"> VIJAYA BANK </option><option value="561d9998-b6c1-4f7c-b6c9-7988fe18d581" class="ng-star-inserted"> WEST BENGAL STATE COOPERATIVE BANK </option><option value="c6d7b645-0e72-4b47-9720-c2f2479b6105" class="ng-star-inserted"> WESTPAC BANKING CORPORATION </option><option value="9c3d6a5b-a221-4bc8-b00d-3749e53740fd" class="ng-star-inserted"> WOORI BANK </option><option value="fd196c26-b748-41fe-95e1-2f5d6d288123" class="ng-star-inserted"> YES BANK LTD </option><option value="1d8fe126-e1bc-4e1f-ac69-f4ead4d61bd9" class="ng-star-inserted"> ZILA SAHKARI BANK LTD GHAZIABAD </option></select>
+                            </select>
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="account_num" class="form-label name">Account No.</label>
+                              <input type="text"  id="account_num" class="form-control" placeholder="Enter A/C No." aria-label="gstno" aria-describedby="basic-addon1" style="margin-left:50px;" name="acc_num">
+
+                         </div>
+                        <div class="input-group mb-3">
+                            <label for="actype" class="form-label name">Account Type</label>
+                            <select id="actype" class="form-select" aria-label="Default select example" style="margin-left:42px;" name="acc_type">
+                              <option selected disabled><span>Select Account Type</span></option>
+                              <option value="Current Account">CURRENT ACCOUNT</option>
+                              <option value="OD Account">OD ACCOUNT</option>
+                              <option value="CC Account">CC ACCOUNT</option>
+                              <option value="Saving Account">SAVING ACCOUNT</option>
+                            </select>
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:170px">Add Account</button></div>
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">Bank</th>
+                                <th style="border-bottom:none;">Account No.</th>
+                                <th style="border-bottom:none;">Account Type</th>
+
+
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in bankstatement %}
+                            <tr>
+                                <td >{{ i.bank_name }}</td>
+                                <td >{{ i.AC_No }}</td>
+                                <td >{{ i.AC_Type }}</td>
+                            </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-------------TABLE2----------------->
+            <div class="row row1">
+                <button type="button" class="btn btn-dark col-sm-3 col-md-3 " data-bs-toggle="modal" data-bs-target="#exampleModal1">UPLOAD NEW STATEMENT</button>
+                <h6 class="col-md-6" >BANK STATEMENTS</h6>
+                <!-- Button trigger modal -->
+<!--                -->
+             </div>
+
+<!--             Modal FOR UPLOADING STATEMENT-->
+            <div class="modal fade modal2" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <div><h6  class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;BANK STATEMENTS</h6>
+                        <h6 class="cls1">Upload Bank Statement</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+                    <div></div>
+                    <div class="modal-body" >
+                        <form method="post" action="{% url 'bank_statement_details' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input value="detail" type="hidden" name="statement">
+                        <div class="input-group mb-3">
+                            <label for="bankac" class="form-label name">Select Account</label>
+                            <select class="form-select selgst" id="bankac" aria-label="Default select example" style="margin-left:55px;" name="bankacno">
+                                  <option selected><span>Select Account</span></option>
+                                  {% for  i  in bankstatement %}
+                                  <option value="{{ i.AC_No }}">{{ i.AC_No }}</option>
+                                  {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="fromdate" class="form-label name sss">From Date</label>
+                              <input type="date" id="fromdate" class="form-control disableFuturedate" placeholder="DD/MM/YYYY" aria-label="fromdate" aria-describedby="basic-addon1" style="margin-left:80px;width:10px;" name="fromDate">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="todate" class="form-label name ">To Date</label>
+                              <input type="date" id="todate" class="form-control" placeholder="DD/MM/YYYY" aria-label="todate" aria-describedby="basic-addon1" style="margin-left:100px;width:10px;" name="to_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label name" >Upload Statement</label>
+                            <input class="form-control" type="file" id="formFile" style="margin-left:150px;width:320px;margin-top:-35px;" name="statement">
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:170px">Upload Statement</button></div>
+                        </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10  table  tbl1"  >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">A/C No.</th>
+                                 <th style="border-bottom:none;">From Date</th>
+                                <th style="border-bottom:none;">To Date</th>
+                                <th style="border-bottom:none;">Statement PDF</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in bank_statement_details %}
+                            <tr>
+                                <td >{{ i.AC_No }}</td>
+                                <td >{{ i.from_date }}</td>
+                                <td >{{ i.To_date }}</td>
+<!--                                <td>#</td>-->
+                                {% if i.input_file %}
+                                    <td ><a href="{{i.input_file.url}}" download><i class="far fa-file-pdf"></i></a></td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--    CODE FOR TERMS AND CONDITIONS-->
+<!--            <div class="row" style="margin-top:30px;margin-left:40px;" >-->
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+<!--            </div>-->
+<!--            <div class="row history" style="margin-top:50px;">-->
+<!--                <div class="col-md-8" style="margin-left:40px;">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+<!--                <div class="col-2"><button type="button" class="btn btn-outline-primary"  >Save Data</button></div>-->
+<!--            </div>-->
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                 $("#account_num").change(function () {
+                 var account_num = $(this).val();
+                 console.log(account_num.length)
+                 if(account_num.length < 11 || account_num.length > 17){
+                    $("#account_num").val("");
+                    alert("Invalid Account No.");
+                    }
+                });
+
+            });
+        </script>
+        {% endblock content %}

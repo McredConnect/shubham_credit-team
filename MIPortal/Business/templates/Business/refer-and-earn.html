@@ -1,0 +1,137 @@
+{% extends "business/index.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <!-- <title>Current Deals</title> -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="{% static '/css/business/refer-and-earn.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<script src="{% static '/js/business/help.js' %}"></script>
+<script src="{% static '/js/business/transactions.js' %}"></script>
+</head>
+
+<body>
+  <!-- Page content -->
+  <div class="refer-and-earn">
+    <div class="container-fluid">
+      <div class="col-md-12">
+        <h6 class="titl">MCRED BUSINESS &nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg> </span>&nbsp;REFER AND EARN</h6>
+        <br>
+        <div class="row" style="margin-left:5vw;">
+          <div class="col-md-12">
+            <h5>Invite a business to MCred and get your next transaction fee waived off</h5>
+            <h6><span style="color: #F79421;">Your friend also gets their first transaction fee waived off</span></h6>
+            <br>
+          </div>
+          <!-- 3 cards -->
+          <div class="row">
+            <div class="col-md-4" style="margin-bottom: 4vh;">
+              <div class="card-body text-center" id="card1">
+                <br>
+                <img src="{% static '/images/refer-and-earn/image-1.png' %}" width="150px" height="150px" alt="">
+                <hr>
+                <h5>1</h5>
+                <h6>Refer a friend to invest on MCred Platform</h6>
+              </div>
+            </div>
+            <div class="col-md-4" style="margin-bottom: 4vh;">
+              <div class="card-body text-center" id="card1">
+                <br>
+                <img src="{% static '/images/refer-and-earn/image-2.png' %}" width="150px" height="150px" alt="">
+                <hr>
+                <h5>2</h5>
+                <h6>Once your friend invests, your next transaction fee is waived off</h6>
+              </div>
+            </div>
+            <div class="col-md-4" style="margin-bottom: 4vh;">
+              <div class="card-body text-center" id="card1">
+                <br>
+                <img src="{% static '/images/refer-and-earn/image-3.png' %}" width="150px" height="150px" alt="">
+                <hr>
+                <h5>3</h5>
+                <h6>Your friend gets their first transaction fee waived off as well</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <!-- Share Referral -->
+        <div class="row" style="margin-left:5vw;">
+          <h5>Share Your Referral Link</h5>
+          <div class="col-md-7" >
+            <div class="card-body" id="card1">
+              <p><span>INVITE BY EMAIL </span> (Invite Upto 5 friends)</p>
+              <div class="row">
+                <div class="col-md-8">
+                  <input type="text" name="email-invite" id="email-invite" placeholder="abc@email.com, xyz@email.com">
+                </div>
+                <div class="col-md-4">
+                  <button type="button" style=" background-color: #F79421; border: none; padding: 5px 30px;"
+                    class="btn btn-primary">INVITE</button>
+                </div>
+              </div>
+              <p><span>INVITE BY SMS </span> (Invite Upto 5 friends)</p>
+              <div class="row">
+                <div class="col-md-8">
+                  <input type="text" name="sms-invite" id="sms-invite" placeholder="+91987XXXXXX, +91876XXXXXX">
+                </div>
+                <div class="col-md-4">
+                  <button type="button" style=" background-color: #F79421; border: none; padding: 5px 30px;"
+                    class="btn btn-primary">INVITE</button>
+                </div>
+              </div>
+              <p><span>COPY URL </span> (Copy your unique URL)</p>
+              <div class="row">
+                <div class="col-md-8">
+                  <input type="text" name="url-invite" id="url-invite" placeholder="http://mcred.com/ahr61hc9iq">
+                </div>
+                <div class="col-md-4">
+                  <button type="button" style=" background-color: #F79421; border: none; padding: 5px 30px;"
+                    class="btn btn-primary">INVITE</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- Referred Users -->
+          <div class="col-md-5">
+            <div class="card-body text-center" id="card1">
+              <h6>NUMBER OF REFERRED USERS</h6>
+              <div class="card-body text-center" id="card2">
+                <h5>6</h5>
+              </div>
+              <br>
+              <h6>FREE TRANSACTIONS LEFT</h6>
+              <div class="card-body text-center" id="card2">
+                <h5>6</h5>
+              </div>
+              <br>
+              <div class="text-center">
+                <h6 style="font-weight: bold;">Have More Questions?</h6>
+                <h6 style="color: #F79421;font-weight: bold;">Check Out FAQs</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+{% endblock content %}

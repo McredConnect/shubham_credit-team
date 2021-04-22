@@ -1,0 +1,55 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business/index.html" %}
+{% block content %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/business/help-and-support.css' %}">
+</head>
+<div class="help">
+  <div class="head1">MCRED INVESTOR &nbsp;<span>></span>&nbsp;HELP AND SUPPORT</div>
+  <div class="head2">Frequently Asked Questions</div>
+  <div class="row">
+    <div class="col-md-8 accordion" id="accordionExample">
+      {% for i in data %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{forloop.counter}}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo{{forloop.counter}}" aria-expanded="false" aria-controls="collapseTwo">
+            {{i.question}}
+          </button>
+        </h2>
+        <div id="collapseTwo{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {{i.answer}}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-md-4 card text-center">
+      <div class="card-header" style="margin-left:-13px;margin-right:-13px;">Contact Us</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <img class="img2" src="{% static '/images/contact/Layer_x0020_1.svg' %}">
+          </div>
+          <div class="col-md-10">
+            <h6>support@mcred.co</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <img class="img1" src="{% static '/images/contact/call.svg' %}">
+          </div>
+          <div class="col-md-10">
+            <h6>1800-123-456</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

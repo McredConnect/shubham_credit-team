@@ -1,0 +1,253 @@
+.card{
+    margin-left:50px;
+    margin-top:50px;
+}
+
+.main{
+    margin:70px 10px 70px 10px;
+}
+.row1 h6{
+    font: normal normal 600 14px/20px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+    margin-bottom:-30px;
+}
+.btn-dark{
+    text-align: center;
+    font: normal normal 600 12px/17px Open Sans;
+    letter-spacing: 1.4px;
+    color: #FFFFFF;
+    opacity: 1;
+    margin-left:725px;
+}
+
+/*.btn2{
+    margin-left:700px;
+}*/
+
+
+/*------CSS FOR TABLE1 -----------*/
+.tbl1{
+    margin-top:10px;
+    margin-left:5px;
+}
+
+.table{
+    border-collapse:collapse;
+}
+
+.tbl1 .thd{
+    background: #EFF3FA;
+    border-radius: 10px;
+    opacity: 1;
+    text-align: left;
+    font: normal normal 600 14px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    opacity: 1;
+}
+
+.tbl1 .tbdy {
+    text-align: left;
+    font: normal normal normal 14px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    opacity: 1;
+}
+
+/* CSS FOR  ADD NEW GST DETAILS MODAL */
+ .one{
+    text-align: left;
+    font: normal normal 700 12px/17px Open Sans;
+    letter-spacing: 1.6px;
+    color: #353535;
+    opacity: 1;
+    margin:20px;
+
+}
+ /*.modal-header{
+        padding:0px;
+}*
+
+/* .modal-header .btn-close {
+    padding: 15px;
+    font-size:10px;
+    color:#363636;
+
+}*/
+.form-select,.form-control {
+    background: #FFFFFF 0% 0% no-repeat padding-box !important;
+    border: 1px solid #DFDFDF !important;
+    border-radius: 5px !important;
+    opacity: 1;
+}
+
+ .addbtn {
+    background: #F79421 0% 0% no-repeat padding-box;
+    box-shadow: 3px 3px 6px #00000029;
+    border-radius: 5px;
+    opacity: 1;
+    border:none;
+    text-align: center;
+    font: normal normal 600 12px/25px Open Sans;
+    letter-spacing: 1.6px;
+    color: #FFFFFF;
+    text-transform:uppercase;
+    margin-left:0px;
+}
+
+.btn-primary:hover{
+    background-color:#FFA931;
+}
+
+.btn-primary:focus,.btn-primary:active:focus {
+    color: #fff;
+    background-color: #F79421;
+    border-color: #FFA931;
+    box-shadow: 0 0 0 0.25rem #FFA931 !important;
+}
+.btn-primary:active{
+    background-color: #F79421 !important;
+}
+
+ .cls1{
+    margin-left:20px;
+    font: normal normal normal 18px/10px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    opacity: 1;
+}
+
+.name{
+    margin-top:10px;
+    font: normal normal 600 13px/17px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+}
+
+
+
+/* CSS FOR GSTR-1 */
+
+
+/* CSS FOR TERMS AND CONDITIONS*/
+
+.form-check-label a{
+    color: #F79421;
+    text-decoration: none;
+
+}
+.form-check-label{
+    text-align: left;
+    font: normal normal normal 14px/26px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+}
+
+.form-check-input:checked {
+    background-color: #F79421;
+    border-color: #F79421;
+}
+
+.form-check-input:focus {
+    border-color:  #DFDFDF;
+    outline: 0;
+    box-shadow:none;
+}
+.history span{
+    text-align: left;
+    font: italic normal normal 16px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #AAAAAA;
+    opacity: 1;
+   /* margin-left:10px;
+    margin-top:30px;*/
+}
+.history .fa-history{
+    color: #AAAAAA;
+    opacity: 1;
+   /* margin-left:30px;
+    margin-top:20px;*/
+
+}
+
+.history .btn-outline-primary{
+    border: 2px solid #353535;
+    border-radius: 5px;
+    opacity: 1;
+    text-align: center;
+    font: normal normal 600 14px/15px Open Sans;
+    letter-spacing: 1.6px;
+    color: #353535;
+    text-transform: uppercase;
+    opacity: 1;
+    padding:12px;
+    margin-left:710px;
+   /* margin-top:7px;*/
+}
+
+.history .btn-outline-primary:hover {
+     background-color: transparent;
+ }
+
+.history .btn:focus{
+    box-shadow:none !important;
+}
+
+.history btn-outline-primary:focus {
+    box-shadow: none:
+}
+
+.history .btn-outline-primary:active {
+    background-color: transparent !important;
+    box-shadow:none !important;
+    color: #353535 !important;
+    border-color:#353535 !important;
+}
+.history .btn-outline-primary:active:focus {
+    box-shadow:none;
+    color: #353535;
+    background-color: transparent !important;
+    border-color: #353535;
+}
+.offset-1{
+        margin-left:16px;
+        overflow:hidden;
+    }
+/*#frmlbl{
+    text-align: left;
+    font: normal normal 600 14px/22px Open Sans;
+    letter-spacing: 0.32px;
+    color: #353535;
+    opacity: 1;
+    text-transform:uppercase;
+    margin-top:20px;
+}   */
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 550px){
+    .card {
+        margin-left:0px;
+        margin-top:60px;
+    }
+    .btn-dark{
+        margin-left:-25px;
+        width:250px;
+    }
+
+    .history .btn-outline-primary{
+        margin-top:-50px;
+        margin-left:400px;
+    }
+    .row1 h6{
+        margin-left:-40px;
+        margin-bottom:30px;
+    }
+}
+.fa-file-pdf{
+    font-size:20px;
+    margin-left:50px;
+    color:red;
+}

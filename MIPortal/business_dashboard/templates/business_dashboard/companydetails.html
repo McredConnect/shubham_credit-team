@@ -1,0 +1,199 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/companydetails.css' %}">
+            <script src="{% static '/javascript/companydetails.js' %}"></script>
+        </head>
+
+        <div class="card col-md-6 card2 active">
+            <form method="post" id="target" action="{% url 'company_details_two' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+            <div class="row cls1" style="margin-top:40px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="company name" class="form-label name">Company</label>
+                    <div class="input-group mb-3" ><input value="{{ company_name }}" name="company" id="company name" type="text" class="form-control inp1" placeholder="Enter Company Name" aria-label="Username" aria-describedby="basic-addon1"></div>
+                </div>
+                <div class="col-md-6">
+                   <label for="turnover" class="form-label name">TURNOVER &nbsp;(Rs. Cr.)</label>
+                   <div class="input-group mb-3" ><input value="{{ turnover }}" name="turnover" id="turnover" type="text" class="form-control inp1" placeholder="Enter Turnover" aria-label="turnover" aria-describedby="basic-addon1"></div>
+
+<!--                   <select id="turnover" class="form-select" name="turnover" aria-label="Default select example">-->
+<!--                          <option selected><span>Select</span></option>-->
+<!--                          <option value="1">One</option>-->
+<!--                          <option value="2">Two</option>-->
+<!--                          <option value="3">Three</option>-->
+<!--                   </select>-->
+                </div>
+            </div>
+            <div class="row cls1" style="margin-top:7px;">
+                <div class="col-md-6">
+                    <label for="ENTITY" class="form-label name">TYPE OF ENTITY</label>
+                    <select  id="entity"  class="form-select" name="entity" aria-label="Default select example" >
+                          <option selected value="{{ entity }}"><span>{{entity}}</span></option>
+                          <option value="Public Limited Company">Public Limited Company</option>
+                          <option value="HUF">HUF</option>
+                          <option value="LLP/Partnership form">LLP/Partnership form</option>
+                          <option value="Pvt. Ltd. Company">Pvt. Ltd. Company</option>
+                          <option value="Proprietorship">Proprietorship</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="cin_llp" class="form-label name">CIN/LLP</label>
+                    <div class="input-group mb-3" ><input id="cin_llp" value="{{ cin_llp }}" type="text" name="cin_llp" class="form-control inp1" placeholder="Enter CIN/LLP Number" aria-label="cin/llp" aria-describedby="basic-addon1"></div>
+                </div>
+            </div>
+            <div class="row cls1" style="margin-top:7px;">
+                <div class="col-md-6">
+                    <label for="SECTOR" class="form-label name">SECTOR</label>
+                    <select id="sector" class="form-select" aria-label="Default select example" name="sector" >
+                          <option  value="{{ sector }}"><span>{{ sector }}</span></option>
+                          <option value="One">One</option>
+                          <option value="Two">Two</option>
+                          <option value="Three">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row cls1" style="margin-top:7px;">
+                <div class="col-md-12 " >
+                    <label for="address" class="form-label name">Address</label>
+                    <div class="input-group mb-3" ><input id="address" value="{{ address1 }}" type="text" class="form-control inp2" placeholder="Address Line 1" aria-label="address1" aria-describedby="basic-addon1" name="address1"></div>
+                </div>
+            </div>
+
+            <div class="row cls1">
+                <div class="col-sm-4 col-md-8" >
+                    <div class="input-group mb-3" ><input type="text" value="{{ address2 }}"  class="form-control inp1" placeholder="Address Line 2" aria-label="address2" aria-describedby="basic-addon1" name="address2"></div>
+                </div>
+                <div class="col-md-4">
+                   <input type="text" class="form-control inp3" value="{{ pincode }}"  placeholder="Pin Code" aria-label="pincode" aria-describedby="basic-addon1" style="margin-left:0px;" name="pincode">
+                </div>
+            </div>
+            <div class="row cls1" style="margin-top:7px;">
+                <div class="col-md-6">
+                    <label for="city" class="form-label name">CITY</label>
+                    <div class="input-group mb-3" ><input type="text" value="{{ city }}" ID="city" class="form-control inp4" placeholder="Enter City" aria-label="city" aria-describedby="basic-addon1" name="city"></div>
+                </div>
+                <div class="col-md-6">
+                   <label for="state" class="form-label name">State</label>
+                   <select id="state" class="form-select" aria-label="Default select example" name="state" style="">
+                          <option selected value="{{ state }}"><span>{{ state }}</span></option>
+                          <option value="Andaman &amp; Nicobar Islands (35)">Andaman &amp; Nicobar Islands (35)</option><option value="Andhra Pradesh (New) (37)">Andhra Pradesh (New) (37)</option><option value="Andhra Pradesh (Old) (28)">Andhra Pradesh (Old) (28)</option><option value="Arunachal Pradesh (12)">Arunachal Pradesh (12)</option><option value="Assam (18)">Assam (18)</option><option value="Bihar (10)">Bihar (10)</option><option value="Chandigarh (4)">Chandigarh (4)</option><option value="Chhattisgarh (22)">Chhattisgarh (22)</option><option value="Dadra &amp; Nagar Haveli (26)">Dadra &amp; Nagar Haveli (26)</option><option value="Daman &amp; Diu (25)">Daman &amp; Diu (25)</option><option value="Delhi (7)">Delhi (7)</option><option value="Goa (30)">Goa (30)</option><option value="Gujarat (24)">Gujarat (24)</option><option value="Haryana (6)">Haryana (6)</option><option value="Himachal Pradesh (2)">Himachal Pradesh (2)</option><option value="Jammu &amp; Kashmir (1)">Jammu &amp; Kashmir (1)</option><option value="Jharkhand (20)">Jharkhand (20)</option><option value="Karnataka (29)">Karnataka (29)</option><option value="Kerala (32)">Kerala (32)</option><option value="Lakshadweep (31)">Lakshadweep (31)</option><option value="Madhya Pradesh (23)">Madhya Pradesh (23)</option><option value="Maharashtra (27)">Maharashtra (27)</option><option value="Manipur (14)">Manipur (14)</option><option value="Meghalaya (17)">Meghalaya (17)</option><option value="Mizoram (15)">Mizoram (15)</option><option value="Nagaland (13)">Nagaland (13)</option><option value="Orissa (21)">Orissa (21)</option><option value="Puducherry (34)">Puducherry (34)</option><option value="Punjab (3)">Punjab (3)</option><option value="Rajasthan (8)">Rajasthan (8)</option><option value="Sikkim (11)">Sikkim (11)</option><option value="Tamil Nadu (33)">Tamil Nadu (33)</option><option value="Telengana (36)">Telengana (36)</option><option value="Tripura (16)">Tripura (16)</option><option value="Uttar Pradesh (9)">Uttar Pradesh (9)</option><option value="Uttarakhand (5)">Uttarakhand (5)</option><option value="West Bengal (19)">West Bengal (19)</option></select>
+
+                   </select>
+                </div>
+            </div>
+            <div class="row cls1" style="margin-top:7px;">
+<!--                <div class="" >-->
+                    <label for="moa_aoa" class="form-label name ">UPLOAD MOA/AOA</label>
+                    <input class="form-control file "  type="file" id="moa_aoa" name="moa_aoa" accept=".jpeg, .png, .pdf" style="margin-left:15px;max-width:500px">
+                    {% if moa_aoa %}
+                    <label class="txt2 col-md-3"  ><a href="{{ moa_aoa.url }}"  target="_blank">View Uploaded File</a></label>
+                        {% else %}
+                    <label></label>
+                    {% endif %}
+                    <label for="moa_aoa" class="form-label txt1 col-12" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+<!--                </div>-->
+            </div>
+            <div class="row cls1" style="margin-top:7px;">
+<!--                <div class="col-md-5">-->
+                    <div class="row">
+                        <label for="coi" class="form-label name col-12">UPLOAD COI</label>
+                        <input class="form-control " style="margin-left:20px;max-width:500px" type="file" id="coi" name="coi" accept=".jpeg, .png, .pdf">
+
+                        {% if coi %}
+                        <label class="txt2 col-md-3" ><a href="{{ coi.url }}"  target="_blank">View Uploaded File</a></label>
+                            {% else %}
+                        <label></label>
+                        {% endif %}
+                        <label for="coi" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+                    </div>
+            </div>
+<!--                    </div>-->
+             <div class="row cls1" style="margin-top:7px;">
+<!--                <div class="col-md-5">-->
+                    <div class="row">
+                        <label for="add_proof" class="form-label name">UPLOAD ADDRESS PROOF</label>
+                        <input class="form-control "  style="margin-left:20px;max-width:500px" type="file" id="add_proof" name="add_proof" accept=".jpeg, .png, .pdf">
+                         {% if add_proof %}
+                        <label class="txt2 col-md-3" ><a href="{{ add_proof.url }}"  target="_blank">View Uploaded File</a></label>
+                            {% else %}
+                        <label></label>
+                        {% endif %}
+                        <label for="add_proof" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+                    </div>
+             </div>
+            <div class="row cls1" style="margin-top:10px;">
+                <div class="col-12">
+                  <label for="Textarea1" class="form-label name">ABOUT THE COMPANY</label>
+                  <textarea class="form-control"  id="Textarea1" rows="4" name="about" ></textarea>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <label for="formFile5" class="form-label name">UPLOAD BUSINESS PROFILE</label>
+                    <input class="form-control " value="" type="file" id="formFile5" name="about_file" accept=".jpeg, .png, .pdf" style="margin-left:8px;max-width:500px">
+                     {% if file %}
+                    <label class="txt2 col-3" ><a href="{{ file.url }}"  target="_blank">View Uploaded File</a></label>
+                        {% else %}
+                    <label></label>
+                    {% endif %}
+                    <label for="formFile5" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+                </div>
+            </div>
+
+            <div class="row check cls1" style="margin-top:7px;" >
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+            </div>
+            <div class="row history" style="margin-top:20px;">
+<!--                <div class="col-8">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+                <div class="col-3"><button type="submit"  class="btn btn-outline-primary">Save Data</button></div>
+            </div>
+            </form>
+        </div>
+
+
+
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
+    <script>
+        function clickSingleA(li)
+        {
+            items = document.querySelectorAll('.list-group-item.active');
+
+            if(items.length)
+            {
+                items[0].className = 'list-group-item';
+            }
+
+            li.className = 'list-group-item active';
+        }
+
+         document.getElementById('Textarea1').value="{{ about }}";
+
+
+         $("#cin_llp").change(function () {
+         var cin_llp = document.getElementById("cin_llp").value;
+         console.log(cin_llp)
+         if (cin_llp.length < 7 || cin_llp.length > 21 ){
+                alert("Please Enter Valid CIN/LLP Number");
+                }
+         });
+
+<!--    </script>
+{% endblock content %}
+
+<!--         $( "#target" ).submit(function( event ) {-->
+<!--              $(".com_details").css("display", "block");-->
+<!--              event.preventDefault();-->
+<!--            });-->

@@ -1,0 +1,156 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/userdetails.css' %}">
+<!--            <script src="{% static '/javascript/userdetails.js' %}"></script>-->
+        </head>
+        <div class="card col-sm-12 col-md-7">
+            <div class="main">
+            <div class="row row1" >
+                <h6 class="col-md-6">AUTHORISED USER DETAILS</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-3  col-md-3 " data-bs-toggle="modal" data-bs-target="#Modal">ADD USER DETAILS</button>
+             </div>
+
+            <!-- Modal FOR UploadING CREDIT RATING DETAILS-->
+
+            <div class="modal fade modal1" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;USER DETAILS</h6>
+                        <h6 class="cls1">Upload User Details</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                        <form method="post" enctype="multipart/form-data" action="{% url 'auth_userdetails' %}">
+                            {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <label for="name" class="form-label name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter Name" aria-label="name" aria-describedby="basic-addon1" style="max-width:300px;margin-left:120px;" name="name_of_person">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="designation" class="form-label name">Designation</label>
+                              <input type="text" id="designation" class="form-control" placeholder="Enter Designation" aria-label="designation" aria-describedby="basic-addon1" style="max-width:300px;margin-left:80px;" name="designation">
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="email" class="form-label name">Email</label>
+                              <input type="email" id="email" class="form-control" placeholder="Enter Your Email" aria-label="email" aria-describedby="basic-addon1" style="max-width:300px;margin-left:125px;" name="email">
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="telno" class="form-label name">Telephone Number</label>
+                              <input type="text" id="telno" class="form-control" placeholder="Enter Your Phone" aria-label="telno" aria-describedby="basic-addon1" style="max-width:300px;margin-left:30px;" name="phone">
+                        </div>
+
+                        <div class="input-group mb-3">
+
+                              <label for="mob" class="form-label name">Mobile Number</label>
+                              <input type="text" id="mob" class="form-control" maxlength="10"  placeholder="Enter Your Mobile" aria-label="telno" aria-describedby="basic-addon1" style="max-width:300px;margin-left:55px;" name="mobile">
+
+                        </div>
+
+                        <div class="input-group mb-3">
+                              <label for="location" class="form-label name">Location</label>
+                              <input type="text" id="location" class="form-control" placeholder="Enter Your Location" aria-label="telno" aria-describedby="basic-addon1" style="max-width:300px;margin-left:103px;" name="location">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile1" class="form-label name" >Upload PAN </label>
+                            <input class="form-control" type="file" id="formFile1" style="max-width:300px;margin-left:160px;margin-top:-33px;" name="pancard">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile2" class="form-label name"  >Upload Aadhaaar </label>
+                            <input class="form-control" type="file" id="formFile2" style="max-width:300px;margin-left:160px;margin-top:-33px;" name="aadhaar">
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:130px">UPLOAD DETAILS</button></div>
+
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+<!--                                <th style="border-bottom:none;">Serial No.</th>-->
+                                <th style="border-bottom:none;">Name Of The Person</th>
+                                <th style="border-bottom:none;">Designation</th>
+                                <th style="border-bottom:none;">Email</th>
+                                <th style="border-bottom:none;">Phone</th>
+                                <th style="border-bottom:none;">Mobile</th>
+                                <th style="border-bottom:none;">Location</th>
+                                <th style="border-bottom:none;">PAN Card</th>
+                                <th style="border-bottom:none;">Aadhaar Card</th>
+
+
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in user_details %}
+                                <tr>
+                                    <td>{{ i.name }}</td>
+                                    <td>{{ i.designation }}</td>
+                                    <td>{{ i.email }}</td>
+                                    <td>{{ i.phone }}</td>
+                                    <td>{{ i.mobile }}</td>
+                                    <td>{{ i.location }}</td>
+                                    {% if i.pan %}
+                                    <td><a href="{{ i.pan.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                                    {% else %}
+                                    <td></td>
+                                    {% endif %}
+                                    {% if i.aadhaar %}
+                                    <td><a href="{{ i.aadhaar.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                                    {% else %}
+                                    <td></td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+               <!--    CODE FOR TERMS AND CONDITIONS-->
+<!--            <div class="row" style="margin-top:30px;" >-->
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+<!--            </div>-->
+<!--            <div class="row history" style="margin-top:50px;">-->
+<!--                            <div class="col-md-8">-->
+<!--                                <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                                <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                            </div>-->
+<!--                            <div class="col-2"><button type="button" class="btn btn-outline-primary"  >Save Data</button></div>-->
+<!--                        </div>-->
+            </div>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    $("#mob").change(function () {
+                        var inputvalues = $(this).val();
+                          var regex = /[0-9]{10}$/;
+                          if(!regex.test(inputvalues)){
+                          $("#mob").val("");
+                          alert("Invalid Mobile No");
+                          return regex.test(inputvalues);
+                          }
+                    });
+                });
+
+            </script>
+{% endblock content %}

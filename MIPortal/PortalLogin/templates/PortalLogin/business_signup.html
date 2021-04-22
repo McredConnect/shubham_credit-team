@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Mamba Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="images/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/css/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static '/css/PortalLogin/business_signup.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v4.0.2
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body >
+ <!-- ======= Hero Section ======= -->
+    <section id="loginbanner" class="banner-section banner-loginset">
+        <div class="overlay"></div>
+        <div class="bussiness-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="investor-signup">
+                            <div class="loign-logo">
+                                <a href="{% url 'index1' %}"><img src="{% static '/images/portalLogin/Login-Page/icon/mcred-logo-transparent.png' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="investor-signup-conatin">
+                                <div class="row">
+                                    <div class="col-sm-4 hideResponsive">
+                                        <img src="{% static '/images/portalLogin/SignUp-Page/signup_image.JPG' %}" class="imgbannerTages">
+                                    </div>
+                                    <div class="col-sm-12 col-md-8">
+                                    <form method="post" id="signupform"  novalidate="novalidate">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="UserTypeId" value="9e8c1da9-9d38-426b-aea9-bb1267cebb2d">
+
+                                        <div class="signUpSectionAll">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-9">
+                                                    <h2 class="loginHeading" style="margin-bottom: 15px;">Sign Up
+                                                    </h2>
+                                                    <p class="signUPparagrap">Fill the details below and be a <span style="color:#F79421;">MCred Business!</span></p>
+                                                </div>
+                                                <div class="col-sm-12 col-md-3">
+                                                    <div class="form-group mred-group">
+                                                        <select id="sel2" class="form-select mred-lable-inp " onchange="location=this.value;">
+                                                            <option value="">Select</option>
+                                                            <option selected="selected" value="">Business</option>
+                                                            <option value="{% url 'mcred_partner_signup' %}">Partner</option>
+                                                            <option  value="{% url 'mcred_investor_signup' %}"><a href="/" >Investor</a></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">First Name<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control Mred-input01 firstname" placeholder="Enter First Name" name="FirstName">
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">Last Name<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control Mred-input01" placeholder="Enter Last Name" name="LastName">
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">Email<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control Mred-input01 email" placeholder="Enter Email" name="Email">
+                                                        {% if msg == 'user' %}
+                                                            {% for message in messages %}
+                                                            <div class="validate text-danger">{{message}}</div>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+											<div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">Password<span style="color:red">*</span></label>
+														<input type="password" class="form-control Mred-input" placeholder="Enter Password"  name="Password" id="Password" data-error="#errPassword">
+														<div class="input-group-append iconapprence iconForBussiness">
+															<div class="hides">
+																<span class="fa fa-fw fa-eye field-icon password-icon" onclick="myFunction()"></span>
+															</div>
+														</div>
+														<span id="errPassword" for="Password" class="validate text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">Confirm Password<span style="color:red">*</span></label>
+														<input type="password" id="confpw" class="form-control Mred-input" placeholder="Enter Confirm Password" name="ConfirmPassword" data-error="#errConfirmPassword">
+														<div class="input-group-append iconapprence iconForBussiness">
+															<div class="hides">
+																<span class="fa fa-fw fa-eye field-icon password-icon" onclick="myFunction1()"></span>
+															</div>
+														</div>
+														{% if msg == 'password' %}
+                                                            {% for message in messages %}
+                                                            <span id="errConfirmPassword" for="ConfirmPassword" class="validate text-danger">{{message}}</span>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+												<div class="col-sm-9">
+													<div class="form-group mred-groupSetb-0">
+														<label class="mred-lable-inp">Mobile Number<span style="color:red">*</span></label>
+														<div class="row">
+															<div class="col-sm-3 pr-0">
+																<select class="form-select mred-lable-inp setSignUPData" id="sel1">
+																	<option>+91</option>
+																</select>
+															</div>
+															<div class="col-sm-5 pr-0">
+																<input type="text" class="form-control Mred-input01 mobile-no" placeholder="Enter Mobile Number" name="MobileNo">
+																<span for="MobileOTP" class="validate text-danger span-mobile-otp"></span>
+															</div>
+															<div class="col-sm-3 pr-0">
+																<a class="sendOtpStyle">Resend OTP</a>
+															</div>
+														</div>
+														<div class="validate"></div>
+													</div>
+												</div>
+
+                                                <div class="col-sm-3">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">OTP<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control Mred-input01" placeholder="Enter OTP" name="MobileOTP">
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                             <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">Organization<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control Mred-input01" placeholder="Enter Organization Name" name="Organization">
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+												<div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">Turnover<span style="color:red">*</span></label>
+                                                         <select class="form-select mred-lable-inp setSignUPData" name="TurnoverID">
+                                                            <option value="">Select</option>
+                                                             {% for i in turnover%}
+                                                            <option value="{{i.value}}">{{i.value}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+												<div class="col-sm-12 col-md-12">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">PAN<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control Mred-input01" placeholder="Enter Organization PAN No." name="PAN">
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+											</div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">City<span style="color:red">*</span></label>
+                                                        <input type="text" class="form-control Mred-input01" placeholder="Enter City" name="City">
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group mred-group01">
+                                                        <label class="mred-lable-inp">State<span style="color:red">*</span></label>
+                                                        <select class="form-select mred-lable-inp setSignUPData" name="StateID" id="select-state">
+                                                            <option value="">Select</option>
+                                                             {% for state in states %}
+                                                             <option value="{{state.name}}">{{state.name}} &nbsp;({{state.code}})</option>
+                                                             {% endfor %}
+                                                        </select>
+                                                        <div class="validate"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group mred-group01">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input id="check" type="checkbox" value="" name="terms" data-error="#errTerms">
+                                                                <span class="SetCheckBoxItem">I have read &amp; agree to
+                                                                    the <a href="{% url 'mcred_terms_conditions' %}" style="color:#F79421;">Terms &amp;
+                                                                        Conditions</a> and <a href="{% url 'mcred_privacy_policy' %}" style="color:#F79421;">Privacy Policy</a> of
+                                                                    MCred.<span style="color:red">*</span></span>
+                                                            </label>
+                                                        </div>
+														<div id="errTerms" style="display: block;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 text-center">
+                                                    <span class="validate text-danger validation-summary"></span>
+                                                    <button disabled id="submit_btn" type="submit" class="Mred-submit-btn">Sign Up</button>
+                                                    <a href="{% url 'index1' %}">
+                                                        <button type="button" class="Mred-submit-btn">Cancel</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8O2BzNJl7lhNq7_gSWC7bTpPzwlMYzy7bI8DhwfKEO0veLkok080svjnUeS21g6BdQOlfkXU-KoUNK94duyUiA_WS44hOeSVS6o0n13rfiaMXdutK5LGcJvha4koHx9bKui_GjRhX1Wa5HPUopiU050"></form>
+                                </div>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <div class="footer-aboutus">
+                            <img src="{% static '/images/portalLogin/home/MCRED1.png' %}">
+                            <p>
+                                403, Peninsula Heights,
+                                C D Barfiwala Marg,<br>
+                                Juhu Lane,
+                                Andheri (W),
+                                Mumbai, Pin - 400058<br>
+                                Maharashtra
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-1 col-md-1"></div>
+                    <div class="col-sm-12 col-lg-7 col-md-7">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links">
+                                <div class="settextfloat">
+                                    <h4>Contact Us</h4>
+                                    <ul>
+                                        <li><a href="#">connect@mcred.com</a></li>
+                                        <li><a href="#"> Support - 797-7157-822 </a></li>
+                                        <li> <a href="#">Office - 797-7157-822</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-6 footer-links ">
+                              <div class="settextfloat">
+                                <h4>Customer Service</h4>
+                                <ul>
+                                  <li><a href="#">Pricing </a></li>
+                                  <li><a href="#">Contact</a></li>
+                                  <li> <a href="#">Us FAQs</a></li>
+                                </ul>
+                              </div>
+                            </div> -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Need Help?</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_privacy_policy' %}">Privacy Policy </a></li>
+                                        <li> <a href="{% url 'mcred_terms_conditions' %}">Terms &amp; Conditions </a></li>
+                                        <li> <a href="{% url 'mcred_faqs' %}">General FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Links</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_partner' %}">Partners </a></li>
+                                        <li> <a href="{% url 'mcred_business' %}">Businesses</a></li>
+                                        <li> <a href="{% url 'mcred_investor' %}">Investors</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lastsection">
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-links">
+                            <p class="settagfooter">© Copyright Secure. All rights reserved.</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-sociel">
+                            <ul>
+                                <li> <a target="_blank" href="https://www.instagram.com/mcre.d/"><i class="fab fa-instagram"></i></a></li>
+                                <li> <a target="_blank" href="https://www.linkedin.com/company/mcred/"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li> <a target="_blank" href="https://www.facebook.com/MCRED-102965945034452"><i class="fab fa-facebook-f"></i></a></li>
+                                <li> <a target="_blank" href="https://twitter.com/Mcred59369762"><i class="fab fa-twitter"></i></a></li>
+                                <li> <a target="_blank" href="https://www.youtube.com/channel/UC33RpFwzAndn3CCJr83jUbw?guided_help_flow=5"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div></footer>
+
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-angle-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/css/vendor/aos/aos.js' %}"></script>
+  <script src="{% static '/css/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/css/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static '/css/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static '/css/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static '/css/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static '/css/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/js/main.js' %}"></script>
+  <script>
+      function myFunction() {
+          var x = document.getElementById("Password");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+      }
+
+      function myFunction1() {
+          var x = document.getElementById("confpw");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+      }
+
+        var checker = document.getElementById('check');
+        var btn = document.getElementById('submit_btn');
+        console.log(checker.checked, btn);
+        checker.onchange = function() {
+          btn.removeAttribute("disabled");
+        };
+  </script>
+
+</body>
+
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

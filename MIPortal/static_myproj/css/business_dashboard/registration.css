@@ -1,0 +1,204 @@
+
+
+body{
+    background: #FAFAFA 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.navbar {
+    margin-top:0px;
+    padding:10px;
+    background: #182677;
+    border: none;
+    border-radius: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+.navbar-nav{
+    margin-left:1200px;
+    background:#111D5E;
+    width:auto;
+    padding:5px;
+    margin-top:-10px;
+    margin-bottom:-10px;
+
+}
+
+.navbar .dropdown-toggle{
+     color:#FFFFFF;
+     margin-left:5px;
+
+}
+
+.navbar img{
+   margin-top:8px;
+   margin-left:0px;
+}
+
+
+.user .form-select:focus {
+    border:none
+    outline: 0;
+    box-shadow: none;
+}
+
+.user{
+    background-color:#111D5E;
+    padding:5px;
+
+}
+
+/* CSS FOR CLASS REGISTER (MENU BAR) */
+/*.register{
+    border: 1px solid #EEEEEE;
+    border-radius: 10px;
+    opacity: 1;
+
+}
+
+.row {
+    --bs-gutter-x:0;
+}
+
+.register .list-group-item{
+    padding:15px;
+    border: 1px solid #EEEEEE;
+    text-decoration: none !important;
+
+}*/
+
+/*li.{
+    border-left:1px solid red;
+}*/
+
+
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  height:px;
+  background-color: #FFFFFF !important;
+  margin-top:50px;
+  border-radius:10px;
+  margin-left:250px;
+
+}
+
+
+
+#sidebar-wrapper .sidebar-heading {
+    text-align: left;
+    font: normal normal 600 16px/17px Open Sans;
+    letter-spacing: 1.6px;
+    color: #000000;
+    text-transform: uppercase;
+    opacity: 1;
+    padding:18px;
+}
+
+#sidebar-wrapper .list-group-item {
+    text-align: left;
+    font: normal normal normal 14px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #000000;
+    text-transform: capitalize;
+    opacity: 1;
+    padding:15px;
+}
+
+#sidebar-wrapper .list-group-item:active {
+    color:red
+}
+
+.list-group-flush .list-group-item {
+    border-right: 0;
+    border-left: 1 !important;
+    border-radius: 0;
+}
+.active{
+     border-left:3px solid red:
+     color:red;
+}
+/*#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}*/
+
+/* #sidebar-wrapper .active {
+    color: #111D5E;
+}*/
+
+.list-group-item.active {
+    z-index: 2;
+    color:#FFFFFF !important;
+    font-weight: bold !important;
+    background-color:#111D5E  !important;
+
+  /*  border-left:3px solid #111D5E !important;
+    border-top:2px solid #EEEEEE !important;  */
+
+}
+
+.list-group-item.active {
+    border-color: transparent;
+}
+
+.list-group-item-action:hover {
+    background:transparent;
+}
+.list-group-item:last-child {
+    border-bottom:transparent;
+}
+
+.bi-check-circle-fill{
+    margin-left:55px;
+    display:none;
+}
+
+.btn-primary{
+    background: #F79421 0% 0% no-repeat padding-box !important;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    opacity: 1;
+    border:none;
+    text-align: center;
+    font: normal normal 600 12px/30px Open Sans;
+    letter-spacing: 1.6px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    padding-left:50px;
+    padding-right:50px;
+    margin-left:-13px;
+
+}
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 550px){
+
+    #sidebar-wrapper{
+        margin-left:0px;
+    }
+
+    .navbar-nav{
+        margin-left:250px;
+
+
+    }
+    .navbar-nav img{
+        margin-left:-30px;
+    }
+    .dropdown-toggle{
+        margin-top:-33px;
+
+    }
+
+
+
+}

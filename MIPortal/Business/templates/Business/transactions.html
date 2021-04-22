@@ -1,0 +1,299 @@
+{% extends "business/index.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <!-- <title>Current Deals</title> -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="{% static '/css/business/transaction.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<script src="{% static '/js/business/help.js' %}"></script>
+<script src="{% static '/js/business/transactions.js' %}"></script>
+</head>
+
+<body>
+  <!-- Page content -->
+  <div class="transactions">
+    <div class="container-fluid">
+      <h6 class="titl">MCRED BUSINESS &nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg> </span>&nbsp;TRANSACTIONS</h6>
+      <br>
+      <div class="row">
+        <div class="col-md-8 mt-2 mb-1">
+          <div class="tab">
+            <a class="tablinks" id="btn1" onclick="showTable(event, 'live-invoices')">Live Invoices</a>
+            <a class="tablinks" id="btn2" onclick="showTable(event, 'financed-invoices')">Financed Invoices</a>
+          </div>
+        </div>
+        <div class="col-md-4 mt-1 mb-3">
+          <label>Sort By : &nbsp;&nbsp;</label>
+          <select id="sort_menu" style="width: 160px;" name="sort-by" onchange="sortTable()">
+            <option value="2">Entity</option>
+            <option value="3">Invoice amount</option>
+            <option value="8">Tenure</option>
+          </select>
+          <a onclick="rotateArrow()">
+            <div class="fa fa-arrow-up rotate" id="arrow"></div>
+          </a>
+        </div>
+      </div>
+      <div class="row mt-2 mb-2" id="live-invoices">
+        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+          <div class="card-body">
+            <h5 class="card-title">Live Invoices</h5>
+            <div class="table-responsive">
+              <table class="table" style="border-collapse:collapse">
+                <thead class="headt">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col" class="date">Upload Date</th>
+                    <th scope="col">Entity</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Finance Amount</th>
+                    <th scope="col">Fee</th>
+                    <th scope="col">Net Amount</th>
+                    <th scope="col">Tenure</th>
+                    <th scope="col">Rate of Interest</th>
+                    <th scope="col">View Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in data %}
+                  {% if i.8 > 0 %}
+                  <tr>
+                    <td>{{i.0|slice:":8"|upper}}</td>
+                    <td>{{i.1 }}</td>
+                    <td>{{i.2}}</td>
+                    <td>&#8377;{{i.3}}</td>
+                    <td>{{i.4}}%</td>
+                    <td>&#8377;{{i.5}}</td>
+                    <td>{{i.6}}%</td>
+                    <td>&#8377;{{i.7}}</td>
+                    <td>{{i.8}} Days</td>
+                    <td>{{i.9}}%</td>
+                    <td><a href="{% url 'transaction-details' pk=i.0 %}" style="color: blue;">Open</a></td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="financed-invoices">
+        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+          <div class="card-body">
+            <h5 class="card-title">Financed Invoices</h5>
+            <div class="table-responsive">
+              <table class="table" style="border-collapse:collapse">
+                <thead class="headt">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col" class="date">Upload Date</th>
+                    <th scope="col">Entity</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Finance Amount</th>
+                    <th scope="col">Fee</th>
+                    <th scope="col">Net Amount</th>
+                    <th scope="col">Tenure</th>
+                    <th scope="col">Rate of Interest</th>
+                    <th scope="col">View Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in data %}
+                  {% if i.8 < 1 %} <tr>
+                    <td>{{i.0|slice:":8"|upper}}</td>
+                    <td>{{i.1 }}</td>
+                    <td>{{i.2}}</td>
+                    <td>&#8377;{{i.3}}</td>
+                    <td>{{i.4}}%</td>
+                    <td>&#8377;{{i.5}}</td>
+                    <td>{{i.6}}%</td>
+                    <td>&#8377;{{i.7}}</td>
+                    <td>Already Matured</td>
+                    <td>{{i.9}}%</td>
+                    <td><a href="{% url 'transaction-details' pk=i.0 %}" style="color: blue;">Download</a></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <iframe width="0px" height="0px" onload="showTable(event, 'live-invoices')"></iframe>
+  </div>
+
+  <!-- Transaction Details Modal -->
+  <!-- <div id="invoiceModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Transaction Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="responsive-table">
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Invoice ID</div>
+              <div class="col-md-4" id="mod-heading">Transaction ID</div>
+              <div class="col-md-4" id="mod-heading">Date</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">IN12QWA543</div>
+              <div class="col-md-4" id="mod-content">TXN76AHW13HC4</div>
+              <div class="col-md-4" id="mod-content">11 November, 2020</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Entity</div>
+              <div class="col-md-4" id="mod-heading">Amount</div>
+              <div class="col-md-4" id="mod-heading">Discount</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">Oyo Hotels & Homes Pvt Ltd</div>
+              <div class="col-md-4" id="mod-content">T 1,52,320</div>
+              <div class="col-md-4" id="mod-content">12.5 %</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Amount Financed</div>
+              <div class="col-md-4" id="mod-heading">Platform Fee</div>
+              <div class="col-md-4" id="mod-heading">Other Fee</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">T 63,870</div>
+              <div class="col-md-4" id="mod-content">4.2 %</div>
+              <div class="col-md-4" id="mod-content">T 7,600</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Rate of Interest</div>
+              <div class="col-md-4" id="mod-heading">Interest Amount</div>
+              <div class="col-md-4" id="mod-heading">Investment</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">14.8 %</div>
+              <div class="col-md-4" id="mod-content">T 12,470</div>
+              <div class="col-md-4" id="mod-content">T 2,50,000</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Tenure</div>
+              <div class="col-md-4" id="mod-heading">Invoice File</div>
+              <div class="col-md-4" id="mod-heading">Other Documents</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">60 Days</div>
+              <div class="col-md-4" id="mod-content"><a href=""><span
+                    style="text-decoration: underline; color: blue;">View</span></a></div>
+              <div class="col-md-4" id="mod-content">None</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</body>
+
+<script>
+  var sortorder;
+  function getValue() {
+    if (document.getElementById("arrow").classList.contains("down"))
+      sortorder = 1;
+    else
+      sortorder = 0;
+  }
+  getValue();
+
+  function rotateArrow() {
+    document.getElementById("arrow").classList.toggle("down");
+    getValue();
+    console.log(sortorder)
+    sortTable();
+  }
+
+  function sortTable() {
+    var index = document.getElementById("sort_menu").value;
+    var table, rows, switching, i, x, y, shouldSwitch;
+    tables = document.getElementsByClassName("table");
+    for (t = 0; t < tables.length; t++) {
+      table = tables[t];
+      switching = true;
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          cell1 = rows[i].getElementsByTagName("TD")[index];
+          cell2 = rows[i + 1].getElementsByTagName("TD")[index];
+          // Entity
+          if (index == "2") {
+            x = cell1.innerHTML.toLowerCase()
+            y = cell2.innerHTML.toLowerCase()
+          }
+          // Invoice Amount
+          else if (index == "3") {
+            x = parseFloat(cell1.innerHTML.substring(1));
+            y = parseFloat(cell2.innerHTML.substring(1));
+          }
+          // Maturity Date or Indicative Yield
+          else if (index == "8") {
+            x = parseInt(cell1.innerHTML.split(" ")[0]);
+            y = parseInt(cell2.innerHTML.split(" ")[0]);
+          }
+          // % Funded
+          // else if (index == "8") {
+          //   x = parseFloat(cell1.querySelectorAll("p")[0].innerHTML);
+          //   y = parseFloat(cell2.querySelectorAll("p")[0].innerHTML);
+          //   console.log('x=', x)
+          //   console.log('y=', y)
+          // }
+          if (sortorder == 0) {
+            if (x > y) {
+              shouldSwitch = true;
+              break;
+            }
+          }
+          else {
+            if (x < y) {
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+  }
+</script>
+
+</html>
+
+{% endblock content %}

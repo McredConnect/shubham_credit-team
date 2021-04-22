@@ -1,0 +1,206 @@
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    background:#FFFFFF;
+}
+
+
+.help .head1{
+    text-align: left;
+    font: normal normal 600 14px/17px Open Sans;
+    letter-spacing: 1.4px;
+    color: #353535;
+    opacity: 1;
+    margin-top:-10px;
+}
+.head1 span{
+    color:#F79421;
+    font-size:15px;
+
+}
+.head2{
+    text-align: left;
+    font: normal normal bold 24px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    opacity: 1;
+    margin-top:40px;
+}
+
+.accordion{
+    margin-top:40px;
+    border:None;
+}
+
+.accordion-button{
+    border:None;
+    text-align: left;
+    font: normal normal 600 16px/32px Open Sans;
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+}
+
+.accordion-body{
+    text-align: left;
+    font: normal normal normal 18px/36px Open Sans;
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+}
+
+a:hover,a:focus{
+    text-decoration: none;
+    outline: none;
+}
+
+#accordion .panel{
+    border: none;
+    border-radius: 0;
+    margin-bottom: 5px;
+    box-shadow: none;
+}
+#accordion .panel-heading{
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    position: relative;
+    width:auto;
+}
+#accordion .panel-title a{
+    display: block;
+    padding: 20px 30px;
+    margin: 0;
+    background: None;
+    font-size: 17px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+#accordion .panel-title a:before,
+#accordion .panel-title a.collapsed:before{
+    content:"";
+    width: 20px;
+    height: 2px;
+    background:None;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+#accordion .panel-title a:after,
+#accordion .panel-title a.collapsed:after{
+    content: "\2212";
+    width: 2px;
+    height: 20px;
+    background: None;
+    position: absolute;
+    bottom: 18px;
+    right: 39px;
+    transition: all 0.3s ease 0s;
+
+
+}
+#accordion .panel-title a:after{ height: 0; }
+#accordion .panel-body{
+    padding: 20px 30px;
+    background: None;
+    border-top: 2px solid #000;
+    /*font-size: 15px;
+    color: #f9e2ad;
+    line-height: 28px;
+    letter-spacing: 1px;*/
+    border:none;
+}
+
+
+.accordion-button:not(.collapsed) {
+   color: #363636;
+   background-color: #FFFFFF;
+}
+
+.accordion-collapse {
+     border: None;
+
+}
+
+.accordion-header:focus{
+    border:none;
+    }
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: auto;
+    content: "\002B";
+    background-image: url('static/images/plus.svg');
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform .2s ease-in-out;
+    font-size:25px;
+    color:#F79421;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url('static/images/dash.svg');
+    content: "\2212";
+    font-size:25px;
+    margin-left: auto;
+    color:#F79421;
+}
+/*--------------CONTACT US-------------*/
+
+.card{
+    height:150px;
+    border: 2px solid #CCCCCC;
+    border-radius: 10px;
+    opacity: 1;
+}
+.card .card-body .card-header{
+    text-align: center;
+    font: normal normal 600 18px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    text-transform: capitalize;
+    opacity: 1;
+
+}
+
+.card .img1{
+   height:20px;
+   width:20px;
+   margin-left:3px;
+   background: #F79421;
+   -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+
+.list-group-item{
+    border:none;
+}
+
+.list-group-item h6{
+    text-align: left;
+    font: normal normal normal 18px/17px Open Sans;
+    letter-spacing: 0.72px;
+    color: #353535;
+    opacity: 1;
+}
+
+
+/*--------MEDIA QUERIES----------*/

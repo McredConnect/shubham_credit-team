@@ -1,0 +1,16 @@
+table{
+  border-bottom: thin solid #FFA931 !important;
+
+}
+
+th{
+  text-align: center;
+  font: normal normal 900 14px/15px Open Sans;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+  background: #182677 !important;
+  border: 1px;
+  opacity: 1;
+  height:50px;
+}

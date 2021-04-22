@@ -1,0 +1,123 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/pandetails.css' %}">
+            <script src="{% static '/javascript/pandetails.js' %}"></script>
+        </head>
+        <div class="card col-sm-12 col-md-6">
+            <form method="post" action="{% url 'pan_details' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+            <div class="row row1">
+                <div class="cls1">
+                    <label for="pan" class="form-label name">PAN</label>
+                    <div class="input-group mb-3" ><input type="text" value="{{ pan_num }}" id="pan" class="form-control inp1" placeholder="Enter your PAN" aria-label="pan" aria-describedby="basic-addon1" name="pan_num"></div>
+                </div>
+            </div>
+            <div class="row row2">
+                <div class=" cls1 col-12 ">
+                    <label for="formFile" class="form-label name">PAN CARD PHOTO</label><br>
+                    <label for="formFile" class="form-label txt">Upload a scanned copy of your PAN Card with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control " value="{{ pan_card }}" type="file" id="formFile" accept=".pdf,.jpeg,.png,.jpg" name="pan_card">
+                    {% if pan_card %}
+                    <label class="form-label txt2"><a href="{{ pan_card.url }}" target="_blank">View Uploaded File</a></label>
+<!--                    <label for="formFile" class="form-label txt1" style="margin-left:10px;">(View File)</label>-->
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+                </div>
+                <label for="formFile" class="form-label txt1" style="margin-left:20px;">jpeg, png, pdf format supported</label>
+                <div  class="">
+
+                </div>
+            </div>
+<!--            <div class="row history" style="margin-top:20px;">-->
+<!--                <div class="col-12"><button type="submit" class="btn btn-outline-primary"  style="float:right;margin-right:50px;">Save Data</button></div>-->
+<!--            </div>-->
+<!--            </form>-->
+<!--            <form method="post" action="{% url 'pan_details' %}" enctype="multipart/form-data">-->
+<!--                {% csrf_token %}-->
+            <div class="row row1">
+                <div class="cls1">
+                    <label for="aadhaar" class="form-label name">UDHYOG AADHAAR</label>
+                    <div class="input-group mb-3" ><input type="text" id="aadhaar" value="{{ aadhaar_num }}" class="form-control inp1" placeholder="XXXX-XXXX-XXXX" aria-label="pan" aria-describedby="basic-addon1" name="aadhaar_num"></div>
+                </div>
+            </div>
+            <div class="row row2">
+                <div class=" cls1 col-12 ">
+                    <label for="formFile1" class="form-label name ">+UDHYOG AADHAAR CARD PHOTO</label><br>
+                    <label for="formFile1" class="form-label txt ">Upload a scanned copy of your Aadhaar Card with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control " value="{{ aadhaar_card }}" type="file" id="formFile1" accept=".pdf,.jpeg,.png,.jpg" name="aadhaar_card">
+                    {% if aadhaar_card %}
+                    <label class="form-label txt2"><a href="{{ aadhaar_card.url }}"  target="_blank">View Uploaded File</a></label>
+<!--                    <label for="formFile" class="form-label txt1" style="margin-left:10px;">(View File)</label>-->
+                    {% else %}
+                    <label></label>
+                    {% endif  %}
+                </div>
+                 <label for="formFile" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+                <div  class="">
+
+                </div>
+            </div>
+<!--            <div class="row cls3">-->
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+<!--            </div>-->
+            <div class="row history" style="margin-top:20px;">
+                <div class="col-12"><button type="submit" class="btn btn-outline-primary"  style="float:right;margin-right:50px;">Save Data</button></div>
+            </div>
+<!--            <div class="row history">-->
+<!--                <div class="col-8" style="margin-top:150px;margin-bottom:50px;margin-left:40px;">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+<!--            </div>-->
+            </form>
+        </div>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+    $("#pan").change(function () {
+    var inputvalues = $(this).val();
+      var regex = /[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+      if(!regex.test(inputvalues)){
+      $("#pan").val("");
+      alert("Invalid PAN No");
+      return regex.test(inputvalues);
+      }
+    });
+
+     $("#aadhaar").change(function () {
+    var inputvalues = $(this).val();
+      var regex = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+      if(!regex.test(inputvalues)){
+      $("#aadhaar").val("");
+      alert("Invalid Aadhaar No");
+      return regex.test(inputvalues);
+      }
+    });
+
+});
+</script>
+{% endblock content %}

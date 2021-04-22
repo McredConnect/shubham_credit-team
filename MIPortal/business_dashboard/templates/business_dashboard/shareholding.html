@@ -1,0 +1,119 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/shareholding.css' %}">
+            <script src="{% static '/javascript/shareholding.js' %}"></script>
+        </head>
+        <div class="card col-sm-12 col-md-6">
+            <div class="main">
+            <div class="row row1" >
+                <h6 class="col-md-6">SHARE HOLDING DETAILS</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-4  col-md-4 " data-bs-toggle="modal" data-bs-target="#Modal">ADD SHARE HOLDING DETAILS</button>
+             </div>
+
+            <!-- Modal FOR UploadING CREDIT RATING DETAILS-->
+
+            <div class="modal fade modal1" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;SHARE HOLDING</h6>
+                        <h6 class="cls1">Upload Share Holding Details</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                         <form method="post" action="{% url 'shareholding_two' %}" enctype="multipart/form-data">
+                             {% csrf_token %}
+                             <div class="input-group mb-3">
+                                <label for="name" class="form-label name">Name of The Share Holder</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter Name" aria-label="name" aria-describedby="basic-addon1" style="max-width:280px;margin-left:10px;" name="sname">
+                             </div>
+                             <div class="input-group mb-3">
+                                  <label for="percentage" class="form-label name">Share Holding (%)</label>
+                                  <input type="text" id="percentage" class="form-control" placeholder="Enter Percentage Share Holding" aria-label="rating" aria-describedby="basic-addon1" style="max-width:280px;margin-left:65px;" name="percentage">
+                             </div>
+                             <div class="mb-3">
+                                <label for="formFile" class="form-label name" id="frmlbl" >Upload Share Holding <br></br>Details</label>
+                                <input class="form-control" type="file" id="formFile" style="max-width:280px;margin-left:190px;margin-top:-60px;" name="uploaded_file">
+                             </div>
+                             <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:130px">UPLOAD DETAILS</button></div>
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+<!--                                <th style="border-bottom:none;">Serial No.</th>-->
+                                <th style="border-bottom:none;">Name Of The Share Holder</th>
+                                <th style="border-bottom:none;">Share Holding (%)</th>
+                                <th style="border-bottom:none;">Uploaded File</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in shareholding %}
+                                <tr>
+<!--                                    <td >1</td>-->
+                                    <td >{{ i.nameofshareholder }}</td>
+                                    <td >{{ i.percentage_of_shareholding }}</td>
+                                    {% if i.input_file %}
+                                    <td ><a href="{{ i.input_file.url }}" download=""><i class="far fa-file-pdf"></i></a></td>
+                                    {% else %}
+                                    <td></td>
+                                    {% endif %}
+
+<!--                                    {% if i.input_file %}-->
+<!--                                       <td ><a href="{{ i.input_file.url }}" download="">{{ i.input_file }}</a></td>-->
+<!--                                    {% else %}-->
+<!--                                       <td></td>-->
+<!--                                    {% endif %}-->
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+            <form method="post" action="{% url 'directors' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+<!--                <div class="mb-3">-->
+<!--                    <label for="formFile" class="form-label" id="frmlbl" >Upload Share Holding Details</label>-->
+<!--                    <input class="form-control" type="file" id="formFile" style="" name="uploaded_file">-->
+<!--                </div>-->
+
+
+
+            <!--    CODE FOR TERMS AND CONDITIONS-->
+            <div class="row" style="margin-top:30px;margin-left:40px;">
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+            </div>
+            <div class="row history" style="margin-top:20px;">
+<!--                <div class="col-md-8" style="">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+<!--                <div class="col-3"><button type="submit"  class="btn btn-outline-primary">Save Data</button></div>-->
+            </div>
+            </form>
+            </div>
+        </div>
+
+{% endblock content %}

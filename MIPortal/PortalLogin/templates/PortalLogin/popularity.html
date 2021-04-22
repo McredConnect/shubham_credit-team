@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load static %}
+<link href="{% static '/css/PortalLogin/blogs.css' %}" rel="stylesheet">
+</head>
+<body>
+{% for i in posts %}
+        <div class="container-fluid " id="filter" >
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>{{ i.title }}</h4>
+                    <img src="{{i.image.url}}" alt="" height="210">
+                </div>
+                  <div class="col-md-6">
+                      <div class="right-content">
+                        <p>{{i.description|truncatechars:400}}</p>
+                    </div>
+                  </div>
+                  <div class="bottom col-12">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item l1"><button><img src="{% static '/images/portalLogin/Blog-Page/like.png' %}" height="22" width="22"></button><span class="likes_count">{{i.likes.all.count}}</span></li>
+                        <li class="list-group-item l2"><span class="name">{{ i.author }} </span> </li>
+                        <li class="list-group-item l3"><span class="date">{{ i.created_date }}</span></li>
+                        <li class="list-group-item l4"><span class="categ">{{ i.category }}</span></li>
+                        <li class="list-group-item l5"><a class="fullblog" href="{% url 'mcred_detailed_blog' i.id %}">READ BLOG &nbsp;<i class="fas fa-arrow-right"></i></a></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+{% endfor %}
+
+<div class="row">-->
+        <div class="col-4 page">
+            <div class="row">
+                <div class="pagination">
+                    {% if posts_pagination.has_previous %}
+                        <a class="page-link previous pagination-action" href="?page={{ posts_pagination.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fas fa-angle-left" style="color:#F79421;"></i></span>
+                         </a>
+                        {% else %}
+                          <a class="page-link previous pagination-action disabled" href="" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fas fa-angle-left" style="color:#F79421;"></i></span>
+                          </a>
+                    {% endif %}
+                    {% for num in posts_pagination.paginator.page_range %}
+                        {% if posts_pagination.number == num %}
+                    <span class="pagination-number pagination-current page-link previous">{{ num }}</span>
+                        {% elif num > posts_pagination.number|add:'-3' and num < posts_pagination.number|add:'3' %}
+                          <a class="pagination-number page-link" href="{% url 'filter_data'%}?page={{ num }}"> {{ num }} </a>
+
+                        {% endif %}
+
+
+                    {% endfor %}
+
+                    {% if posts_pagination.has_next %}
+                          <a class="page-link next pagination-action" href="?page={{ posts_pagination.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true"><i class="fas fa-angle-right" style="color:#F79421;"></i></span>
+                          </a>
+                    {% else %}
+                          <a class="page-link next pagination-action disabled" href="" aria-label="Next">
+                            <span aria-hidden="true"><i class="fas fa-angle-right" style="color:#F79421;"></i></span>
+                          </a>
+
+                    {% endif %}
+                </div>
+                 <div class="mb-3 col-4 div">
+                      <form method="post" action="{%url 'filter_data' %}">
+                      {% csrf_token %}
+                     <div class="row" style="margin-top:;">
+
+                             <label for="" class="col-8 form-label">Go To Page</label>
+                             <input type="text" class="col-1 form-control box" id="" value="" name="num" style="width:45px;height:25px;">
+                             <button class="gobtn" type="submit"><span>Go <i class="fas fa-angle-right" ></i></span></button>
+
+                     </div>
+                           </form>
+
+                 </div>
+            </div>
+        </div>
+  </div>
+
+</body>
+</html>

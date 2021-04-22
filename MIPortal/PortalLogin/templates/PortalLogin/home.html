@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MCRED</title>
+  <meta content="Mcred is an invoice discounting platform providing solutions for business, MSMEs, Investors & Partners." name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static '/images/portalLogin/home/MCRED@2x.png' %}" rel="icon">
+  <link href="{% static '/images/portalLogin/home/MCRED@2x.png' %}" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/css/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static '/css/PortalLogin/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v4.0.2
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="far fa-envelope" style="color:#353535"></i>&nbsp;<a href="#">connect@mcred.com</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+          <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+        </svg><span>797-7172-123</span>
+      </div>
+      <div class="social-links d-none d-md-block">
+        <a target="_blank" class="instagram" href="https://www.instagram.com/mcre.d/"><i class="fab fa-instagram"></i></a>
+        <a class="linkedin" target="_blank" href="https://www.linkedin.com/company/mcred/"><i class="fab fa-linkedin-in"></i></a>
+        <a class="facebook" target="_blank" href="https://www.facebook.com/MCRED-102965945034452"><i class="fab fa-facebook-f"></i></a>
+        <a class="twitter" target="_blank" href="https://twitter.com/Mcred59369762"><i class="fab fa-twitter"></i></i></a>
+        <a class="youtube" target="_blank" href="https://www.youtube.com/channel/UC33RpFwzAndn3CCJr83jUbw?guided_help_flow=5"><i class="fab fa-youtube"></i></a >
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo me-auto">
+        <a href="/home"  class="logo mr-auto"><img src="{% static '/images/portalLogin/home/MCRED1.png'%}" alt=""></a>
+
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar ">
+        <ul>
+          <li><a class="nav-link active" href="">Home</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_business' %}">Business</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_investor' %}">Investor</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_partner' %}">Partner</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_aboutus' %}">About Us</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_blogs' %}">Blogs</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_login' %}">Login</a></li>
+
+        </ul>
+        <button class="btn-get-started"><a href="{% url 'mcred_signup' %}">Sign Up</a></button>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active"  style="background-image: url('/static/images/portalLogin/home/slide/slide1.png');">
+            <div class="carousel-container">
+              <div class="carousel-content container">
+                <h2 class="animate__animated animate__fadeInDown"> Working Capital is a Catalyst for Growth</h2>
+                <p class="animate__animated animate__fadeInUp">Grow your business by unbuckling the cash <br>through invoice discounting</p><br><br>
+                <a href="{% url 'mcred_business' %}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Grow Now</a>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-5" >
+                        <div class="McredBanner-From">
+                            <div class="Mcredbanner-section " >
+                                <form method="post" action="{% url 'mcred_business' %}"  role="form"  id="business_signupform" novalidate="novalidate">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="business" name="UserTypeId">
+                                    <div class="form-row">
+                                    <div class="form-group mred-group">
+                                        <input value="business" name="UserTypeId" type="hidden">
+                                        <div class="col form-group mred-group">
+                                            <label class="mred-lable-inp">Name</label>
+                                            <input type="text" name="FullName" class="form-control Mred-input fullname" placeholder="">
+                                            <span for="FullName" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Email Id</label>
+                                            <input type="email" name="Email" class="form-control Mred-input email" placeholder="">
+                                            <span for="Email" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Mobile Number</label>
+                                            <input type="tel" name="mob" class="form-control Mred-input mobile" placeholder="">
+                                            <span for="mob" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Company Name</label>
+                                            <input type="text" name="company" class="form-control Mred-input company" placeholder="">
+                                            <span for="company" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mred-group01">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="" name="terms" data-error="#errTerms">
+                                                            <span class="SetCheckBoxItem">
+                                                                I have read &amp; agree to
+                                                                the <a href="{% url 'mcred_terms_conditions' %}" style="color:#F79421;">
+                                                                    Terms &amp;
+                                                                    Conditions
+                                                                </a> and <a href="{% url 'mcred_privacy_policy' %}" style="color:#F79421;">Privacy Policy</a> of
+                                                                MCred.<span style="color:red">*</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div id="errTerms" style="display: block;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <span class="validate text-danger validation-summary"></span>
+                                            <input type="submit" value="SUBMIT" class="Mred-submit-btn">
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                   </div>
+
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item" style="background-image: url('/static/images/portalLogin/home/slide/slide2.png');">
+            <div class="carousel-container">
+              <div class="carousel-content container">
+                <h2 class="animate__animated animate__fadeInDown">  Low Risk &amp; High Returns</h2>
+                <p class="animate__animated animate__fadeInUp">Power of Alternative investment asset <br> flavours of equity in returns and security of <br>debt</p><br><br>
+                <a href="{% url 'mcred_investor' %}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Invest Now</a>
+              </div>
+             </div>
+             <div class="col-sm-12 col-md-5" >
+                        <div class="McredBanner-From">
+                            <div class="Mcredbanner-section " >
+                                <form method="post" action="{% url 'mcred_investor' %}"  role="form"  id="investor_signupform" novalidate="novalidate">
+                                    {% csrf_token %}
+                                    <input value="investor" name="UserTypeId" type="hidden">
+                                    <div class="form-row">
+                                    <div class="form-group mred-group">
+                                        <div class="col form-group mred-group">
+                                            <label class="mred-lable-inp">Name</label>
+                                            <input type="text" name="FullName" class="form-control Mred-input fullname" placeholder="">
+                                            <span for="FullName" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Email Id</label>
+                                            <input type="email" name="Email" class="form-control Mred-input email" placeholder="">
+                                            <span for="Email" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Mobile Number</label>
+                                            <input type="tel" name="mob" class="form-control Mred-input mobile" placeholder="">
+                                            <span for="mob" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Company Name</label>
+                                            <input type="text" name="company" class="form-control Mred-input company" placeholder="">
+                                            <span for="company" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mred-group01">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="" name="terms" data-error="#errTerms">
+                                                            <span class="SetCheckBoxItem">
+                                                                I have read &amp; agree to
+                                                                the <a href="{% url 'mcred_terms_conditions' %}" style="color:#F79421;">
+                                                                    Terms &amp;
+                                                                    Conditions
+                                                                </a> and <a href="{% url 'mcred_privacy_policy' %}" style="color:#F79421;">Privacy Policy</a> of
+                                                                MCred.<span style="color:red">*</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div id="errTerms" style="display: block;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <span class="validate text-danger validation-summary"></span>
+                                            <input type="submit" value="SUBMIT" class="Mred-submit-btn">
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                   </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item" style="background-image: url('/static/images/portalLogin/home/slide/slide3.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content container">
+                <h2 class="animate__animated animate__fadeInDown"> Leverage your expertise and multiply your <br>income</h2>
+                <p class="animate__animated animate__fadeInUp"> Relationships do payback.</p><br><br>
+                <a href="{% url 'mcred_partner' %}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Partner Now</a>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-5" >
+                        <div class="McredBanner-From">
+                            <div class="Mcredbanner-section " >
+                                <form method="post" action="{% url 'mcred_partner' %}"  role="form"  id="partner_signupform" novalidate="novalidate">
+                                    {% csrf_token %}
+                                    <input value="partner" name="UserTypeId" type="hidden">
+                                    <div class="form-row">
+                                    <div class="form-group mred-group">
+                                        <div class="col form-group mred-group">
+                                            <label class="mred-lable-inp">Name</label>
+                                            <input type="text" name="FullName" class="form-control Mred-input fullname" placeholder="">
+                                            <span for="FullName" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Email Id</label>
+                                            <input type="email" name="Email" class="form-control Mred-input email" placeholder="">
+                                            <span for="Email" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Mobile Number</label>
+                                            <input type="tel" name="mob" class="form-control Mred-input mobile" placeholder="">
+                                            <span for="mob" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="form-group mred-group">
+                                            <label class="mred-lable-inp">Company Name</label>
+                                            <input type="text" name="company" class="form-control Mred-input company" placeholder="">
+                                            <span for="company" class="validate text-danger"></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mred-group01">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="" name="terms" data-error="#errTerms">
+                                                            <span class="SetCheckBoxItem">
+                                                                I have read &amp; agree to
+                                                                the <a href="{% url 'mcred_terms_conditions' %}" style="color:#F79421;">
+                                                                    Terms &amp;
+                                                                    Conditions
+                                                                </a> and <a href="{% url 'mcred_privacy_policy' %}" style="color:#F79421;">Privacy Policy</a> of
+                                                                MCred.<span style="color:red">*</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div id="errTerms" style="display: block;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <span class="validate text-danger validation-summary"></span>
+                                            <input type="submit" value="SUBMIT" class="Mred-submit-btn">
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                   </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= About Us Section ======= -->
+     <section id="about" class="about" >
+<!--      <div  data-aos="fade-up"  >-->
+<!--          <div class="row no-gutters"  >-->
+              <div class="col-md-12 col-lg-6  flex-column justify-content-center about-content" data-aos="fade-up">
+                  <div class="section-title">
+                    <h2>What we do for you</h2>
+                    <p>MCred&nbsp;believes in cohesive growth, solutions on MCred are tailor made for each stake holder, be it a SME (Business), Investor or Partner on the platform.</p>
+                  </div>
+                  <div>
+                       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link active" value="{% url 'mcred_investor' %}" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" onclick="myFunc(this)">INVESTOR</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" value="{% url 'mcred_business' %}" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="myFunc(this)">BUSINESS</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" value="{% url 'mcred_partner' %}" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onclick="myFunc(this)">PARTNER</button>
+                            </li>
+                       </ul>
+                       <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <div class="investor-section-1">
+                                  <p>MCred provides with an opportunity to earn high returns at lower risk, invest in alternate asset class with short tenures of upto 90 days</p>
+                                  <div class="investor-section-detain">
+                                      <ul class="list-group list-group-horizontal">
+                                            <li class="list-group-item investor-section-detain-1"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}">&nbsp; &nbsp; Short Tenure Upto 90 Days</li>
+                                            <li class="list-group-item investor-section-detain-2"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}">&nbsp;&nbsp;  Technology Enabled Risk Analysis</li>
+
+                                      </ul>
+                                      <ul class="list-group list-group-horizontal">
+                                            <li class="list-group-item investor-section-detain-1"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}"> &nbsp;&nbsp;  Earn IRR Upto 20% </li>
+                                            <li class="list-group-item investor-section-detain-2"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}"> &nbsp; &nbsp; Quick &amp; Easy Digital Process</li>
+
+                                      </ul>
+                                  </div>
+                                </div>
+                               <div class="text-center"><a class="get-started-btn-1" href="mcred_investor" id="apply_btn1" target="_self">Apply Now</a></div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                  <div class="investor-section-1">
+                                      <p>Mcred’s invoice discounting solution helps SMEs to grow their business and meet their immediate funding requirements with no collateral.</p>
+                                      <div class="investor-section-detain">
+                                          <ul class="list-group list-group-horizontal">
+                                                <li class="list-group-item investor-section-detain-1"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}">&nbsp; &nbsp; Short Tenure Upto 90 Days</li>
+                                                <li class="list-group-item investor-section-detain-2"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}">&nbsp;&nbsp;  Technology Enabled Risk Analysis</li>
+
+                                          </ul>
+                                          <ul class="list-group list-group-horizontal">
+                                                <li class="list-group-item investor-section-detain-1"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}"> &nbsp;&nbsp;  Earn IRR Upto 20% </li>
+                                                <li class="list-group-item investor-section-detain-2"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}"> &nbsp; &nbsp; Quick &amp; Easy Digital Process</li>
+
+                                          </ul>
+                                      </div>
+                                  </div>
+                                  <div class="text-center"><a class="get-started-btn-1" id="apply_btn2" href="mcred_business" target="_self">Apply Now</a></div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <div class="investor-section-1">
+                                      <p>MCred's partner program is an initiative where partners can refer business or investor and earn fee income on transaction.</p>
+                                      <div class="investor-section-detain">
+                                          <ul class="list-group list-group-horizontal">
+                                                <li class="list-group-item investor-section-detain-1"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}">&nbsp; &nbsp; Short Tenure Upto 90 Days</li>
+                                                <li class="list-group-item investor-section-detain-2"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}">&nbsp;&nbsp;  Technology Enabled Risk Analysis</li>
+
+                                          </ul>
+                                          <ul class="list-group list-group-horizontal">
+                                                <li class="list-group-item investor-section-detain-1"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}"> &nbsp;&nbsp;  Earn IRR Upto 20% </li>
+                                                <li class="list-group-item investor-section-detain-2"><img src="{% static '/images/portalLogin/home/checkmark.svg' %}"> &nbsp; &nbsp; Quick &amp; Easy Digital Process</li>
+
+                                          </ul>
+                                      </div>
+                                </div>
+                                <div class="text-center"><a class="get-started-btn-1" id="apply_btn3" href="partner" target="_self">Apply Now</a></div>
+                            </div>
+                       </div>
+                  </div>
+              </div>
+<!--              <div class="col-lg-6 " id="img" style="background-image: url('/static/images/portalLogin/home/aboutLanding.png');" >-->
+<!--&lt;!&ndash;                  <img src="{% static '/images/portalLogin/home/aboutLanding.png' %}" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <img src="{% static '/images/portalLogin/home/busiwom.png' %}" style="width:550px;" class="img-fluid img1" alt="">&ndash;&gt;-->
+<!--              </div>-->
+          </div>
+      </div>
+    </section>
+
+
+    <!-- End About Us Section -->
+
+
+     <!-- ======= Testimonials Section ======= -->
+    <section id="why-us" class="why-us whyusSection" style="" >
+      <div class="sectionTitleSize" >
+        <div class="section-title text-center">
+          <h2>Quick facts</h2>
+        </div>
+        <div class="container" data-aos="fade-up">
+          <div class="sectionstart">
+            <div class="row">
+              <div class="col-sm-3 col-md-4 col-lg-4 pt-lg-0 text-center">
+                <p class="title-one">120,000</p>
+                <p class="title-two">TRANSACTIONS PROCESSED</p>
+              </div>
+              <div class="col-sm-3 col-md-4 col-lg-4 pt-lg-0 text-center">
+                <p class="title-one">60,000</p>
+                <p class="title-two">INVOICE DISCOUNTED</p>
+              </div>
+              <div class="col-sm-3 col-md-4 col-lg-4 pt-lg-0 text-center">
+                <p class="title-one">₹ 42 cr</p>
+                <p class="title-two">INVOICE DISCOUNTED </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sectionstart-02">
+            <div class="row">
+              <div class="col-sm-3 col-md-4 col-lg-4 pt-lg-0 text-center">
+                <p class="title-one">560+</p>
+                <p class="title-two">BUSINESSES BENEFITTED</p>
+              </div>
+              <div class="col-sm-3 col-md-4 col-lg-4 pt-lg-0 text-center">
+                <p class="title-one">200+</p>
+                <p class="title-two">INVESTORS BENEFITTED</p>
+              </div>
+              <div class="col-sm-3 col-md-4 col-lg-4 pt-lg-0 text-center">
+                <p class="title-one">180+</p>
+                <p class="title-two">ENTITIES EMPANELLED</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======= Services Section ======= -->
+    <section class="services" id="services">
+<div class="container" data-aos="fade-up">
+<div class="section-title text-center">
+<h2>Why MCred?</h2>
+
+<p class="mt-20 setmarging-80">A Platform to improve cash efficiency in the business ecosystem with the power of AI, Machine Learning &amp; Data Analytics. Bespoke<br> solutions address the capital requirement of SMEs and matches return expectation of the investors</p>
+</div>
+
+<div class="row" style="padding-top: 15px; padding-bottom: 30px;border-bottom: 1px solid #e9ecef;">
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch " data-aos="zoom-in" data-aos-delay="100">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/easy_onboarding.svg' %}"></div>
+
+<p class="whymcredtitle-1">Easy Digital Onboarding</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">Digital process for convenience &amp; transparency</p>
+</div>
+</div>
+
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch mt-md-0 " data-aos="zoom-in" data-aos-delay="200">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/no_collateral.svg' %}"></div>
+
+<p class="whymcredtitle-1">Collateral Free</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">Growth potential with no dependence on collaterals</p>
+</div>
+</div>
+
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch mt-lg-0 " data-aos="zoom-in" data-aos-delay="300">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/balance_sheet.svg' %}"></div>
+
+<p class="whymcredtitle-1">Off Balance Sheet</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">No impact on financial ratios, stronger balance sheet</p>
+</div>
+</div>
+
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch mt-lg-0 " data-aos="zoom-in" data-aos-delay="100">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/quick_disbursal.svg' %}"></div>
+
+<p class="whymcredtitle-1">Quick Disbursal</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">Funds available within 48* hours</p>
+</div>
+</div>
+</div>
+
+<div class="row" style="padding-top: 30px;" data-aos="fade-up">
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch " data-aos="zoom-in" data-aos-delay="100">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/group-case.svg' %}"></div>
+
+<p class="whymcredtitle-1">Seamless Cashflow</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">Fuel your growth with power of liquidity</p>
+</div>
+</div>
+
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch mt-md-0 " data-aos="zoom-in" data-aos-delay="200">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/solution.svg' %}"></div>
+
+<p class="whymcredtitle-1">Bespoke Solutions</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">Solutions as per business needs</p>
+</div>
+</div>
+
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch mt-lg-0 " data-aos="zoom-in" data-aos-delay="300">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/scoring.svg' %}"></div>
+
+<p class="whymcredtitle-1">MCred Score</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">Score which covers much more, credit worthiness arrived at using AI power algorithm backed by Data Analytics</p>
+</div>
+</div>
+
+<div class="col-sm-6 col-lg-3 col-md-3 d-flex align-items-stretch mt-lg-0 " data-aos="zoom-in" data-aos-delay="100">
+<div class="icon-box-1">
+<div class="icon-image"><img src="{% static '/images/portalLogin/Business-Page/assets.svg' %}"></div>
+
+<p class="whymcredtitle-1">Alternate Investment Class</p>
+
+<div class="arrow-line"></div>
+
+<p class="whymcredtitle-2">Asset class with high returns, no compromise of risk parameters</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+    <!-- ======= Our Portfolio Section ======= -->
+    <section class="callback-aboutus" id="cta">
+        <div class="call-about">
+        <div class="container" data-aos="zoom-in">
+        <div class="section-title section-ab">
+        <h2 style="margin-top:0px;">About Us</h2>
+        </div>
+
+        <p>MCred is a platform powered by AI, Machine Learning &amp; Data Analytics to enhance the yield per buck deployed in business eco-system. It is designed to enable SMEs take the advantage of power of discounting and for investors to diversify the portfolio in alternate class with lower risk and more than expected returns.<br>
+        <br>
+        MCRED is promoted by <a href="https://www.maninvestmentsgroup.com" style="color:#f79523" target="_blank"> Man Investment Services Pvt Ltd</a> (MISPL). MISPL has been active in the areas of invoice financing , bills discounting,corporate finance and other financial services since 23 years. <a href="aboutus" style="color: #f79523;">read more...</a></p>
+        </div>
+        </div>
+    </section>
+<!-- End Contact Us Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <div class="footer-aboutus">
+                            <img src="{% static '/images/portalLogin/home/MCRED1.png' %}">
+                            <p>
+                                403, Peninsula Heights,
+                                C D Barfiwala Marg,<br>
+                                Juhu Lane,
+                                Andheri (W),
+                                Mumbai, Pin - 400058<br>
+                                Maharashtra
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-1 col-md-1"></div>
+                    <div class="col-sm-12 col-lg-7 col-md-7">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links">
+                                <div class="settextfloat">
+                                    <h4>Contact Us</h4>
+                                    <ul>
+                                        <li><a href="#">connect@mcred.com</a></li>
+                                        <li><a href="#"> Support - 797-7157-822 </a></li>
+                                        <li> <a href="#">Office - 797-7157-822</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-6 footer-links ">
+                              <div class="settextfloat">
+                                <h4>Customer Service</h4>
+                                <ul>
+                                  <li><a href="#">Pricing </a></li>
+                                  <li><a href="#">Contact</a></li>
+                                  <li> <a href="#">Us FAQs</a></li>
+                                </ul>
+                              </div>
+                            </div> -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Need Help?</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_privacy_policy' %}">Privacy Policy </a></li>
+                                        <li> <a href="{% url 'mcred_terms_conditions' %}">Terms &amp; Conditions </a></li>
+                                        <li> <a href="{% url 'mcred_faqs' %}">General FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Links</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_partner' %}">Partners </a></li>
+                                        <li> <a href="{% url 'mcred_business' %}">Businesses</a></li>
+                                        <li> <a href="{% url 'mcred_investor' %}">Investors</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lastsection">
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-links">
+                            <p class="settagfooter">© Copyright Secure. All rights reserved.</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-sociel">
+                            <ul>
+                                <li> <a target="_blank" href="https://www.instagram.com/mcre.d/"><i class="fab fa-instagram"></i></a></li>
+                                <li> <a target="_blank" href="https://www.linkedin.com/company/mcred/"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li> <a target="_blank" href="https://www.facebook.com/MCRED-102965945034452"><i class="fab fa-facebook-f"></i></a></li>
+                                <li> <a target="_blank" href="https://twitter.com/Mcred59369762"><i class="fab fa-twitter"></i></a></li>
+                                <li> <a target="_blank" href="https://www.youtube.com/channel/UC33RpFwzAndn3CCJr83jUbw?guided_help_flow=5"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div></footer>
+
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-angle-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/css/vendor/aos/aos.js' %}"></script>
+  <script src="{% static '/css/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/css/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static '/css/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static '/css/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static '/css/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static '/css/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/js/main.js' %}"></script>
+  <script>
+      var btn1 = document.getElementById('apply_btn1');
+      var btn2 = document.getElementById('apply_btn2');
+      var btn3 = document.getElementById('apply_btn3');
+      function myFunc(ele){
+        var x = ele.value
+        console.log(x)
+        if (x == '/mcred_investor/'){
+            btn1.setAttribute('href', x);
+            } else if (x == '/mcred_business/'){
+                btn2.setAttribute('href', x);
+            } else {
+                btn3.setAttribute('href', x);
+            }
+
+      }
+
+  </script>
+
+</body>
+
+</html>

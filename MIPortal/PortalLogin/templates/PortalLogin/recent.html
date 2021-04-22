@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load static %}
+<link href="{% static '/css/PortalLogin/blogs.css' %}" rel="stylesheet">
+</head>
+<body>
+{% for i in posts %}
+        <div class="container-fluid " id="filter" >
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>{{ i.title }}</h4>
+                    <img src="{{i.image.url}}" alt="" height="210">
+                </div>
+                  <div class="col-md-6">
+                      <div class="right-content">
+                        <p>{{i.description|truncatechars:400}}</p>
+                    </div>
+                  </div>
+                  <div class="bottom col-12">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item l1"><button><img src="{% static '/images/portalLogin/Blog-Page/like.png' %}" height="22" width="22"></button><span class="likes_count">{{i.likes.all.count}}</span></li>
+                        <li class="list-group-item l2"><span class="name">{{ i.author }} </span> </li>
+                        <li class="list-group-item l3"><span class="date">{{ i.created_date }}</span></li>
+                        <li class="list-group-item l4"><span class="categ">{{ i.category }}</span></li>
+                        <li class="list-group-item l5"><a class="fullblog" href="{% url 'mcred_detailed_blog' i.id %}">READ BLOG &nbsp;<i class="fas fa-arrow-right"></i></a></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+{% endfor %}
+</body>
+</html>

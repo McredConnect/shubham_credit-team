@@ -1,0 +1,100 @@
+{% extends "business/index.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <!-- <title>Current Deals</title> -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="{% static '/css/business/transaction-details.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <h6 class="titl">MCRED BUSINESS &nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+          width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+        </svg> </span>&nbsp;TRANSACTION DETAILS</h6>
+    <div class="row">
+      <div class="text-center mt-3 mb-3">
+        <h2>Invoice Details</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table" style="text-align:center;">
+          <tr>
+            <th>Invoice ID</th>
+            <th>Date</th>
+            <th>Entity</th>
+            <th>Amount</th>
+            <th>Discount</th>
+            <th>Amount Financed</th>
+            <th>Platform Fee</th>
+            <th>Other Fee</th>
+            <th>Rate of Interest</th>
+            <th>Tenure</th>
+            <th>Invoice File</th>
+            <th>Other Documents</th>
+          </tr>
+          {% for i in invoice_data %}
+          <tr>
+            <td>{{i.0}}</td>
+            <td>{{i.1}}</td>
+            <td>{{i.2}}</td>
+            <td>&#8377; {{i.3}}</td>
+            <td>{{i.4}}%</td>
+            <td>&#8377; {{i.5}}</td>
+            <td>{{i.6}}%</td>
+            <td>{{i.7}}%</td>
+            <td>{{i.8}}%</td>
+            <td>{{i.9}} Days</td>
+            <td><a href="{{i.10.url}}" download style="color: blue;">Download</a></td>
+            <td>{{i.11}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    {% if transaction_data|length > 0 %}
+    <div class="row">
+      <div class="text-center mt-3 mb-3">
+        <h2>Transaction Details</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table" style="text-align:center;">
+          <tr>
+            <th>Sr No</th>
+            <th>Transaction ID</th>
+            <th>Interest Amount</th>
+            <th>Investment Amount</th>
+          </tr>
+          {% for i in transaction_data %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.0}}</td>
+            <td>&#8377; {{i.1}}</td>
+            <td>&#8377; {{i.2}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    {% else %}
+    <h2>No Transactions To Display</h2>
+    {% endif %}
+
+
+  </div>
+</body>
+
+</html>
+{% endblock content %}

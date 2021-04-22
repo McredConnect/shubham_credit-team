@@ -1,0 +1,34 @@
+<html>
+  {% load crispy_forms_tags %}
+
+<head>
+</head>
+
+<body>
+  <h1>Entity Investor ROR Registration</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="row mt-1 mb-1">
+      <select id="entity" name="entity">
+        <option value="" selected disabled>Entity:</option>
+        {% for i in entities %}
+        <option value="{{ i.entity_id }}">{{ i.entity_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="row mt-1 mb-1">
+      <select id="investor" name="investor">
+        <option value="" selected disabled>Investor:</option>
+        {% for i in investors %}
+        <option value="{{ i.investor_id }}">{{ i.investor_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    {{form|crispy}}
+    <div class="row mt-1 mb-1">
+      <button type="submit">Register</button>
+    </div>
+  </form>
+</body>
+
+</html>

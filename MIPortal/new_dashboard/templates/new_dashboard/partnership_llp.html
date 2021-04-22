@@ -1,0 +1,267 @@
+{% extends "new_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/new_dashboard/partnership_llp.css' %}">
+            <script src="{% static '/javascript/individual.js' %}"></script>
+        </head>
+        <div class="card col-md-6 card2 " id="card">
+            <h4 style="margin-top:40px;">ENTITY KYC</h4>
+            <form method="post" id="target" action="{% url 'partnership_llp' %}" enctype="multipart/form-data" style="margin-left:60px;">
+                {% csrf_token %}
+            <input type="hidden" value="Partnership / LLP" name="category">
+             <input type="hidden" name="login_status" value="re_login">
+            <div class="row cls1" style="margin-top:10px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="name" class="form-label name">Name</label>
+                    <div class="input-group mb-3" ><input value="{{name}}" name="name" id="name" type="text" class="form-control inp1" placeholder="Enter Name" aria-label="Username" aria-describedby="basic-addon1"></div>
+                </div>
+                <div class="col-md-5" style="margin-left:10px;">
+                   <label for="date" class="form-label name">DATE OF FORMATION</label>
+                   <div class="input-group mb-3" ><input value="{{dof| date:'Y-m-d'}}" name="dof" id="date" type="date" class="form-control disableFuturedate inp1" placeholder="Enter Your Mobile" aria-label="mobile" aria-describedby="basic-addon1"></div>
+                </div>
+            </div>
+            <div class="row cls1" style="margin-top:0px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="pan" class="form-label name">PAN</label>
+                    <div class="input-group mb-3" ><input value="{{pan}}" name="pan" id="pan" type="text" class="form-control inp1 pan" placeholder="Enter Your PAN" aria-label="pan" aria-describedby="basic-addon1"></div>
+                </div>
+            </div>
+            <div class="row row2" style="margin-top:10px;">
+                <div class=" cls1 col-12 ">
+                    <label for="pan_photo" class="form-label name">PAN CARD PHOTO</label><br>
+                    <label for="pan_photo" class="form-label txt">Upload a scanned copy of your PAN Card with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control cls" value="{{pancard}}" type="file" id="pan_photo" accept=".pdf,.jpeg,.png,.jpg" name="pan_card" style="max-width:330px;">
+                    {% if pancard %}
+                    <label class="form-label txt2"><a href="{{ pancard.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+                </div>
+                <label for="pan_photo" class="form-label txt1" style="margin-left:20px;">jpeg, png, pdf format supported</label>
+            </div>
+<!--            <div class="row row2" style="margin-top:10px;">-->
+<!--                <div class=" cls1 col-12 ">-->
+<!--                    <label for="DEED" class="form-label name">REGISTERED PARTNERSHIP DEED</label><br>-->
+<!--                    <label for="DEED" class="form-label txt">Upload a scanned copy of your registered partnership deed.</label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row cls2">-->
+<!--                <div class="input-group mb-3 ">-->
+<!--                    <input class="form-control " value="" type="file" id="DEED" accept=".pdf,.jpeg,.png,.jpg" name="pan_card" style="max-width:330px;">-->
+<!--                </div>-->
+<!--                <label for="DEED" class="form-label txt1" style="margin-left:20px;">jpeg, png, pdf format supported</label>-->
+<!--            </div>-->
+              <div class="row row2" style="margin-top:10px;">
+                <div class=" cls1 col-12 ">
+                    <label for="coi" class="form-label name">COI / REGISTRATION CERTIFICATE</label><br>
+                    <label for="coi" class="form-label txt">Upload a scanned copy of Col (for LLP) or Registration Certificate (for Firm).</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control cls" value="" type="file" id="coi" accept=".pdf,.jpeg,.png,.jpg" name="coi" style="max-width:330px;">
+                    {% if coi %}
+                    <label class="form-label txt2"><a href="{{ coi.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+                </div>
+                <label for="coi" class="form-label txt1" style="margin-left:20px;">jpeg, png, pdf format supported</label>
+            </div>
+              <div class="row row2" style="margin-top:10px;">
+                <div class=" cls1 col-12 ">
+                    <label for="resolution" class="form-label name">RESOLUTION PASSED</label><br>
+                    <label for="resolution" class="form-label txt">Upload a scanned / digital copy of <span style="color:#F79421;">sample document</span> after filling it up.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control cls" value="" type="file" id="resolution" accept=".pdf,.jpeg,.png,.jpg" name="resolution" style="max-width:330px;">
+                    {% if resolution %}
+                    <label class="form-label txt2"><a href="{{ resolution.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+
+                </div>
+                <label for="resolution" class="form-label txt1" style="margin-left:20px;">jpeg, png, pdf format supported</label>
+            </div>
+            <div class="row row1">
+                <div class="cls1 col-12" style="margin-top:10px;">
+                    <label  class="form-label name">GST DETAILS</label>
+                </div>
+                <div class="cls1 col-12">
+                    <label>Are you registered with GST?</label>
+                </div>
+            </div>
+            <div class="form-check row" style="margin-left:10px;">
+              <input class="form-check-input " value="Yes" type="radio" name="gst_details" id="yes">
+              <label class="form-check-label col-2" for="yes">Yes</label>
+
+              <input class="form-check-input " value="No" type="radio" name="gst_details" id="no" >
+              <label class="form-check-label col-2" for="no">No</label>
+
+            </div>
+            <h3 style="margin-top:30px;">AUTHORISED USER KYC</h3>
+            <div class="row cls1" style="margin-top:30px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="username" class="form-label name">Name</label>
+                    <div class="input-group mb-3" ><input value="{{auth_user}}" name="username" id="username" type="text" class="form-control inp1" placeholder="Enter Name" aria-label="Username" aria-describedby="basic-addon1"></div>
+                </div>
+                <div class="col-md-5" style="margin-left:10px;">
+                   <label for="user_mobile" class="form-label name">Mobile No.</label>
+                   <div class="input-group mb-3" ><input value="{{auth_user_mobile}}" name="user_mobile" id="user_mobile" type="text" class="form-control inp1" placeholder="Enter Your Mobile" aria-label="mobile" aria-describedby="basic-addon1"></div>
+                </div>
+            </div>
+            <div class="row cls1" style="margin-top:10px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="user_email" class="form-label name">Email</label>
+                    <div class="input-group mb-3" ><input value="{{auth_user_email}}" name="user_email" id="user_email" type="email" class="form-control inp1" placeholder="Enter Name" aria-label="Username" aria-describedby="basic-addon1"></div>
+                </div>
+                <div class="col-md-5" style="margin-left:10px;">
+                   <label for="user_dob" class="form-label name">Date Of Birth</label>
+                   <div class="input-group mb-3" ><input value="{{auth_user_dob| date:'Y-m-d'}}" name="user_dob" id="user_dob" type="date" class="form-control disableFuturedate inp1" placeholder="dd/mm/yyyy" aria-label="dob" aria-describedby="basic-addon1"></div>
+                </div>
+            </div>
+             <div class="row cls1" style="margin-top:20px;">
+
+                <div class="col-sm-2 col-md-6 ">
+                    <label for="user_pan" class="form-label name">PAN</label>
+                    <div class="input-group mb-3" ><input value="{{auth_user_pan}}" name="user_pan" id="user_pan" type="text" class="form-control inp1 pan" placeholder="Enter Your PAN" aria-label="pan" aria-describedby="basic-addon1"></div>
+                </div>
+             </div>
+             <div class="row row2" style="margin-top:20px;">
+                <div class=" cls1 col-12 ">
+                    <label for="user_pan_card" class="form-label name">PAN CARD PHOTO</label><br>
+                    <label for="user_pan_card" class="form-label txt">Upload a scanned copy of your PAN Card with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control cls" value="{{auth_user_pancard}}" type="file" id="user_pan_card" accept=".pdf,.jpeg,.png,.jpg" name="user_pan_card" style="max-width:330px;">
+                    {% if auth_user_pancard %}
+                    <label class="form-label txt2"><a href="{{ auth_user_pancard.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+                </div>
+                <label for="user_pan_card" class="form-label txt1" style="margin-left:20px;">jpeg, png, pdf format supported</label>
+            </div>
+            <div class="row row1" style="margin-top:20px;">
+                <div class="cls1 col-6">
+                    <label for="user_aadhaar" class="form-label name">AADHAAR NUMBER</label>
+                    <div class="input-group mb-3 " ><input type="text" id="user_aadhaar" value="{{auth_user_aadhaar}}" class="form-control inp1 " placeholder="Aadhaar number (With spaces)" name="user_aadhaar"></div>
+                </div>
+            </div>
+            <div class="row row2" style="margin-top:20px;">
+                <div class=" cls1 col-12 ">
+                    <label for="user_aadhaar_card" class="form-label name ">AADHAAR CARD PHOTO</label><br>
+                    <label for="user_aadhaar_card" class="form-label txt ">Upload a scanned / digital copy of your Aadhaar Card with all details clearly visible.</label>
+                </div>
+            </div>
+            <div class="row cls2">
+                <div class="input-group mb-3 ">
+                    <input class="form-control cls" value="{{auth_user_aadhaarcard}}" type="file" id="user_aadhaar_card" accept=".pdf,.jpeg,.png,.jpg" name="user_aadhaar_card" style="max-width:330px;">
+                    {% if auth_user_aadhaarcard %}
+                    <label class="form-label txt2"><a href="{{ auth_user_aadhaarcard.url }}" target="_blank">View Uploaded File</a></label>
+                    {% else %}
+                    <label></label>
+                    {% endif %}
+                </div>
+                 <label for="user_aadhaar_card" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label>
+            </div>
+                <div class="row history" style="margin-top:20px;">
+                <div class="col-12"><button type="submit" class="btn btn-outline-primary"  style="float:right;margin-right:50px;">Save Data</button></div>
+            </div>
+            </form>
+        </div>
+
+       <div id="alert" class="col-3">
+            <div class="msg">
+                <h6 class="col-12">Thank you for Sharing the information. MCRED Team will connect with you shortly.</h6>
+                <button  class="btn btn-outline-primary col-4 home" ONCLICK="location.href='{% url 'index1' %}'" >OK</button>
+            </div>
+        </div>
+
+
+<script>
+   console.log({{flag}})
+    var flag = {{flag}}
+    if(flag)
+        {
+        document.getElementById('card').style.display = "none";
+        document.getElementById('alert').style.display = "block";
+
+        }
+
+     var gst = "{{ gst_details }}"
+         if(gst == "Yes"){
+            document.getElementById('yes').setAttribute('checked','checked')
+         } else if(gst == "No"){
+            document.getElementById('no').setAttribute('checked','checked')
+
+         }
+
+    var status = "{{ status }}"
+    console.log("status",status)
+    if(status == "re_login"){
+    document.getElementById('huf').setAttribute("disabled","disabled")
+    document.getElementById('private_ltd').setAttribute("disabled","disabled")
+    document.getElementById('individual').setAttribute("disabled","disabled")
+    document.getElementById('nbfc_bank').setAttribute("disabled","disabled")
+    document.getElementById('NRI').setAttribute("disabled","disabled")
+    }
+
+    function preventBack()
+    {
+    window.history.forward();
+    }
+    setTimeout(preventBack,0);
+
+    $(document).ready(function(){
+
+    $(".pan").change(function () {
+    var inputvalues = $(this).val();
+      var regex = /[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+      if(!regex.test(inputvalues)){
+    <!--      $(".pan").val("");-->
+      alert("Invalid PAN No.");
+      return regex.test(inputvalues);
+      }
+    });
+
+    $("#user_aadhaar").change(function () {
+    var inputvalues = $(this).val();
+      var regex = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
+      if(!regex.test(inputvalues)){
+      $("#user_aadhaar").val("");
+      alert("Invalid Aadhaar No.");
+      return regex.test(inputvalues);
+      }
+    });
+
+    $(document).ready(function(){
+        $("#user_mobile").change(function () {
+            var inputvalues = $(this).val();
+              var regex = /[0-9]{10}$/;
+              if(!regex.test(inputvalues)){
+              $("#user_mobile").val("");
+              alert("Invalid Mobile Number");
+              return regex.test(inputvalues);
+              }
+        });
+    });
+
+    });
+</script>
+{% endblock %}

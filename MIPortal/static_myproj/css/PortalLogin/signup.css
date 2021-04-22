@@ -1,0 +1,297 @@
+#loginbanner {
+    background: url('/static/images/portalLogin/Login-Page/login_bg.jpg') no-repeat center center;
+}
+
+.banner-section {
+    position: relative;
+    background-size: cover;
+    padding-top: 11rem;
+    padding-bottom: 5rem;
+}
+.banner-loginset {
+    padding-top: 43rem !important;
+    padding-bottom: 5rem !important;
+}
+section {
+    padding: 80px 0;
+}
+
+
+
+.Mcredlogin-From-signUp {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -600px;
+    position:relative;
+}
+
+.loign-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.overlay {
+    position: absolute;
+    background: transparent linear-gradient(
+295deg
+, #f79421 0%, #915f3c 35%, #111d5e 80%) 0% 0% no-repeat padding-box;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.85;
+}
+
+.loginset-contain {
+    padding: 40px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    padding-bottom: 60px;
+}
+
+.loginHeading {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Poppins;
+    letter-spacing: 1.81px;
+    color: #292929;
+    opacity: 1;
+    margin-bottom: 25px;
+}
+
+.drinkcard-cc {
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 170px;
+    height: 140px;
+    border-radius: 20px;
+    opacity: 1;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.investors {
+    background-image: url('/static/images/portalLogin/SignUp-Page/adeolu-eletu-unRkg2jH1j0-unsplash.png');
+}
+
+input:checked + .drinkcard-cc .image-innerSection {
+    background: #f79421cf;
+}
+.image-innerSection {
+    background-color: #363636c7;
+    height: 100%;
+    box-shadow: 6px 6px 12px #00000066;
+    border-radius: 20px;
+    text-align: center;
+    padding: 22px 0;
+    padding-top: 30px;
+}
+
+.image-contain img {
+    width: 40px;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.image-contain p {
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    font-family: Poppins;
+    letter-spacing: 2.7px;
+    color: #ffffff;
+    font-weight:600;
+}
+
+.business {
+    position: relative;
+    top: 10px;
+}
+.business {
+    background-image: url('/static/images/portalLogin/SignUp-Page/bussiness.png');
+}
+
+.partner {
+    background-image: url('/static/images/portalLogin/SignUp-Page/patner.png');
+}
+
+a{
+    text-decoration:none;
+}
+
+a:hover .image-innerSection{
+    background: #f79421cf;
+}
+
+@media only screen and (max-width: 768px){
+    .Mcredlogin-From-signUp {
+        width: 100% !important;
+    }
+}
+
+
+
+@media only screen and (max-width: 992px){
+    .Mcredlogin-From-signUp {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    .Mcredlogin-From-signUp {
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 768px){
+    .drinkcard-cc {
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+    }
+   .partner{
+        margin-top:20px !important;
+   }
+}
+/* ------------
+# footer section
+----------------*/
+
+@media only screen and (max-width:992px) {
+    #footer .settextfloat {
+        float: left !important;
+        margin-top:20px;
+    }
+}
+
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#footer {
+    background: #fff;
+    color: #fff;
+    font-size: 14px;
+}
+
+
+#footer .footer-top {
+    padding: 60px 0 30px 0;
+}
+
+#footer .footer-aboutus p {
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+    font-size: 12px;
+    margin-top: 20px;
+    line-height: 26px;
+    width: 80%;
+}
+
+
+#footer .settextfloat {
+    float: right;
+}
+
+#footer .footer-top h4 {
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 20px;
+    letter-spacing: 0px;
+    color: #111d5e;
+    opacity: 1;
+    font-family:Poppins;
+}
+
+#footer .footer-top .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+element.style {
+}
+#footer .footer-top .footer-links ul a {
+    transition: 0.3s;
+    display: inline-block;
+    line-height: 1;
+    letter-spacing: 0px;
+    color: #000000;
+    font-size: 13px;
+    background-color: transparent;
+    text-decoration:none;
+}
+#footer .footer-top .footer-links ul a:hover {
+    color: #f79421;
+}
+
+#footer .footer-top .footer-links ul li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* ----------------------
+ LAST SECTION
+-------------------------*/
+.lastsection {
+    border-top: 1px solid #e9ecef;
+}
+
+#footer .copyright {
+    text-align: left;
+    padding: 15px 0px;
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+    font-size: 13px;
+}
+
+#footer .copyright .settagfooter {
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+
+.footer-sociel ul li {
+    padding: 8px 0;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer-sociel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+
+.footer-sociel ul li a{
+    color:#292929;
+}
+
+.footer-sociel ul li a .fab{
+    font-size:17px;
+}

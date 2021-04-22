@@ -1,0 +1,200 @@
+{% extends "business/index.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <!-- <title>Current Deals</title> -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="{% static '/css/business/invoice.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<script src="{% static '/js/business/help.js' %}"></script>
+<script src="{% static '/js/business/invoice.js' %}"></script>
+</head>
+
+<body>
+  <!-- Page content -->
+  <div class="invoice">
+    <div class="container-fluid">
+      <h6 class="titl">MCRED BUSINESS &nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg> </span>&nbsp;INVOICE</h6>
+      <div class="tab">
+        <a class="tablinks" id="btn1" onclick="showTable(event, 'current-invoices')">Current Invoices</a>
+        <a class="tablinks" id="btn2" onclick="showTable(event, 'past-invoices')">Past Invoices</a>
+      </div>
+      <div class="row" id="past-invoices">
+        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+          <div class="card-body">
+            <h5 class="card-title">Past Invoices</h5>
+            <div class="table-responsive">
+              <table class="table" style="border-collapse:collapse">
+                <thead class="headt">
+                  <tr>
+                    <th scope="col" class="date">Upload Date</th>
+                    <th scope="col">Entity</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Amount Financed</th>
+                    <th scope="col">Fee</th>
+                    <th scope="col">Interest</th>
+                    <th scope="col">View Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in data %}
+                  {% if i.7 < 1 %}
+                  <tr>
+                    <td>{{i.0}}</td>
+                    <td>{{i.1}}</td>
+                    <td class="amounts">{{i.2}}</td>
+                    <td class="amounts">{{i.3}}</td>
+                    <td>{{i.4}}%</td>
+                    <td>{{i.5}} %</td>
+                    <td><a href="{% url 'transaction-details' pk=i.6 %}" target="_blank" style="color: blue;">Open</a></td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="current-invoices">
+        <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+          <div class="card-body">
+            <h5 class="card-title">Current Invoices</h5>
+            <div class="table-responsive">
+              <table class="table" style="border-collapse:collapse">
+                <thead class="headt">
+                  <tr>
+                    <th scope="col" class="date">Upload Date</th>
+                    <th scope="col">Entity</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Amount Financed</th>
+                    <th scope="col">Fee</th>
+                    <th scope="col">Interest</th>
+                    <th scope="col">View Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in data %}
+                  {% if i.7 > 0 %}
+                  <tr>
+                    <td>{{i.0}}</td>
+                    <td>{{i.1}}</td>
+                    <td class="amounts">{{i.2}}</td>
+                    <td class="amounts">{{i.3}}</td>
+                    <td>{{i.4}}%</td>
+                    <td>{{i.5}} %</td>
+                    <td><a href="{% url 'transaction-details' pk=i.6 %}" target="_blank" style="color: blue;">Open</a></td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <iframe width="0px" height="0px" onload="showTable(event, 'current-invoices')"></iframe>
+
+  <!-- Transaction Details Modal -->
+  <div id="invoiceModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Transaction Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Invoice ID</div>
+              <div class="col-md-4" id="mod-heading">Transaction ID</div>
+              <div class="col-md-4" id="mod-heading">Date</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">IN12QWA543</div>
+              <div class="col-md-4" id="mod-content">TXN76AHW13HC4</div>
+              <div class="col-md-4" id="mod-content">11 November, 2020</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Entity</div>
+              <div class="col-md-4" id="mod-heading">Amount</div>
+              <div class="col-md-4" id="mod-heading">Discount</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">Oyo Hotels & Homes Pvt Ltd</div>
+              <div class="col-md-4" id="mod-content">T 1,52,320</div>
+              <div class="col-md-4" id="mod-content">12.5 %</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Amount Financed</div>
+              <div class="col-md-4" id="mod-heading">Platform Fee</div>
+              <div class="col-md-4" id="mod-heading">Other Fee</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">T 63,870</div>
+              <div class="col-md-4" id="mod-content">4.2 %</div>
+              <div class="col-md-4" id="mod-content">T 7,600</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Rate of Interest</div>
+              <div class="col-md-4" id="mod-heading">Interest Amount</div>
+              <div class="col-md-4" id="mod-heading">Investment</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">14.8 %</div>
+              <div class="col-md-4" id="mod-content">T 12,470</div>
+              <div class="col-md-4" id="mod-content">T 2,50,000</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4" id="mod-heading">Tenure</div>
+              <div class="col-md-4" id="mod-heading">Invoice File</div>
+              <div class="col-md-4" id="mod-heading">Other Documents</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" id="mod-content">60 Days</div>
+              <div class="col-md-4" id="mod-content"><a href=""><span
+                    style="text-decoration: underline; color: blue;">View</span></a></div>
+              <div class="col-md-4" id="mod-content">None</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+    amounts = document.getElementsByClassName("amounts");
+  for(var i=0; i < amounts.length; i++)
+    amounts[i].innerHTML = format_amount(amounts[i].innerHTML);
+</script>
+
+</html>
+{% endblock content %}

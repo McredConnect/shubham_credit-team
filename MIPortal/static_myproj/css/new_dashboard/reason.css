@@ -1,0 +1,56 @@
+
+
+.h6{
+    margin-top:30px;
+    text-align: left;
+    font: normal normal 600 36px/26px Open Sans;
+    letter-spacing: 0.72px;
+    color: #353535;
+    opacity: 1;
+    margin-left:40px;
+
+}
+.form-control{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 3px solid #DFDFDF;
+    border-radius: 10px;
+    opacity: 1;
+    margin-top:20px;
+}
+.form-label{
+    text-align: left;
+    font: normal normal 600 25px/20px Open Sans;
+    letter-spacing: 0.5px;
+    color: #363636;
+    opacity: 1;
+    margin-top:20px;
+}
+.submit{
+    background: #F79421 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    text-align: center;
+    font: normal normal 600 16px/26px Open Sans;
+    letter-spacing: 0.32px;
+    padding-left:30px;
+    padding-right:30px;
+    padding-top:10px;
+    padding-bottom:10px;
+    color: #FFFFFF;
+    opacity: 1;
+    margin-left:300px;
+    margin-top:50px;
+    margin-bottom:30px;
+    border:none;
+}
+.div{
+
+    padding:30px;
+}
+.cls{
+    background-color:#EEEEEE;
+    width:800px;
+    margin-left:300px;
+    border-radius:10px;
+
+}

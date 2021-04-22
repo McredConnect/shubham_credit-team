@@ -1,0 +1,323 @@
+#loginbanner {
+    background: url('/static/images/portalLogin/Login-Page/login_bg.jpg') no-repeat center center;
+}
+
+.banner-section {
+    position: relative;
+    background-size: cover;
+    padding-top: 11rem;
+    padding-bottom: 5rem;
+}
+.banner-loginset {
+    padding-top: 43rem !important;
+    padding-bottom: 5rem !important;
+}
+section {
+    padding: 80px 0;
+}
+
+
+
+.investor-signup{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -600px;
+    position:relative;
+}
+
+.loign-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.overlay {
+    position: absolute;
+    background: transparent linear-gradient(
+295deg
+, #f79421 0%, #915f3c 35%, #111d5e 80%) 0% 0% no-repeat padding-box;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.85;
+}
+
+.investor-signup-conatin {
+    padding: 10px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.imgbannerTages {
+    width: 100%;
+    height: 90vh;
+    background-size: cover;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+.signUpSectionAll {
+    padding: 25px 20px;
+}
+.loginHeading {
+    font-size: 24px;
+    font-weight: 600;
+    font-family:Poppins;
+    letter-spacing: 1.81px;
+    color: #292929;
+    opacity: 1;
+    margin-bottom: 25px;
+}
+
+.mred-lable-inp {
+    letter-spacing: 0.32px;
+    color: #353535;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-family: Open Sans;
+    border-radius: 2px !important;
+}
+.form-control {
+    font-size:12px;
+}
+.iconForBussiness {
+    position: relative;
+    top: -28px;
+    right: 10px;
+    z-index: 99;
+    float: right;
+}
+
+.signUPparagrap {
+    text-align: left;
+    letter-spacing: 0px;
+    opacity: 1;
+    font-size: 13px;
+    font-family:Open sans;
+}
+
+.sendOtpStyle {
+    top: 8px;
+}
+
+.sendOtpStyle {
+    position: relative;
+    float: right;
+    text-decoration: underline !important;
+    color: #f79421 !important;
+    font-weight: 700;
+    font-size: 12px;
+    font-family:Open sans;
+}
+
+.mred-group01 {
+    margin-bottom: 15px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.SetCheckBoxItem {
+    font-size: 14px;
+    position: relative;
+    left: 4px;
+    top: -2px;
+    font-family:Open Sans;
+
+}
+
+.Mred-submit-btn {
+    margin-left: 25px;
+    color: #fff;
+    border-radius: 4px;
+    padding: 8px 25px 9px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    font-family: Open Sans;
+    font-weight:600;
+    background: #f79421 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 25px;
+    border: none;
+    position: relative;
+    bottom: -18px;
+}
+
+/* -----------------------
+# Media Queries
+------------------------*/
+
+@media only screen and (max-width: 600px){
+    .banner-section {
+        padding-top: 7rem;
+        padding-bottom: 4rem;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .signUpSetContain {
+        height: 100vh;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .signUpSetContain {
+        height: auto !important;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .banner-section {
+        padding-top: 13rem !important;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .hideResponsive {
+        display: none;
+    }
+}
+/* ------------
+# footer section
+----------------*/
+
+@media only screen and (max-width:992px) {
+    #footer .settextfloat {
+        float: left !important;
+        margin-top:20px;
+    }
+}
+
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#footer {
+    background: #fff;
+    color: #fff;
+    font-size: 14px;
+}
+
+
+#footer .footer-top {
+    padding: 60px 0 30px 0;
+}
+
+#footer .footer-aboutus p {
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+    font-size: 12px;
+    margin-top: 20px;
+    line-height: 26px;
+    width: 80%;
+}
+
+
+#footer .settextfloat {
+    float: right;
+}
+
+#footer .footer-top h4 {
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 20px;
+    letter-spacing: 0px;
+    color: #111d5e;
+    opacity: 1;
+    font-family:Poppins;
+}
+
+#footer .footer-top .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+element.style {
+}
+#footer .footer-top .footer-links ul a {
+    transition: 0.3s;
+    display: inline-block;
+    line-height: 1;
+    letter-spacing: 0px;
+    color: #000000;
+    font-size: 13px;
+    background-color: transparent;
+    text-decoration:none;
+}
+#footer .footer-top .footer-links ul a:hover {
+    color: #f79421;
+}
+
+#footer .footer-top .footer-links ul li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* ----------------------
+ LAST SECTION
+-------------------------*/
+.lastsection {
+    border-top: 1px solid #e9ecef;
+}
+
+#footer .copyright {
+    text-align: left;
+    padding: 15px 0px;
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+    font-size: 13px;
+}
+
+#footer .copyright .settagfooter {
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+
+.footer-sociel ul li {
+    padding: 8px 0;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer-sociel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+
+.footer-sociel ul li a{
+    color:#292929;
+}
+
+.footer-sociel ul li a .fab{
+    font-size:17px;
+}

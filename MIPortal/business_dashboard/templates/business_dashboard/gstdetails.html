@@ -1,0 +1,380 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/gstdetails.css' %}">
+<!--            <script src="{% static '/javascript/gstdetails.js' %}"></script>-->
+        </head>
+        <div class="card col-md-6">
+            <div class="main">
+            <div class="row row1" >
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-2  col-md-3 " data-bs-toggle="modal" data-bs-target="#exampleModal">ADD NEW GST NO.</button>
+                <h6 class="col-md-6">GST DETAILS</h6>
+            </div>
+
+            <!-- Modal FOR ADD NEW GST DETAILS-->
+            <div class="modal fade modal1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;GST DETAILS</h6>
+                        <h6 class="cls1">Add a GST Number</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+                    <div></div>
+                    <div class="modal-body">
+                        <form  method="post" action="{% url 'gst_details' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" value="certificate" name="type" >
+                        <div class="input-group mb-3">
+                              <label for="gst_no" class="form-label name">GST No.</label>
+                              <input type="text" id="gst_no" class="form-control" placeholder="Enter GST Number" aria-label="gstno" aria-describedby="basic-addon1" style="max-width:300px;margin-left:120px;" name="gst_no">
+                        </div>
+                         <div class="input-group mb-3">
+                            <label for="gst_cer" class="form-label name">UPLOAD GST CERTIFICATE</label>
+                            <input class="form-control " type="file" id="gst_cer" name="gst_certificate" style="margin-left:10px;max-width:300px;" accept=".pdf, .jpeg, .png" >
+<!--                            <div><label for="formFile2" class="form-label txt1" style="margin-left:10px;">jpeg, png, pdf format supported</label></div>-->
+                         </div>
+                        <div class="input-group mb-3">
+                        <label for="state" class="form-label name">State</label>
+                        <select id="state" class="form-select" aria-label="Default select example" style="margin-left:140px;max-width:300px;" name="state">
+                              <option selected><span>Select State</span></option>
+                              <option value="Andaman &amp; Nicobar Islands (35)">Andaman &amp; Nicobar Islands (35)</option><option value="Andhra Pradesh (New) (37)">Andhra Pradesh (New) (37)</option><option value="Andhra Pradesh (Old) (28)">Andhra Pradesh (Old) (28)</option><option value="Arunachal Pradesh (12)">Arunachal Pradesh (12)</option><option value="Assam (18)">Assam (18)</option><option value="Bihar (10)">Bihar (10)</option><option value="Chandigarh (4)">Chandigarh (4)</option><option value="Chhattisgarh (22)">Chhattisgarh (22)</option><option value="Dadra &amp; Nagar Haveli (26)">Dadra &amp; Nagar Haveli (26)</option><option value="Daman &amp; Diu (25)">Daman &amp; Diu (25)</option><option value="Delhi (7)">Delhi (7)</option><option value="Goa (30)">Goa (30)</option><option value="Gujarat (24)">Gujarat (24)</option><option value="Haryana (6)">Haryana (6)</option><option value="Himachal Pradesh (2)">Himachal Pradesh (2)</option><option value="Jammu &amp; Kashmir (1)">Jammu &amp; Kashmir (1)</option><option value="Jharkhand (20)">Jharkhand (20)</option><option value="Karnataka (29)">Karnataka (29)</option><option value="Kerala (32)">Kerala (32)</option><option value="Lakshadweep (31)">Lakshadweep (31)</option><option value="Madhya Pradesh (23)">Madhya Pradesh (23)</option><option value="Maharashtra (27)">Maharashtra (27)</option><option value="Manipur (14)">Manipur (14)</option><option value="Meghalaya (17)">Meghalaya (17)</option><option value="Mizoram (15)">Mizoram (15)</option><option value="Nagaland (13)">Nagaland (13)</option><option value="Orissa (21)">Orissa (21)</option><option value="Puducherry (34)">Puducherry (34)</option><option value="Punjab (3)">Punjab (3)</option><option value="Rajasthan (8)">Rajasthan (8)</option><option value="Sikkim (11)">Sikkim (11)</option><option value="Tamil Nadu (33)">Tamil Nadu (33)</option><option value="Telengana (36)">Telengana (36)</option><option value="Tripura (16)">Tripura (16)</option><option value="Uttar Pradesh (9)">Uttar Pradesh (9)</option><option value="Uttarakhand (5)">Uttarakhand (5)</option><option value="West Bengal (19)">West Bengal (19)</option></select>
+
+                        </select>
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:170px">Add Account</button></div>
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1 table" id="table"  >
+                        <thead class="thd" >
+                            <tr  >
+                                <th style="border-bottom:none;">GST No.</th>
+                                <th style="border-bottom:none;">STATE</th>
+                                <th style="border-bottom:none;">Uploaded File</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for item in gstdetails %}
+                            <tr>
+                                <td >{{ item.gst_No }}</td>
+                                <td >{{ item.state }}</td>
+                                {% if item.input_file %}
+                                <td ><a href="{{ item.input_file.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                                {% else %}
+                                <td></td>
+                                {% endif %}
+                            </tr>
+
+                            {% endfor %}
+
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-------------TABLE FOR GSTR-1----------------->
+            <div class="row gstr-1"  style="margin-top:20px;">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-md-2 btn2" data-bs-toggle="modal" data-bs-target="#exampleModal1">ADD GSTR-1</button>
+                <h6 class="col-md-6" >GSTR-1</h6>
+            </div>
+
+<!--             Modal FOR GSTR-1-->
+            <div class="modal fade modal2" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <div><h6  class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;GST DETAILS</h6>
+                        <h6 class="cls1">Add GSTR-1 Returns</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+                    <div></div>
+                    <div class="modal-body" >
+                        <form method="post" action="{% url 'gst_details_one' %}"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <input type="hidden" value="GSTR_1" name="type" >
+                        <div class="input-group mb-3">
+                            <label for="gstnum" class="form-label name">Select GST No.</label>
+                            <select id="gstnum" class="form-select selgst" aria-label="Default select example" style="margin-left:55px;" name="gst_num">
+<!--                                <option selected><span>Select GST No.</span></option>-->
+                                {% for i in gstdetails %}
+                                  <option value="{{ i.gst_No }}">{{ i.gst_No }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="input-group mb-3">
+                              <label for="fromdate" class="form-label name">From Date</label>
+                              <input type="date" id="fromdate" name="fromdate" class="form-control disableFuturedate" placeholder="DD/MM/YYYY" aria-label="fromdate" aria-describedby="basic-addon1" style="margin-left:80px;width:10px;" name="fromdate">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="todate" class="form-label name">To Date</label>
+                              <input type="date" id="todate" class="form-control" placeholder="DD/MM/YYYY" aria-label="todate" aria-describedby="basic-addon1" style="margin-left:100px;width:10px;" name="todate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label name" >Upload Document</label>
+                            <input class="form-control" type="file" id="formFile" style="margin-left:150px;width:320px;margin-top:-35px;" name="document">
+
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:170px">Add GSTR-1</button></div>
+                        </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10  table  tbl1"  >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">GST No.</th>
+                                 <th style="border-bottom:none;">From Date</th>
+                                <th style="border-bottom:none;">To Date</th>
+                                <th style="border-bottom:none;">Uploaded PDF</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in gst_details_gstr_one %}
+                             <tr >
+                                <td style="border-bottom:none;">{{ i.gst_No }}</td>
+                                <td style="border-bottom:none;">{{ i.fromdate }}</td>
+                                <td style="border-bottom:none;">{{ i.Todate }}</td>
+                                <td style="border-bottom:none;"><a href="{{ i.fromdate.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                             </tr>
+                            {% endfor %}
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+<!--        TABLE FOR GSTR-2A-->
+            <div class="row gstr-2a row1"   style="margin-top:20px;">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-md-2 btn2 " data-bs-toggle="modal" data-bs-target="#exampleModal2">ADD GSTR-2A</button>
+                <h6 class="col-md-6" >GSTR-2A</h6>
+            </div>
+
+            <!-- Modal FOR GSTR-2A  -->
+            <div class="modal fade modal2" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <div><h6  class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;GST DETAILS</h6>
+                        <h6 class="cls1">Add GSTR-2A Returns</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+                    <div></div>
+                    <div class="modal-body" >
+                        <form method="post" enctype="multipart/form-data" action="{% url 'gst_details2a' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="type" value="GSTR_2A">
+                        <div class="input-group mb-3">
+                            <label for="gstnum" class="form-label name">Select GST No.</label>
+                            <select class="form-select selgst" aria-label="Default select example" style="margin-left:55px;" name="gst_num">
+                                  <option selected><span>Select GST No.</span></option>
+                                  {% for i in gstdetails %}
+                                  <option value="{{ i.gst_No }}">{{ i.gst_No }}</option>
+                                  {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="fromdate" class="form-label name">From Date</label>
+                              <input type="date" id="fromdate2" class="form-control disableFuturedate"  placeholder="DD/MM/YYYY" aria-label="fromdate" aria-describedby="basic-addon1" style="margin-left:80px;width:10px;" name="fromdate1">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="todate" class="form-label name">To Date</label>
+                              <input type="date" id="todate2" class="form-control "   placeholder="DD/MM/YYYY" aria-label="todate" aria-describedby="basic-addon1" style="margin-left:100px;width:10px;" name="todate1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label name" >Upload Document</label>
+                            <input class="form-control" type="file" id="formFile1" style="margin-left:150px;width:320px;margin-top:-35px;" name="document1">
+
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:170px">Add GSTR-2A</button></div>
+                        </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="col-md-10  table tbl1"  >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">GST No.</th>
+                                 <th style="border-bottom:none;">From Date</th>
+                                <th style="border-bottom:none;">To Date</th>
+                                <th style="border-bottom:none;">Uploaded PDF</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in gst_details_gstr_two_a %}
+                             <tr >
+                                <td style="border-bottom:none;">{{ i.gst_No }}</td>
+                                <td style="border-bottom:none;">{{ i.fromdate }}</td>
+                                <td style="border-bottom:none;">{{ i.Todate }}</td>
+                                <td style="border-bottom:none;"><a href="{{ i.input_file.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                             </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--  ----------  TABLE FOR GSTR-3B ----------------- -->
+            <div class="row gstr-3b"  style="margin-top:20px;">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-md-2 btn2" data-bs-toggle="modal" data-bs-target="#exampleModal3" >ADD GSTR-3B</button>
+                <h6 class="col-md-6" >GSTR-3B</h6>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade modal2" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <div><h6  class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;GST DETAILS</h6>
+                        <h6 class="cls1">Add GSTR-3B Returns</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+                    <div class="modal-body" >
+                        <form method="post" enctype="multipart/form-data" action="{% url 'gst_details_3B' %}">
+                            {% csrf_token %}
+                            <input value="GSTR_3B" type="hidden" name="type">
+                        <div class="input-group mb-3">
+                            <label for="gstnum" class="form-label name">Select GST No.</label>
+                            <select class="form-select selgst" aria-label="Default select example" style="margin-left:55px;" name="gst_num">
+                                  <option selected><span>Select GST No.</span></option>
+                                  {% for i in gstdetails %}
+                                  <option value="{{ i.gst_No }}">{{ i.gst_No }}</option>
+                                  {% endfor %}
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="fromdate" class="form-label name">From Date</label>
+                              <input type="date" id="fromdate3" class="form-control disableFuturedate" placeholder="DD/MM/YYYY" aria-label="fromdate" aria-describedby="basic-addon1" style="margin-left:80px;width:10px;" name="fromdate2">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="todate" class="form-label name">To Date</label>
+                              <input type="date" id="todate3" class="form-control " placeholder="DD/MM/YYYY" aria-label="todate" aria-describedby="basic-addon1" style="margin-left:100px;width:10px;" name="todate2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label name" >Upload Document</label>
+                            <input class="form-control" type="file" id="formFile2" style="margin-left:150px;width:320px;margin-top:-35px;" name="document2">
+
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:170px">Add GSTR-3B</button></div>
+                        </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1"  >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">GST No.</th>
+                                 <th style="border-bottom:none;">From Date</th>
+                                <th style="border-bottom:none;">To Date</th>
+                                <th style="border-bottom:none;">Uploaded PDF</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in gst_details_gstr_three_b %}
+                             <tr >
+                                <td style="border-bottom:none;">{{ i.gst_No }}</td>
+                                <td style="border-bottom:none;">{{ i.fromdate }}</td>
+                                <td style="border-bottom:none;">{{ i.Todate }}</td>
+                                <td style="border-bottom:none;"><a href="{{ i.input_file.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+<!--    CODE FOR TERMS AND CONDITIONS-->
+<!--            <div class="row" style="margin-top:30px;margin-left:40px;" >-->
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+<!--            </div>-->
+<!--            <div class="row history" style="margin-top:50px;">-->
+<!--                <div class="col-md-8" style="">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+<!--                <div class="col-2"><button type="button" class="btn btn-outline-primary"  >Save Data</button></div>-->
+<!--            </div>-->
+
+        </div>
+        </div>
+<script>
+
+         $(document).ready(function () {
+             $("#gst_no").change(function () {
+                var inputvalues = $(this).val();
+                  console.log(inputvalues);
+                  var regex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+                  if(!regex.test(inputvalues)){
+                  $("#gst_no").val("");
+                  alert("Invalid GST No.");
+                  return regex.test(inputvalues);
+                  }
+             });
+
+            $("#state").change(function (){
+                var inputvalues = $(this).val();
+                var code = $("#gst_no").val();
+                console.log('code',code)
+                console.log('inputvalues',inputvalues)
+                if(code.slice(0,2) != inputvalues.slice(-3,-1)){
+                    $("#state").val("");
+                    alert("Invalid State");
+                }
+
+           });
+
+            $("#gst_no").change(function (){
+                var gst_num = $(this).val();
+                console.log('gst_num',gst_num);
+                var pan_num = "{{ pan }}";
+                console.log('pan_num', pan_num);
+                console.log('slice', gst_num.slice(2,12));
+                if( pan_num !=  gst_num.slice(2,12)){
+                    $("#gst_no").val("");
+                    alert("Invalid GST No.");
+                }
+            });
+
+         });
+
+     </script>
+
+{% endblock content %}

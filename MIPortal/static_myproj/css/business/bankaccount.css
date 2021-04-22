@@ -1,0 +1,133 @@
+.container-fluid .card {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 2px solid #CCCCCC;
+    border-radius: 20px;
+    opacity: 1;
+}
+
+.container-fluid .titl {
+    text-align: left;
+    font: normal normal 600 14px/17px Open Sans;
+    letter-spacing: 1.4px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container-fluid .card-header {
+    font: normal normal 600 18px/17px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    /* background-color: #f7f7f7; */
+    text-transform: capitalize;
+    opacity: 1;
+    margin-left: -13px;
+    margin-right: -13px;
+    height: 50px;
+    padding-top: 20px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.container-fluid #card1 .list-group-item {
+    margin-top: 23px;
+    border: none;
+}
+
+.container-fluid #card1 .li1 {
+    font: normal normal 600 18px/20px Open Sans;
+    letter-spacing: 0.96px;
+    color: #363636;
+    opacity: 1;
+}
+
+.container-fluid #card1 .li2,
+.li3 {
+    text-align: left;
+    font: normal normal 600 14px/18px Open Sans;
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+}
+
+th {
+    font: normal normal 700 12px/11px Open Sans !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/*--------------- MEDIA QUERIES -----------------*/
+
+@media only screen and (max-width: 600px) {
+    #card2 {
+        margin-left: 3px;
+        margin-top: 30px;
+    }
+
+    .container-fluid #card2 .btn-primary {
+        width: 168px;
+        height: 40px;
+    }
+
+    .date {
+        width: 400px;
+    }
+
+    .withdraw input {
+        width: 40vw !important;
+    }
+}
+
+
+#mod-heading {
+    font-size: 11px;
+}
+
+.modal {
+    margin-top: 5%;
+    margin-left: 4%;
+}
+
+#mod-content {
+    font-size: 15px;
+    font-weight: 500 !important;
+}
+
+.modal-backdrop {
+    opacity: 0.7 !important;
+}
+
+.withdraw h5,
+h6 {
+    color: #353535;
+    font-weight: bold;
+}
+
+.withdraw input {
+    width: 15vw;
+    color: gray;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #F79421;
+    border-radius: 0px;
+    font: bold normal normal 14px/24px Open Sans !important;
+    color: #F79421 !important;
+}
+
+/* Center Text In Placeholder */
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}

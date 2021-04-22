@@ -1,0 +1,165 @@
+{% extends "business/index.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="{% static '/css/business/bankaccount.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<script src="{% static '/js/business/help.js' %}"></script>
+<script src="{% static '/js/business/invoice.js' %}"></script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h6 class="titl">MCRED BUSINESS &nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+          width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+        </svg> </span>&nbsp;BANK ACCOUNT</h6>
+    <br>
+    <div class="row">
+      <div class="col-sm-12 col-md-5 card card1" style="font-size: 14px; margin-bottom: 5vh; margin-right: 5vw;">
+        <div class="card-header text-center">MCRED Account</div>
+        <div class="card-body" style="height: auto">
+          <div class="row">
+            <div class="col-sm-6 col-md-6">
+              <span style="color: #F79421;font-weight: bold;">Amount</span>
+            </div>
+            <div class="col-md-6 col-sm-6" style="text-align: right;">
+              <span style="font-weight: 600" class="amounts">{{balance}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">Name</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>{{user_name}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">A/C No.</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>TBD</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">Bank</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>TBD</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">Currency</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>(Indian Rupee)</span>
+            </div>
+          </div>
+          <hr>
+          <!-- <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">IFSC Code</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>TBD</span>
+            </div>
+          </div> -->
+          <br>
+          <div class="row">
+            <div class="content text-center">
+              <div class="btn1"><a href="{% url 'withdrawal' %}"><button type="button" style=" background-color: #F79421; border: none;"
+                    class="btn btn-primary">WITHDRAW</button></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-5 card card1" style="font-size: 14px; margin-bottom: 5vh; margin-right: 5vw;">
+        <div class="card-header text-center">Bank Account</div>
+        <div class="card-body" style="height: auto">
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">Name</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>{{user_name}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">A/C No.</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>{{account_no}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">Bank</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>{{bank_name}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <span style="font-weight: bold;">IFSC Code</span>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+              <span>{{ifsc_code}}</span>
+            </div>
+          </div>
+          <br>
+          <!-- <div class="row">
+            <div class="content text-center">
+              <div class="btn1 "><a href="#"><button type="button" style=" background-color: transparent; border: 2px solid #F79421; color: #F79421;"
+                    class="btn btn-primary">WITHDRAW</button></a></div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+</body>
+
+<script>
+  amounts = document.getElementsByClassName("amounts");
+for (var i = 0; i < amounts.length; i++)
+    amounts[i].innerHTML = format_amount(amounts[i].innerHTML);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,136 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/bank_acc_details.css' %}">
+<!--            <script src="{% static '/javascript/userdetails.js' %}"></script>-->
+        </head>
+        <div class="card col-sm-12 col-md-7">
+            <div class="main">
+            <div class="row row1" >
+                <h6 class="col-md-6">BANK ACCOUNT DETAILS</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-3  col-md-3 " data-bs-toggle="modal" data-bs-target="#Modal">ADD ACCOUNT DETAILS</button>
+             </div>
+
+            <!-- Modal FOR UploadING CREDIT RATING DETAILS-->
+
+            <div class="modal fade modal1" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;BANK DETAILS</h6>
+                        <h6 class="cls1">Upload Bank Account Details</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                        <form method="post" action="{% url 'bank_acc_details' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <label for="name" class="form-label name">Name of The Bank</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter Name" aria-label="name" aria-describedby="basic-addon1" style="max-width:290px;margin-left:50px;" name="bank_name">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="account_num" class="form-label name">Account No.</label>
+                              <input type="text" id="account_num" class="form-control" placeholder="Enter Account No." aria-label="accno" aria-describedby="basic-addon1" style="max-width:290px;margin-left:95px;" name="ac_no">
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="ifsc" class="form-label name">IFSC Code</label>
+                              <input type="text" id="ifsc" class="form-control" placeholder="Enter IFSC Code" aria-label="ifsc" aria-describedby="basic-addon1" style="max-width:290px;margin-left:110px;" name="ifsc_code">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label name">Upload Cancelled Check</label>
+                            <input class="form-control" type="file" id="formFile" style="max-width:290px;margin-left:175px;margin-top:-33px;" name="check">
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:130px">UPLOAD DETAILS</button></div>
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+<!--                                <th style="border-bottom:none;">Serial No.</th>-->
+                                <th style="border-bottom:none;">Name Of The Bank</th>
+                                <th style="border-bottom:none;">Account No.</th>
+                                <th style="border-bottom:none;">IFSC Code</th>
+                                <th style="border-bottom:none;">Cancelled Check</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in business %}
+                            <tr>
+<!--                                <td >1</td>-->
+                                <td >{{ i.business_bank_name }}</td>
+                                <td >{{ i.business_bank_account_no }}</td>
+                                <td >{{ i.business_bank_account_IFSC_code }}</td>
+                                {% if i.business_bank_account_cancelled_cheque %}
+                                    <td ><a href="{{ i.business_bank_account_cancelled_cheque.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                                {% else %}
+                                    <td ></td>
+                                {% endif %}
+
+
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+                           <!--    CODE FOR TERMS AND CONDITIONS-->
+<!--            <div class="row" style="margin-top:30px;" >-->
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+<!--            </div>-->
+<!--            <div class="row history" style="margin-top:20px;">-->
+<!--                            <div class="col-md-8">-->
+<!--                                <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                                <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                            </div>-->
+<!--                            <div class="col-2"><button type="button" class="btn btn-outline-primary"  >Save Data</button></div>-->
+<!--                        </div>-->
+            </div>
+        </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#ifsc").change(function () {
+              var inputvalues = $(this).val();
+              console.log(inputvalues);
+              var regex = /^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/;
+              if(!regex.test(inputvalues)){
+              $("#ifsc").val("");
+              alert("Invalid IFSC Code");
+              return regex.test(inputvalues);
+              }
+            });
+
+             $("#account_num").change(function () {
+                 var account_num = $(this).val();
+                 console.log(account_num.length)
+                 if(account_num.length < 11 || account_num.length > 17){
+<!--                    $("#account_num").val("");-->
+                    alert("Invalid Account No.");
+                    }
+             });
+        });
+    </script>
+{% endblock content %}

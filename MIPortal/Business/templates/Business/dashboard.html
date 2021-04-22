@@ -1,0 +1,203 @@
+{% extends "business/index.html" %}
+
+{% block content %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/business/dashboard.css' %}">
+  <!-- <script src="{% static '/js/business/dashboard.js' %}"></script> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+
+  <!-- <script src="{% static '/javascript/doughnut.js' %}"></script> -->
+  <script>
+    $(document).ready(function () {
+      var ctx = $("#chart-line");
+      var myLineChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ["Available Limit", "Used Limit"],
+          datasets: [{
+            data: [{{available_limit}}, {{used_limit}}],
+            backgroundColor: ["#A8DF65", "#58B4AE"]
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Balance'
+          },
+          legend: {
+            display: false
+          }
+        }
+      });
+    });
+  </script>
+</head>
+{% if messages %}
+{% for message in messages%}
+<div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+{% endfor %}
+{% endif %}
+<div class="container-fluid">
+  <h6 class="titl">MCRED BUSINESS &nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+        height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg> </span>&nbsp;DASHBOARD</h6>
+  <div class="row btn1">
+    <a href="{% url 'invoice-upload' %}"><button type="button" class="btn btn-primary">UPLOAD NEW INVOICE</button></a>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-4 card card1">
+      <div class="card-header">MCRED Business</div>
+      <div class="card-body" style="height: auto">
+        <div class="chartjs-size-monitor"
+          style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+          <div class="chartjs-size-monitor-expand"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+          </div>
+          <div class="chartjs-size-monitor-shrink"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+          </div>
+        </div>
+        <canvas id="chart-line" width="249" height="200" class="chartjs-render-monitor"
+          style="display: block; width: 249px; height: 200px;"></canvas>
+        <br>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#FFA931" class="bi bi-dot"
+            viewBox="0 0 16 16">
+            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+          </svg>
+          Credit Limit:
+          <span style="font-weight: bold; position: absolute; right: 2vw;">{{credit_limit_amount}}</span>
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#9FFE2A" class="bi bi-dot"
+            viewBox="0 0 16 16">
+            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+          </svg>
+          Available Limit:
+          <span style="font-weight: bold; position: absolute; right: 2vw;">{{available_limit_amount}}</span>
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#35C0B7" class="bi bi-dot"
+            viewBox="0 0 16 16">
+            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+          </svg>
+          Used Limit:
+          <span style="font-weight: bold; position: absolute; right: 2vw;">{{used_limit_amount}}</span>
+        </p>
+        <!-- <div style="margin-top:40px;margin-left:-10px">
+          <ul class="list-group list-group-horizontal"  >
+              <li class="list-group-item li1" style="width:px;"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#FFA931" class="bi bi-dot" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>Credit Limit</li>
+              <li class="list-group-item li2" style="width:px;">&#8377;&nbsp;3,00,000</li>
+          </ul>
+          <ul class="list-group list-group-horizontal"  >
+              <li class="list-group-item li1" style="width:px;"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#58B4AE" class="bi bi-dot" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>Used Limit</li>
+              <li class="list-group-item li2" style="width:px;">&#8377;&nbsp;1,80,000</li>
+          </ul>
+          <ul class="list-group list-group-horizontal" >
+              <li class="list-group-item li1" style="width:px;"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#A8DF65" class="bi bi-dot" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>Available Limit</li>
+              <li class="list-group-item li2" style="width:px;">&#8377;&nbsp;1,20,000</li>
+          </ul>
+      </div> -->
+        <!-- <p>Available : ₹{{value1}}</p> -->
+        <!-- <p>Used Limit : ₹{{value2}}</p> -->
+      </div>
+    </div>
+    <!-- <div class="card-deck">
+      <div class="card mb-4">
+          <img class="card-img-top img-fluid" src="//placehold.it/500x280" alt="Card image cap">
+          <div class="card-body">
+              <h4 class="card-title">1 Card title</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+      </div>
+    </div> -->
+    <div class="card col-sm-12 col-md-4 card2">
+      <div class="card-header">Invoices</div>
+      <div style="padding:5px;  margin-top:10px;">
+        <ul class="list-group " style="padding: 0;">
+          <li class="list-group-item ">
+            <p><span style="text-align: left;">New Invoices Uploaded</span>
+              <a href="{% url 'view-details' mode=1 %}"><span style="color: blue; text-decoration: underline;">Details</span></a>
+              <span style="position: absolute; right: 1vw; font-weight: bold;">{{new_invoices}}</span>
+            </p>
+          </li>
+          <li class="list-group-item ">
+            <p><span style="text-align: left;">Live Invoices</span>
+              <a href="{% url 'view-details' mode=2 %}"><span style="color: blue; text-decoration: underline;">Details</span></a>
+              <span style="position: absolute; right: 1vw; font-weight: bold;">{{live_invoices}}</span>
+            </p>
+          </li>
+          <li class="list-group-item ">
+            <p><span style="text-align: left;">Invoices Financed</span>
+              <a href="{% url 'view-details' mode=3 %}"><span style="color: blue; text-decoration: underline;">Details</span></a>
+              <span style="position: absolute; right: 1vw; font-weight: bold;">{{financed_invoices}}</span>
+            </p>
+          </li>
+          <li class="list-group-item ">
+            <p><span style="text-align: left;">Repaid Invoices</span>
+              <a href="{% url 'view-details' mode=4 %}"><span style="color: blue; text-decoration: underline;">Details</span></a>
+              <span style="position: absolute; right: 1vw; font-weight: bold;">{{repaid_invoices}}</span>
+            </p>
+          </li>
+          <!-- <li class="list-group-item l1" style="width:150px;"><p></p></li> -->
+        </ul>
+      </div>
+      <!-- <hr style="height:2px;margin-left:-13px;margin-right:-13px;margin-top:20px;">
+      <div class="row sel">
+        <select id="acc">
+          <option value="a" class="op">Read More</option>
+          <option value="b" class="op">Bjdmndb</option>
+          <option value="c" class="op">C</option>
+          <option value="d" class="op">D</option>
+        </select>
+      </div> -->
+    </div>
+    <!-- </div> -->
+
+    <!------------------ CODE FOR CARD3  ------------------>
+    <div class="card col-sm-12 col-md-3 card2">
+      <div class="card-header">Funds & Repayments</div>
+      <ul class="list-unstyled earn">
+        <li id="l1">{{total_funds_raised}}</li>
+        <li id="l2">TOTAL FUNDS RAISED</li>
+      </ul>
+      <ul class="list-unstyled earn">
+        <li id="l1">{{total_repaid_amount}}</li>
+        <li id="l2">TOTAL REPAID AMOUNT</li>
+      </ul>
+      <div style="padding:10px;  margin-top:10px;">
+        <ul class="list-group">
+          <li class="list-group-item " style="padding: 0;">
+            <p><span style="text-align: left;">Repaid Invoices</span>
+              <a href="{% url 'view-details' mode=4 %}" ><span style="color: blue; text-decoration: underline;">Details</span></a>
+              <span style="position: absolute; right: 1vw; font-weight: bold;">{{repaid_invoices}}</span>
+            </p>
+          </li>
+      </div>
+      <!-- <hr style="height:2px;margin-left:-13px;margin-right:-13px;margin-top:20px;">
+      <div class="row sel">
+        <select id="acc">
+          <option value="a" class="op">Risk Return Range</option>
+          <option value="b" class="op">Bjdmndb</option>
+          <option value="c" class="op">C</option>
+          <option value="d" class="op">D</option>
+        </select>
+      </div> -->
+    </div>
+
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends "Business/index.html" %}
+
+{% block content %}
+
+<head>
+  {% load static %}
+  {% load custom_tags %}
+  <link rel="stylesheet" href="{% static '/css/investor/view-details.css' %}">
+  <script src="{% static '/js/business/view-details.js' %}"></script>
+</head>
+<div class="row">
+  <div class="content">
+    <a href="{% url 'view-details' mode=0 %}" class="tablinks" id="btn1">All Invoices</a>
+    <a href="{% url 'view-details' mode=1 %}" class="tablinks" id="btn2">New Invoices</a>
+    <a href="{% url 'view-details' mode=2 %}" class="tablinks" id="btn3">Live Invoices</a>
+    <a href="{% url 'view-details' mode=3 %}" class="tablinks" id="btn4">Financed Invoices</a>
+    <a href="{% url 'view-details' mode=4 %}" class="tablinks" id="btn5">Repaid Invoices</a>
+  </div>
+</div>
+{% if message %}
+<div class="row mt-2">
+  <div class="alert alert-warning" role="alert">{{message}}</div>
+</div>
+{% else %}
+<div class="table-responsive mt-3" id="total">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>Sr No</td>
+        <td>Invoice ID</td>
+        <td>Entity Name</td>
+        <td>Invoice Date</td>
+        <td>Invoice Amount</td>
+        <td>Amount Financed</td>
+        <td>Interest %</td>
+        <!-- <td>% Subscription</td> -->
+        <td>Invoice Due Date</td>
+        <td>Invoice PDF</td>
+      </tr>
+    </thead>
+    {% for i in data %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.0|slice:":8"|upper}}</td>
+      <td>{{i.1}}</td>
+      <td>{{i.2}}</td>
+      <td>{{i.3}}</td>
+      <td>{{i.4}}</td>
+      <td> {{i.5}}%</td>
+      <!-- <td>{{i.6}}%</td> -->
+      <td>{{i.7}}</td>
+      <td><a href="{{i.8.url}}" download style="color: blue;">Download</a></td>
+      <!-- <td>{{i.8}}</td> -->
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endif %}
+
+<iframe width="0px" height="0px" onload="setActive({{mode}})"></iframe>
+
+<script>
+
+</script>
+
+{% endblock content %}

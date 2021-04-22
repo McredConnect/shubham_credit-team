@@ -1,0 +1,116 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+        <link rel="stylesheet"  href="{% static '/css/business_dashboard/creditratings.css' %}">
+        <script src="{% static '/javascript/financials.js' %}"></script>
+        </head>
+        <div class="card col-sm-12 col-md-7">
+            <div class="main">
+            <div class="row row1" >
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-3  col-md-3 " data-bs-toggle="modal" data-bs-target="#Modal">ADD RATING DETAILS</button>
+                <h6 class="col-md-6">CREDIT RATING</h6>
+            </div>
+
+            <!-- Modal FOR UploadING CREDIT RATING DETAILS-->
+
+            <div class="modal fade modal1" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;CREDIT RATING</h6>
+                        <h6 class="cls1">Upload Credit Rating Details</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                        <form method="post" action="{% url 'creditrating' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <label for="SECTOR" class="form-label name">Rating Agency</label>
+                            <select id="sector" class="form-select" aria-label="Default select example" style="margin-left:50px;" name="agency">
+                                  <option selected disabled><span>Select Rating Agency</span></option>
+                                  <option value="One">One</option>
+                                  <option value="Two">Two</option>
+                                  <option value="Three">Three</option>
+                            </select>
+                        </div>
+                       <div class="input-group mb-3">
+                              <label for="date" class="form-label name ">Date of Rating</label>
+                              <input type="date" id="date" class="form-control disableFuturedate" placeholder="DD/MM/YYYY" aria-label="date" aria-describedby="basic-addon1" style="margin-left:50px;" name="date">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="rating" class="form-label name">Rating</label>
+                              <input type="text" id="rating" class="form-control" placeholder="" aria-label="rating" aria-describedby="basic-addon1" style="margin-left:105px;" name="rating">
+                        </div>
+                         <div class="mb-3">
+                            <label for="formFile" class="form-label name" >Upload Rating <br></br>Rationale</label>
+                             <div class="input-group mb-3" style="margin-top:-55px;"><input class="form-control" type="file" id="formFile" style="margin-left:150px;width:315px;" name="upload_file"></div>
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:170px">UPLOAD DETAILS</button></div>
+                       </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+<!--                                <th style="border-bottom:none;">Serial No.</th>-->
+                                <th style="border-bottom:none;">Rating Agency</th>
+                                <th style="border-bottom:none;">Date of Rating</th>
+                                <th style="border-bottom:none;">Rating</th>
+                                <th style="border-bottom:none;">Uploaded File</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in credit_rating %}
+                            <tr>
+<!--                                <td >{{ i.id }}</td>-->
+                                <td >{{ i.ratingagency }}</td>
+                                <td >{{ i.date_of_rating| date:"F d Y"}}</td>
+                                <td >{{ i.rating }}</td>
+                                {% if i.input_file %}
+                                <td ><a href="{{ i.input_file.url }}"><i class="far fa-file-pdf"></i></a></td>
+                                {% else %}
+                                <td></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <!--    CODE FOR TERMS AND CONDITIONS-->
+            <div class="row" style="margin-top:30px;margin-left:40px;" >
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+            </div>
+            <div class="row history" style="margin-top:20px;">
+<!--                <div class="col-md-8" style="">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+<!--                <div class="col-2"><button type="button" class="btn btn-outline-primary"  >Save Data</button></div>-->
+            </div>
+        </div>
+        </div>
+
+        {% endblock content %}

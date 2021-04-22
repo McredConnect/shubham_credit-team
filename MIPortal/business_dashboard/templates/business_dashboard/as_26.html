@@ -1,0 +1,103 @@
+<!-----------------------------PAGE CONTENT------------------------------>
+{% extends "business_dashboard/registration.html" %}
+
+{% block content %}
+        <head>
+            {% load static %}
+
+            <link rel="stylesheet"  href="{% static '/css/business_dashboard/as_26.css' %}">
+<!--            <script src="{% static '/javascript/userdetails.js' %}"></script>-->
+        </head>
+        <div class="card col-sm-12 col-md-7">
+            <div class="main">
+            <div class="row row1" >
+                <h6 class="col-md-6">AS-26 DETAILS</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark col-sm-3  col-md-3 " data-bs-toggle="modal" data-bs-target="#Modal">ADD AS-26 DETAILS</button>
+             </div>
+
+            <!-- Modal FOR UploadING CREDIT RATING DETAILS-->
+
+            <div class="modal fade modal1" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div><h6 class="one">REGISTRATION &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#F79421" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>&nbsp;&nbsp;AS-26 DETAILS</h6>
+                        <h6 class="cls1">Upload AS-26 Details</h6></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><br>
+
+                    </div>
+
+
+                    <div class="modal-body" >
+                        <form method="post" action="{% url 'as_26' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <label for="name" class="form-label name">Report Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter Name" aria-label="name" aria-describedby="basic-addon1" style="max-width:330px;margin-left:50px;" name="report_name">
+                        </div>
+                        <div class="input-group mb-3">
+                              <label for="fromdate" class="form-label name disableFuturedate">FROM</label>
+                              <input type="date" id="fromdate" class="form-control" placeholder="" aria-label="fromdate" aria-describedby="basic-addon1" style="max-width:330px;margin-left:100px;" name="from_date">
+                        </div>
+                         <div class="input-group mb-3">
+                              <label for="todate" class="form-label name">TO</label>
+                              <input type="date" id="todate" class="form-control disableFuturedate" placeholder="" aria-label="ifsc" aria-describedby="basic-addon1" style="max-width:330px;margin-left:120px;" name="to_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label name">Upload File</label>
+                            <input class="form-control" type="file" id="formFile" style="max-width:330px;margin-left:135px;margin-top:-33px;" name="file">
+                        </div>
+                        <div style="margin-top:50px;margin-bottom:30px;"><button type="submit" class="btn btn-primary addbtn" style="margin-left:130px">UPLOAD DETAILS</button></div>
+                        </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+                <div class="table-responsive">
+                    <table class="col-md-10 table tbl1" style="border-collapse:collapse" >
+                        <thead class="thd" >
+                            <tr >
+                                <th style="border-bottom:none;">Report Name</th>
+                                <th style="border-bottom:none;">From Date</th>
+                                <th style="border-bottom:none;">To Date</th>
+                                <th style="border-bottom:none;">Uploaded File</th>
+                            </tr>
+                        </thead>
+                            <tbody class="tbdy" >
+                            {% for i in as_26 %}
+                            <tr>
+                                <td>{{ i.name_of_document }}</td>
+                                <td >{{ i.fromdate| date:"F d Y" }}</td>
+                                <td >{{ i.todate| date:"F d Y" }}</td>
+                                <td ><a href="{{ i.input_file.url }}" download><i class="far fa-file-pdf"></i></a></td>
+                            </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                    </table>
+                </div>
+                <div class="row check cls1" style="margin-top:7px;" >
+<!--                 <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+<!--                      <label class="form-check-label" for="flexCheckDefault">-->
+<!--                        I confirm that the information I have supplied is correct and best to my knowledge.-->
+<!--                          I give my consent to MCred to verify this information, and agree to their <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy.</a>-->
+<!--                      </label>-->
+<!--                 </div>-->
+            </div>
+<!--            <div class="row history" style="margin-top:20px;">-->
+<!--                <div class="col-8">-->
+<!--                    <i class="fas fa-history" style="width:15px;height:15px;"></i>-->
+<!--                    <span >Last updated at 16:23 on 22/10/2020</span>-->
+<!--                </div>-->
+<!--                <div class="col-3"><button type="submit" class="btn btn-outline-primary">Save Data</button></div>-->
+<!--            </div>-->
+            </div>
+            </div>
+        </div>
+{% endblock content %}
