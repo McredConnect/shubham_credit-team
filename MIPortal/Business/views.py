@@ -303,7 +303,12 @@ def view_details(request, mode):
         entity_name = i.entity_name
         invoice_date = i.invoice_date
         invoice_amount = format_amount(i.invoice_amount)
-        invoice_total_investment = format_amount(i.invoice_total_investment)
+        print(i.invoice_total_investment)
+        print(i)
+        if i.invoice_total_investment is None:
+            invoice_total_investment = 0.0
+        else:
+            invoice_total_investment = format_amount(i.invoice_total_investment)
         applicable_ROI = i.applicable_ROI
         invoice_subscription_status = i.invoice_subscription_status
         invoice_due_date = i.invoice_due_date

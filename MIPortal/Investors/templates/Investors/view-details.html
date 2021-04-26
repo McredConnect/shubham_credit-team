@@ -1,0 +1,154 @@
+{% extends "Investors/index.html" %}
+
+{% block content %}
+
+<head>
+  {% load static %}
+  {% load custom_tags %}
+  <link rel="stylesheet" href="{% static '/css/investor/view-details.css' %}">
+  <script src="{% static '/js/investor/view-details.js' %}"></script>
+</head>
+<div class="row">
+  <div class="content">
+    <a href="{% url 'inv-view-details' mode=0 %}" class="tablinks" id="btn1">Total Deals</a>
+    <a href="{% url 'inv-view-details' mode=1 %}" class="tablinks" id="btn2">Pending Deals</a>
+    <a href="{% url 'inv-view-details' mode=2 %}" class="tablinks" id="btn3">Completed Deals</a>
+    <a href="{% url 'inv-view-details' mode=3 %}" class="tablinks" id="btn4">Upcoming in 30 Days</a>
+  </div>
+</div>
+{% if message %}
+  <div class="row mt-2">
+    <div class="alert alert-warning" role="alert">{{message}}</div>
+  </div>
+{% endif %}
+<div class="row">
+</div>
+<div class="transaction mt-4">
+  <div class="row">
+    <div class="text-center">
+      <h1>{{heading}}</h1>
+    </div>
+  </div>
+  <div class="table-responsive" id="total">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>Sr No</td>
+          <td>Invoice ID</td>
+          <td>Business Name</td>
+          <td>Entity Name</td>
+          <td>Invested Amount</td>
+          <td>Return</td>
+          <td>Maturity Amount</td>
+          <td>Maturity Date</td>
+        </tr>
+      </thead>
+      <!-- {% load mathfilters %} -->
+      {% for i in transactions %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.0|slice:":8"|upper}}</td>
+        <td>{{i.1}}</td>
+        <td>{{i.2}}</td>
+        <td>&#8377;&nbsp; {{i.3}}</td>
+        <td>&#8377;&nbsp; {{i.4}}</td>
+        <td>&#8377;&nbsp; {{i.5}}</td>
+        <td>{{i.6}}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong>&#8377;&nbsp; {{total_investment_amount}}</strong></td>
+        <td><strong>&#8377;&nbsp; {{total_return_amount}}</strong></td>
+        <td><strong>&#8377;&nbsp; {{total_maturity_amount}}</strong></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <!-- <h1>{{j}}</h1> -->
+  <!-- <div class="trantable" id="{{j}}">
+    <table class="tables">
+      <div class="img1">
+        <img id="img{{forloop.counter}}" height="48" width="55" src="{% static '/images/mcred.png' %}">
+      </div>
+      <h5>Invoice Raised To:</h5>
+      <div class="entity">{{j}}</div>
+      <tr class="row">
+        <th style="width: auto;"><label>Invoice ID</label></th>
+        <th>Available Investment Amount</th>
+        <th style="width: auto;">Indicative Yield</th>
+        <th style="width: auto;">Tenor</th>
+        <th>Maturity Date</th>
+        <th>Maturity Amount</th>
+        <th>Invoice Margin %</th>
+        <th>MCred Score</th>
+        <th>% Funded</th>
+        <th>Check Return & Invest</th>
+        <th>View Details</th>
+      </tr>
+      {% for i in users %}
+      {% if i.entity_name == j %}
+      <tr style="border-bottom:1px solid red;" class="row">
+        <td id='id{{forloop.counter}}'><label>{{i.invoice_id|slice:":8"|upper}}</label></td>
+        <td id="available{{forloop.counter}}">Rs.
+          {{i.invoice_investment_amount|subtract:i.invoice_total_investment}}</td>
+        <td id="ror{{forloop.counter}}">{{i.ror_for_investor|floatformat}} %</td>
+        <td id="tenor{{forloop.counter}}">{{i.invoice_due_date|days_until}} Days</td>
+        <td>{{i.invoice_due_date}}</td>
+        <td id="mat_amt{{forloop.counter}}">Rs. {{i.invoice_fundable_amount|subtract:i.amount_due_investor}}</td>
+        <td>{{i.applicable_discount_rate|floatformat}} %</td>
+        <td style="width: auto;">123 </td>
+        {% if i.invoice_subscription_status == 0 %}
+        <td>
+          <div
+            style="background-image: conic-gradient(#74C25C {{i.invoice_subscription_status}}deg, #AAAAAA 0); display: inline-block;"
+            class="piechart">
+            <p style="color: white;">{{i.invoice_subscription_status}}</p>
+          </div>
+        </td>
+        {% else %}
+        <td>
+          <div
+            style="background-image: conic-gradient(#74C25C {{i.invoice_subscription_status}}%, #AAAAAA 0); display: inline-block;"
+            class="piechart">
+            <p style="color: white;">{{i.invoice_subscription_status|floatformat}}</p>
+          </div>
+        </td>
+        {% endif %}
+        <td><a class="c-btn"><button onclick="run(this)" class="btn1" id="return{{forloop.counter}}">Check Return
+              & Invest</button></a></td>
+        <td><a href="{% url 'deal_details' i.invoice_id %}" class="a-btn"><button
+              id="detail{{forloop.counter}}">Deal Details</button></a></td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </div> -->
+  <!--              {% if users.has_other_pages %}-->
+  <!--                  <ul class="pagination">-->
+  <!--                    {% if users.has_previous %}-->
+  <!--                      <a href="?page={{ users.previous_page_number }}">&laquo;</a>-->
+  <!--                    {% else %}-->
+  <!--                      <a class="disabled"><span>&laquo;</span></a>-->
+  <!--                    {% endif %}-->
+  <!--                    {% for i in users.paginator.page_range %}-->
+  <!--                      {% if users.number == i %}-->
+  <!--                        <a class="active" ><span>{{ i }} <span class="sr-only">(current)</span></span></a>-->
+  <!--                      {% else %}-->
+  <!--                        <a href="?page={{ i }}">{{ i }}</a>-->
+  <!--                      {% endif %}-->
+  <!--                    {% endfor %}-->
+  <!--                    {% if users.has_next %}-->
+  <!--                      <a href="?page={{ users.next_page_number }}">&raquo;</a>-->
+  <!--                    {% else %}-->
+  <!--                      <a class="disabled"><span>&raquo;</span></a>-->
+  <!--                    {% endif %}-->
+  <!--                  </ul>-->
+  <!--                {% endif %}-->
+</div>
+<iframe width="0px" height="0px" onload="setActive({{mode}})"></iframe>
+
+{% endblock content %}

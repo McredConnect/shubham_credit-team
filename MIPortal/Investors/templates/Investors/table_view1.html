@@ -1,0 +1,324 @@
+{% extends "Investors/index.html" %}
+{% block content %}
+
+<html>
+
+<head>
+  {% load static %}
+  {% load custom_tags %}
+  <meta charset="UTF-8">
+  <title>Current Deals</title>
+  <link href="{% static '/css/investor/table_view.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    </head>
+    <style>
+      .piechart {
+        margin-left: 0px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      
+      .piechart {
+        display: flex;
+        font-size: 8px;
+      }
+      </style>
+</head>
+
+<script>
+    function format_amount(amount){
+    return amount.toLocaleString('en-IN', {maximumFractionDigits: 2, style: 'currency', currency: 'INR' });
+  }
+</script>
+<body>
+  <!-- Tab links -->
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
+      <div class="text-center">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a tabindex="1" class="nav-link" href="{% url 'investor_deals' %}">Grid View</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab content -->
+  <div class="row">
+    <div class="text-center">
+      <h2>Active Deals</h2>
+    </div>
+  </div>
+  <div class="content" onclick="run2(this)">
+    <div id="table" class="tabcontent">
+      <div class="row">
+        <div class="col-md-2 offset-4">
+          <form>
+            <!-- <label>Select Entity : &nbsp;&nbsp;</label> -->
+            <div class="selectBox" onclick="showCheckboxes()">
+              <select>
+                <option disabled selected>Select Entity</option>
+              </select>
+              <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes">
+              {% for ent in entity %}
+              <label onclick="Show(this)" for="check1{{forloop.counter}}" style="color:#FFA931; text-transform: capitalize">
+                <input type="checkbox" class="checkbox" id="check1{{forloop.counter}}" value="{{ent}}" />{{ent}}
+              </label>
+              {% endfor %}
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <div class="select">
+            <label>Sort By : &nbsp;&nbsp;</label>
+            <select id="select" onchange="sortTable()">
+              <option selected="selected" value="0">Default</option>
+              <option value="3">Maturity Date</option>
+              <option value="8">% Funded</option>
+              <option value="1">Available Investment Amount</option>
+              <option value="2">Indicative Yield</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="transaction">
+        {% for j in entity %}
+        <div class="trantable" id="{{j}}">
+          <div class="row mt-2 mb-2">
+            <div class="col-md-2 text-center">
+              <div class="img1">
+                <img id="logo{{forloop.counter}}" height="48" width="55" src="{% static '/images/mcred.png' %}">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="text">
+                <h5>Invoice Raised To: <span style="text-transform: capitalize;">{{j}}</span></h5>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table tables" id="'myTable'{{forloop.counter}}">
+              <tr>
+                <th style="width: auto;"><label>Invoice ID</label></th>
+                <th>Available Investment Amount</th>
+                <th style="width: auto;">Indicative Yield</th>
+                <th style="width: auto;">Tenor</th>
+                <th>Maturity Date</th>
+                <th>Maturity Amount</th>
+                <th>Invoice Margin %</th>
+                <th>MCred Score</th>
+                <th>% Funded</th>
+                <th>Check Return & Invest</th>
+                <th>View Details</th>
+              </tr>
+              {% for i in users %}
+              {% if i.entity_name == j %}
+              {% if i.invoice_subscription_status < 100 %} <tr>
+                <td id='id{{forloop.counter}}'><label>{{i.invoice_id}}</label></td>
+                <td id="available{{forloop.counter}}">{{i.invoice_available_investment}}</td>
+                <!-- <td id="available{{forloop.counter}}">&#8377;&nbsp; {{i.invoice_available_investment}}</td> -->
+                <td id="ror{{forloop.counter}}">{{i.ror_for_investor|floatformat}} %</td>
+                <td id="tenor{{forloop.counter}}">{{i.invoice_due_date|days_until}} Days</td>
+                <td>{{i.invoice_due_date}}</td>
+                <!-- <td id="mat_amt{{forloop.counter}}">&#8377;&nbsp; {{i.invoice_fundable_amount|subtract:i.amount_due_investor}}</td> -->
+                <td id="mat_amt{{forloop.counter}}">{{i.mat_amount}}</td>
+                <td>{{i.applicable_discount_rate|floatformat}} %</td>
+                <td style="width: auto;">123 </td>
+                <td>
+                  <div
+                    style="background-image: conic-gradient(#74C25C {{i.invoice_subscription_status}}%, #AAAAAA 0); display: inline-block;"
+                    class="piechart">
+                    <p style="color: white; margin-top: 25%;">{{i.invoice_subscription_status|floatformat}}</p>
+                  </div>
+                </td>
+                <td><a class="c-btn"><button onclick="run(this)" class="btn1" id="return{{forloop.counter}}">Check
+                      Return
+                      & Invest</button></a></td>
+                <td><a href="{% url 'deal_details' i.invoice_id %}" class="a-btn"><button
+                      id="detail{{forloop.counter}}">Deal Details</button></a></td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </table>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var anchors = document.querySelectorAll('.btn1');
+
+  for (var i = 0; i < anchors.length; i++) {
+    anchors[i].addEventListener('click', handler, false);
+    anchors[i].myParam = i;
+  }
+
+  function handler(evt) {
+    var invoice_id = document.getElementById("id" + id).textContent;
+    console.log(invoice_id);
+    document.getElementById('invoice_id').value = invoice_id;
+  }
+  var id;
+  var invoice_id;
+  $('#check').click('submit', function (e) {
+    e.preventDefault();
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  });
+
+
+  function run(ele) {
+    id = ele.id.slice(6);
+    invoice_id = document.getElementById("id" + id).textContent;
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    console.log(id, invoice_id);
+  }
+
+  function calc() {
+    var id1 = id;
+    var amt = parseFloat(document.getElementById("amt").value);
+    var ror = parseFloat((document.getElementById("ror" + id).textContent).slice(0, 3));
+    var tenor = parseFloat((document.getElementById("tenor" + id).textContent).slice(0, 3));
+    var mat_amt = parseFloat((document.getElementById("mat_amt" + id).textContent).slice(4));
+
+    var return_amt = ((ror / 100) / 365) * tenor * mat_amt
+    var investment_amt = mat_amt - return_amt
+    var amount_due = (mat_amt / investment_amt) * amt
+    var return_inv = (amount_due - amt).toFixed(2);
+    var div1 = document.getElementById("return11");
+    div1.innerHTML = "₹ " + return_inv;
+
+    var tenor1 = tenor - 1
+    var return_amt1 = ((ror / 100) / 365) * tenor1 * mat_amt
+    var investment_amt1 = mat_amt - return_amt1
+    var amount_due1 = (mat_amt / investment_amt1) * amt
+    var return_inv1 = (amount_due1 - amt).toFixed(2);
+    document.getElementById("return22").innerHTML = "₹ " + return_inv1;
+
+    var tenor2 = tenor - 2
+    var return_amt2 = ((ror / 100) / 365) * tenor2 * mat_amt
+    var investment_amt2 = mat_amt - return_amt2
+    var amount_due2 = (mat_amt / investment_amt2) * amt
+    var return_inv2 = (amount_due2 - amt).toFixed(2);
+    document.getElementById("return33").innerHTML = "₹ " + return_inv2;
+
+    var available = parseFloat((document.getElementById("available" + id).textContent).slice(4));
+    if (available > {{ min_limit }}) {
+    if (amt < {{ min_limit }}) {
+    alert('Min Investment amount: ₹ ' + {{ min_limit }});
+          } else if (amt > available) {
+    alert('Available amount: ₹ ' + available);
+  }
+      }
+  console.log(available, {{ min_limit }});
+  }
+
+  function run1() {
+    var modal = document.getElementById("myModal");
+    var option = document.getElementById("checkBoxes");
+    var span = document.getElementsByClassName("close")[0];
+    modal.style.display = "none";
+    option.style.display = "none";
+  }
+  var expanded = false;
+
+  function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+      checkboxes.style.display = "block";
+      expanded = true;
+    } else {
+      checkboxes.style.display = "none";
+      expanded = false;
+    }
+  }
+
+  function Show(ele) {
+    var x = 0;
+    var id1 = ele.id;
+    var elements = document.getElementsByClassName('trantable');
+    var options = document.getElementsByClassName('checkbox');
+    var inputElems = document.getElementsByTagName("input"),
+      count = 0;
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.display = 'none';
+    }
+    for (var j = 0; j < elements.length; j++) {
+      if (options[j].checked == true) {
+        elements[(options[j].value)].style.display = 'block';
+      }
+    }
+  }
+
+  function run2(ele) {
+    var modal = document.getElementById("myModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  function sortTable() {
+    var index = document.getElementById("select").value;
+    var table, rows, switching, i, x, y, shouldSwitch;
+    tables = document.getElementsByClassName("tables");
+    for (t = 0; t < tables.length; t++) {
+      table = tables[t];
+      switching = true;
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          cell1 = rows[i].getElementsByTagName("TD")[index];
+          cell2 = rows[i + 1].getElementsByTagName("TD")[index];
+          // Default
+          if (index == "0") {
+            x = cell1.innerHTML.toLowerCase()
+            y = cell2.innerHTML.toLowerCase()
+          }
+          // Available Investment Amount
+          else if (index == "1") {
+            x = parseFloat(cell1.innerHTML.substring(4));
+            y = parseFloat(cell2.innerHTML.substring(4));
+          }
+          // Maturity Date or Indicative Yield
+          else if (index == "2" || index == "3") {
+            x = parseInt(cell1.innerHTML.split(" ")[0]);
+            y = parseInt(cell2.innerHTML.split(" ")[0]);
+          }
+          // % Funded
+          else if (index == "8") {
+            x = parseFloat(cell1.querySelectorAll("p")[0].innerHTML);
+            y = parseFloat(cell2.querySelectorAll("p")[0].innerHTML);
+            console.log('x=', x)
+            console.log('y=', y)
+          }
+          if (x > y) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+  }
+</script>
+
+{% endblock content %}

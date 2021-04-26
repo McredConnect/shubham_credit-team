@@ -9,6 +9,8 @@ from Investors.models import *
 from accounts.models import *
 from PortalLogin.models import *
 from InvestorDashboards.views import *
+from business_dashboard.views import *
+from new_dashboard.views import *
 import math, random
 from .forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -240,15 +242,7 @@ def bloginput(request):
     return render(request, 'PortalLogin/demo.html')
 
 def login(request):
-    # print("login",request.session['business_id'])
-    # investor_id = Investor.objects.get(user_id=request.user).investor_id
-    # print(investor_id)
-    # investor_obj = Investor.objects.get(investor_id=investor_id)
-    # print(investor_obj)
-    # type = investor_obj.investor_category
-    # type = None
 
-    # print('type',type)
     if request.method == "POST":
         username = request.POST['user']
         password = request.POST['password']
@@ -257,18 +251,51 @@ def login(request):
         user1 = CustomUser.objects.get(username=username)
         print("user1",user1.id)
         print("USERTYPE",user_type)
-        print("SUPERUSER",user.is_superuser)
+        print("SUPERUSER",user1.is_superuser)
+        # business_obj = Business.objects.get(user_id_id=user1)
+        # print("business_obj_on", business_obj)
+        # business_obj_status = business_obj.status
+        # print(business_obj_status)
+        # if business_obj_status=="New":
+        #     return redirect('dashboard')
 
-        if user.is_superuser and user_type=="Admin":
-            return redirect('business')
+        if user1.is_superuser and user_type=="Admin":
+            return redirect('business_two')
         try:
+            print("In try")
             inv_obj = Investor.objects.get(user_id_id=user1)
+            print(inv_obj)
+            # business_obj = Business.objects.get(user_id_id=user1)
+            # print("business_obj",business_obj)
             print('inves',inv_obj.investor_category)
             print(user)
             type = inv_obj.investor_category
+            inv_status = inv_obj.status
+            print(inv_status)
         except:
             inv_obj = None
             type = None
+            # inv_status = inv_obj.status
+            # inv_status = "APPROVED"
+        else:
+            if inv_status=="APPROVED":
+                return redirect('inv-dashboard')
+
+        try:
+            print("In business try")
+
+            business_obj = Business.objects.get(user_id_id=user1)
+            print("business_obj",business_obj)
+            business_status = business_obj.status
+            print(business_status)
+
+
+        except:
+            print("No exception!")
+
+        else:
+            if business_status =="APPROVED":
+                return redirect('dashboard')
         if user_type:
             if user is not None:
                 if user_type in user.type:
@@ -276,6 +303,8 @@ def login(request):
                     # print(auth.login(request, user))
                     print(request.user)
                     request.session['logged_in'] = True
+                    # if user_type == 'investor' and inv_status=="APPROVED":
+                    #     return redirect('inv-dashboard')
                     if user_type == 'investor' and type == None:
                         return redirect('registration_newdashboard')
                     elif user_type == 'investor' and type == "Individual":
@@ -425,7 +454,7 @@ def business_signup(request):
                 user.set_password(password)
                 user.save()
                 business_obj = Business.objects.create(business_name=user.first_name + ' ' + user.last_name, user_id=user, city=city,
-                                        turnover=turnover, state=state, business_pan_card=pan)
+                                        turnover=turnover, state=state, business_pan_card=pan, status="New")
                 print(business_obj.business_id)
                 request.session['business_id'] = str(business_obj.business_id)
                 print("firstloop",request.session['business_id'])

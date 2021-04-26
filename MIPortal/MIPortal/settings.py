@@ -35,6 +35,10 @@ INSTALLED_APPS = [
     'Investors',
     'accounts',
     'tests',
+    'business_dashboard',
+    'PortalLogin',
+    'new_dashboard',
+    'Business',
     'InvestorDashboards',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

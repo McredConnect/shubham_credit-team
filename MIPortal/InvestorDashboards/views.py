@@ -527,8 +527,9 @@ def business(request):
 
 
 def investor(request):
-    print("In business view")
+    print("In investor view")
     objs = Investor.objects.filter(status=None)
+    print(objs)
     context = {'objs':objs}
     return render(request, 'InvestorDashboards/investors.html', context)
 
@@ -896,8 +897,8 @@ def business_comment(request, pk):
     # businessdetail_comments_obj = Comments.objects.filter(type="businessdetail") & Comments.objects.filter(business_id=business_id)
     comments_obj = Comments.objects.filter(business_id=pk)
     context = {'comments_obj': comments_obj}
-    # return render(request, 'InvestorDashboards/business_comment.html', context)
-    return render(request, 'InvestorDashboards/modal.html', context)
+    return render(request, 'InvestorDashboards/business_comment.html', context)
+    # return render(request, 'InvestorDashboards/modal.html', context)
 
 
 def business_comment_one(request):

@@ -112,7 +112,7 @@
                     <h5>Invoice Raised To:</h5>
                     <div class="entity">{{j}}</div>
                     <tr class="row">
-                        <th style="padding-left: 7px; width: 10px;">Select</th>
+<!--                        <th style="padding-left: 7px; width: 10px;">Select</th>-->
                         <th style="width: auto;"><label>Invoice ID</label></th>
 <!--                        <th>Entity Name</th>-->
                         <th >Available Investment Amount</th>
@@ -129,7 +129,7 @@
                     {% for i in users %}
                     {% if i.entity_name == j %}
                     <tr style="border-bottom:1px solid red;" class="row">
-                        <td style="padding-left: 7px;" id="select{{forloop.counter}}"><form id="form{{forloop.counter}}"><input id="check{{forloop.counter}}" type="checkbox"></form></td>
+<!--                        <td style="padding-left: 7px;" id="select{{forloop.counter}}"><form id="form{{forloop.counter}}"><input id="check{{forloop.counter}}" type="checkbox"></form></td>-->
                         <td id='id{{forloop.counter}}'><label>{{i.invoice_id}}</label></td>
 <!--                        <td>{{i.entity_name}}</td>-->
 <!--                        <td style="width: auto; padding: 15px;">Man Investment PVT ltd</td>-->
@@ -146,7 +146,7 @@
                             <td><div style="background-image: conic-gradient(#74C25C {{i.invoice_subscription_status}}%, #AAAAAA 0); display: inline-block;" class="piechart"><p style="color: white;">{{i.invoice_subscription_status|floatformat}}</p></div></td>
                         {% endif %}
                         <td><a class="c-btn"><button onclick="run(this)" class="btn1" id="return{{forloop.counter}}">Check Return & Invest</button></a></td>
-                        <td><a href="{% url 'deal_details' i.id %}" class="a-btn"><button id="detail{{forloop.counter}}">Deal Details</button></a></td>
+                        <td><a href="{% url 'deal_details' i.invoice_id %}" class="a-btn"><button id="detail{{forloop.counter}}">Deal Details</button></a></td>
                     </tr>
                     {% endif %}
                     {% endfor %}
@@ -229,19 +229,20 @@
 
         $('#invest').click('submit',function(e){
             e.preventDefault();
-            var token = '{{csrf_token}}'
+            var token = '{{csrf_token}}';
+            var invoice_id = document.getElementById("id"+id).textContent;
 
             $.ajax({
                 headers: { "X-CSRFToken": token },
                 type:'POST',
-                url:'/table_view',
+                url:'/investor/table_view/sort_maturity',
                 data:{
                     amt:$('#amt').val(),
                     invoice_id: invoice_id,
                 },
                 success:function(data){
                     alert(data.msg);
-                    window.location.href = "/table_view";
+                    window.location.href = "/investor/table_view";
                 }
             });
         console.log(token)

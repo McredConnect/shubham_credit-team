@@ -85,13 +85,13 @@
                                                </button>
 
                                                <ul class = "dropdown-menu" role = "menu">
-                                                  <li><a href = "{% url 'investor_pending_form' i.investor_id %}">PENDING</a></li>
-                                                  <li><a href="{% url 'investor_approved_form' i.investor_id %}">APPROVE</a></li>
+                                                  <li><a href = "{% url 'investor_pending_form' i.investor_id %}" >PENDING</a></li>
+                                                  <li><a href="{% url 'investor_approved_form' i.investor_id %}" >APPROVE</a></li>
                                                </ul>
                                             </div>
 
                                         </td>
-                                        <td style="text-align:center;"><button onclick="location.href='{% url 'investor_detail' i.investor_id %}' ">Details</button></td>
+                                        <td style="text-align:center;"><button onclick="location.href='{% url 'investor_detail' i.investor_id %}' ">{{i.investor_id}}Details</button></td>
 
                                     </tr>
                               {% endfor %}

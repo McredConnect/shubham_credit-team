@@ -1,142 +1,177 @@
 {% extends "Investors/index.html" %}
 
-        {% block content %}
-        <head>
-            {% load static %}
-            <link rel="stylesheet"  href="{% static '/css/investor/managefunds.css' %}">
-        </head>
-        <div class="managefunds">
-            <div class="container-fluid">
-                <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </span> &nbsp;&nbsp;MANAGE FUNDS</h6>
-            <div class="row" style="margin-top:30px;">
-                <div class="col-sm-12 col-md-4 card"  id="card1">
-                      <div class="card-header">Balance</div>
-                      <div class="card-body" >
-                      <ul class="list-group list-group-horizontal li1" >
-                          <li class="list-group-item" style="width:220px;">Amount Available</li>
-                          <li class="list-group-item ">&#8377; 1,16,120</li>
+{% block content %}
 
-                      </ul>
-                      <ul class="list-group list-group-horizontal li2">
-                          <li class="list-group-item" style="width:220px;" >ICICI Escrow Balance</li>
-                          <li class="list-group-item ">&#8377; 52,526</li>
-
-                      </ul>
-                      <ul class="list-group list-group-horizontal li3">
-                          <li class="list-group-item" style="width:220px;">Withdrawls In Progress</li>
-                          <li class="list-group-item ">&#x20B9; 86,420</li>
-                      </ul>
-                     </div>
-                </div>
-                    <!--table manage-->
-
-                <div class="col-sm-12 col-md-7 offset-1 card"  id="card2" >
-                      <div class="card-header">Manage</div>
-                      <div class="card-body">
-                          <ul class="list-group list-group-horizontal">
-                              <li class="list-group-item" style="width:600px;">Add Funds To Your Mcred Account</li>
-                              <button onclick="location.href='{% url 'add_funds' %}'" class="btn btn-primary">ADD FUNDS TO MCRED</button>
-                          </ul>
-                          <br>
-                          <ul class="list-group list-group-horizontal" >
-                             <li class="list-group-item" style="width:600px;" >Withdraw Amount From Mcred To Bank Account</li>
-                              <button onclick="location.href='{% url 'withdrawal' %}'" class="btn btn-primary" id="btn2">WITHDRAW TO BANK</button>
-
-                          </ul>
-                          <br>
-                          <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item" style="width:600px;">Change your primary transaction account</li>
-                            <button class=" btn btn-primary" id="btn3">CHANGE ACCOUNT</button>
-                          </ul>
-                     </div>
-                </div>
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/investor/managefunds.css' %}">
+</head>
+<div class="managefunds">
+  <div class="container-fluid">
+    <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+          width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+        </svg> </span> &nbsp;&nbsp;MANAGE FUNDS</h6>
+    <div class="row" style="margin-top:30px;">
+      <div class="col-sm-12 col-md-4 card" id="card1">
+        <div class="card-header">Balance</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p>Amount Available</p>
             </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
-                      <div class="card-body">
-                            <h5 class="card-title">Transaction History</h5>
-                          <div class="table-responsive">
-                            <table class="table" style="border-collapse:collapse">
-                                <thead class="headt" >
-                                    <tr>
-                                          <th scope="col" class="date">Date</th>
-                                          <th scope="col">Transaction ID</th>
-                                          <th scope="col">Type</th>
-                                          <th scope="col">Amount</th>
-                                          <th scope="col">Comment</th>
-                                          <th scope="col">Status</th>
-                                    </tr>
-                              </thead>
-                              <tbody>
-                              {% for transaction in transactions %}
-                                <tr>
-                                  <td>{{transaction.transaction_date}}</td>
-                                  <td>{{transaction.id}}</td>
-                                  {% if transaction.transaction_type == 'Withdrawal' %}
-                                  <td><div style="background: #FADFDC;color:#DE655D; width:120px;text-align:center;padding:3px;">
-                                      {{transaction.transaction_type}}</div> </td>
-                                  <td>&#8377;{{transaction.amount_invested}}</td>
-                                  {% elif transaction.transaction_type == 'Funds added' %}
-                                  <td><div style="background: #FFE8CC;color:#FFA931; width:120px;text-align:center;padding:3px;">
-                                      {{transaction.transaction_type}}</div> </td>
-                                  <td>&#8377;{{transaction.amount_invested}}</td>
-                                  {% elif transaction.transaction_type == 'Refund' %}
-                                  <td><div style="background: #DDE5FC;color:#548AF0; width:120px;text-align:center;padding:3px;">
-                                      {{transaction.transaction_type}}</div> </td>
-                                  <td>&#8377;{{transaction.amount_invested}}</td>
-                                  {% elif transaction.transaction_type == 'Deal Purchase' %}
-                                  <td><div style="background:#F0E6EE;color:#AC6FD9; width:120px;text-align:center;padding:3px;">
-                                      {{transaction.transaction_type}}</div> </td>
-                                  <td>&#8377;{{transaction.amount_invested}}</td>
-                                  {% elif transaction.transaction_type == 'Repayment' %}
-                                  <td><div style="background:#E0FFBA;color:#38CC47; width:120px;text-align:center;padding:3px;">
-                                      {{transaction.transaction_type}}</div> </td>
-                                  <td>&#8377;{{transaction.amount_invested}}</td>
-                                  {% endif %}
-                                  <td><SPAN>Amount withdrawal ro external account</SPAN><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>
-                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>
-                                </tr>
-                              {% endfor %}
-<!--                                <tr>-->
-<!--                                  <td>6-11-2020</td>-->
-<!--                                  <td>ABCNJ37HJEJFBH</td>-->
-<!--                                  <td><div style="background: #FFE8CC;color:#FFA931;width:120px;text-align:center;padding:3px;">Funds Added</div></td>-->
-<!--                                  <td>&#8377;2,40,000</td>-->
-<!--                                  <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
-<!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#58B4AE" class="bi bi-clock-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg></td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                  <td>6-11-2020</td>-->
-<!--                                  <td>ABCNJ37HJEJFBH</td>-->
-<!--                                  <td><div style="background: #DDE5FC;color:#548AF0;width:120px;text-align:center;padding:3px;">Refund</div></td>-->
-<!--                                  <td>&#8377;2,40,000</td>-->
-<!--                                   <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
-<!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#DE655D" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></td>-->
-<!--                               </tr>-->
-<!--                               <tr >-->
-<!--                                  <td>6-11-2020</td>-->
-<!--                                  <td>ABCNJ37HJEJFBH</td>-->
-<!--                                  <td><div style="background:#F0E6EE;color:#AC6FD9;width:120px;text-align:center;padding:3px;">Deal Purchased</div></td>-->
-<!--                                  <td>&#8377;2,40,000</td>-->
-<!--                                   <td><span>Amount withdrawal ro external account</span><br><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
-<!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>-->
-<!--                               </tr>-->
-<!--                               <tr >-->
-<!--                                  <td>6-11-2020</td>-->
-<!--                                  <td>ABCNJ37HJEJFBH</td>-->
-<!--                                   <td class="mx-auto"><div style="background:#E0FFBA;color:#38CC47;width:120px;text-align:center;padding:3px;">Repayment</div></td>-->
-<!--                                  <td>&#8377;2,40,000</td>-->
-<!--                                   <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
-<!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>-->
-<!--                                </tr>-->
+            <div class="col-md-6 text-center">
+            <strong>&#8377; {{amount_available}}</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>MCred Wallet Balance</p>
+            </div>
+            <div class="col-md-6 text-center">
+            <strong>&#8377; {{escrow_balance}}</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Withdrawals In Progress</p>
+            </div>
+            <div class="col-md-6 text-center">
+            <strong>&#8377; {{withdrawal_in_progress}}</strong>
+            </div>
+          </div>
+          <!-- <ul class="list-group list-group-horizontal li1">
+            <li class="list-group-item" style="width:220px;">Amount Available</li>
+            <li class="list-group-item ">&#8377; {{amount_available}}</li>
+          </ul>
+          <ul class="list-group list-group-horizontal li2">
+            <li class="list-group-item" style="width:220px;">ICICI Escrow Balance</li>
+            <li class="list-group-item ">&#8377; {{escrow_balance}}</li>
 
-                              </tbody>
-                          </table>
-                              </div>
-                      </div>
-                </div>
-            </div>
-            </div>
+          </ul>
+          <ul class="list-group list-group-horizontal li3">
+            <li class="list-group-item" style="width:220px;">Withdrawals In Progress</li>
+            <li class="list-group-item ">&#8377; {{withdrawal_in_progress}}</li>
+          </ul> -->
         </div>
+      </div>
+      <!--table manage-->
 
-        {% endblock content %}
+      <div class="col-sm-12 col-md-7 offset-1 card" id="card2">
+        <div class="card-header">Manage</div>
+        <div class="card-body">
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item" style="width:600px;">Add Funds To Your Mcred Account</li>
+            <button onclick="location.href='{% url 'add_funds' %}'" class="btn btn-primary">ADD FUNDS TO MCRED</button>
+          </ul>
+          <br>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item" style="width:600px;">Withdraw Amount From Mcred To Bank Account</li>
+            <button onclick="location.href='{% url 'withdraw' %}'" class="btn btn-primary" id="btn2">WITHDRAW TO
+              BANK</button>
+
+          </ul>
+          <br>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item" style="width:600px;">Change your primary transaction account</li>
+            <button onclick="location.href='{% url 'change-account' %}'" class=" btn btn-primary" id="btn3">CHANGE ACCOUNT</button>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 card" id="card3" style="margin-top:30px;">
+        <div class="card-body">
+          <h5 class="card-title">Transaction History</h5>
+          <div class="table-responsive">
+            <table class="table" style="border-collapse:collapse; text-align: center;">
+              <thead class="headt">
+                <tr>
+                  <th scope="col" class="date">Date</th>
+                  <th scope="col">Transaction ID</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Sub-Type</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Comment</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              {% for i in data %}
+              <!--                              <tbody>-->
+
+              <tr>
+                <td>{{i.0}}</td>
+                <td>{{i.1}}</td>
+                {% if i.2 == 'Debit' %}
+                <td>
+                  <div style="background: #FADFDC;color:#DE655D; width:120px;text-align:center;padding:3px;">{{i.2}}
+                  </div>
+                </td>
+                <td>
+                  <div style="background: #FADFDC;color:#DE655D; width:120px;text-align:center;padding:3px;">{{i.3}}
+                  </div>
+                </td>
+                {% else %}
+                <td>
+                  <div style="background: #E0FFBA;color:#38CC47; width:120px;text-align:center;padding:3px;">{{i.2}}
+                  </div>
+                </td>
+                <td>
+                  <div style="background: #E0FFBA;color:#38CC47; width:120px;text-align:center;padding:3px;">{{i.3}}
+                  </div>
+                </td>
+                {% endif %}
+                <td>{{i.4}}</td>
+                <td>{{i.5}}</td>
+                <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47"
+                    class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                  </svg></td>
+              </tr>
+              {% endfor %}
+
+              <!--                                <tr>-->
+              <!--                                  <td>6-11-2020</td>-->
+              <!--                                  <td>ABCNJ37HJEJFBH</td>-->
+              <!--                                  <td><div style="background: #FFE8CC;color:#FFA931;width:120px;text-align:center;padding:3px;">Funds Added</div></td>-->
+              <!--                                  <td>&#8377;2,40,000</td>-->
+              <!--                                  <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+              <!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#58B4AE" class="bi bi-clock-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg></td>-->
+              <!--                                </tr>-->
+              <!--                                <tr>-->
+              <!--                                  <td>6-11-2020</td>-->
+              <!--                                  <td>ABCNJ37HJEJFBH</td>-->
+              <!--                                  <td><div style="background: #DDE5FC;color:#548AF0;width:120px;text-align:center;padding:3px;">Refund</div></td>-->
+              <!--                                  <td>&#8377;2,40,000</td>-->
+              <!--                                   <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+              <!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#DE655D" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></td>-->
+              <!--                               </tr>-->
+              <!--                               <tr >-->
+              <!--                                  <td>6-11-2020</td>-->
+              <!--                                  <td>ABCNJ37HJEJFBH</td>-->
+              <!--                                  <td><div style="background:#F0E6EE;color:#AC6FD9;width:120px;text-align:center;padding:3px;">Deal Purchased</div></td>-->
+              <!--                                  <td>&#8377;2,40,000</td>-->
+              <!--                                   <td><span>Amount withdrawal ro external account</span><br><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+              <!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>-->
+              <!--                               </tr>-->
+              <!--                               <tr >-->
+              <!--                                  <td>6-11-2020</td>-->
+              <!--                                  <td>ABCNJ37HJEJFBH</td>-->
+              <!--                                   <td class="mx-auto"><div style="background:#E0FFBA;color:#38CC47;width:120px;text-align:center;padding:3px;">Repayment</div></td>-->
+              <!--                                  <td>&#8377;2,40,000</td>-->
+              <!--                                   <td><span>Amount withdrawal ro external account</span><br><br><span class="s">UTR Number ASZFVBKKJ</span></td>-->
+              <!--                                  <td><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg></td>-->
+              <!--                                </tr>-->
+
+              <!--                              </tbody>-->
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

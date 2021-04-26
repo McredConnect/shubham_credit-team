@@ -1,177 +1,330 @@
 {% extends "Investors/index.html" %}
 
-        {% block content %}
-        <head>
-            {% load static %}
-            <link rel="stylesheet"  href="{% static '/css/investor/deal_details.css' %}">
-            <script src="{% static '/js/current_deals.js' %}"></script>
-        </head>
-        <div class="container-fluid">
-            <div class="div1">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Deal Details</a>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Enterprise</a>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Vendor</a>
-                          </li>
-                    </ul>
+{% block content %}
+
+<head>
+  {% load static %}
+  {% load custom_tags %}
+  <link rel="stylesheet" href="{% static '/css/investor/deal_details.css' %}">
+  <script src="{% static '/js/current_deals.js' %}"></script>
+</head>
+<div class="container-fluid">
+  <div class="div1">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Deal Details</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+          aria-selected="false">Enterprise</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+          aria-selected="false">Vendor</a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class=" row div2 ">
+        <div class="col-sm-12 col-md-11 mx-auto card card1">
+          <div class="card-body">
+            <div class="top">
+              <h6 class="h6">Invoice Raised for</h6>
             </div>
-            <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                          <div class=" row div2 ">
-                              <div class="col-sm-12 col-md-11  card card1">
-                                  <div class="card-body">
-                                      <div class="top"><h6 class="h6">Invoice Raised for</h6></div>
-                                      <div class="logoimg"><img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}"><span class="card-text" id="sp">{{invoice.entity_name}}<br class="break"><br class="break"><br class="break"><br class="break"><i id="one"></i></span><span class="card-text" id="box"><a href="#" class="btn btn-primary"><i class="far fa-file-alt"></i>Invoice Discounting</a></span></div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-sm-12 col-md-5  card card2">
-                                  <div class="card-body">
-                                      <div class="small"><h6 class="exp">Expected Yield</h6></div>
-                                      <ul class="list-group list-group-horizontal" id="lst1">
-                                          <li class="list-group-item" style="width:160px;text-align:center;">16.21%</li>
-                                          <li class="list-group-item" style="width:160px;text-align:center;">12.42%</li>
-                                          <li class="list-group-item" style="width:160px;text-align:center;">583</li>
-                                      </ul>
-                                      <hr style="width:385px;margin-left:28px;">
-                                      <ul class="list-group list-group-horizontal" id="lst2">
-                                          <li class="list-group-item" style="width:160px;text-align:center;">Expected<br>gross yield</li>
-                                          <li class="list-group-item" style="width:160px;text-align:center;">Expected <br>net yield</li>
-                                          <li class="list-group-item" style="width:160px;text-align:center;">Mcred<br> score</li>
-                                      </ul>
-                                  </div>
-                              </div>
-                              <div class="col-sm-12 col-md-5 offset-1 card card3">
-                                      <div class="card-body">
-                                      <div class="small1"><h6 class="exp1">More Details</h6></div>
-                                      <ul class="list-group list-group-horizontal" id="lst3">
-                                          <li class="list-group-item" style="width:140px;text-align:center;">60</li>
-                                          <li class="list-group-item break-this" style="width:180px;text-align:center;">06-12-<br class="break" style="display:None"><br class="break" style="display:None">2020</li>
-                                          <li class="list-group-item" style="width:140px;text-align:center;">10</li>
-                                      </ul>
-                                      <hr style="width:375px;margin-left:45px;">
-                                      <ul class="list-group list-group-horizontal" id="lst4">
-                                          <li class="list-group-item" style="width:160px;text-align:center;">Deal Maturity<br>(In Days)</li>
-                                          <li class="list-group-item" style="width:180px;text-align:center;">Repayment <br>on</li>
-                                          <li class="list-group-item" style="width:140px;text-align:center;">Deal Expiry<br>(In Days)</li>
-                                      </ul>
-                                      </div>
-                               </div>
-                          </div>
-                    </div>
-                    <div class="tab-pane fade" style="display:block;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                          <div class="row">
-                              <div class="col-12 card card4">
-                                  <div class="card-body">
-                                        <div class="card top2"><h6 class="card-body">Invoice Raised for</h6></div>
-                                        <div class="logoimg"><img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}"><span class="card-text" id="sp1">Oyo Hotels <br class="break"><br class="break">and Homes <br class="break"><br class="break"><i id="tw">Private Limited</i></span></div>
-                                        <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
-                                        <div class="des"><p>an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.</p>
-                                        </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-12 card card5">
-                                  <div class="card-body">
-                                      <div class="card top3"><h6 class="card-body">Company Overview</h6></div>
-                                      <ul class="list-group list-group-horizontal list" style="margin-top:20px;">
-                                          <li class="list-group-item li1" id="li1" style="margin-left:10px;">Business Sector</li>
-                                          <li class="list-group-item li2" id="li2">Retail</li>
-                                          <li class="list-group-item li3">Location</li>
-                                          <li class="list-group-item li3" id="li4"><i class="fa fa-map-marker" aria-hidden="true" style="margin-right:10px; margin-top:5px;"></i>New Delhi</li>
-                                      </ul>
-                                      <div class="card-text mcr">Mcred Opinion<i class="fa fa-star"  aria-hidden="true"></i></div>
-                                      <div class="des"><p>an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 card card6">
-                                      <div class="card-body">
-                                          <div class="card top4"><h6 class="card-body">History With Mcred</h6></div>
-                                          <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
-                                          <div class="des"><p>an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                                 an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                                 an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                                 an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context
-                                              more parties for their mutual benefit, especially in a business or political context.</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        <div class="row" style="margin-top:-1040px;">
-                              <div class="col-12 card card4" id="card7">
-                                  <div class="card-body">
-                                      <div class="card top5" style="margin-top: -35px;" ><h6 class="card-body">Invoice Raised for</h6></div>
-                                      <ul class="list-group list-group-horizontal-lg list">
-                                      <li class="list-group-item" style="font: normal normal 600 14px/34px Open Sans;letter-spacing: 1.8px;color: #353535;" >VENDOR ID</li>
-                                      <li class="list-group-item" id="ven" style="text-align: left;font: normal normal 600 22px/33px Open Sans;letter-spacing: 2.8px;color: #F79421;">AEJ12S8AD</li>
-                                      </ul>
-                                      <ul class="list-group list-group-horizontal-lg list">
-                                      <li class="list-group-item ">Item Verified</li>
-                                      <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Deal Invoice</li>
-                                      <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Director Profile</li>
-                                      <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Company Profile</li>
-                                      </ul>
-                                      <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
-                                      <div class="des"><p>an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                        </div>
-                        <div class="row">
-                              <div class="col-12 card card5">
-                                  <div class="card-body">
-                                      <div class="card top3"><h6 class="card-body">Company Overview</h6></div>
-                                      <ul class="list-group list-group-horizontal list" style="margin-top:20px;">
-                                          <li class="list-group-item li1" id="li1" style="margin-left:10px;">Business Sector</li>
-                                          <li class="list-group-item li2" id="li2">Retail</li>
-                                          <li class="list-group-item li3">Location</li>
-                                          <li class="list-group-item li3" id="li4"><i class="fa fa-map-marker" aria-hidden="true" style="margin-right:10px; margin-top:5px;"></i>New Delhi</li>
-                                      </ul>
-                                      <div class="card-text mcr">Mcred Opinion<i class="fa fa-star"  aria-hidden="true"></i></div>
-                                      <div class="des"><p>an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                             an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12 card card6">
-                                      <div class="card-body">
-                                          <div class="card top4"><h6 class="card-body">History With Mcred</h6></div>
-                                          <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
-                                          <div class="des"><p>an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                                 an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                                 an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context.
-                                                 an agreement entered into by two or more parties for their mutual benefit, especially in a business or political context
-                                              more parties for their mutual benefit, especially in a business or political context.</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                    </div>
+            <div class="row mt-5">
+              <div class="col-md-2 ">
+                <div class="logoimg">
+
+                </div>
+                </div>
+                <div class="col-md-5 text-center ">
+                  <span class="card-text align-middle" id="sp" style="text-align:center">{{invoice_obj.entity_name}}<br class="break"><br class="break"><br class="break"><br class="break"><i id="one"></i></span>
+                </div>
+                <div class="col-md-5 text-center">
+                  <span class="card-text" id="box" style="text-align:end"><a href="{{invoice_obj.invoice_pdf.url}}" download class="btn btn-primary"><i class="far fa-file-alt"></i>Invoice</a></span>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        {% endblock content %}
+      <div class="row">
+        <div class="col-sm-12 col-md-5  card card2">
+          <div class="card-body">
+            <div class="small">
+              <h6 class="exp">Expected Yield</h6>
+            </div>
+            <table id="bill" class="table borderless" style="text-align:center; margin-top:4vh">
+              <tr>
+                <th>{{invoice_obj.expected_gross_yield}}%</th>
+                <th>{{invoice_obj.expected_net_yield}}%</th>
+                <!-- <th>583</th> -->
+              </tr>
+              <tr class="text">
+                <td>Expected<br>gross yield</td>
+                <td>Expected <br>net yield</td>
+                <!-- <td>Mcred<br> score</td> -->
+              </tr>
+            </table>
+            <!-- <ul class="list-group list-group-horizontal" id="lst1">
+              <li class="list-group-item" style="width:160px;text-align:center;">
+                {{gross_yield}}%</li>
+              <li class="list-group-item" style="width:160px;text-align:center;">{{gross_yield}}%</li>
+              <li class="list-group-item" style="width:160px;text-align:center;">583</li>
+            </ul> -->
+            <!-- <ul class="list-group list-group-horizontal" id="lst2">
+              <li class="list-group-item" style="width:160px;text-align:center;">Expected<br>gross yield
+              </li>
+              <li class="list-group-item" style="width:160px;text-align:center;">Expected <br>net yield
+              </li>
+              <li class="list-group-item" style="width:160px;text-align:center;">Mcred<br> score</li>
+            </ul> -->
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-5 offset-1 card card3">
+          <div class="card-body">
+            <div class="small1">
+              <h6 class="exp1">More Details</h6>
+            </div>
+            <table id="bill" class="table borderless" style="text-align:center; margin-top:4vh">
+              <tr>
+                <th>{{invoice_obj.invoice_due_date|days_until}}</th>
+                <th>{{invoice_obj.invoice_due_date|date:"d-m-Y"}}</th>
+                {% if deal_expiry > 0 %}
+                <th>{{deal_expiry}}</th>
+                {% else %}
+                <th>Already Expired</th>
+                {% endif %}
+              </tr>
+              <tr class="text">
+                <td>Deal Maturity<br>(In Days)</td>
+                <td>Expected <br> Repayment Date</td>
+                <td>Deal Expiry<br>(In Days)</td>
+              </tr>
+            </table>
+            <!-- <ul class="list-group list-group-horizontal" id="lst3">
+              <li class="list-group-item" style="width:140px;text-align:center;">
+                {{days_left}}</li>
+              <li class="list-group-item break-this" style="width:180px;text-align:center;">
+                {{repayment_date}}</li>
+              <li class="list-group-item" style="width:140px;text-align:center;">{{deal_expiry}}</li>
+            </ul>
+            <hr style="width:375px;margin-left:45px;">
+            <ul class="list-group list-group-horizontal" id="lst4">
+              <li class="list-group-item" style="width:160px;text-align:center;">Deal Maturity<br>(In
+                Days)</li>
+              <li class="list-group-item" style="width:180px;text-align:center;">Repayment <br>on</li>
+              <li class="list-group-item" style="width:140px;text-align:center;">Deal Expiry<br>(In Days)
+              </li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" style="display:block;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="row">
+        <div class="col-12 card card4">
+          <div class="card-body">
+            <div class="card top2">
+              <h6 class="card-body">Invoice Raised for</h6>
+            </div>
+            {% if invoice_obj.company_logo.url != None %}
+            <div class="logoimg"><img class="img1" height="35" width="35" src="{{invoice_obj.company_logo.url}}"><span
+                class="card-text" id="sp1">{{entity_name}}</span></div>
+            {% endif %}
+            <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
+            <div class="des">
+              <p>
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 card card5">
+          <div class="card-body">
+            <div class="card top3">
+              <h6 class="card-body">Company Overview</h6>
+            </div>
+            <ul class="list-group list-group-horizontal list" style="margin-top:20px;">
+              <li class="list-group-item li1" id="li1" style="margin-left:10px;">Business Sector :</li>
+              <li style="margin-left:-20px;" class="list-group-item li2" id="li2">{{entity.entity_sector}}
+              </li>
+              <li class="list-group-item li3">Location :</li>
+              <li class="list-group-item li3" id="li4"><i class="fa fa-map-marker" aria-hidden="true"
+                  style="margin-left:-20px; margin-top:5px;"></i>&nbsp;&nbsp;{{entity.city}}</li>
+            </ul>
+            <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
+            <div class="des">
+              <p>an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 card card6">
+            <div class="card-body">
+              <div class="card top4">
+                <h6 class="card-body">History With Mcred</h6>
+              </div>
+              <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
+              <div class="des">
+                <p>an agreement entered into by two or more parties for their mutual benefit, especially
+                  in a business or political context.
+                  an agreement entered into by two or more parties for their mutual benefit,
+                  especially in a business or political context.
+                  an agreement entered into by two or more parties for their mutual benefit,
+                  especially in a business or political context.
+                  an agreement entered into by two or more parties for their mutual benefit,
+                  especially in a business or political context
+                  more parties for their mutual benefit, especially in a business or political
+                  context.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="row" style="margin-top:-1040px;">
+        <div class="col-12 card card4" id="card7">
+          <div class="card-body">
+            <div class="card top5" style="margin-top: -35px;">
+              <h6 class="card-body">Invoice Raised for</h6>
+            </div>
+            <ul class="list-group list-group-horizontal-lg list">
+              <li class="list-group-item"
+                style="font: normal normal 600 14px/34px Open Sans;letter-spacing: 1.8px;color: #353535;">
+                VENDOR ID</li>
+              <li class="list-group-item" id="ven"
+                style="text-align: left;font: normal normal 600 22px/33px Open Sans;letter-spacing: 2.8px;color: #F79421;">
+                {{invoice.business_id.business_id}}</li>
+            </ul>
+            <ul class="list-group list-group-horizontal-lg list">
+              <li class="list-group-item ">Item Verified</li>
+              {% if 'deal invoice' in business.verified_items %}
+              <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14"
+                  height="14" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>Deal Invoice</li>
+              {% else %}
+              <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14"
+                  height="14" fill="#00000029" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>Deal Invoice</li>
+              {% endif %}
+              {% if 'director profile' in business.verified_items %}
+              <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14"
+                  height="14" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>Director Profile</li>
+              {% else %}
+              <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14"
+                  height="14" fill="#00000029" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>Director Profile</li>
+              {% endif %}
+              {% if 'company profile' in business.verified_items %}
+              <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14"
+                  height="14" fill="#38CC47" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>Company Profile</li>
+              {% else %}
+              <li class="list-group-item "><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="14"
+                  height="14" fill="#00000029" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                </svg>Company Profile</li>
+              {% endif %}
+            </ul>
+            <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
+            <div class="des">
+              <p>an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 card card5">
+          <div class="card-body">
+            <div class="card top3">
+              <h6 class="card-body">Company Overview</h6>
+            </div>
+            <ul class="list-group list-group-horizontal list" style="margin-top:20px;">
+              <li class="list-group-item li1" id="li1" style="margin-left:10px;">Business Sector :</li>
+              <li class="list-group-item li2" id="li2" style="margin-left:-20px;">
+                {{invoice.business_id.sector}}</li>
+              <li class="list-group-item li3">Location :</li>
+              <li class="list-group-item li3" id="li4"><i class="fa fa-map-marker" aria-hidden="true"
+                  style="margin-left:-20px; margin-top:5px;"></i>&nbsp;&nbsp;{{invoice.business_id.city}}
+              </li>
+            </ul>
+            <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
+            <div class="des">
+              <p>
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+                an agreement entered into by two or more parties for their mutual benefit, especially in
+                a business or political context.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 card card6">
+            <div class="card-body">
+              <div class="card top4">
+                <h6 class="card-body">History With Mcred</h6>
+              </div>
+              <div class="card-text mcr">Mcred Opinion<i class="fa fa-star" aria-hidden="true"></i></div>
+              <div class="des">
+                <p>an agreement entered into by two or more parties for their mutual benefit, especially
+                  in a business or political context.
+                  an agreement entered into by two or more parties for their mutual benefit,
+                  especially in a business or political context.
+                  an agreement entered into by two or more parties for their mutual benefit,
+                  especially in a business or political context.
+                  an agreement entered into by two or more parties for their mutual benefit,
+                  especially in a business or political context
+                  more parties for their mutual benefit, especially in a business or political
+                  context.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

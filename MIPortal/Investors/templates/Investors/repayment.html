@@ -1,0 +1,73 @@
+{% extends "Investors/index.html" %}
+
+{% block content %}
+
+<head>
+  {% load static %}
+  <!-- <link rel="stylesheet" href="{% static '/css/investor/addfunds.css' %}"> -->
+  <script src="{% static '/js/addfunds.js' %}"></script>
+</head>
+
+<div class="container-fluid">
+  <h6 class="titl"><a href="{% url 'dashboard' %}" style="text-decoration: none;">MCRED INVESTORS</a> &nbsp;&nbsp;<span
+      style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg> </span> &nbsp;&nbsp;<a href="{% url 'manage_funds' %}" style="text-decoration: none;">REPAYMENT</a></h6>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+      <div class="text-center">
+        <select name="entities" id="entities" style="width: 10vw">
+          <option value="" disabled selected required>Select Entity:</option>
+          {% for entity in entities %}
+          <option value="{{ entity }}">{{ entity }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th>Sr No.</th>
+          <th>Invoice ID</th>
+          <th>Invoice Amount</th>
+          <th>Business Name</th>
+          <th>Invoice Due Date</th>
+          <th>Select</th>
+        </tr>
+        {% for i in invoices %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.invoice_id}}</td>
+          <td>{{i.invoice_amount}}</td>
+          <td>{{i.business_name}}</td>
+          <td>{{i.invoice_due_date}}</td>
+          <td><input type="checkbox"></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="row mt-2">
+      <div class="content text-center">
+        <h5 class="card-text1">Enter Amount</h5>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="content text-center">
+        <input type="number" step=0.01 id="total_amount" min="1" name="total_amount" autocomplete="off">
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="text-center">
+        <button style="width: 10vw" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+{% endblock content %}

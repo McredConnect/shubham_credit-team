@@ -1,0 +1,330 @@
+{% extends "Investors/index.html" %}
+
+{% block content %}
+
+<head>
+  {% load static %}
+  {% load custom_tags %}
+  <link rel="stylesheet" href="{% static '/css/investor/dashboard.css' %}">
+  <!--            <script src="{% static '/javascript/dashboard.js' %}"></script>-->
+</head>
+
+<div class="container-fluid">
+  <h6 class="titl">MCRED INVESTORS &nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+        width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg> </span>&nbsp;DASHBOARD</h6>
+
+  {% if messages %}
+  {% for message in messages%}
+  <div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+  {% endfor %}
+  {% endif %}
+  {% load mathfilters %}
+
+  <div class="row">
+    <div class="text-end btn1">
+      <a href="#">
+        <button type="button" style="margin-right: 2vw;" class="btn  btn-primary">PORTFOLIO REPORT</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-4 card card1">
+      <div class="card-header">Portfolio Value</div>
+      <div class="row">
+        <h6 class="amt">&#8377;&nbsp;{{portfolio_value}}</h6>
+      </div>
+      <div class="progress" style="height:10px;margin-top:30px;">
+        <div class="progress-bar" role="progressbar" style="width: {{curr_inv_percent}}%;background-color:#FFA931;"
+          aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar" role="progressbar" style="width: {{exp_earn_percent}}%;background-color:#58B4AE;"
+          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar " role="progressbar" style="width: {{mcred_bal_percent}}%;background-color:#A8DF65;"
+          aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <table id="table1" class="table borderless">
+        <tr>
+          <td id="item1">
+            <li>Current Investment</li>
+          </td>
+          <td style="font-weight: 600; color: #363636;">&#8377;&nbsp;{{current_investment}}</td>
+        </tr>
+        <tr>
+          <td id="item2">
+            <li>Exp. Earnings</li>
+          </td>
+          <td style="font-weight: 600; color: #363636;">&#8377;&nbsp;{{exp_earn}}</td>
+        </tr>
+        <tr>
+          <td id="item3">
+            <li>MCred Balance</li>
+          </td>
+          <td style="font-weight: 600; color: #363636;">&#8377;&nbsp;{{mcred_balance}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-3 card card2">
+      <div class="card-header">Weighted Yields & Returns</div>
+      <div class="text-center">
+        <div class="row">
+          <h6 class="amt">&#8377;&nbsp;{{total_return}}</h6>
+          <h6 id="l2">TOTAL MCRED EARNINGS</h6>
+        </div>
+        <div class="row">
+          <h6 class="amt">{{average_yield}}%</h6>
+          <h6 id="l4">Average Realized Yield</h6>
+        </div>
+      </div>
+      <!-- <ul class="list-unstyled earn">
+        <li id="l1">&#8377;&nbsp;{{total_return}}</li>
+        <li id="l2">TOTAL MCRED EARNINGS</li>
+      </ul>
+      <div class="li-group" style="padding:10px;  margin-top:10px;">
+        <ul class="list-group yield">
+          <li class="list-group-item l1" id="l3">{{average_yield}}%</li>
+
+          <li class="list-group-item l2" id="l4">Average Realized Yield</li>
+        </ul>
+      </div> -->
+    </div>
+
+    <!--  <div class="col-md-2 card card2">
+      <div class="card-header">Deals</div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <h6>Deals in Total</h6>
+        </div>
+        <div class="col-md-3">
+          <h6 style="font-weight: bold;"><a href="">{{total_deals}}</a></h6>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <h6>Pending Deals</h6>
+        </div>
+        <div class="col-md-3">
+          <h6 style="font-weight: bold;"><a href="">{{pending_deals}}</a></h6>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <h6>Completed Deals</h6>
+        </div>
+        <div class="col-md-3">
+          <h6 style="font-weight: bold;"><a href="">{{completed_deals}}</a></h6>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="col-md-2 card card2">
+      <div class="card-header">Deals</div>
+      <table id="table2" class="table borderless mt-3">
+        <tr>
+          <td><a href="{% url 'inv-view-details' mode=0 %}" target="_blank">Deals in Total</a></td>
+          <td><strong>{{total_deals}}</strong></td>
+        </tr>
+        <tr>
+          <td><a href="{% url 'inv-view-details' mode=1 %}" target="_blank">Pending Deals</a></td>
+          <td><strong>{{pending_deals}}</strong></td>
+        </tr>
+        <tr>
+          <td><a href="{% url 'inv-view-details' mode=2 %}" target="_blank">Completed Deals</a></td>
+          <td><strong>{{completed_deals}}</strong></td>
+        </tr>
+      </table>
+    </div>
+    <!-- 
+    <div class="col-md-2 card card3 ">
+      <div class="card-header">Upcoming Payments</div>
+      <div class="row mt-3">
+        <div class="col-md-9">
+          <h6>Upcoming Payments in 30 Days</h6>
+        </div>
+        <div class="col-md-2">
+          <h6 style="font-weight: bold;"><a href="">{{total_deals}}</a></h6>
+        </div>
+      </div>
+    </div> -->
+    <div class="col-md-2 card card3 ">
+      <div class="card-header">Upcoming Payments</div>
+      <table id="table3" class="table borderless mt-3">
+        <tr>
+            <td><a href="{% url 'inv-view-details' mode=3 %}" target="_blank">Upcoming Payments</a></td>
+            <td><strong>{{upcoming_deals}}</strong></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  <div class="row">
+    <div class="content text-end btn1">
+      <a href="#">
+        <button type="button" class="btn  btn-primary">PORTFOLIO REPORT</button>
+      </a>
+    </div>
+  </div> -->
+<!-- <div class="row">
+    <div class="col-sm-12 col-md-3 card card1">
+      <div class="card-header">Portfolio Value</div>
+      <div class="row">
+        <h6 class="amt">&#8377;&nbsp;{{portfolio_value}}</h6>
+      </div>
+      <div class="progress" style="height:10px;margin-top:30px;">
+        <div class="progress-bar" role="progressbar" style="width: {{curr_inv_percent}}%;background-color:#FFA931;"
+          aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar" role="progressbar" style="width: {{exp_earn_percent}}%;background-color:#58B4AE;"
+          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar " role="progressbar" style="width: {{mcred_bal_percent}}%;background-color:#A8DF65;"
+          aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <table id="table1" class="table borderless">
+        <tr>
+          <td id="item1">
+            <li>Current Investment</li>
+          </td>
+          <td>&#8377;&nbsp;{{current_investment}}</td>
+        </tr>
+        <tr>
+          <td id="item2">
+            <li>Exp. Earnings</li>
+          </td>
+          <td>&#8377;&nbsp;{{exp_earn}}</td>
+        </tr>
+        <tr>
+          <td id="item3">
+            <li>MCred Balance</li>
+          </td>
+          <td>&#8377;&nbsp;{{mcred_balance}}</td>
+        </tr>
+      </table> -->
+
+<!-- </div> -->
+<!-- <div class="card col-sm-12 col-md-3 card2">
+      <div class="card-header">Weighted Yields & Returns</div>
+      <ul class="list-unstyled earn">
+        <li id="l1">&#8377;&nbsp;{{total_return}}</li>
+        <li id="l2">TOTAL MCRED EARNINGS</li>
+      </ul>
+      <div class="li-group" style="padding:10px;  margin-top:10px;">
+        <ul class="list-group yield">
+          <li class="list-group-item l1" id="l3">{{average_yield}}%</li> -->
+<!--                          <li class="list-group-item l1" style="width:150px;">2.42%</li>-->
+<!-- <li class="list-group-item l2" id="l4">Average Realized Yield</li>
+        </ul> -->
+<!--                         <ul class="list-group list-group-horizontal" >-->
+<!--                          <li class="list-group-item l2" id="l4">Average Realized Yield</li>-->
+<!--&lt;!&ndash;                          <li class="list-group-item l2" style="width:150px;margin-left:15px;">upcoming</li>&ndash;&gt;-->
+<!--                        </ul>-->
+<!-- </div> -->
+
+<!--                    <hr style="height:2px;margin-left:-13px;margin-right:-13px;margin-top:20px;">-->
+<!--                    <div class="row sel" >-->
+<!--                        <select id="acc" >-->
+<!--                            <option value="a" class="op">Risk Return Range</option>-->
+<!--                            <option value="b" class="op">Bjdmndb</option>-->
+<!--                            <option value="c" class="op">C</option>-->
+<!--                            <option value="d" class="op">D</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!-- </div> -->
+<!-- <div class="card col-sm-12 col-md-3 card2">
+      <div class="card-header">Deals</div>
+      <table id="table2" class="table borderless">
+        <tr>
+          <td>Deals in Total</td>
+          <td style="font-weight: bold;"><a href="">{{total_deals}}</a></td>
+        </tr>
+        <tr>
+          <td>Pending Deals</td>
+          <td style="font-weight: bold;"><a href="">{{pending_deals}}</a></td>
+        </tr>
+        <tr>
+          <td>Completed Deals</td>
+          <td style="font-weight: bold;"><a href="">{{completed_deals}}</a></td>
+        </tr>
+      </table> -->
+<!-- <div class="row mt-3">
+        <div class="col-md-6 ">
+          <h6>Deals in Total</h6>
+        </div>
+        <div class="col-md-6 text-center">
+          <h6 style="font-weight: bold;">{{total_deals}}</h6>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6 ">
+          <h6>Pending Deals</h6>
+        </div>
+        <div class="col-md-6 text-center">
+          <h6 style="font-weight: bold;">{{pending_deals}}</h6>
+        </div>
+      </div> -->
+<!-- <div class="row mt-3">
+        <div class="col-md-6 ">
+          <h6>Completed Deals</h6>
+        </div>
+        <div class="col-md-6 text-center">
+          <h6 style="font-weight: bold;">{{completed_deals}}</h6>
+        </div>
+      </div> -->
+<!-- <div style="padding:10px;  margin-top:10px;">
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item c1" style="width:250px;">Deals in Total</li>
+          <li class="list-group-item c2" style="width:50px;">{{ invoices|length }}</li>
+        </ul>
+      </div>
+      <div style="padding:10px;  margin-top:10px;">
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item c1" style="width:250px;">Deals in Total</li>
+          <li class="list-group-item c2" style="width:50px;">{{ invoices|length }}</li>
+        </ul>
+      </div> -->
+
+<!-- <hr style="height:2px;margin-left:-13px;margin-right:-13px;margin-top:10px;">
+                    <div class="row sel" >
+                        <select id="acc" >
+                            <option value="a" class="op">Deals Overview</option>
+                            <option value="b" class="op">Bjdmndb</option>
+                            <option value="c" class="op">C</option>
+                            <option value="d" class="op">D</option>
+                        </select>
+                    </div>
+                    <hr style="height:2px;margin-left:-13px;margin-right:-13px;margin-top:0px;">
+                    <div class="row sel" >
+                        <select id="acc" >
+                            <option value="a" class="op">Deals Breakup</option>
+                            <option value="b" class="op">Bjdmndb</option>
+                            <option value="c" class="op">C</option>
+                            <option value="d" class="op">D</option>
+                        </select>
+                    </div> -->
+<!-- </div> -->
+
+
+<!-- 
+  </div> -->
+
+<!------------------ CODE FOR CARD3  ------------------>
+<!-- <div class="row"> -->
+<!-- <div class="card col-sm-12 col-md-2 card3 ">
+      <div class="card-header">
+        <h6>Upcoming Payments</h6>
+      </div> -->
+<!-- <div class="card-body"> -->
+<!-- <table id="table3" class="table borderless">
+        <tr>
+          <td>Upcoming Payments in 30 Days</td>
+          <td style="font-weight: bold;"><a href="">{{total_deals}}</a></td>
+        </tr>
+      </table> -->
+<!-- </div> -->
+<!-- </div>
+  </div>
+</div> -->
+{% endblock content %}

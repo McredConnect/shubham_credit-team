@@ -1,54 +1,183 @@
-
-<!-----------------------------PAGE CONTENT------------------------------>
 {% extends "Investors/index.html" %}
 
 {% block content %}
-        <head>
-            {% load static %}
-            <link rel="stylesheet"  href="{% static '/css/investor/addfunds.css' %}">
-            <script src="{% static '/js/addfunds.js' %}"></script>
-        </head>
 
-        <div class="container-fluid">
-            <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </span>   &nbsp;&nbsp;MANAGE FUNDS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg> </span>   &nbsp;&nbsp;ADD FUNDS</h6>
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/investor/addfunds.css' %}">
+  <script src="{% static '/js/addfunds.js' %}"></script>
+</head>
 
-            <div class="row">
-                <div class="col-12  card " style="border:None;">
-                    <div class="card-body">
-                        <div class="row"><p class="col col-sm-12 col-md-6 offset-3 card-text">Enter Amount to add to your<br class="break"><br class="break"> MCred account</p></div>
-                        <div class="row"><div class="col col-sm-12 col-md-7 amt"><span>&#8377;</span>&nbsp;30,000</div></div>
-                        <div class="row"><p class="col col-sm-12 col-md-12 card-text mode">Choose your mode of payment</p></div>
-                        <div class="row payment offset-3" id="mybtn" style="margin-top:30px;">
-<!--                            <div class="col col-sm-12 col-md-2 button1" id="btn1"><a href="#" class="btn btn-primary pay" ><img class="img1"  height="45px" src="{% static '/images/upi.svg' %}"><br><br><span style="color:#353535;">UPI</span></a></div>-->
-<!--                            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay"><img class="img2"  height="45px" src="{% static '/images/mobile-payment-2.svg' %}"><br><br><span style="color:#353535;">Net Banking</span></a></div>-->
-<!--                            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay" ><img class="img3" height="45px" src="{% static '/images/credit-card-1.svg' %}"><br><br><span style="color:#353535;">Card</span></a></div>-->
+<div class="container-fluid">
+  <h6 class="titl"><a href="{% url 'dashboard' %}" style="text-decoration: none;">MCRED INVESTORS</a> &nbsp;&nbsp;<span
+      style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg> </span> &nbsp;&nbsp;<a href="{% url 'manage_funds' %}" style="text-decoration: none;">MANAGE FUNDS</a>
+    &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+        fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg> </span> &nbsp;&nbsp;ADD FUNDS</h6>
 
-                            <div class="col col-sm-12 col-md-2 button1" id="btn1"><a href="#" class="btn btn-primary pay" >
-                                <svg  xmlns="http://www.w3.org/2000/svg" width="120" height="60" fill-rule="evenodd" id="icon1" class="icon"><path d="M95.678 42.9L110 29.835l-6.784-13.516z" fill="#CCCCCC" class="icon" id="icon1"/><path d="M90.854 42.9l14.322-13.065-6.784-13.516z" fill="#CCCCCC" class="icon" id="icon1"/><path d="M22.41 16.47l-6.03 21.475 21.407.15 5.88-21.625h5.427l-7.05 25.14c-.27.96-1.298 1.74-2.295 1.74H12.31c-1.664 0-2.65-1.3-2.2-2.9l6.724-23.98zm66.182-.15h5.427l-7.538 27.03h-5.58zM49.698 27.582l27.136-.15 1.81-5.707H51.054l1.658-5.256 29.4-.27c1.83-.017 2.92 1.4 2.438 3.167L81.78 29.49c-.483 1.766-2.36 3.197-4.19 3.197H53.316L50.454 43.8h-5.28z" fill="#CCCCCC" class="icon" id="icon1"/></svg>
-                                <br><br><span style="color:#353535;">UPI</span></a>
-                            </div>
+  {% if messages %}
+    {% for message in messages%}
+    <div class="row">
+      <div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+    </div>
+    {% endfor %}
+  {% endif %}
 
-                            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="45" height="45" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="icon"><g><g xmlns="http://www.w3.org/2000/svg" id="_22-mobile" data-name="22-mobile"><g id="linear_color" data-name="linear color"><path d="M290.043,446.021H239.087a10,10,0,1,0,0,20h50.956a10,10,0,0,0,0-20Z" fill="#cccccc" data-original="#000000" style="" class="icon"/><path d="M464,166c-20.163,0-37.592,5.643-50.4,16.317-1.181.985-2.387,2.076-3.6,3.267V32A26.076,26.076,0,0,0,384,6H144a26.076,26.076,0,0,0-26,26V58.6l-1.239-1.239a42,42,0,0,0-59.4,59.4l43.274,43.274a42.017,42.017,0,0,0-17.959,70.035l24.616,24.616a41.993,41.993,0,0,0-24.616,71.384L99.29,342.687a41.993,41.993,0,0,0-24.616,71.384L118,457.4V480a26.029,26.029,0,0,0,26,26H336a10,10,0,0,0,10-10V400a54.26,54.26,0,0,1,21.6-43.2L406,328a10.105,10.105,0,0,0,4-8V240c0-39.827,24.31-50.935,44-53.4V496a10,10,0,0,0,20,0V176A10,10,0,0,0,464,166ZM144,26H384a6.006,6.006,0,0,1,6,6V61.956H138V32A6.006,6.006,0,0,1,144,26ZM65.055,87.06c-.2-19.372,24.011-29.385,37.564-15.559L118,86.883v62.235l-46.5-46.5A21.857,21.857,0,0,1,65.055,87.06Zm31.761,97.756c8.19-8.535,22.924-8.535,31.113,0l45.255,45.255c19.873,21.343-9.852,50.993-31.113,31.113L96.816,215.929A22.027,22.027,0,0,1,96.816,184.816Zm90.51,31.113-10.869-10.87A86.034,86.034,0,1,1,194,266.629,42.072,42.072,0,0,0,187.326,215.929Zm-90.51,64.887c8.19-8.535,22.924-8.535,31.113,0l45.255,45.255c19.873,21.343-9.852,50.993-31.113,31.113L96.816,311.929A22.027,22.027,0,0,1,96.816,280.816Zm-8,88c8.19-8.535,22.924-8.535,31.113,0l45.255,45.255c19.873,21.343-9.852,50.993-31.113,31.113L88.816,399.929A22.027,22.027,0,0,1,88.816,368.816ZM138,480V470a42.155,42.155,0,0,0,11.627,1.633,41.961,41.961,0,0,0,41.82-45.588H326V486H144A6.006,6.006,0,0,1,138,480ZM355.6,340.8A74.353,74.353,0,0,0,326,400v6.04H184.371a41.973,41.973,0,0,0-5.045-6.111L162.71,383.313a41.993,41.993,0,0,0,24.616-71.384L162.71,287.313a41.541,41.541,0,0,0,17.3-6.143,105.966,105.966,0,1,0-20.767-93.326S139.418,168.2,138,167.1V81.956H390V315Z" fill="#cccccc" data-original="#000000" style="" class="icon"/><path d="M253,224h17a14.509,14.509,0,0,1,0,29H244.791c-3.493.08-6-3.312-5.488-6.647a10,10,0,0,0-20-.358l-.019,1.036A25.509,25.509,0,0,0,244.791,273H252v6a10,10,0,0,0,20,0v-6.063A34.516,34.516,0,0,0,270,204H253a14,14,0,0,1,0-28h24.811q5.283.441,5.5,5.744a10,10,0,0,0,19.982.86A25.508,25.508,0,0,0,277.811,156H272v-6a10,10,0,0,0-20,0v6.025A33.995,33.995,0,0,0,253,224Z" fill="#cccccc" data-original="#000000" style="" class="icon"/></g></g></g></svg>
-                                <br><br><span style="color:#353535;">Net Banking</span></a>
-                            </div>
-
-
-                            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay" >
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="45" height="45" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="icon"><g><g xmlns="http://www.w3.org/2000/svg">
-                                    <g><path d="M458.667,85.333H53.333C23.936,85.333,0,109.269,0,138.667v234.667c0,29.397,23.936,53.333,53.333,53.333h405.333    c29.397,0,53.333-23.936,53.333-53.333V138.667C512,109.269,488.064,85.333,458.667,85.333z M490.667,373.333    c0,17.643-14.357,32-32,32H53.333c-17.643,0-32-14.357-32-32V138.667c0-17.643,14.357-32,32-32h405.333c17.643,0,32,14.357,32,32    V373.333z" fill="#eeeeee" data-original="#000000" style="" class="icon"/></g></g><g xmlns="http://www.w3.org/2000/svg"><g>
-                                    <path d="M501.333,149.333H10.667C4.779,149.333,0,154.112,0,160v64c0,5.888,4.779,10.667,10.667,10.667h490.667    c5.888,0,10.667-4.779,10.667-10.667v-64C512,154.112,507.221,149.333,501.333,149.333z M490.667,213.333H21.333v-42.667h469.333    V213.333z" fill="#eeeeee" data-original="#000000" style="" class="icon"/></g></g><g xmlns="http://www.w3.org/2000/svg"><g><path d="M202.667,298.667h-128c-5.888,0-10.667,4.779-10.667,10.667S68.779,320,74.667,320h128    c5.888,0,10.667-4.779,10.667-10.667S208.555,298.667,202.667,298.667z" fill="#eeeeee" data-original="#000000" style="" class="icon"/></g></g>
-                                    <g xmlns="http://www.w3.org/2000/svg"><g><path d="M202.667,341.333h-128C68.779,341.333,64,346.112,64,352c0,5.888,4.779,10.667,10.667,10.667h128    c5.888,0,10.667-4.779,10.667-10.667C213.333,346.112,208.555,341.333,202.667,341.333z" fill="#eeeeee" data-original="#000000" style="" class="icon"/></g></g><g xmlns="http://www.w3.org/2000/svg"><g><path d="M416,277.333h-21.333c-17.643,0-32,14.357-32,32v21.333c0,17.643,14.357,32,32,32H416c17.643,0,32-14.357,32-32v-21.333    C448,291.691,433.643,277.333,416,277.333z M426.667,330.667c0,5.888-4.779,10.667-10.667,10.667h-21.333    c-5.888,0-10.667-4.779-10.667-10.667v-21.333c0-5.888,4.779-10.667,10.667-10.667H416c5.888,0,10.667,4.779,10.667,10.667    V330.667z" fill="#eeeeee" data-original="#000000" style="" class="icon"/></g></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g>
-                                    <g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g><g xmlns="http://www.w3.org/2000/svg"></g></g>
-                                </svg>
-                                <div style="margin-top:25px;"><span style="color:#353535;">Card</span></div></a>
-                            </div>
-                        </div>
-                        <div class="row" id="row1"><div class="col col-sm-12 col-md-8 offset-2" style="margin-top:40px;"><a href="#" class="btn btn-primary last">PROCEED TO ADD AMOUNT</a></div></div>
-
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col-12 card " style="border:None;">
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row content text-center">
+            <p class="card-text">Enter Amount to add to your <span style="color: #FFA931;">MCred</span> account</p>
+          </div>
+          <div class="row mt-3">
+            <div class="content text-center">
+              <input type="number" id="amount" name="amount" min="1" required="required">
             </div>
-        </div>
+            <!-- <div class="col col-sm-12 col-md-7 amt"><span>&#8377;</span>&nbsp;30,000</div> -->
+          </div>
+          <div class="row">
+            <p class="col col-sm-12 col-md-12 card-text mode">Choose your mode of payment</p>
+          </div>
+          <div class="row payment offset-3" id="mybtn" style="margin-top:30px;">
+            <!--                            <div class="col col-sm-12 col-md-2 button1" id="btn1"><a href="#" class="btn btn-primary pay" ><img class="img1"  height="45px" src="{% static '/images/upi.svg' %}"><br><br><span style="color:#353535;">UPI</span></a></div>-->
+            <!--                            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay"><img class="img2"  height="45px" src="{% static '/images/mobile-payment-2.svg' %}"><br><br><span style="color:#353535;">Net Banking</span></a></div>-->
+            <!--                            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay" ><img class="img3" height="45px" src="{% static '/images/credit-card-1.svg' %}"><br><br><span style="color:#353535;">Card</span></a></div>-->
+
+            <div class="col col-sm-12 col-md-2 button1" id="btn1"><a href="#" class="btn btn-primary pay anchor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="60" fill-rule="evenodd" id="icon1"
+                  class="icon">
+                  <path d="M95.678 42.9L110 29.835l-6.784-13.516z" fill="#CCCCCC" class="icon" id="icon1" />
+                  <path d="M90.854 42.9l14.322-13.065-6.784-13.516z" fill="#CCCCCC" class="icon" id="icon1" />
+                  <path
+                    d="M22.41 16.47l-6.03 21.475 21.407.15 5.88-21.625h5.427l-7.05 25.14c-.27.96-1.298 1.74-2.295 1.74H12.31c-1.664 0-2.65-1.3-2.2-2.9l6.724-23.98zm66.182-.15h5.427l-7.538 27.03h-5.58zM49.698 27.582l27.136-.15 1.81-5.707H51.054l1.658-5.256 29.4-.27c1.83-.017 2.92 1.4 2.438 3.167L81.78 29.49c-.483 1.766-2.36 3.197-4.19 3.197H53.316L50.454 43.8h-5.28z"
+                    fill="#CCCCCC" class="icon" id="icon1" />
+                </svg>
+                <br><br><span style="color:#353535;">UPI</span></a>
+            </div>
+
+            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay anchor">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="45" height="45" x="0" y="0"
+                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="icon">
+                  <g>
+                    <g xmlns="http://www.w3.org/2000/svg" id="_22-mobile" data-name="22-mobile">
+                      <g id="linear_color" data-name="linear color">
+                        <path d="M290.043,446.021H239.087a10,10,0,1,0,0,20h50.956a10,10,0,0,0,0-20Z" fill="#cccccc"
+                          data-original="#000000" style="" class="icon" />
+                        <path
+                          d="M464,166c-20.163,0-37.592,5.643-50.4,16.317-1.181.985-2.387,2.076-3.6,3.267V32A26.076,26.076,0,0,0,384,6H144a26.076,26.076,0,0,0-26,26V58.6l-1.239-1.239a42,42,0,0,0-59.4,59.4l43.274,43.274a42.017,42.017,0,0,0-17.959,70.035l24.616,24.616a41.993,41.993,0,0,0-24.616,71.384L99.29,342.687a41.993,41.993,0,0,0-24.616,71.384L118,457.4V480a26.029,26.029,0,0,0,26,26H336a10,10,0,0,0,10-10V400a54.26,54.26,0,0,1,21.6-43.2L406,328a10.105,10.105,0,0,0,4-8V240c0-39.827,24.31-50.935,44-53.4V496a10,10,0,0,0,20,0V176A10,10,0,0,0,464,166ZM144,26H384a6.006,6.006,0,0,1,6,6V61.956H138V32A6.006,6.006,0,0,1,144,26ZM65.055,87.06c-.2-19.372,24.011-29.385,37.564-15.559L118,86.883v62.235l-46.5-46.5A21.857,21.857,0,0,1,65.055,87.06Zm31.761,97.756c8.19-8.535,22.924-8.535,31.113,0l45.255,45.255c19.873,21.343-9.852,50.993-31.113,31.113L96.816,215.929A22.027,22.027,0,0,1,96.816,184.816Zm90.51,31.113-10.869-10.87A86.034,86.034,0,1,1,194,266.629,42.072,42.072,0,0,0,187.326,215.929Zm-90.51,64.887c8.19-8.535,22.924-8.535,31.113,0l45.255,45.255c19.873,21.343-9.852,50.993-31.113,31.113L96.816,311.929A22.027,22.027,0,0,1,96.816,280.816Zm-8,88c8.19-8.535,22.924-8.535,31.113,0l45.255,45.255c19.873,21.343-9.852,50.993-31.113,31.113L88.816,399.929A22.027,22.027,0,0,1,88.816,368.816ZM138,480V470a42.155,42.155,0,0,0,11.627,1.633,41.961,41.961,0,0,0,41.82-45.588H326V486H144A6.006,6.006,0,0,1,138,480ZM355.6,340.8A74.353,74.353,0,0,0,326,400v6.04H184.371a41.973,41.973,0,0,0-5.045-6.111L162.71,383.313a41.993,41.993,0,0,0,24.616-71.384L162.71,287.313a41.541,41.541,0,0,0,17.3-6.143,105.966,105.966,0,1,0-20.767-93.326S139.418,168.2,138,167.1V81.956H390V315Z"
+                          fill="#cccccc" data-original="#000000" style="" class="icon" />
+                        <path
+                          d="M253,224h17a14.509,14.509,0,0,1,0,29H244.791c-3.493.08-6-3.312-5.488-6.647a10,10,0,0,0-20-.358l-.019,1.036A25.509,25.509,0,0,0,244.791,273H252v6a10,10,0,0,0,20,0v-6.063A34.516,34.516,0,0,0,270,204H253a14,14,0,0,1,0-28h24.811q5.283.441,5.5,5.744a10,10,0,0,0,19.982.86A25.508,25.508,0,0,0,277.811,156H272v-6a10,10,0,0,0-20,0v6.025A33.995,33.995,0,0,0,253,224Z"
+                          fill="#cccccc" data-original="#000000" style="" class="icon" />
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+                <br><br><span style="color:#353535;">Net Banking</span></a>
+            </div>
+
+            <div class="col col-sm-12 col-md-2 button1"><a href="#" class="btn btn-primary pay anchor">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="45" height="45" x="0" y="0"
+                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="icon">
+                  <g>
+                    <g xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M458.667,85.333H53.333C23.936,85.333,0,109.269,0,138.667v234.667c0,29.397,23.936,53.333,53.333,53.333h405.333    c29.397,0,53.333-23.936,53.333-53.333V138.667C512,109.269,488.064,85.333,458.667,85.333z M490.667,373.333    c0,17.643-14.357,32-32,32H53.333c-17.643,0-32-14.357-32-32V138.667c0-17.643,14.357-32,32-32h405.333c17.643,0,32,14.357,32,32    V373.333z"
+                          fill="#eeeeee" data-original="#000000" style="" class="icon" />
+                      </g>
+                    </g>
+                    <g xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M501.333,149.333H10.667C4.779,149.333,0,154.112,0,160v64c0,5.888,4.779,10.667,10.667,10.667h490.667    c5.888,0,10.667-4.779,10.667-10.667v-64C512,154.112,507.221,149.333,501.333,149.333z M490.667,213.333H21.333v-42.667h469.333    V213.333z"
+                          fill="#eeeeee" data-original="#000000" style="" class="icon" />
+                      </g>
+                    </g>
+                    <g xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M202.667,298.667h-128c-5.888,0-10.667,4.779-10.667,10.667S68.779,320,74.667,320h128    c5.888,0,10.667-4.779,10.667-10.667S208.555,298.667,202.667,298.667z"
+                          fill="#eeeeee" data-original="#000000" style="" class="icon" />
+                      </g>
+                    </g>
+                    <g xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M202.667,341.333h-128C68.779,341.333,64,346.112,64,352c0,5.888,4.779,10.667,10.667,10.667h128    c5.888,0,10.667-4.779,10.667-10.667C213.333,346.112,208.555,341.333,202.667,341.333z"
+                          fill="#eeeeee" data-original="#000000" style="" class="icon" />
+                      </g>
+                    </g>
+                    <g xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M416,277.333h-21.333c-17.643,0-32,14.357-32,32v21.333c0,17.643,14.357,32,32,32H416c17.643,0,32-14.357,32-32v-21.333    C448,291.691,433.643,277.333,416,277.333z M426.667,330.667c0,5.888-4.779,10.667-10.667,10.667h-21.333    c-5.888,0-10.667-4.779-10.667-10.667v-21.333c0-5.888,4.779-10.667,10.667-10.667H416c5.888,0,10.667,4.779,10.667,10.667    V330.667z"
+                          fill="#eeeeee" data-original="#000000" style="" class="icon" />
+                      </g>
+                    </g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                    <g xmlns="http://www.w3.org/2000/svg"></g>
+                  </g>
+                </svg>
+                <div style="margin-top:25px;"><span style="color:#353535;">Card</span></div>
+              </a>
+            </div>
+          </div>
+          <div class="row" id="row1">
+            <div class="col col-sm-12 col-md-8 offset-2" style="margin-top:40px;">
+              <button type="submit" onclick ="checkClick()" id="submitButton" class="btn btn-primary last" disabled>PROCEED TO ADD AMOUNT</button>
+            </div>
+          </div>
+      </div>
+      <input id="paymentmode" name="paymentmode" type="hidden" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // var mode;
+  var anchors = document.querySelectorAll('.anchor');
+
+  for (var i = 0; i < anchors.length; i++) {
+    anchors[i].addEventListener('click', handler, false);
+    anchors[i].myParam = i;
+  }
+
+  function handler(evt) {
+    var value = evt.currentTarget.myParam, mode;
+    if (value == 0) mode = 'upi';
+    else if (value == 1) mode = 'net_banking';
+    else mode = 'card';
+    document.getElementById('paymentmode').value = mode;
+    document.getElementById('submitButton').disabled = false;
+  }
+  function checkClick(){
+    console.log(document.getElementById('paymentmode').value )
+  }
+</script>
 
 {% endblock content %}

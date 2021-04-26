@@ -1,0 +1,47 @@
+{% extends "Investors/index.html" %}
+{% block content %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/investor/change-account.css' %}">
+  <script src="{% static '/javascript/order.js' %}"></script>
+</head>
+<div class="container-fluid">
+  <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+        width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg> </span> &nbsp;&nbsp;CHANGE ACCOUNT</h6>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- bank name, bank acc, ifsc, canceled cheque -->
+    <div class="row justify-content-center mt-3">
+      <!-- <div class=""> -->
+      <!-- <div class="offset-1 mt-5"> -->
+        <div class="card card1 no-gutters">
+          <div class="card-header">Bank Details</div>
+          <div class="card-body mx-auto">
+            <div class="row mt-4 mb-4">
+              <input type="text" placeholder="Bank Name" name="bank_name" required>
+            </div>
+            <div class="row mt-4 mb-4">
+              <input onkeydown="return event.keyCode !== 69" type="number" placeholder="Bank Account Number" name="account_number" required>
+            </div>
+            <div class="row mt-4 mb-4">
+              <input type="text" placeholder="Bank IFSC Code" name="ifsc_code" required>
+            </div>
+            <div class="row mt-4 mb-4">
+              <input type="file" min="1" name="cheque" required>
+            </div>
+            <div class="row mt-2 mb-2 justify-content-center">
+              <button type="submit">Update</button>
+            </div>
+          </div>
+        </div>
+      <!-- </div> -->
+      <!-- </div> -->
+    </div>
+  </form>
+</div>
+
+{% endblock content %}

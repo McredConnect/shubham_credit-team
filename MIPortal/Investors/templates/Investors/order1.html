@@ -1,0 +1,336 @@
+{% extends "Investors/index.html" %}
+{% block content %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/investor/order1.css' %}">
+  <!-- <script src="{% static '/javascript/order.js' %}"></script> -->
+</head>
+
+<div class="container-fluid">
+  <h6 class="titl">MCRED INVESTORS &nbsp;&nbsp;<span style="color:#F79421;"> <svg xmlns="http://www.w3.org/2000/svg"
+        width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg> </span> &nbsp;&nbsp;ORDER HISTORY
+  </h6>
+  <div class="row mt-5">
+    <div class="col-md-5 mb-2">
+      <h5 class="deal">My Deals</h5>
+    </div>
+    <div class="col-md-7 text-center">
+      <button type="button" class="mb-2 btn btn-primary">Download Form 16</button>
+      <button type="button" class="mb-2 btn btn-primary">Download Statement</button>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-8 mb-2">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" id="one" role="presentation">
+          <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Ongoing Deals</a>
+        </li>
+        <li class="nav-item" id="two" role="presentation">
+          <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg> Repaid Deals</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <label for="sortselect">Sort By:</label>
+      <select id="sortselect" onchange="location = this.value;">
+        <option value="{% url 'order' mode=0 sort_order=sort_order %}">Maturity Date</option>
+        <option value="{% url 'order' mode=1 sort_order=sort_order %}">Maturity Amount</option>
+        <option value="{% url 'order' mode=2 sort_order=sort_order %}">Gross Yield</option>
+      </select>
+      <a onclick="rotateArrow()"><div class="fa fa-arrow-up rotate" id="arrow" ></div></a>
+    </div>
+  </div>
+
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      {% for i in data %}
+      {% if i.13 == "subscribed" %}
+      <div class="row">
+        <div class="card card1">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-1 text-center">
+                <div class="logoimg">
+                  <img class="img1" height="35" width="35" src="{{i.14.url}}">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="text">
+                  <p><span style="color:#58B4AE">&nbsp;&nbsp;INVOICE</span> RAISED FOR <span class="text1">
+                      {{i.0}}</span></p>
+                </div>
+              </div>
+              <div class="col-md-6" id="buttons">
+                <span class="btn1"><a href="#"><button class="btn btn1-primary mb-2">Repayment Details</button></a>
+                  <a href="#">
+                    <button class="btn btn1-primary mb-2" onclick="location.href='{% url 'deal_details' i.1 %}'">Deal
+                      Details</button>
+                  </a></span>
+              </div>
+            </div>
+          </div>
+          <hr style="height:2px;">
+          <div class="row">
+            <div class="card card2 col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Transaction ID</li>
+                  <li class="li2">{{i.2}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2  col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Amount Invested</li>
+                  <li class="li2">&#8377;{{i.3}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2 col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Gross Yield</li>
+                  <li class="li2">{{i.6}}%</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2  col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Net Yield</li>
+                  <li class="li2">{{i.7}}%</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2 col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Maturity Amount</li>
+                  <li class="li2">&#8377;{{i.4}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="pdfsize">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <a href="#" class="btn btn-primary">Deal Agreement (PDF)</a>
+              </div>
+              <div class="col-md-4 text-center">
+                <a href="#" class="btn btn-primary">Transaction Note (PDF)</a>
+              </div>
+              <div class="col-md-4 text-center">
+                <a href="#" class="btn btn-primary">Transaction Invoice (PDF)</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- </ul> -->
+          <div class="row mt-3 mb-5">
+            <div class="row"><br />
+              <div class="col-md-12" style="margin-left: 2vw;">
+                <div class="progress">
+                  <div class="one success-color"></div>
+                  <div class="two success-color"></div>
+                  <div class="three success-color"></div>
+                  <div class="four success-color"></div>
+                  <div class="progress-bar progress-bar-success" style="width: {{i.12}}%"></div>
+                </div>
+                <div class="row mt-2" id="milestones">
+                  <div class="col-md-3 " style="font-size: 12px;">
+                    <p>Investment Date:</p>
+                    <p><strong>{{i.8}}</strong></p>
+                  </div>
+                  <div class="col-md-3 " style="font-size: 12px;" id="milestones">
+                    <p>Fund Transfer Date:</p>
+                    <p><strong>{{i.9}}</strong></p>
+                  </div>
+                  <div class="col-md-3 text-center" style="font-size: 12px;" id="milestones">
+                    <p>Maturity Date:</p>
+                    <p><strong>{{i.10}}</strong></p>
+                  </div>
+                  <div class="col-md-3 text-end" style="font-size: 12px;" id="milestones">
+                    <p style="margin-right:3vw">Expected Repayment Date:</p>
+                    <p style="margin-right:3vw"><strong>{{i.11}}</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="tab-pane fade" style="display:block;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      {% for i in data %}
+      {% if i.13 == "repaid" %}
+      <div class="row">
+        <div class="card card1">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-1 text-center">
+                <div class="logoimg">
+                  <img class="img1" height="35" width="35" src="{{i.14.url}}">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="text">
+                  <p><span style="color:#58B4AE">&nbsp;&nbsp;INVOICE</span> RAISED FOR <span class="text1">
+                      {{i.0}}</span></p>
+                </div>
+              </div>
+              <!-- <div class="col-md-1"></div> -->
+              <!-- <div class="container">
+                <div class="logoimg">
+                  <img class="img1" height="35" width="35" src="{% static 'images/oyo.jpg' %}">
+                </div>
+                <div class="text mt-1">
+                  <p class="text"><span style="color:#58B4AE">&nbsp;&nbsp;INVOICE</span> RAISED FOR {{i.0}}</p>
+                </div>
+              </div> -->
+              <div class="col-md-6" id="buttons">
+                <span class="btn1"><a href="#"><button class="btn btn1-primary mb-2">Repayment
+                      Details</button></a>
+                  <a href="#"><button class="btn btn1-primary mb-2"
+                      onclick="location.href='{% url 'deal_details' i.1 %}'">Deal
+                      Details</button></a></span>
+              </div>
+            </div>
+          </div>
+          <hr style="height:2px;">
+          <div class="row">
+            <div class="card card2 col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Transaction ID</li>
+                  <li class="li2">{{i.2}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2  col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Amount Invested</li>
+                  <li class="li2">&#8377;{{i.3}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2  col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Net Yield</li>
+                  <li class="li2">{{i.7}}%</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2 col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Gross Yield</li>
+                  <li class="li2">{{i.6}}%</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card card2 col-md-2 text-center">
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li class="li1">Maturity Amount</li>
+                  <li class="li2">&#8377;{{i.4}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="pdfsize">
+            <div class="row">
+              <div class="col-md-3 text-center">
+                <a href="#" class="btn btn-primary">Deal Agreement (PDF)</a>
+              </div>
+              <div class="col-md-3 text-center">
+                <a href="#" class="btn btn-primary">Transaction Note (PDF)</a>
+              </div>
+              <div class="col-md-3 text-center">
+                <a href="#" class="btn btn-primary">Transaction Invoice (PDF)</a>
+              </div>
+              <div class="col-md-3 text-center">
+                <a href="#" class="btn btn-primary">Repayment Statement (XLSX)</a>
+              </div>
+            </div>
+          </div>
+          <!-- </ul> -->
+          <div class="row mt-3 mb-5">
+            <div class="row"><br />
+              <div class="col-md-12" style="margin-left: 2vw;">
+                <div class="progress">
+                  <div class="one success-color"></div>
+                  <div class="two success-color"></div>
+                  <div class="three success-color"></div>
+                  <div class="four success-color"></div>
+                  <div class="progress-bar progress-bar-success" style="width: {{i.12}}%"></div>
+                </div>
+                <div class="row mt-2" id="milestones">
+                  <div class="col-md-3 " style="font-size: 12px;">
+                    <p>Investment Date:</p>
+                    <p><strong>{{i.8}}</strong></p>
+                  </div>
+                  <div class="col-md-3 " style="font-size: 12px;" id="milestones">
+                    <p>Fund Transfer Date:</p>
+                    <p><strong>{{i.9}}</strong></p>
+                  </div>
+                  <div class="col-md-3 text-center" style="font-size: 12px;" id="milestones">
+                    <p>Maturity Date:</p>
+                    <p><strong>{{i.10}}</strong></p>
+                  </div>
+                  <div class="col-md-3 text-end" style="font-size: 12px;" id="milestones">
+                    <p style="margin-right:3vw">Expected Repayment Date:</p>
+                    <p style="margin-right:3vw"><strong>{{i.11}}</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+  var sortorder = {{sort_order}}, sortselect = {{mode}};
+  document.getElementById("sortselect").value = "/investor/order/" + sortselect+ "/" + sortorder;
+  if(sortorder == 1)
+    document.getElementById("arrow").classList.toggle("down");
+  function rotateArrow(){
+    document.getElementById("arrow").classList.toggle("down");
+    changeArrow();
+  }
+  function changeArrow(){
+    if(document.getElementById("arrow").classList.contains("down")){
+      sortorder = 1;
+    }
+    else{
+      sortorder = 0;
+    }
+    console.log(sortorder);
+    location.href = "/investor/order/" + sortselect  + "/" + sortorder;
+  }
+</script>
+
+{% endblock content %}
+
+
