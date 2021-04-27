@@ -1,0 +1,180 @@
+.nav-tabs .nav-link {
+  border: none;
+  border-bottom: 3px solid #CCCCCC;
+  text-align: center;
+}
+
+.nav-tabs {
+  border: none;
+}
+
+#myTab a {
+  color: #AAAAAA;
+  text-decoration: None;
+  background: None;
+}
+
+#myTab .nav-link {
+  text-align: left;
+  font: normal normal 600 16px/17px Open Sans;
+  letter-spacing: 1.6px;
+  color: #AAAAAA;
+  text-transform: uppercase;
+}
+#myTab a:active {
+  color: #38CC47;
+}
+#myTab a[tabindex]:focus {
+  color: #38CC47;
+  border-bottom: 3px solid #38CC47;
+}
+
+.content .tabcontent .multipleSelection {
+  width: 600px;
+  background-color: white;
+  font: normal normal 600 15px/15px Open Sans;
+  margin-top: 25px;
+}
+
+.selectBox {
+  position: relative;
+  background: white;
+  display: inline-block;
+}
+
+.selectBox select {
+  width: 300px;
+  font-weight: bold;
+  border: 1px solid #FFA931;
+  height: 27px;
+  border-radius: 6px;
+  font: normal normal 600 13px/15px Open Sans;
+  color: #f79421;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: 1px solid #FFA931;
+  border-radius: 6px;
+}
+.content .tabcontent .select {
+  font: normal normal 600 15px/15px Open Sans;
+  color: #353535;
+}
+
+.content .tabcontent .select-entity {
+  font: normal normal 600 15px/15px Open Sans;
+  margin-left: 0px;
+  width: auto;
+}
+
+.content .tabcontent .select-entity select{
+  font: normal normal 600 15px/15px Open Sans;
+  border: 1px solid;
+  outline: none;
+  border-radius: 3px;
+  height: 25px;
+  width: 550px;
+  border-color: #F79421;
+  color: #F79421;
+}
+
+.content .tabcontent .select select{
+  border: 1px solid;
+  outline: none;
+  border-radius: 3px;
+  height: 25px;
+  width: 150px;
+  border-color: #F79421;
+  color: #F79421;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+.tables th {
+  text-align: center;
+  font: normal normal 900 14px/15px Open Sans;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+  background: #182677;
+  border: 1px;
+  padding:10px;
+}
+
+.tables td{
+  text-align: center;
+  border-bottom: thin solid #FFA931;
+  padding-left: 21px;
+  font: normal normal 600 12px/14px Open Sans;
+}
+
+.tables td .a-btn button{
+  border: none;
+  background: None;
+  border: 1px solid #FFA931;
+  border-radius: 5px;
+  font: normal normal 600 10.5px/14px Open Sans;
+  height: 35px;
+  color: orange;
+}
+
+.tables td .b-btn button{
+  border: none;
+  background: #FFA931;
+  border: 1px solid #FFA931;
+  border-radius: 5px;
+  font: normal normal 600 12px/14px Open Sans;
+  height: 35px;
+  color: white;
+}
+
+.tables .piechart {
+  margin-left: 0px;
+}
+
+.tables td .c-btn button{
+  border: none;
+  background: #FFA931;
+  border: 1px solid #FFA931;
+  border-radius: 5px;
+  font: normal normal 600 10px/14px Open Sans;
+  height: 40px;
+  width: 80px;
+  color: white;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}

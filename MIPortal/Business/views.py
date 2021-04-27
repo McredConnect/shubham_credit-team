@@ -19,20 +19,22 @@ def bank_account(request):
     ifsc_code = business_obj.business_bank_account_IFSC_code
     return render(request, 'Business/bank-account.html', {'user_name':user_name, 'company_name':company_name, 'balance':balance, 'account_no':account_no,'bank_name':bank_name, 'ifsc_code':ifsc_code})
 
+
 def bank_account_withdraw(request):
     return render(request, 'Business/bankaccount-withdraw.html')
+
 
 def create_entity(request):
     if request.method == 'POST':
         form = EntityForm(request.POST, request.FILES)
         if form.is_valid():
-            print(request.FILES)
             new_entity=form.save()
             image = new_entity.company_logo
             print(image, type(image))
     else:
         form = EntityForm()
     return render(request, 'Business/create-entity.html', {'form': form})
+
 
 def create_entity_business(request):
     entities = Entity.objects.all()
@@ -59,9 +61,17 @@ def create_entity_business(request):
             available_sub_limit = form.cleaned_data['available_sub_limit']
             approved_credit_period = form.cleaned_data['approved_credit_period']
             margin_days = form.cleaned_data['margin_days']
-            EntityBusinessROIMapping.objects.create(entity_id = entity_obj, business_id = business_obj, applicable_roi = applicable_roi, benchmark_roi = benchmark_roi, special_roi = special_roi, sector_base_rate = sector_base_rate, sector_risk_premium = sector_risk_premium, business_risk_premium = business_risk_premium, entity_risk_premium = entity_risk_premium, applicable_discount_rate = applicable_discount_rate, applicable_platform_fee = applicable_platform_fee, sub_limit = sub_limit, available_sub_limit = available_sub_limit, approved_credit_period = approved_credit_period, margin_days = margin_days)
+            try:
+                mapping_object = EntityBusinessROIMapping(entity_id = entity_id, business_id = business_id)
+                values = {'entity_id' : entity_id, 'business_id' : business_id, 'entity_obj' : entity_obj, 'business_obj' : business_obj, 'applicable_roi' : applicable_roi, 'benchmark_roi' : benchmark_roi, 'special_roi' : special_roi, 'sector_base_rate' : sector_base_rate, 'sector_risk_premium' : sector_risk_premium, 'business_risk_premium' : business_risk_premium, 'entity_risk_premium' : entity_risk_premium, 'applicable_discount_rate' : applicable_discount_rate, 'applicable_platform_fee' : applicable_platform_fee, 'sub_limit' : sub_limit, 'available_sub_limit' : available_sub_limit, 'approved_credit_period' : approved_credit_period, 'margin_days' : margin_days}
+                for k,v in values.items():
+                    setattr(mapping_object, k ,v)
+                mapping_object.save()
+            except:
+                EntityBusinessROIMapping.objects.create(entity_id = entity_obj, business_id = business_obj, applicable_roi = applicable_roi, benchmark_roi = benchmark_roi, special_roi = special_roi, sector_base_rate = sector_base_rate, sector_risk_premium = sector_risk_premium, business_risk_premium = business_risk_premium, entity_risk_premium = entity_risk_premium, applicable_discount_rate = applicable_discount_rate, applicable_platform_fee = applicable_platform_fee, sub_limit = sub_limit, available_sub_limit = available_sub_limit, approved_credit_period = approved_credit_period, margin_days = margin_days)
         return redirect('create-entity-business')
     return render(request, 'Business/create-entity-business.html', {'form': form, 'entities' : entities, 'business':business})
+
 
 def create_entity_investor(request):
     entities = Entity.objects.all()
@@ -70,6 +80,7 @@ def create_entity_investor(request):
     if request.method == 'POST':
         form = EntityInvestorForm(request.POST)
         if form.is_valid():
+            # 'entity_id' :entity_id, 'investor_id' :investor_id, 'entity_obj' :entity_obj, 'investor_obj' :investor_obj, 'applicable_platform_fee' :applicable_platform_fee, 'applicable_ror' :applicable_ror, 
             entity_id = request.POST['entity']
             investor_id = request.POST['investor']
             entity_obj = Entity.objects.get(entity_id=entity_id)
@@ -79,6 +90,7 @@ def create_entity_investor(request):
             EntityInvestorRORMapping.objects.create(investor_id=investor_obj, entity_id=entity_obj,applicable_platform_fee=applicable_platform_fee, applicable_ror=applicable_ror)
             return redirect('create-entity-investor')
     return render(request, 'Business/create-entity-investor.html', {'form': form, 'entities' : entities, 'investors':investors})
+
 
 def dashboard(request, **kwargs):
     user = CustomUser.objects.filter(username=request.user).first()
@@ -102,12 +114,22 @@ def dashboard(request, **kwargs):
     total_repaid_amount = round(total_repaid_amount, 2)
     return render(request,'Business/dashboard.html', {'credit_limit': credit_limit, 'available_limit': available_limit, 'used_limit': used_limit, 'invoice_objs': invoice_objs,'new_invoices' : len(new_invoices), 'live_invoices' : len(live_invoices), 'financed_invoices' : len(financed_invoices), 'repaid_invoices' : len(repaid_invoices),'total_funds_raised' : format_amount(total_funds_raised), 'total_repaid_amount' : format_amount(total_repaid_amount), 'credit_limit_amount': format_amount(credit_limit), 'available_limit_amount': format_amount(available_limit), 'used_limit_amount': format_amount(used_limit)})
 
+
 def edit_business(request):
-    return render(request, 'Business/edit-business.html',)
+    business = Business.objects.all()
+    form = BusinessForm()
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            business_id = request.POST['business']
+            new_business = form.save()
+    return render(request, 'Business/edit-business.html', {'form':form, 'business':business})
+
 
 def help_and_support(request):
     data = QuestionAnswer.objects.filter(user_type='business')
     return render(request,'Business/help-and-support.html', {'data':data})
+
 
 def invoice(request):
     user = CustomUser.objects.get(username=request.user)
@@ -130,6 +152,7 @@ def invoice(request):
         temp_list.extend((upload_date, entity_name, amount, amount_financed, platform_fee, roi, invoice_id, tenure))
         data.append(temp_list)
     return render(request,'Business/invoice.html', {'data':data})
+
 
 def invoice_upload(request):
     print(request)
@@ -205,8 +228,10 @@ def invoice_upload(request):
             data.append(temp_list)
         return render(request, 'Business/invoice-upload.html',{'entities' : entities, 'balance':balance,'data': data, } )
 
+
 def refer_and_earn(request):
     return render(request,'Business/refer-and-earn.html')
+
 
 def transactions(request):
     user = CustomUser.objects.get(username=request.user)
@@ -236,6 +261,7 @@ def transactions(request):
         temp_list.extend((invoice_id, upload_date, entity_name, amount, discount, finance_amount, fee, net_amount, tenure, roi))
         data.append(temp_list)
     return render(request,'Business/transactions.html',{'data':data})
+
 
 def transaction_details(request, pk):
     transaction_data=list()
@@ -275,6 +301,7 @@ def transaction_details(request, pk):
         # data.append(temp_list)
     print(invoice_data)
     return render(request,'Business/transaction-details.html', {'invoice_data':invoice_data, 'transaction_data':transaction_data})
+
 
 def view_details(request, mode):
     bus_id = Business.objects.get(user_id=request.user).business_id
@@ -316,6 +343,7 @@ def view_details(request, mode):
         temp_list.extend((invoice_id, entity_name, invoice_date, invoice_amount, invoice_total_investment, applicable_ROI, invoice_subscription_status, invoice_due_date, invoice_pdf))
         data.append(temp_list)
     return render(request,'Business/view-details.html', {'data' : data, 'mode':mode})
+
 
 def withdrawal(request):
     bus_id = Business.objects.get(user_id=request.user).business_id

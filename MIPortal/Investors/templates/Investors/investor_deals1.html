@@ -58,6 +58,11 @@
   <!-- Start Current Deals -->
   <div class="tab-pane fade show active mt-3 text-center" id="home" role="tabpanel" aria-labelledby="home-tab">
     <h3>Ongoing Deals</h3>
+    {% if messages %}
+    {% for message in messages%}
+    <div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+    {% endfor %}
+    {% else %}
     {% for i in data %}
     {% if i.invoice_subscription_status < 100 %} <!-- <div class="row"> -->
       <div class="invoice">
@@ -223,12 +228,19 @@
       </div>
       {% endif %}
       {% endfor %}
+    {% endif %}
+
   </div>
   <!-- End Current Deals -->
 
   <!-- Start Past Deals -->
   <div class="tab-pane fade mt-3 text-center" style="display:block;" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <h3>Repaid Deals</h3>
+    {% if messages %}
+    {% for message in messages%}
+    <div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+    {% endfor %}
+    {% else %}
     <div class="trantable table-responsive">
       <table class="table">
         <tr>
@@ -276,6 +288,7 @@
         <a class="disabled"><span onclick="openCity(event, table)">&raquo;</span></a>
         {% endif %}
       </ul>
+      {% endif %}
       {% endif %}
     </div>
   </div>

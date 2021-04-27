@@ -396,7 +396,7 @@ def investor_signup(request):
                 user.set_password(password)
                 user.save()
                 print(user)
-                ob = Investor.objects.create(investor_name=user.first_name + ' ' + user.last_name, user_id=user)
+                ob = Investor.objects.create(investor_name=user.first_name + ' ' + user.last_name, user_id=user, status="New", escrow_balance = 0.0)
                 print(ob.investor_id)
                 request.session['investor_id']=str(ob.investor_id)
                 return redirect('mcred_login')
@@ -405,7 +405,7 @@ def investor_signup(request):
                 investor = Investor.objects.filter(user_id=user)
                 if user_type in user.type:
                     if len(business) < 1:
-                        Investor.objects.create(investor_name=user.first_name + ' ' + user.last_name, user_id=user)
+                        Investor.objects.create(investor_name=user.first_name + ' ' + user.last_name, user_id=user, status="New", escrow_balance = 0.0)
                         return redirect('mcred_login')
                     else:
                         msg = 'user'
@@ -414,7 +414,7 @@ def investor_signup(request):
                     types = user.type
                     user.type = types + ',' + user_type
                     user.save()
-                    Investor.objects.create(investor_name=user.first_name + ' ' + user.last_name, user_id=user)
+                    Investor.objects.create(investor_name=user.first_name + ' ' + user.last_name, user_id=user, status="New", escrow_balance = 0.0)
         else:
             if password == '':
                 msg = 'password'
@@ -454,7 +454,7 @@ def business_signup(request):
                 user.set_password(password)
                 user.save()
                 business_obj = Business.objects.create(business_name=user.first_name + ' ' + user.last_name, user_id=user, city=city,
-                                        turnover=turnover, state=state, business_pan_card=pan, status="New")
+                                        turnover=turnover, state=state, business_pan_card=pan, status="New", escrow_balance = 0.0, available_facility_limit = 0.0, facility_approved_amount = 0.0)
                 print(business_obj.business_id)
                 request.session['business_id'] = str(business_obj.business_id)
                 print("firstloop",request.session['business_id'])
@@ -466,8 +466,7 @@ def business_signup(request):
                 if user_type in user.type:
                     if len(business) < 1:
                         business_obj = Business.objects.create(business_name=user.first_name + ' ' + user.last_name, user_id=user,
-                                                city=city,
-                                                turnover=turnover, state=state, business_pan_card=pan)
+                                                city=city, turnover=turnover, state=state, business_pan_card=pan, status="New", escrow_balance = 0.0, available_facility_limit = 0.0, facility_approved_amount = 0.0)
                         print(business_obj.business_id)
                         request.session['business_id'] = str(business_obj.business_id)
                         print("second loop",request.session['business_id'])
@@ -479,9 +478,8 @@ def business_signup(request):
                     types = user.type
                     user.type = types + ',' + user_type
                     user.save()
-                    business_obj = Business.objects.create(business_name=user.first_name + ' ' + user.last_name, user_id=user,
-                                            city=city,
-                                            turnover=turnover, state=state, business_pan_card=pan)
+                    business_obj = Business.objects.create(business_name=user.first_name + ' ' + user.last_name, user_id=user, city=city,
+                                            turnover=turnover, state=state, business_pan_card=pan, status="New", escrow_balance = 0.0, available_facility_limit = 0.0, facility_approved_amount = 0.0)
                     print(business_obj.business_id)
                     request.session['business_id'] = str(business_obj.business_id)
                     print("third loop",request.session['business_id'])

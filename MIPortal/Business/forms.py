@@ -1,7 +1,11 @@
 from django.forms import ModelForm
-from Investors.models import Entity, EntityBusinessROIMapping, EntityInvestorRORMapping
+from Investors.models import Entity, EntityBusinessROIMapping, EntityInvestorRORMapping, Business
 
 
+class BusinessForm(ModelForm):
+    class Meta:
+        model = Business
+        fields = ['facility_approved_amount']
 class EntityForm(ModelForm):
     class Meta:
         model = Entity
@@ -17,5 +21,4 @@ class EntityInvestorForm(ModelForm):
     class Meta:
         model = EntityInvestorRORMapping
         exclude =['entity_id', 'investor_id']
-
 

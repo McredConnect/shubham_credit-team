@@ -57,6 +57,11 @@
       <h2>Active Deals</h2>
     </div>
   </div>
+  {% if messages %}
+  {% for message in messages%}
+  <div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+  {% endfor %}
+  {% else %}
   <div class="content" onclick="run2(this)">
     <div id="table" class="tabcontent">
       <div class="row">
@@ -157,6 +162,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 </body>
 <script>
   var anchors = document.querySelectorAll('.btn1');

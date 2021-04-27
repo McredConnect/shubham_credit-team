@@ -1,0 +1,223 @@
+.nav-tabs .nav-link {
+  border: none;
+  border-bottom: 3px solid #CCCCCC;
+  text-align: center;
+}
+
+.nav-tabs {
+  border: none;
+}
+
+#myTab .nav-tabs .nav-link:hover {
+  color: #F79421;
+
+}
+
+#myTab a {
+  color: #AAAAAA;
+  text-decoration: None;
+  background: None;
+}
+
+#myTab a.active {
+  color: #38CC47;
+}
+
+.nav-tabs .nav-link.active {
+  border: none;
+  border-bottom: 3px solid #38CC47;
+  border-radius: 0px;
+  color: #38CC47;
+}
+
+#myTab .nav-link {
+  text-align: left;
+  font: normal normal 600 16px/17px Open Sans;
+  letter-spacing: 1.6px;
+  color: #AAAAAA;
+  text-transform: uppercase;
+}
+
+.invoice {
+  border: 1.5px solid #AAAAAA;
+  border-radius: 10px;
+  opacity: 1;
+  padding: 15px;
+  margin-bottom: 2vh;
+}
+
+.invoice .top {}
+
+.invoice button {
+  width: 150px;
+  height: 40px;
+  border: 2px solid #F79421;
+  border-radius: 5px;
+  opacity: 1;
+  background: none;
+  font: normal normal 600 15px/16px Open Sans;
+  letter-spacing: 1.6px;
+  color: #F79421;
+  text-transform: capitalize;
+}
+
+.text1 {
+  text-transform: capitalize;
+}
+
+.invoice .icon {
+  border: 4px solid #F79421;
+  border-radius: 15px 15px 0px 0px;
+  border-color: #FFA931;
+  letter-spacing: 0.64px;
+  color: #182677;
+  opacity: 1;
+  text-align: center;
+  background: #FCFCFC 0% 0% no-repeat padding-box;
+  padding: 10px;
+  margin-bottom: 2vh;
+}
+
+.fields {
+  font: normal normal 14px/14px Open Sans;
+}
+
+.fields .row>*,
+.ids1 .row>* {
+  padding-right: 0px !important;
+  padding-left: 0 !important;
+}
+
+.invoice .group .group1 .group11 {
+  font: normal normal 600 13px/20px Open Sans;
+  letter-spacing: 0.64px;
+  color: #353535;
+  opacity: 1;
+  display: inline-block;
+}
+
+.group1 .row>div {
+  border: 2px solid #CCCCCC;
+  /* border-radius: 10px */
+}
+
+.invoice .ids {
+  background: #FFA931 0% 0% no-repeat padding-box;
+  opacity: 1;
+  padding: 5px;
+  font: normal normal 12px/10px Open Sans;
+  text-align: center;
+  color: white;
+}
+
+.invoice .inv_id {
+  border-radius: 0px 0px 10px 0px;
+}
+
+.invoice .raised {
+  border-radius: 0px 0px 0px 10px;
+}
+
+.invoice .progress-heading {
+  font: normal normal 600 13px/20px Open Sans;
+  color: #353535;
+}
+
+.invoice .progress {
+  background-color: #F0F0F0;
+  border-radius: 15px;
+}
+
+.invoice .progress .funded {
+  background-color: rgb(116, 194, 92);
+  color: white;
+  padding: 1%;
+  text-align: center;
+  font: normal normal 600 10px/0px Open Sans;
+  border-radius: 10px;
+}
+
+.invoice .input {
+  margin-left: 0px;
+  font: normal normal 600 13px/20px Open Sans;
+  text-align: center;
+}
+
+.invoice .input label {
+  font-size: 15px;
+  opacity: 1;
+  color: #353535;
+}
+
+.invoice .input input {
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 2px solid orange;
+  width: 180px;
+  text-align: center;
+  color: #353535;
+}
+
+.return .table {
+  text-align: center;
+}
+
+
+.trantable table td {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: thin solid #FFA931;
+  padding-left: 21px;
+  font: normal normal 600 14px/14px Open Sans;
+}
+
+.trantable table td .a-btn button {
+  border: none;
+  background: #FFA931;
+  border: 1px solid #FFA931;
+  border-radius: 5px;
+  font: normal normal 600 12px/14px Open Sans;
+  height: 35px;
+  color: white;
+}
+
+.trantable th {
+  text-align: center;
+  font: normal normal 900 14px/15px Open Sans;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: white;
+  opacity: 1;
+  background: #182677;
+  border: 1px;
+  opacity: 1;
+  padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .invoice .progress .funded {
+    padding: 2%;
+  }
+
+  .group1 .row>div {
+    border-radius: 10px;
+    margin-top:1vh;
+  }
+
+  .invoice .inv_id {
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .invoice .raised {
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .invoice .icon {
+    border-radius: 15px 15px 15px 15px;
+  }
+  .invoice .ids {
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+  }
+}

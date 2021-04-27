@@ -1,0 +1,44 @@
+.table thead {
+  background-color: #182677 !important;
+  color: white !important;
+}
+
+.table td {
+  border-bottom: thin solid #FFA931;
+  text-align: center;
+}
+
+.tab {
+  padding: 0px;
+  display: inline-block;
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  margin-right: 1vw;
+}
+
+.tablinks {
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #AAAAAA;
+  border-radius: 0px;
+  font: normal normal 600 15px Open Sans;
+  letter-spacing: 1.6px;
+  color: #AAAAAA;
+  text-transform: uppercase;
+  opacity: 1;
+  text-align: center;
+  /* width: 15vw; */
+  /* margin-left: 1vw; */
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  margin-right: 1vw;
+}
+@media only screen and (max-width: 768px) {
+.tablinks{
+  /* width: 25vw; */
+  /* text-align: left; */
+  margin-top: 5vh;
+  }
+}

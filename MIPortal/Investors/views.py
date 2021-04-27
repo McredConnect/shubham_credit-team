@@ -432,14 +432,23 @@ def investor_deals(request):
             j.save()
 
     invoice_ls = []
+    inactive_invoice_flag = True
     for i in entity_ls:
         invoices = Invoice.objects.filter(entity_name=i).order_by()
         if len(invoices) > 0:
             for j in invoices:
+                if inactive_invoice_flag == True and j.invoice_subscription_status < 100:
+                    inactive_invoice_flag = False
                 queryset = Transaction.objects.filter(investor_id=inv_id).filter(invoice_id_id=j.invoice_id)
                 entity_obj = Entity.objects.get(entity_name=i)
                 j.company_logo = entity_obj.company_logo
                 invoice_ls.append(j)
+    if len(invoice_ls) == 0:
+        messages.warning(request, 'There are No Invoices to Display')
+        return render(request, 'Investors/investor_deals1.html', {'today': today, 'tomorrow': tomorrow,'day_after': day_after_tom, 'empty_invoice_flag' : True})
+    if inactive_invoice_flag:
+        messages.warning(request, 'There are No Active Deals for Investment')
+        return render(request, 'Investors/investor_deals1.html', {'today': today, 'tomorrow': tomorrow,'day_after': day_after_tom})
     entity_ls.sort()
     if request.method == 'POST':
         investor_obj = Investor.objects.get(user_id=request.user)
@@ -454,7 +463,7 @@ def investor_deals(request):
         return redirect('inv-dashboard')
     return render(request, 'Investors/investor_deals1.html',
                   {'entity': entity_ls, 'data': invoice_ls, 'today': today, 'tomorrow': tomorrow,
-                   'day_after': day_after_tom, })
+                   'day_after': day_after_tom})
 
 
 # def investor_deals(request):
@@ -530,13 +539,8 @@ def investor_deals(request):
 #         annualized_yield = round((((return_inv / invested_amount) / tenor) * 365 * 100), 2)
 
 #         amt_payable_to_business = round(amount_due1 - ((amount_due1 * (roi_obj.applicable_roi / 100) / 365) * tenor), 2)
-#         percentage_subs = round(((amount_due1 / invoice_obj.invoice_fundable_amount) * 100), 2)
-#         total_subs = invoice_obj.invoice_subscription_status + percentage_subs
-#         ror_obj = EntityInvestorRORMapping.objects.filter(investor_id=investor_obj.investor_id).filter(entity_id = entity_id2).first()
-#         platform_fee_inv = invested_amount * ror_obj.applicable_platform_fee / 100 * tenor / 365
-#         platform_fee_bus = amt_payable_to_business * roi_obj.applicable_platform_fee / 100 * tenor / 365
-#         # check state
-#         same_state_flag = False
+#         percentage_subs = round(((            messages.warning(request, message)
+
 #         investor_state_code = investor_obj.investor_gst_detail[:2]
 #         current_state = 'Maharashtra'
 #         if investor_state_code == State.objects.filter(name = current_state).first().code:
@@ -877,7 +881,6 @@ def order(request, mode, sort_order):
     print('mode =', mode)
     return render(request, 'Investors/order1.html', {'data': data, 'mode': mode, 'sort_order': sort_order})
 
-
 def repayment(request):
     today = date.today()
     entities = list(Entity.objects.values_list('entity_name', flat=True).distinct())
@@ -1000,7 +1003,15 @@ def table_view(request):
         invoices = Invoice.objects.filter(entity_name=i).order_by()
         if len(invoices) > 0:
             for j in invoices:
+                if inactive_invoice_flag == True and j.invoice_subscription_status < 100:
+                    inactive_invoice_flag = False
                 invoice_ls.append(j)
+    if len(invoice_ls) == 0:
+        messages.warning(request, 'There are No Invoices to Display')
+        return render(request, 'Investors/table_view1.html', {'today': today, 'tomorrow': tomorrow,'day_after': day_after_tom})
+    if inactive_invoice_flag:
+        messages.warning(request, 'There are No Active Deals for Investment')
+        return render(request, 'Investors/table_view1.html', {'today': today, 'tomorrow': tomorrow,'day_after': day_after_tom})
     entity_ls.sort()
     if request.method == 'POST':
         investor_obj = Investor.objects.get(user_id=request.user)
@@ -1017,7 +1028,7 @@ def table_view(request):
         i.mat_amount = i.invoice_fundable_amount - i.amount_due_investor
         i.mat_amount = format_amount(i.mat_amount)
         i.invoice_available_investment = format_amount(i.invoice_available_investment)
-    return render(request, 'investors/table_view1.html',
+    return render(request, 'Investors/table_view1.html',
                   {'entity': entity_ls, 'users': invoice_ls, 'today': today, 'tomorrow': tomorrow,
                    'min_limit': investor_limit, 'day_after': day_after_tom})
 
@@ -1050,14 +1061,8 @@ def view_details(request, mode):
     else:
         return redirect('inv-dashboard')
     if len(all_transactions) == 0:
-        temp_list = list()
-        temp_list.extend(('-', '-', '-', '-', '-', '-', '-'))
-        transactions.append(temp_list)
         message = 'No Transactions to Display'
-        return render(request, 'Investors/view-details.html',
-                      {'transactions': transactions, 'total_investment_amount': total_investment_amount,
-                       'total_return_amount': total_return_amount, 'total_maturity_amount': total_maturity_amount,
-                       'mode': mode, 'message': message})
+        return render(request, 'Investors/view-details.html', {'mode': mode, 'message': message})
 
     for i in all_transactions:
         temp_list = list()
@@ -1274,7 +1279,7 @@ def invoice_form(request):
 #             invoice.invoice_investment_amount = investment_amt - invoice.invoice_total_investment
 #             invoice.invoice_subscription_status = total_subs
 #             invoice.save()
-#         else:
+#     a decision on display of    else:
 #             messages.error(request, 'Amount exceeds!')
 #
 #         #

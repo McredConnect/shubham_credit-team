@@ -9,6 +9,12 @@
   <form method="post" enctype='multipart/form-data' novalidate>
     <!-- {{form}} -->
     {% csrf_token %}
+    <select id="business" name="business">
+      <option value="" selected disabled>Business:</option>
+      {% for i in business %}
+      <option value="{{ i.business_id }}">{{ i.business_name }}</option>
+      {% endfor %}
+    </select>
     {{ form|crispy}}
     <button type="submit">Register</button>
   </form>

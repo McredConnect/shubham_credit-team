@@ -16,11 +16,12 @@
     <a href="{% url 'inv-view-details' mode=3 %}" class="tablinks" id="btn4">Upcoming in 30 Days</a>
   </div>
 </div>
+{% if empty_invoice_flag %}
 {% if message %}
   <div class="row mt-2">
     <div class="alert alert-warning" role="alert">{{message}}</div>
   </div>
-{% endif %}
+{% else %}
 <div class="row">
 </div>
 <div class="transaction mt-4">
@@ -149,6 +150,9 @@
   <!--                  </ul>-->
   <!--                {% endif %}-->
 </div>
+{% endif %}
+{% endif %}
+
 <iframe width="0px" height="0px" onload="setActive({{mode}})"></iframe>
 
 {% endblock content %}

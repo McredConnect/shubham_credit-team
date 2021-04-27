@@ -1,0 +1,303 @@
+.titl{
+    text-align: left;
+    font: normal normal 600 14px/17px Open Sans;
+    letter-spacing: 1.4px;
+    color: #353535;
+    opacity: 1;
+}
+
+.container-fluid .cls1{
+    margin-top:40px;
+}
+
+.deal {
+    text-align: left;
+    font: normal normal 600 30px/15px Open Sans;
+    letter-spacing: 0px;
+    color: #353535;
+    opacity: 1;
+
+}
+
+.btn-primary {
+    text-align: center;
+    font: normal normal 600 12px/15px Open Sans;
+    letter-spacing: 1.4px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background: #F79421 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    opacity: 1;
+    border:none;
+    width:220px;
+    height:40px;
+    margin-left:25px;
+}
+
+.btn-primary:hover{
+    background-color:#FFA931;
+}
+
+.btn-primary:focus{
+    background-color:transparent;
+    border-color:#F79421;
+    border:2px solid #F79421;
+    color:#F79421;
+    box-shadow:none;
+}
+
+.nav-link .bi-check-circle-fill{
+    margin-right:10px;
+    margin-top:-3px;
+}
+
+
+/* -----CSS FOR TABS -----*/
+
+.nav-tabs .nav-link{
+    border:none;
+    border-bottom: 2px solid #CCCCCC;
+    width:200px;
+    margin-left:20px;
+    text-align:center;
+}
+.nav-tabs {
+    border:none;
+    width:500px;
+}
+
+#two{
+    margin-left:-53px;
+}
+
+#myTab .nav-tabs .nav-link:hover{
+    color:#F79421;
+
+}
+#myTab a {
+    color: #AAAAAA;
+    text-decoration: None;
+    background:None;
+}
+#myTab a.active{
+    color:#38CC47;
+}
+
+
+.nav-tabs .nav-link.active{
+    border:none;
+    border-bottom: 3px solid #38CC47;
+    border-radius: 0px;
+    color:#38CC47;
+    width:200px;
+    margin-left:-80px;
+
+
+}
+
+#myTab .nav-link{
+    text-align: left;
+    font: normal normal 600 16px/17px Open Sans;
+    letter-spacing: 1.6px;
+    color: #AAAAAA;
+    text-transform: uppercase;
+    opacity: 1;
+    margin-top:40px;
+    margin-left:50px;
+}
+
+.div1 #acc {
+    margin-left:910px;
+    margin-top:-30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DFDFDF;
+    border-radius: 5px;
+    opacity: 1;
+    padding:5px;
+    text-align: left;
+    font: normal normal normal 14px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #363636;
+}
+
+
+/*------ CSS FOR CARD1 -----*/
+.card1{
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    opacity: 1;
+    margin-top:30px;
+
+}
+.card1 .logoimg .img1{
+   margin-left:10px;
+   -moz-border-radius:20px;
+   -webkit-border-radius: 23px;
+   height:45px;
+   width:45px;
+}
+
+.card1 .text{
+    font: normal normal 600 14px/13px Open Sans;
+    letter-spacing: 0.72px;
+    color: #353535;
+    text-transform: uppercase;
+    margin-top:-90px;
+
+}
+
+.card1 .text1{
+    text-align: left;
+    font: normal normal 600 13px/15px Open Sans;
+    letter-spacing: 0.72px;
+    color: #353535;
+    text-transform: capitalize;
+    margin-left:65px;
+
+}
+
+.card1 .btn-primary{
+    border-radius: 5px;
+    opacity: 1;
+    text-align: center;
+    font: normal normal 600 12px/15px Open Sans;
+    letter-spacing: 1.6px;
+    color: #F79421;
+    text-transform: capitalize;
+    background-color:transparent;
+    border-color:#F79421;
+    border:2px solid #F79421;
+    box-shadow: 0px 3px 6px #00000029;
+    width:auto;
+    margin-top:-50px;
+}
+.card1 .btn1{
+    margin-left:480px;
+
+}
+
+/*---------------CSS FOR  CARD2 ----------------*/
+
+.li1{
+    text-align: center;
+    font: normal normal normal 12px/13px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    text-transform:uppercase;
+}
+
+.li2{
+    text-align: center;
+    font: normal normal bold 12px/13px Open Sans;
+    letter-spacing: 0.64px;
+    color: #353535;
+    opacity: 1;
+    margin-top:10px;
+}
+
+.card1 .card2,.card3,.card4,.card5{
+    margin-left:30px;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    border: 1px solid #CCCCCC;
+    border-radius: 20px;
+    opacity: 1;
+    padding:-10px;
+    width:190px;
+    margin-top:0px;
+}
+
+.pdfsize {
+    margin-left:933px;
+    margin-top:-103px;
+}
+.pdfsize .list-group-item{
+    text-align: center;
+    font: normal normal normal 16px/17px Open Sans;
+    letter-spacing: 0.64px;
+    color: #0092FF;
+    opacity: 1;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    padding:20px;
+}
+
+
+
+/*----CSS FOR 2ND GROUP */
+#red {
+    margin-left:220px;
+}
+/*      ------      PROGRESS BAR --------*/
+.progress{
+    height:5px;
+    margin-top:40px;
+    margin-left:50px;
+    width:750px;
+}
+
+#btn1{
+    margin-top:-32px;
+    margin-left:35px;
+
+}
+
+#btn2{
+    margin-top:-32px;
+    margin-left:350px;
+}
+
+#btn3{
+    margin-top:-32px;
+    margin-left:360px;
+
+}
+/*------    MEDIA QUERIES    -------*/
+@MEDIA only screen and (max-width: 550px){
+    .container-fluid .cls1 .btn-primary{
+        margin-top:20px;
+        margin-left:10px;
+    }
+
+    #myTab #one{
+        margin-left:-50px;
+    }
+
+   .div1 #acc{
+         margin-top:30px;
+         margin-left:0px;
+    }
+   .card1 .btn1{
+        margin-left:auto;
+    }
+   .card1 .btn-primary{
+        margin-top:30px;
+   }
+   .card1 .card2,.card3,.card4,.card5{
+        width:150px;
+        margin:20px;
+   }
+
+   .pdfsize{
+        margin-left:auto;
+        margin-top:40px;
+   }
+
+   .progress{
+        width:auto;
+   }
+   #btn1{
+        margin-left:auto;
+   }
+
+   #red{
+        margin-left:-120px;
+        margin-top:70px;
+   }
+
+   #de{
+        margin-top:70px;
+   }
+
+}
