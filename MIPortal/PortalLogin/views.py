@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth import get_user_model
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.contrib import auth
 from django.contrib import messages
 from .models import Lead
@@ -29,8 +29,6 @@ CustomUser = get_user_model()
 
 def index(request):
     return render(request, 'PortalLogin/home.html')
-
-
 
 
 def business(request):
@@ -128,6 +126,7 @@ def blogs(request):
     context = {'objs': objs, 'posts': posts}
     return render(request, 'PortalLogin/blogs.html', context)
 
+
 def detailed_blog(request,pk):
     print(pk)
     blog_obj = Blog.objects.get(id=pk)
@@ -154,8 +153,6 @@ def search(request):
         posts = paginator.page(paginator.num_pages)
     context = {'posts_obj': posts_obj, 'posts': posts, 'search':search}
     return render(request, 'PortalLogin/search.html', context)
-
-
 
 
 def filter_data(request):
@@ -186,6 +183,7 @@ def filter_data(request):
     t = render_to_string('PortalLogin/categories_list.html', {'data': filter_post})
     return JsonResponse({'data': t})
 
+
 def like(request, pk):
     user = request.user
     if request.method == 'POST':
@@ -211,6 +209,7 @@ def popularity(request):
     t = render_to_string('PortalLogin/popularity.html', {'posts': posts})
     return JsonResponse({'data': t})
 
+
 def recent(request):
     print('in recent')
     posts = Blog.objects.all().order_by('-created_date')
@@ -218,8 +217,10 @@ def recent(request):
     t = render_to_string('PortalLogin/recent.html', {'posts': posts})
     return JsonResponse({'data': t})
 
+
 def demo(request):
     return render(request, 'PortalLogin/demo.html')
+
 
 def bloginput(request):
     # form = blogform()
@@ -241,8 +242,8 @@ def bloginput(request):
 
     return render(request, 'PortalLogin/demo.html')
 
-def login(request):
 
+def login(request):
     if request.method == "POST":
         username = request.POST['user']
         password = request.POST['password']
@@ -332,6 +333,99 @@ def login(request):
             messages.error(request, 'please select user type!')
             return redirect('mcred_login')
     return render(request, 'PortalLogin/login.html')
+
+# def login(request):
+
+#     if request.method == "POST":
+#         print(request.user)
+#         username = request.POST['user']
+#         password = request.POST['password']
+#         user_type = request.POST.get('userType')
+#         user = authenticate(username=username, password=password)
+#         user1 = CustomUser.objects.get(username=username)
+#         print("user1",user1.id)
+#         print("USERTYPE",user_type)
+#         print("SUPERUSER",user1.is_superuser)
+#         # business_obj = Business.objects.get(user_id_id=user1)
+#         # print("business_obj_on", business_obj)
+#         # business_obj_status = business_obj.status
+#         # print(business_obj_status)
+#         # if business_obj_status=="New":
+#         #     return redirect('dashboard')
+
+#         if user1.is_superuser and user_type=="Admin":
+#             return redirect('business_two')
+#         try:
+#             print("In try")
+#             inv_obj = Investor.objects.get(user_id_id=user1)
+#             print(inv_obj)
+#             # business_obj = Business.objects.get(user_id_id=user1)
+#             # print("business_obj",business_obj)
+#             print('inves',inv_obj.investor_category)
+#             print(user)
+#             type = inv_obj.investor_category
+#             inv_status = inv_obj.status
+#             print(inv_status)
+#         except:
+#             inv_obj = None
+#             type = None
+#             # inv_status = inv_obj.status
+#             # inv_status = "APPROVED"
+#         else:
+#             if inv_status=="APPROVED":
+#                 return redirect('inv-dashboard')
+
+#         try:
+#             print("In business try")
+
+#             business_obj = Business.objects.get(user_id_id=user1)
+#             print("business_obj",business_obj)
+#             business_status = business_obj.status
+#             print(business_status)
+
+
+#         except:
+#             print("No exception!")
+
+#         else:
+#             if business_status =="APPROVED":
+#                 return redirect('dashboard')
+#         if user_type:
+#             if user is not None:
+#                 if user_type in user.type:
+#                     auth.login(request, user)
+#                     # print(auth.login(request, user))
+#                     print(request.user)
+#                     request.session['logged_in'] = True
+#                     # if user_type == 'investor' and inv_status=="APPROVED":
+#                     #     return redirect('inv-dashboard')
+#                     if user_type == 'investor' and type == None:
+#                         return redirect('registration_newdashboard')
+#                     elif user_type == 'investor' and type == "Individual":
+#                         return redirect('individual')
+#                     elif user_type == 'investor' and type == "HUF":
+#                         return redirect('huf')
+#                     elif user_type == 'investor' and type == "Partnership / LLP":
+#                         return redirect('partnership_llp')
+#                     elif user_type == 'investor' and type == "Private Limited":
+#                         return redirect('private_ltd')
+#                     elif user_type == 'investor' and type == "NBFC / Bank":
+#                         return redirect('nbfc_bank')
+#                     elif user_type == 'investor' and type == "NRI":
+#                         return redirect('NRI')
+#                     else:
+#                         user_type == 'business'
+#                         return redirect('company_details_two')
+#                 else:
+#                     messages.error(request, 'user not registered as ' + user_type + '!')
+#                     return redirect('mcred_login')
+#             else:
+#                 messages.error(request, 'user not registered!')
+#                 return redirect('mcred_login')
+#         else:
+#             messages.error(request, 'please select user type!')
+#             return redirect('mcred_login')
+#     return render(request, 'PortalLogin/login.html')
 
 
 def forgot_password(request):

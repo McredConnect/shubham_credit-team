@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from Investors.models import *
 from tests.models import *
 from django.template.loader import render_to_string, get_template
+from .forms import *
 
 
 def bank_detail(request):
@@ -528,7 +529,7 @@ def business(request):
 
 def investor(request):
     print("In investor view")
-    objs = Investor.objects.filter(status=None)
+    objs = Investor.objects.filter(status="New")
     print(objs)
     context = {'objs':objs}
     return render(request, 'InvestorDashboards/investors.html', context)
@@ -871,9 +872,11 @@ def investor_approved_form(request, pk):
 def approve_investor(request,pk):
     if request.method == "POST":
         investor_obj = Investor.objects.get(investor_id=pk)
-        investor_obj.status = "APPROVED"
-        investor_obj.save()
-    return redirect('approved_investor')
+        # investor_obj.status = "APPROVED"
+        # investor_obj.save()
+        return redirect('create-entity-investor')
+
+    # return redirect('approved_investor')
 
 
 def reason_form(request,pk):
@@ -962,16 +965,19 @@ def enter_fascilate_amount(request, pk):
     context = {'pk': pk}
     return render(request, 'InvestorDashboards/fascilateamountform.html', context)
 
+# TODO:
 def fascilate_amount_save(request, pk):
     if request.method == "POST":
         amount = request.POST.get('amount')
         print(amount)
         business_obj = Business.objects.get(business_id=pk)
         print(business_obj)
-        business_obj.status = "APPROVED"
         business_obj.facility_approved_amount = amount
+        business_obj.available_facility_limit = amount
         business_obj.save()
-    return redirect('registered_businesses')
+    return redirect('create-entity-business')
+    # return redirect('registered_businesses')
+
 # def authorisedperson_detail(request):
 #     business_id = request.session['business_id']
 #     if request.method == "POST":
@@ -2075,3 +2081,93 @@ def investor_approved_form(request,pk):
     context = {'pk':pk}
     return render(request, 'InvestorDashboards/investor_approved_form.html', context)
 
+
+def create_entity(request):
+    if request.method == 'POST':
+        form = EntityForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_entity=form.save()
+            image = new_entity.company_logo
+            # new_entity.save()
+            print(image, type(image))
+            return redirect('investor')
+    else:
+        form = EntityForm()
+    return render(request, 'Business/create-entity.html', {'form': form})
+# return redirect('registered_businesses')
+
+# def create_entity_2(request):
+#     if request.method == 'POST':
+#         form = EntityForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             new_entity=form.save()
+#             image = new_entity.company_logo
+#             new_entity.save()
+#             print(image, type(image))
+#             return redirect('create-entity-investor')
+#     else:
+#         form = EntityForm()
+#     return render(request, 'Business/create-entity.html', {'form': form})
+# return redirect('registered_businesses')
+
+
+def create_entity_business(request):
+    entities = Entity.objects.all()
+    business = Business.objects.all()
+    form = EntityBusinessForm()
+
+    if request.method == 'POST':
+        form = EntityBusinessForm(request.POST)
+        if form.is_valid():
+            entity_id = request.POST['entity']
+            business_id = request.POST['business']
+            entity_obj = Entity.objects.get(entity_id=entity_id)
+            business_obj = Business.objects.get(business_id=business_id)
+            applicable_roi = form.cleaned_data['applicable_roi']
+            benchmark_roi = form.cleaned_data['benchmark_roi']
+            special_roi = form.cleaned_data['special_roi']
+            sector_base_rate = form.cleaned_data['sector_base_rate']
+            sector_risk_premium = form.cleaned_data['sector_risk_premium']
+            business_risk_premium = form.cleaned_data['business_risk_premium']
+            entity_risk_premium = form.cleaned_data['entity_risk_premium']
+            applicable_discount_rate = form.cleaned_data['applicable_discount_rate']
+            applicable_platform_fee = form.cleaned_data['applicable_platform_fee']
+            sub_limit = form.cleaned_data['sub_limit']
+            available_sub_limit = form.cleaned_data['available_sub_limit']
+            approved_credit_period = form.cleaned_data['approved_credit_period']
+            margin_days = form.cleaned_data['margin_days']
+            try:
+                mapping_object = EntityBusinessROIMapping(entity_id = entity_id, business_id = business_id)
+                values = {'entity_id' : entity_id, 'business_id' : business_id, 'entity_obj' : entity_obj, 'business_obj' : business_obj, 'applicable_roi' : applicable_roi, 'benchmark_roi' : benchmark_roi, 'special_roi' : special_roi, 'sector_base_rate' : sector_base_rate, 'sector_risk_premium' : sector_risk_premium, 'business_risk_premium' : business_risk_premium, 'entity_risk_premium' : entity_risk_premium, 'applicable_discount_rate' : applicable_discount_rate, 'applicable_platform_fee' : applicable_platform_fee, 'sub_limit' : sub_limit, 'available_sub_limit' : available_sub_limit, 'approved_credit_period' : approved_credit_period, 'margin_days' : margin_days}
+                for k,v in values.items():
+                    setattr(mapping_object, k ,v)
+                mapping_object.save()
+            except:
+                EntityBusinessROIMapping.objects.create(entity_id = entity_obj, business_id = business_obj, applicable_roi = applicable_roi, benchmark_roi = benchmark_roi, special_roi = special_roi, sector_base_rate = sector_base_rate, sector_risk_premium = sector_risk_premium, business_risk_premium = business_risk_premium, entity_risk_premium = entity_risk_premium, applicable_discount_rate = applicable_discount_rate, applicable_platform_fee = applicable_platform_fee, sub_limit = sub_limit, available_sub_limit = available_sub_limit, approved_credit_period = approved_credit_period, margin_days = margin_days)
+            business_obj.status = "APPROVED"
+            business_obj.save()
+            return redirect('registered_businesses')
+
+        return redirect('create-entity-business')
+    return render(request, 'Business/create-entity-business.html', {'form': form, 'entities' : entities, 'business':business})
+
+
+def create_entity_investor(request):
+    entities = Entity.objects.all()
+    investors = Investor.objects.all()
+    form = EntityInvestorForm()
+    if request.method == 'POST':
+        form = EntityInvestorForm(request.POST)
+        if form.is_valid():
+            # 'entity_id' :entity_id, 'investor_id' :investor_id, 'entity_obj' :entity_obj, 'investor_obj' :investor_obj, 'applicable_platform_fee' :applicable_platform_fee, 'applicable_ror' :applicable_ror, 
+            entity_id = request.POST['entity']
+            investor_id = request.POST['investor']
+            entity_obj = Entity.objects.get(entity_id=entity_id)
+            investor_obj = Investor.objects.get(investor_id=investor_id)
+            applicable_platform_fee = form.cleaned_data['applicable_platform_fee']
+            applicable_ror = form.cleaned_data['applicable_ror']
+            EntityInvestorRORMapping.objects.create(investor_id=investor_obj, entity_id=entity_obj,applicable_platform_fee=applicable_platform_fee, applicable_ror=applicable_ror)
+            investor_obj.status = "APPROVED"
+            investor_obj.save()
+            return redirect('approved_investor')
+    return render(request, 'Business/create-entity-investor.html', {'form': form, 'entities' : entities, 'investors':investors})

@@ -123,6 +123,9 @@ urlpatterns = [
     path('pan_details', views.pan_details, name='pan_details'),
     path('test', views.test, name='test'),
     path('details', views.details, name='details'),
-    path('test1/<uuid:pk>', views.test1, name='test1')
-
+    path('test1/<uuid:pk>', views.test1, name='test1'),
+    path('create-entity/', views.create_entity, name='create-entity'),
+    # path('create-entity-2/', views.create_entity_2, name='create-entity-2'),
+    path('create-entity-business/', views.create_entity_business, name='create-entity-business'),
+    path('create-entity-investor/', views.create_entity_investor, name='create-entity-investor'),
 ]

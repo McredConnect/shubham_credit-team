@@ -24,6 +24,10 @@ def format_amount(amount):
 
 def create_transaction(investor_obj, invested_amount, invoice_id, tenure):
     balance_inv = investor_obj.escrow_balance
+    if balance_inv is None:
+        balance_inv = 0.0
+        investor_obj.escrow_balance = 0.0
+        investor_obj.save()
     if balance_inv < invested_amount:
         message = 'Your MCred Wallet balance is low. Please add funds to continue with your investment.'
         return message
@@ -69,6 +73,10 @@ def create_transaction(investor_obj, invested_amount, invoice_id, tenure):
                 invoice_obj.invoice_fundable_amount * ror_obj.applicable_ror / 100 * tenure / 365)
     amount_due_on_maturity = amount_due1
     balance_bus = business_obj.escrow_balance
+    if balance_bus is None:
+        balance_bus = 0.0
+        business_obj.escrow_balance = 0.0
+        business_obj.save()
     type_of_transaction_inv = 'Debit'
     sub_type_of_transaction_inv = 'Deal Purchase'
     user_id_inv = investor_obj.investor_id
@@ -370,12 +378,7 @@ def deal_details(request, pk):
     # tenure =  (invoice_obj.invoice_due_date - transaction.transaction_date).days
     # pdf = invoice_obj.invoice_pdf
     # gross_yield =  (return_without_fee) / transaction.amount_invested * 365 / tenure * 100
-    # net_yield =  (return_without_fee - transaction.platform_service_fee_investor - transaction.gst_on_platform_service_fee_investor) / transaction.amount_invested * 365 / tenure * 100
-    # gross_yield = round(gross_yield, 2)
-    # net_yield = round(net_yield, 2)
-    # days_left = (transaction.due_date - date.today()).days
-    # repayment_date = transaction.due_date
-    entity = Entity.objects.get(entity_name=invoice_obj.entity_name)
+    # net_yield =3eda2bbb-a858-42ec-b090-6932349c12c3ty.objects.get(entity_name=invoice_obj.entity_name)
     invoice_obj.company_logo = entity.company_logo
     business = Business.objects.get(business_id=invoice_obj.business_id_id)
     # deal_expiry_date = invoice.invoice_upload_date + timedelta(days=10)
@@ -389,14 +392,15 @@ def deal_details(request, pk):
 
 
 def investor_deals(request):
+    print('investor_deals')
     inv_id = Investor.objects.get(user_id=request.user).investor_id
+    print(inv_id)
     ror_obj = EntityInvestorRORMapping.objects.filter(investor_id=inv_id)
     entity_ls = list()
     today = datetime.today().strftime("%d/%m/%Y")
     tomorrow = (datetime.today() + timedelta(days=1)).strftime("%d/%m/%Y")
     day_after_tom = (datetime.today() + timedelta(days=2)).strftime("%d/%m/%Y")
     # investor_limit = Investor.objects.get(user_id=request.user).minimum_investment_limit
-
     for i in ror_obj:
         entity_name = Entity.objects.get(entity_id=i.entity_id.entity_id).entity_name
         entity_ls.append(entity_name)
@@ -435,6 +439,7 @@ def investor_deals(request):
     inactive_invoice_flag = True
     for i in entity_ls:
         invoices = Invoice.objects.filter(entity_name=i).order_by()
+        print(invoices)
         if len(invoices) > 0:
             for j in invoices:
                 if inactive_invoice_flag == True and j.invoice_subscription_status < 100:
@@ -443,6 +448,8 @@ def investor_deals(request):
                 entity_obj = Entity.objects.get(entity_name=i)
                 j.company_logo = entity_obj.company_logo
                 invoice_ls.append(j)
+        print(invoice_ls)
+
     if len(invoice_ls) == 0:
         messages.warning(request, 'There are No Invoices to Display')
         return render(request, 'Investors/investor_deals1.html', {'today': today, 'tomorrow': tomorrow,'day_after': day_after_tom, 'empty_invoice_flag' : True})

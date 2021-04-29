@@ -17,7 +17,11 @@ def business_detail(request):
 
 
 def business(request):
-    return render(request, 'InvestorDashboards/business.html')
+    print("In business view")
+    objs = Business.objects.filter(status="New").order_by('-created_date')
+    print(objs)
+    context = {'objs':objs}
+    return render(request, 'InvestorDashboards/business.html', context)
 
 
 def business_info(request):
