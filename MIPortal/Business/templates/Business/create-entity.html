@@ -12,7 +12,7 @@
     {{ form|crispy}}
     <button type="submit">Register</button>
   </form>
-  <button type="button" href="{%  url 'investor' %}">Skip</button>
+  <button type="button" onclick="location.href='{% url 'investor' %}'">Skip</button>
 </body>
 
 </html>
